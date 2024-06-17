@@ -1,0 +1,100 @@
+$appearances: filled, outlined, text;
+$sizes: compact, comfortable, spacious, dense;
+$variants: primary, secondary, brand, error, success, warning, light, dark, surface;
+
+.ids-tag {
+  flex-shrink: 0;
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &.ids-tag-compact {
+    line-height: 16px;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  &.ids-tag-comfortable {
+    line-height: 20px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: 0.1px;
+  }
+
+  // TODO: typography for spacious and dense sizes
+
+  &:focus {
+    outline-offset: 2px;
+    outline: var(--ids-comp-tag-focused-outline-size-outline) solid var(--ids-comp-tag-focused-outline-color-dark-focused);
+
+    &.ids-tag-light {
+      outline-color: var(--ids-comp-tag-focused-outline-color-light-focused);
+    }
+  }
+
+  &:active {
+    outline: none;
+  }
+
+  *[icon-leading],
+  *[icon-trailing] {
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @each $size in $sizes {
+    &.ids-tag-#{$size} {
+      gap: var(--ids-comp-size-tag-size-gap-#{$size}, 4px);
+      height: var(--ids-comp-size-tag-size-height-#{$size}, 32px);
+      padding: var(--ids-comp-size-tag-size-padding-y-#{$size}, 8px) var(--ids-comp-size-tag-size-padding-x-#{$size}, 8px);
+      border-radius: var(--ids-comp-size-tag-size-border-radius-#{$size}, 1000px);
+      border: var(--ids-comp-size-tag-size-border-#{$size}, 1px) solid;
+
+      *[icon-leading],
+      *[icon-trailing] {
+        width: var(--ids-comp-size-tag-size-icon-#{$size});
+        height: var(--ids-comp-size-tag-size-icon-#{$size});
+      }
+    }
+  }
+
+  @each $appearance in $appearances {
+    @each $variant in $variants {
+      &.ids-tag-#{$appearance}.ids-tag-#{$variant} {
+        color: var(--ids-comp-tag-#{$appearance}-color-fg-label-#{$variant}-enabled);
+        background: var(--ids-comp-tag-#{$appearance}-color-bg-#{$variant}-enabled);
+        border-color: var(--ids-comp-tag-#{$appearance}-color-border-#{$variant}-enabled, rgba(255, 255, 255, 0));
+
+        &:hover {
+          color: var(--ids-comp-tag-#{$appearance}-color-fg-label-#{$variant}-hovered);
+          background: var(--ids-comp-tag-#{$appearance}-color-bg-#{$variant}-hovered);
+          border-color: var(--ids-comp-tag-#{$appearance}-color-border-#{$variant}-hovered, rgba(255, 255, 255, 0));
+        }
+
+        &:focus {
+          color: var(--ids-comp-tag-#{$appearance}-color-fg-label-#{$variant}-focused);
+          background: var(--ids-comp-tag-#{$appearance}-color-bg-#{$variant}-focused);
+          border-color: var(--ids-comp-tag-#{$appearance}-color-border-#{$variant}-focused, rgba(255, 255, 255, 0));
+        }
+
+        &:active {
+          color: var(--ids-comp-tag-#{$appearance}-color-fg-label-#{$variant}-pressed);
+          background: var(--ids-comp-tag-#{$appearance}-color-bg-#{$variant}-pressed);
+          border-color: var(--ids-comp-tag-#{$appearance}-color-border-#{$variant}-pressed, rgba(255, 255, 255, 0));
+        }
+
+        &:disabled {
+          color: var(--ids-comp-tag-#{$appearance}-color-fg-label-#{$variant}-disabled);
+          background: var(--ids-comp-tag-#{$appearance}-color-bg-#{$variant}-disabled);
+          border-color: var(--ids-comp-tag-#{$appearance}-color-border-#{$variant}-disabled, rgba(255, 255, 255, 0));
+        }
+      }
+    }
+  }
+}

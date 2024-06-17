@@ -1,0 +1,70 @@
+$appearances: filled, outlined, elevated;
+$sizes: compact, comfortable, spacious, dense;
+
+.ids-action-panel {
+  display: flex;
+  width: 22.25rem;
+  flex-direction: column;
+  align-items: flex-start;
+  @each $size in $sizes {
+
+    &.ids-action-panel-#{$size} {
+      gap: var(--ids-comp-size-action-panel-size-gap-#{$size}, 0.5rem);
+      padding: var(--ids-comp-size-action-panel-size-padding-y-#{$size}, 0.5rem) var(--ids-comp-size-action-panel-size-padding-x-#{$size}, 0.5rem);
+      border-radius: var(--ids-comp-size-action-panel-size-border-radius-#{$size}, 1rem);
+
+      @each $appearance in $appearances {
+        &.ids-action-panel-#{$appearance} {
+          &.ids-action-panel-outlined {
+            border: var(--ids-comp-size-action-panel-size-border-#{$size})
+              solid
+              var(
+                --ids-comp-action-panel-#{$appearance}-color-border-light-enabled
+              );
+          }
+        }
+      }
+    }
+  }
+
+  &.ids-action-panel-filled {
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0),
+      0px 0px 0px 0px rgba(0, 0, 0, 0);
+  }
+  &.ids-action-panel-outlined {
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0),
+      0px 0px 0px 0px rgba(0, 0, 0, 0);
+  }
+  &.ids-action-panel-elevated {
+    box-shadow: var(
+        --ids-smc-reference-container-effects-shadow-horizontal-none
+      )
+      var(--ids-smc-reference-container-effects-shadow-vertical-xxl)
+      var(--ids-smc-reference-container-effects-shadow-blur-xxxl)
+      var(--ids-smc-reference-container-effects-shadow-spread-xxs)
+      var(--ids-smc-reference-container-effects-shadow-color-dark-darker);
+  }
+
+  @each $appearance in $appearances {
+    &.ids-action-panel-#{$appearance} {
+      background: var(
+        --ids-comp-action-panel-#{$appearance}-color-bg-light-enabled
+      );
+    }
+  }
+
+  button {
+    &:hover {
+      border-color: transparent;
+    }
+    &:focus {
+      outline: none !important;
+    }
+  }
+}
+
+.cdk-overlay-connected-position-bounding-box:first-of-type {
+  .cdk-overlay-pane:has(.ids-action-panel) {
+    @apply py-3;
+  }
+}
