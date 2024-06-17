@@ -1,0 +1,127 @@
+@use "sass:map";
+
+$sizes: compact, comfortable, spacious, dense;
+$variants: primary, secondary, brand, error, success, warning, light, dark,
+  surface;
+
+.ids-avatar {
+  display: flex;
+  font-style: normal;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  & &-icon {
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+  }
+
+  & &-image {
+    border-radius: 50%;
+    vertical-align: middle;
+    max-width: none;
+  }
+
+  &:focus {
+    outline-offset: 2px;
+    outline: var(--ids-comp-avatar-focused-outline-size-outline, 3px) solid var(--ids-comp-avatar-focused-outline-color-dark-focused, rgba(0, 0, 0, 1));
+
+    &.ids-avatar-light {
+      outline: var(--ids-comp-avatar-focused-outline-size-outline, 3px) solid var(--ids-comp-avatar-focused-outline-color-light-focused);
+    }
+  }
+
+  &:active {
+    outline: none;
+  }
+
+  &.ids-avatar-compact {
+    font-weight: 500;
+    line-height: 1rem;
+    font-size: 0.6875rem;
+    letter-spacing: 0.03125rem;
+    width: var(--ids-comp-size-avatar-size-height-compact, 1.5rem);
+    height: var(--ids-comp-size-avatar-size-width-compact, 1.5rem);
+  }
+
+  &.ids-avatar-comfortable {
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    letter-spacing: 0.01563rem;
+    width: var(--ids-comp-size-avatar-size-width-comfortable, 2.5rem);
+    height: var(--ids-comp-size-avatar-size-height-comfortable, 2.5rem);
+  }
+
+  &.ids-avatar-spacious {
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.375rem;
+    line-height: 1.75rem;
+    width: var(--ids-comp-size-avatar-size-width-spacious, 4rem);
+    height: var(--ids-comp-size-avatar-size-height-spacious, 4rem);
+  }
+
+  &.ids-avatar-dense {
+    // FIXME: proper "dense" constant values
+    font-weight: 500;
+    line-height: 16px;
+    font-size: 10px;
+    letter-spacing: 0.25px;
+    width: var(--ids-comp-size-avatar-size-width-dense, 1.25rem);
+    height: var(--ids-comp-size-avatar-size-height-dense, 1.25rem);
+  }
+
+  @each $size in $sizes {
+    &.ids-avatar-#{$size} {
+      gap: var(--ids-comp-size-avatar-size-gap-#{$size}, 12px);
+      border-radius: var(--ids-comp-size-avatar-size-border-radius-#{$size}, 62.5rem);
+      padding: var(--ids-comp-size-avatar-size-padding-y-#{$size}) var(--ids-comp-size-avatar-size-padding-x-#{$size});
+      border: var(--ids-comp-size-avatar-size-border-#{$size}, 1px) solid;
+
+      &:has(.ids-avatar-image) {
+        padding: 0;
+      }
+
+      .ids-avatar-image {
+        width: var(--ids-comp-size-avatar-size-width-#{$size});
+        height: var(--ids-comp-size-avatar-size-height-#{$size});
+      }
+    }
+  }
+
+  @each $variant in $variants {
+    &.ids-avatar-#{$variant} {
+      color: var(--ids-comp-avatar-color-fg-#{$variant}-enabled);
+      background:  var(--ids-comp-avatar-color-bg-#{$variant}-enabled);
+      border-color: var(--ids-comp-avatar-color-border-#{$variant}-enabled, rgba(255, 255, 255, 0.00));
+
+      &:hover {
+        background: var(--ids-comp-avatar-color-bg-#{$variant}-hovered);
+        border-color: var(--ids-comp-avatar-color-border-#{$variant}-hovered, rgba(255, 255, 255, 0.00));
+      }
+
+      &:focus {
+        background: var(--ids-comp-avatar-color-bg-#{$variant}-focused);
+        border-color: var(--ids-comp-avatar-color-border-#{$variant}-focused, rgba(255, 255, 255, 0.00));
+      }
+
+      &:active {
+        background: var(--ids-comp-avatar-color-bg-#{$variant}-pressed);
+        border-color: var(--ids-comp-avatar-color-border-#{$variant}-pressed, rgba(255, 255, 255, 0.00));
+      }
+
+      .ids-avatar-icon {
+        path {
+          fill: var(--ids-comp-avatar-color-fg-#{$variant}-enabled);
+        }
+      }
+    }
+  }
+}

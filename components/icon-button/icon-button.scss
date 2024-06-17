@@ -1,0 +1,95 @@
+$appearances: filled, outlined, standard;
+$sizes: compact, comfortable, spacious, dense;
+$variants: primary, secondary, brand, error, success, warning, light, dark, surface;
+
+.ids-icon-button {
+  padding: 0px;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  &:focus {
+    outline-offset: 2px;
+    outline: var(--ids-comp-icon-button-focused-outline-size-outline) solid var(--ids-comp-icon-button-focused-outline-color-dark-focused);
+
+    &.ids-icon-button-light {
+      outline-color: var(--ids-comp-icon-button-focused-outline-color-light-focused);
+    }
+  }
+
+  &:active {
+    outline: none;
+  }
+
+  @each $size in $sizes {
+    &.ids-icon-button-#{$size} {
+      padding: var(--ids-comp-size-icon-button-size-padding-y-#{$size}, 2px) var(--ids-comp-size-icon-button-size-padding-x-#{$size}, 2px);
+      width: var(--ids-comp-size-icon-button-size-width-#{$size});
+      height: var(--ids-comp-size-icon-button-size-height-#{$size});
+      border-radius: var(--ids-comp-size-icon-button-size-border-radius-#{$size}, 1000px);
+      border: var(--ids-comp-size-icon-button-size-border-#{$size}, 1px) solid;
+
+      *[icon] {
+        width: var(--ids-comp-size-icon-button-size-icon-#{$size});
+        height: var(--ids-comp-size-icon-button-size-icon-#{$size});
+      }
+    }
+  }
+
+  @each $appearance in $appearances {
+    &.ids-icon-button-#{$appearance} {
+      @if $appearance == standard {
+        border: none;
+      }
+
+      @each $variant in $variants {
+        &.ids-icon-button-#{$variant} {
+          color: var(--ids-comp-icon-button-#{$appearance}-color-fg-#{$variant}-enabled);
+          background: var(--ids-comp-icon-button-#{$appearance}-color-bg-#{$variant}-enabled);
+
+          @if $appearance != standard {
+            border-color: var(--ids-comp-icon-button-#{$appearance}-color-border-#{$variant}-enabled, rgba(255, 255, 255, 0));
+          }
+
+          &:hover {
+            background: var(--ids-comp-icon-button-#{$appearance}-color-bg-#{$variant}-hovered);
+
+            @if $appearance == standard {
+              color: var(--ids-comp-icon-button-#{$appearance}-color-fg-#{$variant}-hovered);
+            } @else {
+              border-color: var(--ids-comp-icon-button-#{$appearance}-color-border-#{$variant}-hovered, rgba(255, 255, 255, 0));
+            }
+          }
+
+          &:focus {
+            background: var(--ids-comp-icon-button-#{$appearance}-color-bg-#{$variant}-focused);
+            color: var(--ids-comp-icon-button-#{$appearance}-color-fg-#{$variant}-focused);
+
+            @if $appearance != standard {
+              border-color: var(--ids-comp-icon-button-#{$appearance}-color-border-#{$variant}-focused, rgba(255, 255, 255, 0));
+            }
+          }
+
+          &:active {
+            background: var(--ids-comp-icon-button-#{$appearance}-color-bg-#{$variant}-pressed);
+            color: var(--ids-comp-icon-button-#{$appearance}-color-fg-#{$variant}-pressed);
+
+            @if $appearance != standard {
+              border-color: var(--ids-comp-icon-button-#{$appearance}-color-border-#{$variant}-pressed, rgba(255, 255, 255, 0));
+            }
+          }
+
+          &:disabled {
+            background: var(--ids-comp-icon-button-#{$appearance}-color-bg-#{$variant}-disabled);
+            color: var(--ids-comp-icon-button-#{$appearance}-color-fg-#{$variant}-disabled);
+
+            @if $appearance != standard {
+              border-color: var(--ids-comp-icon-button-#{$appearance}-color-border-#{$variant}-disabled, rgba(255, 255, 255, 0));
+            }
+          }
+        }
+      }
+    }
+  }
+}

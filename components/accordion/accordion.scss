@@ -1,0 +1,121 @@
+$appearances: text, filled;
+$sizes: compact, comfortable, spacious, dense;
+
+.ids-accordion {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  background: var(--ids-comp-accordion-item-color-bg-enabled);
+
+  & > .ids-accordion-summary {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-style: solid;
+    cursor: pointer;
+
+    &:focus {
+      outline-offset: 2px;
+      outline-style: solid;
+      outline-width: var(--ids-comp-accordion-summary-focused-outline-size-outline);
+      outline-color: var(--ids-comp-accordion-summary-focused-outline-color-dark-focused);
+
+      .ids-theme-dark & {
+        outline-color: var(--ids-comp-accordion-summary-focused-outline-color-light-focused);
+      }
+    }
+
+    & > .ids-accordion-title {
+      flex: 1 0 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  &.ids-accordion-disabled > .ids-accordion-summary {
+    pointer-events: none;
+    user-select: none;
+  }
+
+  &.ids-accordion-dense, &.ids-accordion-compact {
+    .ids-accordion-title {
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 16px;
+      letter-spacing: 0.5px;
+    }
+  }
+
+  &.ids-accordion-comfortable, &.ids-accordion-spacious {
+    .ids-accordion-title {
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 20px;
+      letter-spacing: 0.1px;
+    }
+  }
+
+  & > .ids-accordion-content {
+    display: flex;
+    flex-direction: column;
+    background: var(--ids-comp-accordion-details-color-bg-enabled);
+  }
+
+  @each $size in $sizes {
+    &.ids-accordion-#{$size} {
+      padding: var(--ids-comp-size-accordion-item-size-padding-y-#{$size}) var(--ids-comp-size-accordion-item-size-padding-x-#{$size});
+      gap: var(--ids-comp-size-accordion-item-size-gap-#{$size});
+      border-radius: var(--ids-comp-size-accordion-item-size-border-radius-#{$size});
+
+      & > .ids-accordion-summary {
+        height: var(--ids-comp-size-accordion-summary-size-height-#{$size});
+        padding: var(--ids-comp-size-accordion-summary-size-padding-y-#{$size}) var(--ids-comp-size-accordion-summary-size-padding-x-#{$size});
+        gap: var(--ids-comp-size-accordion-summary-size-gap-#{$size});
+        border-radius: var(--ids-comp-size-accordion-summary-size-border-radius-#{$size});
+        border-width: var(--ids-comp-size-accordion-summary-size-border-width-#{$size});
+      }
+
+      & > .ids-accordion-content {
+        padding: var(--ids-comp-size-accordion-details-size-padding-y-#{$size}) var(--ids-comp-size-accordion-details-size-padding-x-#{$size});
+        gap: var(--ids-comp-size-accordion-details-size-gap-#{$size});
+      }
+    }
+  }
+
+  @each $appearance in $appearances {
+    &.ids-accordion-#{$appearance} {
+      & > .ids-accordion-summary {
+        background: var(--ids-comp-accordion-summary-#{$appearance}-color-bg-enabled);
+        border-color: var(--ids-comp-accordion-summary-#{$appearance}-color-border-enabled);
+        color: var(--ids-comp-accordion-summary-#{$appearance}-color-fg-label-enabled);
+
+        &:hover {
+          background: var(--ids-comp-accordion-summary-#{$appearance}-color-bg-hovered);
+          border-color: var(--ids-comp-accordion-summary-#{$appearance}-color-border-hovered);
+          color: var(--ids-comp-accordion-summary-#{$appearance}-color-fg-label-hovered);
+        }
+
+        &:focus {
+          background: var(--ids-comp-accordion-summary-#{$appearance}-color-bg-focused);
+          border-color: var(--ids-comp-accordion-summary-#{$appearance}-color-border-focused);
+          color: var(--ids-comp-accordion-summary-#{$appearance}-color-fg-label-focused);
+        }
+
+        &:active {
+          background: var(--ids-comp-accordion-summary-#{$appearance}-color-bg-pressed);
+          border-color: var(--ids-comp-accordion-summary-#{$appearance}-color-border-pressed);
+          color: var(--ids-comp-accordion-summary-#{$appearance}-color-fg-label-pressed);
+        }
+
+      }
+
+      &.ids-accordion-disabled > .ids-accordion-summary {
+        background: var(--ids-comp-accordion-summary-#{$appearance}-color-bg-disabled);
+        border-color: var(--ids-comp-accordion-summary-#{$appearance}-color-border-disabled);
+        color: var(--ids-comp-accordion-summary-#{$appearance}-color-fg-label-disabled);
+      }
+    }
+  }
+}
