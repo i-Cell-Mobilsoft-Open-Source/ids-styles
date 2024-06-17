@@ -23,102 +23,116 @@ $sizes: compact, comfortable, spacious, dense;
     grid-template-rows: auto 1fr auto;
     position: relative;
     max-height: 80vh;
-  }
 
-  .ids-dialog-close-button {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-  }
+    .ids-dialog-header {
+      display: flex;
+      align-items: stretch;
 
-  .ids-dialog-header {
-    display: flex;
-    align-items: stretch;
-  }
+      .ids-dialog-title {
+        font-style: normal;
+      }
 
-  .ids-dialog-header-default-content {
-    display: flex;
-    flex-direction: column;
-    flex: 1 0 0;
-    align-items: flex-start;
-  }
+      .ids-dialog-subtitle {
+        font-style: normal;
+      }
 
-  .ids-dialog-title {
-    font-size: 28px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 36px;
-  }
+      .ids-dialog-header-default-content {
+        display: flex;
+        flex-direction: column;
+        flex: 1 0 0;
+        align-items: flex-start;
+      }
 
-  .ids-dialog-subtitle {
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px;
-    letter-spacing: 0.5px;
-  }
+      .ids-dialog-close-button {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+      }
+    }
 
-  .ids-dialog-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow-y: auto;
-    background: var(--ids-comp-dialog-content-color-bg-enabled);
-
-    .ids-dialog-content-overflow {
+    .ids-dialog-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       overflow-y: auto;
-      height: 100%;
+      background: var(--ids-comp-dialog-content-color-bg-enabled);
+
+      .ids-dialog-content-overflow {
+        overflow-y: auto;
+        height: 100%;
+      }
+
+      &.ids-dialog-content-scrollable {
+        border-top-style: solid;
+        border-bottom-style: solid;
+        border-top-color: var(--ids-comp-dialog-content-color-border-surface-default);
+        border-bottom-color: var(--ids-comp-dialog-content-color-border-surface-default);
+      }
     }
 
-    &.ids-dialog-content-scrollable {
-      border-top-style: solid;
-      border-bottom-style: solid;
-      border-top-color: var(--ids-comp-dialog-content-color-border-surface-default);
-      border-bottom-color: var(--ids-comp-dialog-content-color-border-surface-default);
+    .ids-dialog-actions {
+      display: flex;
+      background: var(--ids-comp-dialog-footer-color-bg-enabled);
+
+      // TODO: test rules below
+      justify-content: flex-end;
+      align-items: flex-start;
+      align-content: flex-start;
+      align-self: stretch;
+      flex-wrap: wrap;
     }
-  }
-
-  .ids-dialog-actions {
-    display: flex;
-    background: var(--ids-comp-dialog-footer-color-bg-enabled);
-
-    // TODO: test rules below
-    justify-content: flex-end;
-    align-items: flex-start;
-    align-content: flex-start;
-    align-self: stretch;
-    flex-wrap: wrap;
   }
 
   @each $size in $sizes {
     &.ids-dialog-#{$size} {
-      .ids-dialog-container {
-        width: var(--ids-comp-size-dialog-container-size-width-#{$size});
-        min-height: var(--ids-comp-size-dialog-container-size-min-height-#{$size});
-        padding: var(--ids-comp-size-dialog-container-size-padding-y-#{$size}) var(--ids-comp-size-dialog-container-size-padding-x-#{$size});
-        gap: var(--ids-comp-size-dialog-container-size-gap-#{$size});
-      }
-
       border-radius: var(--ids-comp-size-dialog-container-size-border-radius-#{$size});
       border-width: var(--ids-comp-size-dialog-container-size-border-width-#{$size});
 
-      .ids-dialog-header-default-content {
-        gap: var(--ids-comp-size-dialog-header-size-gap-#{$size});
-        padding: var(--ids-comp-size-dialog-header-size-padding-y-#{$size}) var(--ids-comp-size-dialog-header-size-padding-x-#{$size});
-      }
+      .ids-dialog-container {
+        width: var(--ids-comp-size-dialog-container-size-width-#{$size});
+        min-height: var(--ids-comp-size-dialog-container-size-min-height-#{$size});
+        padding: var(--ids-comp-size-dialog-container-size-padding-y-#{$size})
+          var(--ids-comp-size-dialog-container-size-padding-x-#{$size});
+        gap: var(--ids-comp-size-dialog-container-size-gap-#{$size});
 
-      .ids-dialog-content {
-        padding: var(--ids-comp-size-dialog-content-fixed-size-padding-y-#{$size}) var(--ids-comp-size-dialog-content-fixed-size-padding-x-#{$size});
+        .ids-dialog-header {
+          .ids-dialog-title {
+            font-family: var(--ids-comp-size-dialog-header-title-typography-font-family-#{$size});
+            font-size: var(--ids-comp-size-dialog-header-title-typography-font-size-#{$size});
+            font-weight: var(--ids-comp-size-dialog-header-title-typography-font-weight-#{$size});
+            letter-spacing: var(--ids-comp-size-dialog-header-title-typography-letter-spacing-#{$size});
+            line-height: var(--ids-comp-size-dialog-header-title-typography-line-height-#{$size});
+          }
 
-        &.ids-dialog-content-scrollable {
-          padding: var(--ids-comp-size-dialog-content-scrollable-size-padding-y-#{$size}) var(--ids-comp-size-dialog-content-scrollable-size-padding-x-#{$size});
-          border-top-width: var(--ids-comp-size-dialog-content-scrollable-size-border-width-#{$size});
-          border-bottom-width: var(--ids-comp-size-dialog-content-scrollable-size-border-width-#{$size});
+          .ids-dialog-subtitle {
+            font-family: var(--ids-comp-size-dialog-header-subtitle-typography-font-family-#{$size});
+            font-size: var(--ids-comp-size-dialog-header-subtitle-typography-font-size-#{$size});
+            font-weight: var(--ids-comp-size-dialog-header-subtitle-typography-font-weight-#{$size});
+            letter-spacing: var(--ids-comp-size-dialog-header-subtitle-typography-letter-spacing-#{$size});
+            line-height: var(--ids-comp-size-dialog-header-subtitle-typography-line-height-#{$size});
+          }
+
+          .ids-dialog-header-default-content {
+            gap: var(--ids-comp-size-dialog-header-size-gap-#{$size});
+            padding: var(--ids-comp-size-dialog-header-size-padding-y-#{$size}) var(--ids-comp-size-dialog-header-size-padding-x-#{$size});
+          }
         }
-      }
 
-      .ids-dialog-actions {
-        padding: var(--ids-comp-size-dialog-footer-padding-y-#{$size}, 0px) var(--ids-comp-size-dialog-footer-padding-x-#{$size}, 24px);
+        .ids-dialog-content {
+          padding: var(--ids-comp-size-dialog-content-fixed-size-padding-y-#{$size})
+            var(--ids-comp-size-dialog-content-fixed-size-padding-x-#{$size});
+
+          &.ids-dialog-content-scrollable {
+            padding: var(--ids-comp-size-dialog-content-scrollable-size-padding-y-#{$size})
+              var(--ids-comp-size-dialog-content-scrollable-size-padding-x-#{$size});
+            border-top-width: var(--ids-comp-size-dialog-content-scrollable-size-border-width-#{$size});
+            border-bottom-width: var(--ids-comp-size-dialog-content-scrollable-size-border-width-#{$size});
+          }
+        }
+
+        .ids-dialog-actions {
+          padding: var(--ids-comp-size-dialog-footer-padding-y-#{$size}, 0px) var(--ids-comp-size-dialog-footer-padding-x-#{$size}, 24px);
+        }
       }
     }
   }
