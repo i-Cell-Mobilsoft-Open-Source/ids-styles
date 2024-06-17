@@ -1,2 +1,2 @@
 # ids-styles
-This repository contains styles for i-Cell Design System UI Kits (currently Vue and Angular).
+This repository contains styles for i-Cell Design System UI Kit components (currently Vue and Angular).
