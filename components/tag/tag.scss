@@ -9,24 +9,6 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
   align-items: center;
   justify-content: center;
 
-  &.ids-tag-compact {
-    line-height: 16px;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-  }
-
-  &.ids-tag-comfortable {
-    line-height: 20px;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    letter-spacing: 0.1px;
-  }
-
-  // TODO: typography for spacious and dense sizes
-
   &:focus {
     outline-offset: 2px;
     outline: var(--ids-comp-tag-focused-outline-size-outline) solid var(--ids-comp-tag-focused-outline-color-dark-focused);
@@ -55,6 +37,14 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
       padding: var(--ids-comp-size-tag-size-padding-y-#{$size}, 8px) var(--ids-comp-size-tag-size-padding-x-#{$size}, 8px);
       border-radius: var(--ids-comp-size-tag-size-border-radius-#{$size}, 1000px);
       border: var(--ids-comp-size-tag-size-border-#{$size}, 1px) solid;
+
+      & > .ids-tag-label {
+        font-family: var(--ids-comp-size-tag-label-typography-font-family-#{$size});
+        font-size: var(--ids-comp-size-tag-label-typography-font-size-#{$size});
+        font-weight: var(--ids-comp-size-tag-label-typography-font-weight-#{$size});
+        letter-spacing: var(--ids-comp-size-tag-label-typography-letter-spacing-#{$size});
+        line-height: var(--ids-comp-size-tag-label-typography-line-height-#{$size});
+      }
 
       *[icon-leading],
       *[icon-trailing] {
