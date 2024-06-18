@@ -4,7 +4,6 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
 
 .ids-button {
   flex-shrink: 0;
-  font-weight: 700;
   width: fit-content;
   align-items: center;
   display: inline-flex;
@@ -31,32 +30,22 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
     justify-content: center;
   }
 
-  .ids-button-label {
-    @apply font-bold not-italic;
-  }
-
-  &.ids-button-compact .ids-button-label {
-    @apply text-xs;
-  }
-
-  &.ids-button-comfortable .ids-button-label {
-    @apply text-sm;
-  }
-
-  &.ids-button-spacious .ids-button-label {
-    @apply text-lg leading-6;
-  }
-
   @each $size in $sizes {
     &.ids-button-#{$size} {
-      font-size: 12px;
-      line-height: 16px;
       gap: var(--ids-comp-size-buttons-size-gap-#{$size}, 4px);
       height: var(--ids-comp-size-buttons-size-height-#{$size}, 24px);
       min-width: var(--ids-comp-size-buttons-size-min-width-#{$size}, 24px);
       padding: var(--ids-comp-size-buttons-size-padding-y-#{$size}, 6px) var(--ids-comp-size-buttons-size-padding-x-#{$size}, 8px);
       border-radius: var(--ids-comp-size-buttons-size-border-radius-#{$size}, 1000px);
       border: var(--ids-comp-size-buttons-size-border-width-#{$size}, 1px) solid;
+
+      & > .ids-button-label {
+        font-family: var(--ids-comp-size-buttons-label-typography-font-family-#{$size});
+        font-size: var(--ids-comp-size-buttons-label-typography-font-size-#{$size});
+        font-weight: var(--ids-comp-size-buttons-label-typography-font-weight-#{$size});
+        letter-spacing: var(--ids-comp-size-buttons-label-typography-letter-spacing-#{$size});
+        line-height: var(--ids-comp-size-buttons-label-typography-line-height-#{$size});
+      }
 
       *[icon-leading],
       *[icon-trailing] {
