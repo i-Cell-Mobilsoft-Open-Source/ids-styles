@@ -29,11 +29,10 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
 
   &:focus {
     outline-offset: 2px;
-    outline: var(--ids-comp-avatar-focused-outline-size-outline, 3px) solid
-      var(--ids-comp-avatar-focused-outline-color-dark-focused, rgba(0, 0, 0, 1));
+    outline: var(--ids-comp-avatar-focused-outline-size-outline) solid var(--ids-comp-avatar-focused-outline-color-dark-focused);
 
     &.ids-avatar-light {
-      outline: var(--ids-comp-avatar-focused-outline-size-outline, 3px) solid var(--ids-comp-avatar-focused-outline-color-light-focused);
+      outline: var(--ids-comp-avatar-focused-outline-size-outline) solid var(--ids-comp-avatar-focused-outline-color-light-focused);
     }
   }
 
@@ -45,10 +44,10 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
     &.ids-avatar-#{$size} {
       width: var(--ids-comp-size-avatar-size-height-#{$size});
       height: var(--ids-comp-size-avatar-size-width-#{$size});
-      gap: var(--ids-comp-size-avatar-size-gap-#{$size}, 12px);
-      border-radius: var(--ids-comp-size-avatar-size-border-radius-#{$size}, 62.5rem);
+      gap: var(--ids-comp-size-avatar-size-gap-#{$size});
+      border-radius: var(--ids-comp-size-avatar-size-border-radius-#{$size});
       padding: var(--ids-comp-size-avatar-size-padding-y-#{$size}) var(--ids-comp-size-avatar-size-padding-x-#{$size});
-      border: var(--ids-comp-size-avatar-size-border-#{$size}, 1px) solid;
+      border: var(--ids-comp-size-avatar-size-border-#{$size}) solid;
       font-family: var(--ids-comp-size-avatar-initials-typography-font-family-#{$size});
       font-size: var(--ids-comp-size-avatar-initials-typography-font-size-#{$size});
       font-weight: var(--ids-comp-size-avatar-initials-typography-font-weight-#{$size});
@@ -70,21 +69,21 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
     &.ids-avatar-#{$variant} {
       color: var(--ids-comp-avatar-color-fg-#{$variant}-enabled);
       background: var(--ids-comp-avatar-color-bg-#{$variant}-enabled);
-      border-color: var(--ids-comp-avatar-color-border-#{$variant}-enabled, rgba(255, 255, 255, 0));
+      border-color: var(--ids-comp-avatar-color-border-#{$variant}-enabled);
 
       &:hover {
         background: var(--ids-comp-avatar-color-bg-#{$variant}-hovered);
-        border-color: var(--ids-comp-avatar-color-border-#{$variant}-hovered, rgba(255, 255, 255, 0));
+        border-color: var(--ids-comp-avatar-color-border-#{$variant}-hovered);
       }
 
       &:focus {
         background: var(--ids-comp-avatar-color-bg-#{$variant}-focused);
-        border-color: var(--ids-comp-avatar-color-border-#{$variant}-focused, rgba(255, 255, 255, 0));
+        border-color: var(--ids-comp-avatar-color-border-#{$variant}-focused);
       }
 
       &:active {
         background: var(--ids-comp-avatar-color-bg-#{$variant}-pressed);
-        border-color: var(--ids-comp-avatar-color-border-#{$variant}-pressed, rgba(255, 255, 255, 0));
+        border-color: var(--ids-comp-avatar-color-border-#{$variant}-pressed);
       }
 
       .ids-avatar-icon {
