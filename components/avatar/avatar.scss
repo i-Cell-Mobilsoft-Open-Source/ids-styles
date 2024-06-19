@@ -41,28 +41,10 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
     outline: none;
   }
 
-  &.ids-avatar-compact {
-    width: var(--ids-comp-size-avatar-size-height-compact, 1.5rem);
-    height: var(--ids-comp-size-avatar-size-width-compact, 1.5rem);
-  }
-
-  &.ids-avatar-comfortable {
-    width: var(--ids-comp-size-avatar-size-width-comfortable, 2.5rem);
-    height: var(--ids-comp-size-avatar-size-height-comfortable, 2.5rem);
-  }
-
-  &.ids-avatar-spacious {
-    width: var(--ids-comp-size-avatar-size-width-spacious, 4rem);
-    height: var(--ids-comp-size-avatar-size-height-spacious, 4rem);
-  }
-
-  &.ids-avatar-dense {
-    width: var(--ids-comp-size-avatar-size-width-dense, 1.25rem);
-    height: var(--ids-comp-size-avatar-size-height-dense, 1.25rem);
-  }
-
   @each $size in $sizes {
     &.ids-avatar-#{$size} {
+      width: var(--ids-comp-size-avatar-size-height-#{$size});
+      height: var(--ids-comp-size-avatar-size-width-#{$size});
       gap: var(--ids-comp-size-avatar-size-gap-#{$size}, 12px);
       border-radius: var(--ids-comp-size-avatar-size-border-radius-#{$size}, 62.5rem);
       padding: var(--ids-comp-size-avatar-size-padding-y-#{$size}) var(--ids-comp-size-avatar-size-padding-x-#{$size});
