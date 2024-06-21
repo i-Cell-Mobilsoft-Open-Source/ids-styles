@@ -24,11 +24,11 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
 
   @each $size in $sizes {
     &.ids-icon-button-#{$size} {
-      padding: var(--ids-comp-size-icon-button-size-padding-y-#{$size}, 2px) var(--ids-comp-size-icon-button-size-padding-x-#{$size}, 2px);
+      padding: var(--ids-comp-size-icon-button-size-padding-y-#{$size}) var(--ids-comp-size-icon-button-size-padding-x-#{$size});
       width: var(--ids-comp-size-icon-button-size-width-#{$size});
       height: var(--ids-comp-size-icon-button-size-height-#{$size});
-      border-radius: var(--ids-comp-size-icon-button-size-border-radius-#{$size}, 1000px);
-      border: var(--ids-comp-size-icon-button-size-border-#{$size}, 1px) solid;
+      border-radius: var(--ids-comp-size-icon-button-size-border-radius-#{$size});
+      border: var(--ids-comp-size-icon-button-size-border-#{$size}) solid;
 
       *[icon] {
         width: var(--ids-comp-size-icon-button-size-icon-#{$size});
@@ -49,7 +49,7 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
           background: var(--ids-comp-icon-button-#{$appearance}-color-bg-#{$variant}-enabled);
 
           @if $appearance != standard {
-            border-color: var(--ids-comp-icon-button-#{$appearance}-color-border-#{$variant}-enabled, rgba(255, 255, 255, 0));
+            border-color: var(--ids-comp-icon-button-#{$appearance}-color-border-#{$variant}-enabled);
           }
 
           &:hover {
@@ -58,7 +58,7 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
             @if $appearance == standard {
               color: var(--ids-comp-icon-button-#{$appearance}-color-fg-#{$variant}-hovered);
             } @else {
-              border-color: var(--ids-comp-icon-button-#{$appearance}-color-border-#{$variant}-hovered, rgba(255, 255, 255, 0));
+              border-color: var(--ids-comp-icon-button-#{$appearance}-color-border-#{$variant}-hovered);
             }
           }
 
@@ -67,7 +67,7 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
             color: var(--ids-comp-icon-button-#{$appearance}-color-fg-#{$variant}-focused);
 
             @if $appearance != standard {
-              border-color: var(--ids-comp-icon-button-#{$appearance}-color-border-#{$variant}-focused, rgba(255, 255, 255, 0));
+              border-color: var(--ids-comp-icon-button-#{$appearance}-color-border-#{$variant}-focused);
             }
           }
 
@@ -76,7 +76,7 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
             color: var(--ids-comp-icon-button-#{$appearance}-color-fg-#{$variant}-pressed);
 
             @if $appearance != standard {
-              border-color: var(--ids-comp-icon-button-#{$appearance}-color-border-#{$variant}-pressed, rgba(255, 255, 255, 0));
+              border-color: var(--ids-comp-icon-button-#{$appearance}-color-border-#{$variant}-pressed);
             }
           }
 
@@ -85,7 +85,7 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
             color: var(--ids-comp-icon-button-#{$appearance}-color-fg-#{$variant}-disabled);
 
             @if $appearance != standard {
-              border-color: var(--ids-comp-icon-button-#{$appearance}-color-border-#{$variant}-disabled, rgba(255, 255, 255, 0));
+              border-color: var(--ids-comp-icon-button-#{$appearance}-color-border-#{$variant}-disabled);
             }
           }
         }

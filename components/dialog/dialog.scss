@@ -131,7 +131,7 @@ $sizes: compact, comfortable, spacious, dense;
         }
 
         .ids-dialog-actions {
-          padding: var(--ids-comp-size-dialog-footer-padding-y-#{$size}, 0px) var(--ids-comp-size-dialog-footer-padding-x-#{$size}, 24px);
+          padding: var(--ids-comp-size-dialog-footer-padding-y-#{$size}) var(--ids-comp-size-dialog-footer-padding-x-#{$size});
         }
       }
     }
