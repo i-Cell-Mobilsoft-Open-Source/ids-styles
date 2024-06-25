@@ -1,6 +1,6 @@
 {
   "name": "@i-cell/ids-styles",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": false,
   "description": "Stylesheets for i-Cell Design System UI Kit components (currently Vue and Angular)",
   "scripts": {
@@ -12,7 +12,8 @@
     "check-missing-tokens:ci": "node scripts/check-missing-tokens.mjs ./dist ./node_modules/@i-cell/ids-tokens/css/tokens.css 30"
   },
   "files": [
-    "dist"
+    "dist",
+    "scripts/check-missing-tokens.mjs"
   ],
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
