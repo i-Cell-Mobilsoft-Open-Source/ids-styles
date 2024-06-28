@@ -34,7 +34,7 @@
   },
   "homepage": "https://github.com/i-Cell-Mobilsoft-Open-Source/ids-styles#readme",
   "devDependencies": {
-    "@i-cell/ids-tokens": "0.0.2",
+    "@i-cell/ids-tokens": "0.0.5",
     "gulp": "^5.0.0",
     "gulp-prettier": "^6.0.0",
     "gulp-rename": "^2.0.0",
