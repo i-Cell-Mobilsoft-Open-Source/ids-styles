@@ -15,24 +15,6 @@ $sizes: "compact", "comfortable", "spacious";
     font-style: normal;
   }
 
-  &.ids-action-item-compact {
-    font-size: 12px;
-    line-height: 16px;
-    font-weight: 500;
-  }
-
-  &.ids-action-item-comfortable {
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 500;
-  }
-
-  &.ids-action-item-spacious {
-    font-size: 16px;
-    line-height: 20px;
-    font-weight: 600;
-  }
-
   *[icon-leading],
   *[icon-trailing] {
     gap: 10px;
@@ -47,6 +29,11 @@ $sizes: "compact", "comfortable", "spacious";
       border-radius: var(--ids-comp-size-action-item-size-border-radius-#{$size});
       padding: var(--ids-comp-size-action-item-size-padding-y-#{$size}) var(--ids-comp-size-action-item-size-padding-x-#{$size});
       height: var(--ids-comp-size-action-item-size-height-#{$size});
+      font-family: var(--ids-comp-size-action-item-label-typography-font-family-#{$size});
+      font-size: var(--ids-comp-size-action-item-label-typography-font-size-#{$size});
+      font-weight: var(--ids-comp-size-action-item-label-typography-font-weight-#{$size});
+      letter-spacing: var(--ids-comp-size-action-item-label-typography-letter-spacing-#{$size});
+      line-height: var(--ids-comp-size-action-item-label-typography-line-height-#{$size});
 
       *[icon-leading],
       *[icon-trailing] {
@@ -57,14 +44,20 @@ $sizes: "compact", "comfortable", "spacious";
       @each $appearance in $appearances {
         @each $variant in $variants {
           &.ids-action-item-#{$appearance}.ids-action-item-#{$variant} {
-            border: var(--ids-comp-size-action-item-size-border-width-#{$size}, 1px) solid var(--ids-comp-action-item-#{$appearance}-color-border-#{$variant}-enabled, rgba(255, 255, 255, 0.00));
+            border: var(--ids-comp-size-action-item-size-border-width-#{$size})
+              solid
+              var(--ids-comp-action-item-#{$appearance}-color-border-#{$variant}-enabled);
 
             &:hover {
-              border: var(--ids-comp-size-action-item-size-border-width-#{$size}, 1px) solid var(--ids-comp-action-item-#{$appearance}-color-border-#{$variant}-hovered, rgba(255, 255, 255, 0.00));
+              border: var(--ids-comp-size-action-item-size-border-width-#{$size})
+                solid
+                var(--ids-comp-action-item-#{$appearance}-color-border-#{$variant}-hovered);
             }
 
             &:disabled {
-              border: var(--ids-comp-size-action-item-size-border-width-#{$size}, 1px) solid var(--ids-comp-action-item-#{$appearance}-color-border-#{$variant}-disabled, rgba(255, 255, 255, 0.00));
+              border: var(--ids-comp-size-action-item-size-border-width-#{$size})
+                solid
+                var(--ids-comp-action-item-#{$appearance}-color-border-#{$variant}-disabled);
             }
           }
         }
@@ -77,7 +70,7 @@ $sizes: "compact", "comfortable", "spacious";
       @each $variant in $variants {
         &.ids-action-item-#{$variant} {
           color: var(--ids-comp-action-item-#{$appearance}-color-fg-label-#{$variant}-enabled);
-          background:  var(--ids-comp-action-item-#{$appearance}-color-bg-#{$variant}-enabled);
+          background: var(--ids-comp-action-item-#{$appearance}-color-bg-#{$variant}-enabled);
 
           &.ids-action-item-active {
             color: var(--ids-comp-action-item-#{$appearance}-color-fg-label-#{$variant}-active);

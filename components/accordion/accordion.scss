@@ -30,31 +30,13 @@ $sizes: compact, comfortable, spacious, dense;
       flex: 1 0 0;
       overflow: hidden;
       text-overflow: ellipsis;
+      font-style: normal;
     }
   }
+
   &.ids-accordion-disabled > .ids-accordion-summary {
     pointer-events: none;
     user-select: none;
-  }
-
-  &.ids-accordion-dense, &.ids-accordion-compact {
-    .ids-accordion-title {
-      font-size: 12px;
-      font-style: normal;
-      font-weight: 600;
-      line-height: 16px;
-      letter-spacing: 0.5px;
-    }
-  }
-
-  &.ids-accordion-comfortable, &.ids-accordion-spacious {
-    .ids-accordion-title {
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 600;
-      line-height: 20px;
-      letter-spacing: 0.1px;
-    }
   }
 
   & > .ids-accordion-content {
@@ -71,14 +53,24 @@ $sizes: compact, comfortable, spacious, dense;
 
       & > .ids-accordion-summary {
         height: var(--ids-comp-size-accordion-summary-size-height-#{$size});
-        padding: var(--ids-comp-size-accordion-summary-size-padding-y-#{$size}) var(--ids-comp-size-accordion-summary-size-padding-x-#{$size});
+        padding: var(--ids-comp-size-accordion-summary-size-padding-y-#{$size})
+          var(--ids-comp-size-accordion-summary-size-padding-x-#{$size});
         gap: var(--ids-comp-size-accordion-summary-size-gap-#{$size});
         border-radius: var(--ids-comp-size-accordion-summary-size-border-radius-#{$size});
         border-width: var(--ids-comp-size-accordion-summary-size-border-width-#{$size});
+
+        & > .ids-accordion-title {
+          font-family: var(--ids-comp-size-accordion-summary-typography-font-family-#{$size});
+          font-size: var(--ids-comp-size-accordion-summary-typography-font-size-#{$size});
+          font-weight: var(--ids-comp-size-accordion-summary-typography-font-weight-#{$size});
+          letter-spacing: var(--ids-comp-size-accordion-summary-typography-letter-spacing-#{$size});
+          line-height: var(--ids-comp-size-accordion-summary-typography-line-height-#{$size});
+        }
       }
 
       & > .ids-accordion-content {
-        padding: var(--ids-comp-size-accordion-details-size-padding-y-#{$size}) var(--ids-comp-size-accordion-details-size-padding-x-#{$size});
+        padding: var(--ids-comp-size-accordion-details-size-padding-y-#{$size})
+          var(--ids-comp-size-accordion-details-size-padding-x-#{$size});
         gap: var(--ids-comp-size-accordion-details-size-gap-#{$size});
       }
     }
@@ -108,7 +100,6 @@ $sizes: compact, comfortable, spacious, dense;
           border-color: var(--ids-comp-accordion-summary-#{$appearance}-color-border-pressed);
           color: var(--ids-comp-accordion-summary-#{$appearance}-color-fg-label-pressed);
         }
-
       }
 
       &.ids-accordion-disabled > .ids-accordion-summary {

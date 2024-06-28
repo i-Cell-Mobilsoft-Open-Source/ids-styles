@@ -9,8 +9,8 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
   align-items: center;
   justify-content: center;
   align-self: stretch;
-  width: var(--ids-divider-width, 100%);
-  height: var(--ids-divider-height, 100%);
+  width: var(--ids-divider-width);
+  height: var(--ids-divider-height);
 
   @each $size in $sizes {
     &.ids-divider-#{$size} {

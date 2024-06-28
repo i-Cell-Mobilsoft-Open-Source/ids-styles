@@ -9,24 +9,6 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
   align-items: center;
   justify-content: center;
 
-  &.ids-tag-compact {
-    line-height: 16px;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-  }
-
-  &.ids-tag-comfortable {
-    line-height: 20px;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    letter-spacing: 0.1px;
-  }
-
-  // TODO: typography for spacious and dense sizes
-
   &:focus {
     outline-offset: 2px;
     outline: var(--ids-comp-tag-focused-outline-size-outline) solid var(--ids-comp-tag-focused-outline-color-dark-focused);
@@ -50,11 +32,19 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
 
   @each $size in $sizes {
     &.ids-tag-#{$size} {
-      gap: var(--ids-comp-size-tag-size-gap-#{$size}, 4px);
-      height: var(--ids-comp-size-tag-size-height-#{$size}, 32px);
-      padding: var(--ids-comp-size-tag-size-padding-y-#{$size}, 8px) var(--ids-comp-size-tag-size-padding-x-#{$size}, 8px);
-      border-radius: var(--ids-comp-size-tag-size-border-radius-#{$size}, 1000px);
-      border: var(--ids-comp-size-tag-size-border-#{$size}, 1px) solid;
+      gap: var(--ids-comp-size-tag-size-gap-#{$size});
+      height: var(--ids-comp-size-tag-size-height-#{$size});
+      padding: var(--ids-comp-size-tag-size-padding-y-#{$size}) var(--ids-comp-size-tag-size-padding-x-#{$size});
+      border-radius: var(--ids-comp-size-tag-size-border-radius-#{$size});
+      border: var(--ids-comp-size-tag-size-border-#{$size}) solid;
+
+      & > .ids-tag-label {
+        font-family: var(--ids-comp-size-tag-label-typography-font-family-#{$size});
+        font-size: var(--ids-comp-size-tag-label-typography-font-size-#{$size});
+        font-weight: var(--ids-comp-size-tag-label-typography-font-weight-#{$size});
+        letter-spacing: var(--ids-comp-size-tag-label-typography-letter-spacing-#{$size});
+        line-height: var(--ids-comp-size-tag-label-typography-line-height-#{$size});
+      }
 
       *[icon-leading],
       *[icon-trailing] {
@@ -69,30 +59,30 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
       &.ids-tag-#{$appearance}.ids-tag-#{$variant} {
         color: var(--ids-comp-tag-#{$appearance}-color-fg-label-#{$variant}-enabled);
         background: var(--ids-comp-tag-#{$appearance}-color-bg-#{$variant}-enabled);
-        border-color: var(--ids-comp-tag-#{$appearance}-color-border-#{$variant}-enabled, rgba(255, 255, 255, 0));
+        border-color: var(--ids-comp-tag-#{$appearance}-color-border-#{$variant}-enabled);
 
         &:hover {
           color: var(--ids-comp-tag-#{$appearance}-color-fg-label-#{$variant}-hovered);
           background: var(--ids-comp-tag-#{$appearance}-color-bg-#{$variant}-hovered);
-          border-color: var(--ids-comp-tag-#{$appearance}-color-border-#{$variant}-hovered, rgba(255, 255, 255, 0));
+          border-color: var(--ids-comp-tag-#{$appearance}-color-border-#{$variant}-hovered);
         }
 
         &:focus {
           color: var(--ids-comp-tag-#{$appearance}-color-fg-label-#{$variant}-focused);
           background: var(--ids-comp-tag-#{$appearance}-color-bg-#{$variant}-focused);
-          border-color: var(--ids-comp-tag-#{$appearance}-color-border-#{$variant}-focused, rgba(255, 255, 255, 0));
+          border-color: var(--ids-comp-tag-#{$appearance}-color-border-#{$variant}-focused);
         }
 
         &:active {
           color: var(--ids-comp-tag-#{$appearance}-color-fg-label-#{$variant}-pressed);
           background: var(--ids-comp-tag-#{$appearance}-color-bg-#{$variant}-pressed);
-          border-color: var(--ids-comp-tag-#{$appearance}-color-border-#{$variant}-pressed, rgba(255, 255, 255, 0));
+          border-color: var(--ids-comp-tag-#{$appearance}-color-border-#{$variant}-pressed);
         }
 
         &:disabled {
           color: var(--ids-comp-tag-#{$appearance}-color-fg-label-#{$variant}-disabled);
           background: var(--ids-comp-tag-#{$appearance}-color-bg-#{$variant}-disabled);
-          border-color: var(--ids-comp-tag-#{$appearance}-color-border-#{$variant}-disabled, rgba(255, 255, 255, 0));
+          border-color: var(--ids-comp-tag-#{$appearance}-color-border-#{$variant}-disabled);
         }
       }
     }
