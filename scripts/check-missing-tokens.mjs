@@ -36,7 +36,7 @@ program
       const tokenRegExp = /--(-|\w|\d)+(?=:.*;)/g;
       const tokenSet = new Set(tokenFileContent.match(tokenRegExp));
 
-      const missingTokenList = [];
+      const missingTokenSet = new Set();
 
       const cssVariableRegExp = /(?<=var\()(-|\w|\d)+(?=\))/g;
 
@@ -50,13 +50,14 @@ program
         usedCssVariableList.forEach((cssVariable) => {
           const tokenExists = tokenSet.has(cssVariable);
           if (!tokenExists) {
-            missingTokenList.push(cssVariable);
+            missingTokenSet.add(cssVariable);
           }
         });
       });
 
-      const missingTokensCount = missingTokenList.length;
+      const missingTokensCount = missingTokenSet.size;
       if (missingTokensCount > 0) {
+        const missingTokenList = Array.from(missingTokenSet);
         const printableMissingTokens =
           missingTokensCount <= limit || limit === Infinity
             ? missingTokenList
