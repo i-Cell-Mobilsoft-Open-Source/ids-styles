@@ -1,49 +1,106 @@
-import { readFileSync, readdirSync } from "fs";
+import { readFileSync, readdirSync } from 'fs';
+import { program } from 'commander';
 
-const stylesRootPath = process.argv[2];
-const tokensFile = process.argv[3];
+function getStyleDirents(cssRootFolder) {
+  try {
+    const stylesDirents = readdirSync(cssRootFolder, { withFileTypes: true, recursive: true, encoding: 'utf-8' });
+    return stylesDirents
+      .filter((dirent) => dirent.path !== cssRootFolder)
+      .filter((dirent) => dirent.isFile() && /.min.css$/.test(dirent.name));
+  } catch (error) {
+    program.error('No such directory for root of style files', { exitCode: 1, code: 'no.style.root' });
+  }
+}
 
-if (process.argv.length < 4) {
-  throw new Error(
-    "Usage: node scripts/check-missing-tokens.mjs path/to/css/folder path/to/token/css/tokens.css <maxPrintableMissingtokensCount>"
+function getFilteredStyleDirents(cssDirents = [], fileFilterPattern) {
+  const filteredDirents = cssDirents.filter((dirent) => {
+    const fileFullName = `${dirent.path}/${dirent.name}`;
+    return new RegExp(fileFilterPattern).test(fileFullName);
+  });
+
+  if (filteredDirents.length === 0) {
+    program.error('No matching style file found.', { exitCode: 2, code: 'no.matching.style.files' });
+  }
+
+  return filteredDirents;
+}
+
+function getStyleFileUsedTokens(fileFullName) {
+  const cssVariableRegExp = /(?<=var\()(-|\w|\d)+(?=\))/g;
+  const cssFileContent = readFileSync(fileFullName, { encoding: 'utf-8' });
+  return cssFileContent.match(cssVariableRegExp);
+}
+
+function getTokenSet(tokenCssFile) {
+  try {
+    const tokenFileContent = readFileSync(tokenCssFile, { encoding: 'utf-8' });
+    const tokenRegExp = /--(-|\w|\d)+(?=:.*;)/g;
+    return new Set(tokenFileContent.match(tokenRegExp));
+  } catch (error) {
+    program.error('Token CSS file not found', { exitCode: 3, code: 'no.token.file.found' });
+  }
+}
+
+function getMissingTokenSet(styleFiles, tokenSet) {
+  const missingTokenSet = new Set();
+
+  styleFiles.forEach((file) => {
+    const fileFullName = `${file.path}/${file.name}`;
+    const usedStyleTokenList = getStyleFileUsedTokens(fileFullName);
+
+    usedStyleTokenList.forEach((usedToken) => {
+      const tokenExists = tokenSet.has(usedToken);
+      if (!tokenExists) {
+        missingTokenSet.add(usedToken);
+      }
+    });
+  });
+
+  return missingTokenSet;
+}
+
+function logMissingTokens(styleFiles, missingTokenSet, limit) {
+  const styleFileNames = styleFiles.map((file) => file.name.split('.')[0]);
+  const missingTokensCount = missingTokenSet.size;
+  const missingTokenList = Array.from(missingTokenSet);
+  const printableMissingTokens =
+    limit === Infinity || missingTokensCount <= limit
+      ? missingTokenList
+      : [...missingTokenList.slice(0, limit), `...and ${missingTokensCount - limit} more.`];
+  program.error(
+    `${missingTokensCount} tokens are missing for files:
+    (${styleFileNames.join(', ')})
+    
+${printableMissingTokens.join('\n')}`,
+    {
+      exitCode: 4,
+      code: 'tokens.missing',
+    },
   );
 }
 
-const maxMissingTokenArg = parseInt(process.argv[4], 10);
+program
+  .name('check-missing-tokens')
+  .version('1.0.0')
+  .description('Script to check missing tokens in CSS files.')
+  .arguments('<css-root-folder>', 'Root folder of style files')
+  .arguments('<token-css-file>', 'Token CSS file name with path')
+  .arguments('[file-filter-pattern]', 'Pattern for filter style files')
+  .option('-l, --limit <number>', 'Maximum number of missing tokens to log', parseInt)
+  .action((cssRootFolder, tokenCssFile, fileFilterPattern = '') => {
+    const options = program.opts();
+    const limit = options.limit !== undefined ? options.limit : Infinity;
 
-const stylesDirents = readdirSync(stylesRootPath, { withFileTypes: true, recursive: true, encoding: "utf-8" });
-const cssDirents = stylesDirents.filter((dirent) => dirent.isFile() && /.min.css$/.test(dirent.name));
+    const stylesDirents = getStyleDirents(cssRootFolder);
+    const styleFiles = fileFilterPattern ? getFilteredStyleDirents(stylesDirents, fileFilterPattern) : stylesDirents;
+    const tokenSet = getTokenSet(tokenCssFile);
+    const missingTokenSet = getMissingTokenSet(styleFiles, tokenSet);
 
-const tokenFileContent = readFileSync(tokensFile, { encoding: "utf-8" });
-const tokenRegExp = /--(-|\w|\d)+(?=:.*;)/g;
-const tokenSet = new Set(tokenFileContent.match(tokenRegExp));
-
-const missingTokenList = [];
-
-const cssVariableRegExp = /(?<=var\()(-|\w|\d)+(?=\))/g;
-
-cssDirents.forEach((dirent) => {
-  const fileFullName = `${dirent.path}/${dirent.name}`;
-  const cssFileContent = readFileSync(fileFullName, { encoding: "utf-8" });
-  const usedCssVariableList = cssFileContent.match(cssVariableRegExp);
-
-  usedCssVariableList.forEach((cssVariable) => {
-    const tokenExists = tokenSet.has(cssVariable);
-    if (!tokenExists) {
-      missingTokenList.push(cssVariable);
+    if (missingTokenSet.size > 0) {
+      logMissingTokens(styleFiles, missingTokenSet, limit);
     }
+
+    console.info('Great! No tokens are missing.');
   });
-});
 
-const missingTokensCount = missingTokenList.length;
-if (missingTokensCount > 0) {
-  const MAX_PRINTABLE_MISSING_TOKENS = isNaN(maxMissingTokenArg) ? 1000 : maxMissingTokenArg;
-
-  const printableMissingTokens =
-    missingTokensCount <= MAX_PRINTABLE_MISSING_TOKENS
-      ? missingTokenList
-      : [...missingTokenList.slice(0, MAX_PRINTABLE_MISSING_TOKENS), `...and ${missingTokensCount - MAX_PRINTABLE_MISSING_TOKENS} more.`];
-  throw new Error(`${missingTokensCount} tokens are missing` + "\n" + printableMissingTokens.join("\n"));
-}
-
-console.info("Great! No tokens are missing.");
+program.parse();
