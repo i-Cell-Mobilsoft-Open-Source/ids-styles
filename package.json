@@ -8,7 +8,8 @@
     "watch": "gulp watch",
     "prepack": "npm run build",
     "prepublish": "npm run build",
-    "check-missing-tokens": "pnpm i && npm run build && node scripts/check-missing-tokens.mjs ./dist ./node_modules/@i-cell/ids-tokens/css/tokens.css",
+    "check-missing-tokens": "node scripts/check-missing-tokens.mjs ./dist ./node_modules/@i-cell/ids-tokens/css/tokens.css",
+    "check-missing-tokens:prepare": "pnpm i && npm run build",
     "check-missing-tokens:ci": "node scripts/check-missing-tokens.mjs ./dist ./node_modules/@i-cell/ids-tokens/css/tokens.css --limit=10"
   },
   "files": [
