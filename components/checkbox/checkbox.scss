@@ -110,13 +110,13 @@ $variants: light, dark, surface;
     align-items: flex-start;
     flex: 1 0 0;
 
-    .ids-checkbox__label-container {
-      display: flex;
+    .ids-checkbox__label-container .ids-checkbox__label {
+      text-align: start;
+      font-style: normal;
+    }
 
-      .ids-checkbox__label {
-        text-align: start;
-        font-style: normal;
-      }
+    .ids-checkbox__message-container {
+      width: 100%;
     }
   }
 
@@ -146,7 +146,7 @@ $variants: light, dark, surface;
           border-width: var(--ids-comp-size-checkbox-input-size-border-width-#{$size});
 
           &:focus {
-            outline-width: var(--ids-comp-size-checkbox-focused-outline-outline-#{size});
+            outline-width: var(--ids-comp-size-checkbox-focused-outline-outline-#{$size});
           }
         }
 

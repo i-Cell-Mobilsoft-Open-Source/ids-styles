@@ -3,8 +3,17 @@ $variants: light, dark, surface;
 
 .ids-message {
   display: flex;
-  align-items: flex-start;
+  justify-content: flex-start;
+  align-items: center;
   font-style: normal;
+
+  .ids-message__icon {
+    display: flex;
+  }
+
+  .ids-message__text {
+    flex-grow: 1;
+  }
 
   @each $size in $sizes {
     &.ids-message-#{$size} {
@@ -15,6 +24,16 @@ $variants: light, dark, surface;
       font-weight: var(--ids-comp-size-forms-message-typography-font-weight-#{$size});
       letter-spacing: var(--ids-comp-size-forms-message-typography-letter-spacing-#{$size});
       line-height: var(--ids-comp-size-forms-message-typography-line-height-#{$size});
+
+      .ids-message__icon {
+        height: var(--ids-comp-size-forms-message-size-icon-height-#{$size});
+        width: var(--ids-comp-size-forms-message-size-icon-width-#{$size});
+
+        & > ids-icon {
+          height: inherit;
+          width: inherit;
+        }
+      }
     }
   }
 
@@ -23,7 +42,8 @@ $variants: light, dark, surface;
       .ids-message__icon {
         color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-enabled);
       }
-      .ids-message__text {
+      .ids-message__text,
+      .ids-message__counter {
         color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-enabled);
       }
 
@@ -31,7 +51,8 @@ $variants: light, dark, surface;
         .ids-message__icon {
           color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-disabled);
         }
-        .ids-message__text {
+        .ids-message__text,
+        .ids-message__counter {
           color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-disabled);
         }
       }
@@ -40,19 +61,21 @@ $variants: light, dark, surface;
         .ids-message__icon {
           color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-error-enabled);
         }
-        .ids-message__text {
+        .ids-message__text,
+        .ids-message__counter {
           color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-error-enabled);
         }
       }
     }
-  }
 
-  &.ids-message-success {
-    .ids-message__icon {
-      color: var(--ids-comp-forms-message-color-fg-icon-success-enabled);
-    }
-    .ids-message__text {
-      color: var(--ids-comp-forms-message-color-fg-text-success-enabled);
+    &.ids-message-success {
+      .ids-message__icon {
+        color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-success-enabled);
+      }
+      .ids-message__text,
+      .ids-message__counter {
+        color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-success-enabled);
+      }
     }
   }
 }
