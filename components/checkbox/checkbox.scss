@@ -110,9 +110,12 @@ $variants: light, dark, surface;
     align-items: flex-start;
     flex: 1 0 0;
 
-    .ids-checkbox__label-container .ids-checkbox__label {
+    .ids-checkbox__label-container {
       text-align: start;
-      font-style: normal;
+
+      .ids-checkbox__label {
+        font-style: normal;
+      }
     }
 
     .ids-checkbox__message-container {

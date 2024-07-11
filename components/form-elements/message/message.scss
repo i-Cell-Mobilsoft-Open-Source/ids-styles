@@ -13,6 +13,7 @@ $variants: light, dark, surface;
 
   .ids-message__text {
     flex-grow: 1;
+    text-align: start;
   }
 
   @each $size in $sizes {
@@ -68,7 +69,7 @@ $variants: light, dark, surface;
       }
     }
 
-    &.ids-message-success {
+    &.ids-success-message {
       .ids-message__icon {
         color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-success-enabled);
       }
