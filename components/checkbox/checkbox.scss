@@ -164,7 +164,7 @@ $variants: light, dark, surface;
           var(--ids-comp-size-checkbox-label-group-size-padding-x-#{$size});
         gap: var(--ids-comp-size-checkbox-label-group-size-gap-#{$size});
 
-        .ids-checkbox__label-container .ids-checkbox__label {
+        .ids-checkbox__label-container {
           font-family: var(--ids-comp-size-checkbox-label-typography-font-family-#{$size});
           font-weight: var(--ids-comp-size-checkbox-label-typography-font-weight-#{$size});
           letter-spacing: var(--ids-comp-size-checkbox-label-typography-letter-spacing-#{$size});
