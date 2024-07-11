@@ -7,7 +7,7 @@ $variants: light, dark, surface;
   align-items: center;
   font-style: normal;
 
-  .ids-message__icon {
+  .ids-message__prefix {
     display: flex;
   }
 
@@ -26,7 +26,7 @@ $variants: light, dark, surface;
       letter-spacing: var(--ids-comp-size-forms-message-typography-letter-spacing-#{$size});
       line-height: var(--ids-comp-size-forms-message-typography-line-height-#{$size});
 
-      .ids-message__icon {
+      .ids-message__prefix {
         height: var(--ids-comp-size-forms-message-size-icon-height-#{$size});
         width: var(--ids-comp-size-forms-message-size-icon-width-#{$size});
 
@@ -40,41 +40,41 @@ $variants: light, dark, surface;
 
   @each $variant in $variants {
     &.ids-message-#{$variant} {
-      .ids-message__icon {
+      .ids-message__prefix {
         color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-enabled);
       }
       .ids-message__text,
-      .ids-message__counter {
+      .ids-message__suffix {
         color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-enabled);
       }
 
       &.ids-message-disabled {
-        .ids-message__icon {
+        .ids-message__prefix {
           color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-disabled);
         }
         .ids-message__text,
-        .ids-message__counter {
+        .ids-message__suffix {
           color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-disabled);
         }
       }
 
       &.ids-error-message {
-        .ids-message__icon {
+        .ids-message__prefix {
           color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-error-enabled);
         }
         .ids-message__text,
-        .ids-message__counter {
+        .ids-message__suffix {
           color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-error-enabled);
         }
       }
     }
 
     &.ids-success-message {
-      .ids-message__icon {
+      .ids-message__prefix {
         color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-success-enabled);
       }
       .ids-message__text,
-      .ids-message__counter {
+      .ids-message__suffix {
         color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-success-enabled);
       }
     }
