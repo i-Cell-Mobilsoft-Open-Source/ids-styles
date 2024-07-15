@@ -1,0 +1,125 @@
+$appearances: filled, outlined;
+$sizes: compact, comfortable, spacious, dense;
+$variants: primary, secondary, light, dark, surface;
+
+@mixin chipAppearanceAndVariant($appearance, $variant, $state) {
+  background-color: var(--ids-comp-chips-#{$appearance}-color-bg-#{$variant}-#{$state});
+  border-color: var(--ids-comp-chips-#{$appearance}-color-bg-#{$variant}-#{$state});
+
+  .ids-icon[icon-leading] {
+    color: var(--ids-comp-chips-#{$appearance}-color-fg-icon-#{$variant}-#{$state});
+  }
+
+  .ids-chip__label {
+    color: var(--ids-comp-chips-#{$appearance}-color-fg-label-#{$variant}-#{$state});
+  }
+}
+
+.ids-chip {
+  display: inline-flex;
+  align-items: center;
+  border-style: solid;
+
+  &:focus {
+    outline-offset: 3px;
+    outline-style: solid;
+  }
+
+  .ids-chip__label {
+    font-style: normal;
+  }
+
+  @each $size in $sizes {
+    &.ids-chip-#{$size} {
+      height: var(--ids-comp-size-chip-container-size-height-#{$size});
+      padding: var(--ids-comp-size-chip-container-size-padding-y-#{$size}) var(--ids-comp-size-chip-container-size-padding-x-#{$size});
+      border-radius: var(--ids-comp-size-chip-container-size-border-radius-#{$size});
+      border-width: var(--ids-comp-size-chip-container-size-border-width-#{$size});
+
+      &:focus {
+        outline-width: var(--ids-comp-size-chip-focused-outline-size-outline-#{$size});
+      }
+
+      .ids-avatar {
+        width: var(--ids-comp-size-chip-avatar-size-avatar-#{$size});
+        height: var(--ids-comp-size-chip-avatar-size-avatar-#{$size});
+      }
+
+      .ids-icon[icon-leading] {
+        width: var(--ids-comp-size-chip-icon-size-icon-#{$size});
+        height: var(--ids-comp-size-chip-icon-size-icon-#{$size});
+        padding-left: var(--ids-comp-size-chip-icon-size-padding-left-#{$size});
+        padding-right: var(--ids-comp-size-chip-icon-size-padding-right-#{$size});
+      }
+
+      .ids-chip__label {
+        padding: 0 var(--ids-comp-size-chip-label-size-padding-x-#{$size});
+        font-family: var(--ids-comp-size-chip-label-typography-font-family-#{$size});
+        font-size: var(--ids-comp-size-chip-label-typography-font-size-#{$size});
+        font-weight: var(--ids-comp-size-chip-label-typography-font-weight-#{$size});
+        line-height: var(--ids-comp-size-chip-label-typography-line-height-#{$size});
+        letter-spacing: var(--ids-comp-size-chip-label-typography-letter-spacing-#{$size});
+      }
+
+      .ids-icon-button[icon-trailing] {
+        width: var(--ids-comp-size-chip-icon-button-size-icon-button-#{$size});
+        height: var(--ids-comp-size-chip-icon-button-size-icon-button-#{$size});
+
+        // padding: var(--icon-button-size-padding-y) var(--icon-button-size-padding-x);
+        .ids-icon {
+          width: inherit;
+          height: inherit;
+        }
+      }
+    }
+  }
+
+  @each $appearance in $appearances {
+    &.ids-chip-#{$appearance} {
+
+      @each $variant in $variants {
+        &.ids-chip-#{$variant} {
+          @include chipAppearanceAndVariant($appearance, $variant, enabled);
+
+          &:hover {
+            @include chipAppearanceAndVariant($appearance, $variant, hovered);
+          }
+
+          &:active {
+            @include chipAppearanceAndVariant($appearance, $variant, pressed);
+          }
+
+          &:focus {
+            @include chipAppearanceAndVariant($appearance, $variant, focused);
+          }
+
+          &.ids-chip-disabled {
+            @include chipAppearanceAndVariant($appearance, $variant, disabled);
+          }
+
+          &.ids-chip-dragged {
+            @include chipAppearanceAndVariant($appearance, $variant, dragged);
+          }
+        }
+      }
+    }
+  }
+
+  @each $variant in $variants {
+    &.ids-chip-#{$variant} {
+      &:focus {
+        $outlineColor: '';
+
+        @if ($variant =='dark') {
+          $outlineColor: 'dark';
+        }
+
+        @else {
+          $outlineColor: 'light';
+        }
+
+        outline-color: var(--ids-comp-chips-focused-outline-color-#{$outlineColor}-focused);
+      }
+    }
+  }
+}
