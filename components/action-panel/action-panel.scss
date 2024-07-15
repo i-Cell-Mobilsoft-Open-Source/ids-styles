@@ -6,6 +6,8 @@ $sizes: compact, comfortable, spacious, dense;
   width: 22.25rem;
   flex-direction: column;
   align-items: flex-start;
+  box-sizing: border-box;
+
   @each $size in $sizes {
     &.ids-action-panel-#{$size} {
       gap: var(--ids-comp-size-action-panel-size-gap-#{$size});
@@ -25,10 +27,14 @@ $sizes: compact, comfortable, spacious, dense;
   }
 
   &.ids-action-panel-filled {
-    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px 0px rgba(0, 0, 0, 0);
+    box-shadow:
+      0px 0px 0px 0px rgba(0, 0, 0, 0),
+      0px 0px 0px 0px rgba(0, 0, 0, 0);
   }
   &.ids-action-panel-outlined {
-    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px 0px rgba(0, 0, 0, 0);
+    box-shadow:
+      0px 0px 0px 0px rgba(0, 0, 0, 0),
+      0px 0px 0px 0px rgba(0, 0, 0, 0);
   }
   &.ids-action-panel-elevated {
     box-shadow: var(--ids-smc-reference-container-effects-shadow-horizontal-none)

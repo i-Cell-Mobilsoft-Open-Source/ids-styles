@@ -10,6 +10,7 @@ $orientations: horizontal, vertical;
 .ids-card {
   display: flex;
   border-style: solid;
+  box-sizing: border-box;
 
   &.ids-card-clickable {
     pointer-events: auto;
@@ -30,7 +31,6 @@ $orientations: horizontal, vertical;
       cursor: not-allowed;
     }
   }
-
 
   &.ids-card-vertical {
     flex-direction: column;
@@ -78,7 +78,8 @@ $orientations: horizontal, vertical;
       }
 
       // No header or footer for horizontal cards
-      &.ids-card-header, &.ids-card-footer {
+      &.ids-card-header,
+      &.ids-card-footer {
         display: none;
       }
     }
@@ -103,23 +104,20 @@ $orientations: horizontal, vertical;
 
   &.ids-card-elevated {
     box-shadow:
-      var(--ids-smc-reference-container-effects-shadow-horizontal-none)
-      var(--ids-smc-reference-container-effects-shadow-vertical-sm)
-      var(--ids-smc-reference-container-effects-shadow-blur-md)
-      var(--ids-smc-reference-container-effects-shadow-spread-xxl)
-      var(--ids-smc-reference-container-effects-shadow-color-dark-light),
-      var(--ids-smc-reference-container-effects-shadow-horizontal-none)
-      var(--ids-smc-reference-container-effects-shadow-vertical-xs)
-      var(--ids-smc-reference-container-effects-shadow-blur-sm)
-      var(--ids-smc-reference-container-effects-shadow-spread-xl)
-      var(--ids-smc-reference-container-effects-shadow-color-dark-light);
+      var(--ids-smc-reference-container-effects-shadow-horizontal-none) var(--ids-smc-reference-container-effects-shadow-vertical-sm)
+        var(--ids-smc-reference-container-effects-shadow-blur-md) var(--ids-smc-reference-container-effects-shadow-spread-xxl)
+        var(--ids-smc-reference-container-effects-shadow-color-dark-light),
+      var(--ids-smc-reference-container-effects-shadow-horizontal-none) var(--ids-smc-reference-container-effects-shadow-vertical-xs)
+        var(--ids-smc-reference-container-effects-shadow-blur-sm) var(--ids-smc-reference-container-effects-shadow-spread-xl)
+        var(--ids-smc-reference-container-effects-shadow-color-dark-light);
   }
 
   @each $size in $sizes {
     &.ids-card-#{$size} {
       @each $orientation in $orientations {
         &.ids-card-#{$orientation} {
-          padding: var(--ids-comp-size-card-container-#{$orientation}-size-padding-y-#{$size}) var(--ids-comp-size-card-container-#{$orientation}-size-padding-x-#{$size});
+          padding: var(--ids-comp-size-card-container-#{$orientation}-size-padding-y-#{$size})
+            var(--ids-comp-size-card-container-#{$orientation}-size-padding-x-#{$size});
           gap: var(--ids-comp-size-card-container-#{$orientation}-size-gap-#{$size});
           border-radius: var(--ids-comp-size-card-container-#{$orientation}-size-border-radius-#{$size});
 
@@ -140,7 +138,7 @@ $orientations: horizontal, vertical;
 
       &.ids-card-vertical {
         .ids-card-section {
-          &:not(.ids-card-media){
+          &:not(.ids-card-media) {
             &:first-child {
               padding-top: var(--ids-comp-size-card-slot-size-padding-top-#{$size});
             }
@@ -157,7 +155,7 @@ $orientations: horizontal, vertical;
 
       &.ids-card-horizontal {
         .ids-card-section {
-          &:not(.ids-card-media){
+          &:not(.ids-card-media) {
             &:first-child {
               padding-left: var(--ids-comp-size-card-slot-size-padding-top-#{$size});
             }
