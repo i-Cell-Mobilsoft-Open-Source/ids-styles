@@ -4,7 +4,7 @@ $variants: primary, secondary, light, dark, surface;
 
 @mixin chipAppearanceAndVariant($appearance, $variant, $state) {
   background-color: var(--ids-comp-chips-#{$appearance}-color-bg-#{$variant}-#{$state});
-  border-color: var(--ids-comp-chips-#{$appearance}-color-bg-#{$variant}-#{$state});
+  border-color: var(--ids-comp-chips-#{$appearance}-color-border-#{$variant}-#{$state});
 
   .ids-icon[icon-leading] {
     color: var(--ids-comp-chips-#{$appearance}-color-fg-icon-#{$variant}-#{$state});
@@ -19,6 +19,7 @@ $variants: primary, secondary, light, dark, surface;
   display: inline-flex;
   align-items: center;
   border-style: solid;
+  box-sizing: border-box;
 
   &:focus {
     outline-offset: 3px;
@@ -76,7 +77,6 @@ $variants: primary, secondary, light, dark, surface;
 
   @each $appearance in $appearances {
     &.ids-chip-#{$appearance} {
-
       @each $variant in $variants {
         &.ids-chip-#{$variant} {
           @include chipAppearanceAndVariant($appearance, $variant, enabled);
@@ -110,11 +110,9 @@ $variants: primary, secondary, light, dark, surface;
       &:focus {
         $outlineColor: '';
 
-        @if ($variant =='dark') {
+        @if ($variant == 'dark') {
           $outlineColor: 'dark';
-        }
-
-        @else {
+        } @else {
           $outlineColor: 'light';
         }
 
