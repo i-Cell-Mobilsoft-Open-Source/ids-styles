@@ -8,6 +8,7 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
 
   &:focus {
     outline-offset: 2px;
