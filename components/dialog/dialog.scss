@@ -90,53 +90,52 @@ $sizes: compact, comfortable, spacious, dense;
 
   @each $size in $sizes {
     &.ids-dialog-#{$size} {
-      border-radius: var(--ids-comp-size-dialog-container-size-border-radius-#{$size});
-      border-width: var(--ids-comp-size-dialog-container-size-border-width-#{$size});
+      border-radius: var(--ids-comp-dialog-container-size-border-radius-#{$size});
+      border-width: var(--ids-comp-dialog-container-size-border-width-#{$size});
 
       .ids-dialog-container {
-        width: var(--ids-comp-size-dialog-container-size-width-#{$size});
-        min-height: var(--ids-comp-size-dialog-container-size-min-height-#{$size});
-        padding: var(--ids-comp-size-dialog-container-size-padding-y-#{$size})
-          var(--ids-comp-size-dialog-container-size-padding-x-#{$size});
-        gap: var(--ids-comp-size-dialog-container-size-gap-#{$size});
+        width: var(--ids-comp-dialog-container-size-width-#{$size});
+        min-height: var(--ids-comp-dialog-container-size-min-height-#{$size});
+        padding: var(--ids-comp-dialog-container-size-padding-y-#{$size}) var(--ids-comp-dialog-container-size-padding-x-#{$size});
+        gap: var(--ids-comp-dialog-container-size-gap-#{$size});
 
         .ids-dialog-header {
           .ids-dialog-title {
-            font-family: var(--ids-comp-size-dialog-header-title-typography-font-family-#{$size});
-            font-size: var(--ids-comp-size-dialog-header-title-typography-font-size-#{$size});
-            font-weight: var(--ids-comp-size-dialog-header-title-typography-font-weight-#{$size});
-            letter-spacing: var(--ids-comp-size-dialog-header-title-typography-letter-spacing-#{$size});
-            line-height: var(--ids-comp-size-dialog-header-title-typography-line-height-#{$size});
+            font-family: var(--ids-comp-dialog-header-title-typography-font-family-#{$size});
+            font-size: var(--ids-comp-dialog-header-title-typography-font-size-#{$size});
+            font-weight: var(--ids-comp-dialog-header-title-typography-font-weight-#{$size});
+            letter-spacing: var(--ids-comp-dialog-header-title-typography-letter-spacing-#{$size});
+            line-height: var(--ids-comp-dialog-header-title-typography-line-height-#{$size});
           }
 
           .ids-dialog-subtitle {
-            font-family: var(--ids-comp-size-dialog-header-subtitle-typography-font-family-#{$size});
-            font-size: var(--ids-comp-size-dialog-header-subtitle-typography-font-size-#{$size});
-            font-weight: var(--ids-comp-size-dialog-header-subtitle-typography-font-weight-#{$size});
-            letter-spacing: var(--ids-comp-size-dialog-header-subtitle-typography-letter-spacing-#{$size});
-            line-height: var(--ids-comp-size-dialog-header-subtitle-typography-line-height-#{$size});
+            font-family: var(--ids-comp-dialog-header-subtitle-typography-font-family-#{$size});
+            font-size: var(--ids-comp-dialog-header-subtitle-typography-font-size-#{$size});
+            font-weight: var(--ids-comp-dialog-header-subtitle-typography-font-weight-#{$size});
+            letter-spacing: var(--ids-comp-dialog-header-subtitle-typography-letter-spacing-#{$size});
+            line-height: var(--ids-comp-dialog-header-subtitle-typography-line-height-#{$size});
           }
 
           .ids-dialog-header-default-content {
-            gap: var(--ids-comp-size-dialog-header-size-gap-#{$size});
-            padding: var(--ids-comp-size-dialog-header-size-padding-y-#{$size}) var(--ids-comp-size-dialog-header-size-padding-x-#{$size});
+            gap: var(--ids-comp-dialog-header-size-gap-#{$size});
+            padding: var(--ids-comp-dialog-header-size-padding-y-#{$size}) var(--ids-comp-dialog-header-size-padding-x-#{$size});
           }
         }
 
         .ids-dialog-content {
-          padding: var(--ids-comp-size-dialog-content-fixed-size-padding-y-#{$size})
-            var(--ids-comp-size-dialog-content-fixed-size-padding-x-#{$size});
+          padding: var(--ids-comp-dialog-content-fixed-size-padding-y-#{$size})
+            var(--ids-comp-dialog-content-fixed-size-padding-x-#{$size});
 
           &.ids-dialog-content-scrollable {
-            padding: var(--ids-comp-size-dialog-content-scrollable-size-padding-y-#{$size})
-              var(--ids-comp-size-dialog-content-scrollable-size-padding-x-#{$size});
-            border-top-width: var(--ids-comp-size-dialog-content-scrollable-size-border-width-#{$size});
-            border-bottom-width: var(--ids-comp-size-dialog-content-scrollable-size-border-width-#{$size});
+            padding: var(--ids-comp-dialog-content-scrollable-size-padding-y-#{$size})
+              var(--ids-comp-dialog-content-scrollable-size-padding-x-#{$size});
+            border-top-width: var(--ids-comp-dialog-content-scrollable-size-border-width-#{$size});
+            border-bottom-width: var(--ids-comp-dialog-content-scrollable-size-border-width-#{$size});
           }
         }
 
         .ids-dialog-actions {
-          padding: var(--ids-comp-size-dialog-footer-padding-y-#{$size}) var(--ids-comp-size-dialog-footer-padding-x-#{$size});
+          padding: var(--ids-comp-dialog-footer-padding-y-#{$size}) var(--ids-comp-dialog-footer-padding-x-#{$size});
         }
       }
     }

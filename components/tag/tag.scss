@@ -1,4 +1,4 @@
-$appearances: filled, outlined, text;
+$appearances: filled, outlined;
 $sizes: compact, comfortable, spacious, dense;
 $variants: primary, secondary, brand, error, success, warning, light, dark, surface;
 
@@ -8,6 +8,7 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  border-style: solid;
   box-sizing: border-box;
 
   &:focus {
@@ -33,24 +34,24 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
 
   @each $size in $sizes {
     &.ids-tag-#{$size} {
-      gap: var(--ids-comp-size-tag-size-gap-#{$size});
-      height: var(--ids-comp-size-tag-size-height-#{$size});
-      padding: var(--ids-comp-size-tag-size-padding-y-#{$size}) var(--ids-comp-size-tag-size-padding-x-#{$size});
-      border-radius: var(--ids-comp-size-tag-size-border-radius-#{$size});
-      border: var(--ids-comp-size-tag-size-border-#{$size}) solid;
+      gap: var(--ids-comp-tag-size-gap-#{$size});
+      height: var(--ids-comp-tag-size-height-#{$size});
+      padding: var(--ids-comp-tag-size-padding-y-#{$size}) var(--ids-comp-tag-size-padding-x-#{$size});
+      border-radius: var(--ids-comp-tag-size-border-radius-#{$size});
+      border: var(--ids-comp-tag-size-border-width-#{$size});
 
       & > .ids-tag-label {
-        font-family: var(--ids-comp-size-tag-label-typography-font-family-#{$size});
-        font-size: var(--ids-comp-size-tag-label-typography-font-size-#{$size});
-        font-weight: var(--ids-comp-size-tag-label-typography-font-weight-#{$size});
-        letter-spacing: var(--ids-comp-size-tag-label-typography-letter-spacing-#{$size});
-        line-height: var(--ids-comp-size-tag-label-typography-line-height-#{$size});
+        font-family: var(--ids-comp-tag-label-typography-font-family-#{$size});
+        font-size: var(--ids-comp-tag-label-typography-font-size-#{$size});
+        font-weight: var(--ids-comp-tag-label-typography-font-weight-#{$size});
+        letter-spacing: var(--ids-comp-tag-label-typography-letter-spacing-#{$size});
+        line-height: var(--ids-comp-tag-label-typography-line-height-#{$size});
       }
 
       *[icon-leading],
       *[icon-trailing] {
-        width: var(--ids-comp-size-tag-size-icon-#{$size});
-        height: var(--ids-comp-size-tag-size-icon-#{$size});
+        width: var(--ids-comp-tag-size-icon-#{$size});
+        height: var(--ids-comp-tag-size-icon-#{$size});
       }
     }
   }
@@ -78,12 +79,6 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
           color: var(--ids-comp-tag-#{$appearance}-color-fg-label-#{$variant}-pressed);
           background: var(--ids-comp-tag-#{$appearance}-color-bg-#{$variant}-pressed);
           border-color: var(--ids-comp-tag-#{$appearance}-color-border-#{$variant}-pressed);
-        }
-
-        &:disabled {
-          color: var(--ids-comp-tag-#{$appearance}-color-fg-label-#{$variant}-disabled);
-          background: var(--ids-comp-tag-#{$appearance}-color-bg-#{$variant}-disabled);
-          border-color: var(--ids-comp-tag-#{$appearance}-color-border-#{$variant}-disabled);
         }
       }
     }

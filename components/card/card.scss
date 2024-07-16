@@ -116,39 +116,39 @@ $orientations: horizontal, vertical;
     &.ids-card-#{$size} {
       @each $orientation in $orientations {
         &.ids-card-#{$orientation} {
-          padding: var(--ids-comp-size-card-container-#{$orientation}-size-padding-y-#{$size})
-            var(--ids-comp-size-card-container-#{$orientation}-size-padding-x-#{$size});
-          gap: var(--ids-comp-size-card-container-#{$orientation}-size-gap-#{$size});
-          border-radius: var(--ids-comp-size-card-container-#{$orientation}-size-border-radius-#{$size});
+          padding: var(--ids-comp-card-container-#{$orientation}-size-padding-y-#{$size})
+            var(--ids-comp-card-container-#{$orientation}-size-padding-x-#{$size});
+          gap: var(--ids-comp-card-container-#{$orientation}-size-gap-#{$size});
+          border-radius: var(--ids-comp-card-container-#{$orientation}-size-border-radius-#{$size});
 
           &.ids-card-outlined {
-            border-width: var(--ids-comp-size-card-container-#{$orientation}-size-border-width-#{$size});
+            border-width: var(--ids-comp-card-container-#{$orientation}-size-border-width-#{$size});
           }
         }
       }
 
       &.ids-card-clickable:focus {
-        outline-width: var(--ids-comp-size-card-focused-outline-outline-#{$size});
+        outline-width: var(--ids-comp-card-focused-outline-outline-#{$size});
       }
 
       .ids-card-header-headline {
-        gap: var(--ids-comp-size-card-header-headline-gap-#{$size});
-        padding: var(--ids-comp-size-card-header-headline-padding-y-#{$size}) var(--ids-comp-size-card-header-headline-padding-x-#{$size});
+        gap: var(--ids-comp-card-header-headline-gap-#{$size});
+        padding: var(--ids-comp-card-header-headline-padding-y-#{$size}) var(--ids-comp-card-header-headline-padding-x-#{$size});
       }
 
       &.ids-card-vertical {
         .ids-card-section {
           &:not(.ids-card-media) {
             &:first-child {
-              padding-top: var(--ids-comp-size-card-slot-size-padding-top-#{$size});
+              padding-top: var(--ids-comp-card-slot-size-padding-top-#{$size});
             }
             &:last-child {
-              padding-bottom: var(--ids-comp-size-card-slot-size-padding-bottom-#{$size});
+              padding-bottom: var(--ids-comp-card-slot-size-padding-bottom-#{$size});
             }
           }
           &.ids-card-section-padded {
-            padding-left: var(--ids-comp-size-card-slot-size-padding-x-#{$size});
-            padding-right: var(--ids-comp-size-card-slot-size-padding-x-#{$size});
+            padding-left: var(--ids-comp-card-slot-size-padding-x-#{$size});
+            padding-right: var(--ids-comp-card-slot-size-padding-x-#{$size});
           }
         }
       }
@@ -157,15 +157,15 @@ $orientations: horizontal, vertical;
         .ids-card-section {
           &:not(.ids-card-media) {
             &:first-child {
-              padding-left: var(--ids-comp-size-card-slot-size-padding-top-#{$size});
+              padding-left: var(--ids-comp-card-slot-size-padding-top-#{$size});
             }
             &:last-child {
-              padding-right: var(--ids-comp-size-card-slot-size-padding-bottom-#{$size});
+              padding-right: var(--ids-comp-card-slot-size-padding-bottom-#{$size});
             }
           }
           &.ids-card-section-padded {
-            padding-top: var(--ids-comp-size-card-slot-size-padding-x-#{$size});
-            padding-bottom: var(--ids-comp-size-card-slot-size-padding-x-#{$size});
+            padding-top: var(--ids-comp-card-slot-size-padding-x-#{$size});
+            padding-bottom: var(--ids-comp-card-slot-size-padding-x-#{$size});
           }
         }
       }
@@ -196,7 +196,7 @@ $orientations: horizontal, vertical;
             }
 
             // The following variants do not have a disabled state
-            @if list.index(error success warning info, $appearance) == null {
+            @if list.index(error success warning info, $variant) == null {
               &.ids-card-disabled {
                 background-color: var(--ids-comp-card-#{$appearance}-color-bg-#{$variant}-disabled);
                 border-color: var(--ids-comp-card-#{$appearance}-color-border-#{$variant}-disabled);
