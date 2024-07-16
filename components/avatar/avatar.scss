@@ -1,7 +1,7 @@
-@use "sass:map";
+@use 'sass:map';
 
 $sizes: compact, comfortable, spacious, dense;
-$variants: primary, secondary, brand, error, success, warning, light, dark, surface;
+$variants: primary, secondary, light, dark, surface;
 
 .ids-avatar {
   display: flex;
@@ -10,6 +10,7 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  border-style: solid;
 
   & &-icon {
     gap: 10px;
@@ -29,10 +30,12 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
 
   &:focus {
     outline-offset: 2px;
-    outline: var(--ids-comp-avatar-focused-outline-size-outline) solid var(--ids-comp-avatar-focused-outline-color-dark-focused);
+    outline-style: solid;
+    outline-width: var(--ids-comp-avatar-focused-outline-size-outline);
+    outline-color: var(--ids-comp-avatar-focused-outline-color-dark-focused);
 
     &.ids-avatar-light {
-      outline: var(--ids-comp-avatar-focused-outline-size-outline) solid var(--ids-comp-avatar-focused-outline-color-light-focused);
+      outline-color: var(--ids-comp-avatar-focused-outline-color-light-focused);
     }
   }
 
@@ -42,25 +45,25 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
 
   @each $size in $sizes {
     &.ids-avatar-#{$size} {
-      width: var(--ids-comp-size-avatar-size-height-#{$size});
-      height: var(--ids-comp-size-avatar-size-width-#{$size});
-      gap: var(--ids-comp-size-avatar-size-gap-#{$size});
-      border-radius: var(--ids-comp-size-avatar-size-border-radius-#{$size});
-      padding: var(--ids-comp-size-avatar-size-padding-y-#{$size}) var(--ids-comp-size-avatar-size-padding-x-#{$size});
-      border: var(--ids-comp-size-avatar-size-border-#{$size}) solid;
-      font-family: var(--ids-comp-size-avatar-initials-typography-font-family-#{$size});
-      font-size: var(--ids-comp-size-avatar-initials-typography-font-size-#{$size});
-      font-weight: var(--ids-comp-size-avatar-initials-typography-font-weight-#{$size});
-      letter-spacing: var(--ids-comp-size-avatar-initials-typography-letter-spacing-#{$size});
-      line-height: var(--ids-comp-size-avatar-initials-typography-line-height-#{$size});
+      width: var(--ids-comp-avatar-size-height-#{$size});
+      height: var(--ids-comp-avatar-size-width-#{$size});
+      gap: var(--ids-comp-avatar-size-gap-#{$size});
+      border-radius: var(--ids-comp-avatar-size-border-radius-#{$size});
+      padding: var(--ids-comp-avatar-size-padding-y-#{$size}) var(--ids-comp-avatar-size-padding-x-#{$size});
+      border: var(--ids-comp-avatar-size-border-#{$size});
+      font-family: var(--ids-comp-avatar-initials-typography-font-family-#{$size});
+      font-size: var(--ids-comp-avatar-initials-typography-font-size-#{$size});
+      font-weight: var(--ids-comp-avatar-initials-typography-font-weight-#{$size});
+      letter-spacing: var(--ids-comp-avatar-initials-typography-letter-spacing-#{$size});
+      line-height: var(--ids-comp-avatar-initials-typography-line-height-#{$size});
 
       &:has(.ids-avatar-image) {
         padding: 0;
       }
 
       .ids-avatar-image {
-        width: var(--ids-comp-size-avatar-size-width-#{$size});
-        height: var(--ids-comp-size-avatar-size-height-#{$size});
+        width: var(--ids-comp-avatar-size-width-#{$size});
+        height: var(--ids-comp-avatar-size-height-#{$size});
       }
     }
   }

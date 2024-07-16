@@ -1,3 +1,5 @@
+@use 'sass:list';
+
 $appearances: filled, outlined, standard;
 $sizes: compact, comfortable, spacious, dense;
 $variants: primary, secondary, brand, error, success, warning, light, dark, surface;
@@ -8,6 +10,7 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
+  border-style: solid;
 
   &:focus {
     outline-offset: 2px;
@@ -24,15 +27,15 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
 
   @each $size in $sizes {
     &.ids-icon-button-#{$size} {
-      padding: var(--ids-comp-size-icon-button-size-padding-y-#{$size}) var(--ids-comp-size-icon-button-size-padding-x-#{$size});
-      width: var(--ids-comp-size-icon-button-size-width-#{$size});
-      height: var(--ids-comp-size-icon-button-size-height-#{$size});
-      border-radius: var(--ids-comp-size-icon-button-size-border-radius-#{$size});
-      border: var(--ids-comp-size-icon-button-size-border-#{$size}) solid;
+      padding: var(--ids-comp-icon-button-size-padding-y-#{$size}) var(--ids-comp-icon-button-size-padding-x-#{$size});
+      width: var(--ids-comp-icon-button-size-width-#{$size});
+      height: var(--ids-comp-icon-button-size-height-#{$size});
+      border-radius: var(--ids-comp-icon-button-size-border-radius-#{$size});
+      border-width: var(--ids-comp-icon-button-size-border-#{$size});
 
       *[icon] {
-        width: var(--ids-comp-size-icon-button-size-icon-#{$size});
-        height: var(--ids-comp-size-icon-button-size-icon-#{$size});
+        width: var(--ids-comp-icon-button-size-icon-#{$size});
+        height: var(--ids-comp-icon-button-size-icon-#{$size});
       }
     }
   }
@@ -81,8 +84,11 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
           }
 
           &:disabled {
-            background: var(--ids-comp-icon-button-#{$appearance}-color-bg-#{$variant}-disabled);
-            color: var(--ids-comp-icon-button-#{$appearance}-color-fg-#{$variant}-disabled);
+            // The following variants do not have a disabled state
+            @if list.index(error success warning, $variant) == null {
+              background: var(--ids-comp-icon-button-#{$appearance}-color-bg-#{$variant}-disabled);
+              color: var(--ids-comp-icon-button-#{$appearance}-color-fg-#{$variant}-disabled);
+            }
 
             @if $appearance != standard {
               border-color: var(--ids-comp-icon-button-#{$appearance}-color-border-#{$variant}-disabled);

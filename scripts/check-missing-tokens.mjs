@@ -60,7 +60,6 @@ function getMissingTokenSet(styleFiles, tokenSet) {
 }
 
 function logMissingTokens(styleFiles, missingTokenSet, limit) {
-  const styleFileNames = styleFiles.map((file) => file.name.split('.')[0]);
   const missingTokensCount = missingTokenSet.size;
   const missingTokenList = Array.from(missingTokenSet);
   const printableMissingTokens =
@@ -68,8 +67,7 @@ function logMissingTokens(styleFiles, missingTokenSet, limit) {
       ? missingTokenList
       : [...missingTokenList.slice(0, limit), `...and ${missingTokensCount - limit} more.`];
   program.error(
-    `${missingTokensCount} tokens are missing for files:
-    (${styleFileNames.join(', ')})
+    `${missingTokensCount} tokens are missing:
     
 ${printableMissingTokens.join('\n')}`,
     {
@@ -77,6 +75,10 @@ ${printableMissingTokens.join('\n')}`,
       code: 'tokens.missing',
     },
   );
+}
+
+function logStyleFiles(styleFiles = []) {
+  console.log('Examined files:\n', styleFiles.map((file) => file.name).join('\n'), '\n');
 }
 
 program
@@ -96,11 +98,13 @@ program
     const tokenSet = getTokenSet(tokenCssFile);
     const missingTokenSet = getMissingTokenSet(styleFiles, tokenSet);
 
+    logStyleFiles(styleFiles);
+
     if (missingTokenSet.size > 0) {
       logMissingTokens(styleFiles, missingTokenSet, limit);
     }
 
-    console.info('Great! No tokens are missing.');
+    console.info('\x1b[30;102m Great! No tokens are missing. \x1b[0;0m');
   });
 
 program.parse();
