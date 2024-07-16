@@ -176,8 +176,8 @@ $orientations: horizontal, vertical;
     &.ids-card-#{$appearance} {
       @each $variant in $variants {
         &.ids-card-#{$variant} {
-          background-color: var(--ids-comp-card-#{$appearance}-color-bg-#{$variant}-enabled);
-          border-color: var(--ids-comp-card-#{$appearance}-color-border-#{$variant}-enabled);
+          background-color: var(--ids-comp-card-#{$appearance}-color-bg-#{$variant}-default);
+          border-color: var(--ids-comp-card-#{$appearance}-color-border-#{$variant}-default);
 
           &.ids-card-clickable {
             &:hover {

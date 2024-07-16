@@ -78,9 +78,9 @@ $sizes: compact, comfortable, spacious, dense;
   @each $appearance in $appearances {
     &.ids-accordion-#{$appearance} {
       & > .ids-accordion-summary {
-        background: var(--ids-comp-accordion-summary-#{$appearance}-color-bg-enabled);
-        border-color: var(--ids-comp-accordion-summary-#{$appearance}-color-border-enabled);
-        color: var(--ids-comp-accordion-summary-#{$appearance}-color-fg-label-enabled);
+        background: var(--ids-comp-accordion-summary-#{$appearance}-color-bg-default);
+        border-color: var(--ids-comp-accordion-summary-#{$appearance}-color-border-default);
+        color: var(--ids-comp-accordion-summary-#{$appearance}-color-fg-label-default);
 
         &:hover {
           background: var(--ids-comp-accordion-summary-#{$appearance}-color-bg-hovered);

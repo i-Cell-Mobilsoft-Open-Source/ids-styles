@@ -48,11 +48,11 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
 
       @each $variant in $variants {
         &.ids-icon-button-#{$variant} {
-          color: var(--ids-comp-icon-button-#{$appearance}-color-fg-#{$variant}-enabled);
-          background: var(--ids-comp-icon-button-#{$appearance}-color-bg-#{$variant}-enabled);
+          color: var(--ids-comp-icon-button-#{$appearance}-color-fg-#{$variant}-default);
+          background: var(--ids-comp-icon-button-#{$appearance}-color-bg-#{$variant}-default);
 
           @if $appearance != standard {
-            border-color: var(--ids-comp-icon-button-#{$appearance}-color-border-#{$variant}-enabled);
+            border-color: var(--ids-comp-icon-button-#{$appearance}-color-border-#{$variant}-default);
           }
 
           &:hover {
