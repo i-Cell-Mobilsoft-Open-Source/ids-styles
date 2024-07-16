@@ -195,7 +195,7 @@ $orientations: horizontal, vertical;
             }
 
             // The following variants do not have a disabled state
-            @if list.index(error success warning info, $appearance) == null {
+            @if list.index(error success warning info, $variant) == null {
               &.ids-card-disabled {
                 background-color: var(--ids-comp-card-#{$appearance}-color-bg-#{$variant}-disabled);
                 border-color: var(--ids-comp-card-#{$appearance}-color-border-#{$variant}-disabled);

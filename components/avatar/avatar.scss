@@ -1,7 +1,7 @@
 @use 'sass:map';
 
 $sizes: compact, comfortable, spacious, dense;
-$variants: primary, secondary, brand, error, success, warning, light, dark, surface;
+$variants: primary, secondary, light, dark, surface;
 
 .ids-avatar {
   display: flex;
@@ -10,6 +10,7 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  border-style: solid;
 
   & &-icon {
     gap: 10px;
@@ -29,10 +30,12 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
 
   &:focus {
     outline-offset: 2px;
-    outline: var(--ids-comp-avatar-focused-outline-size-outline) solid var(--ids-comp-avatar-focused-outline-color-dark-focused);
+    outline-style: solid;
+    outline-width: var(--ids-comp-avatar-focused-outline-size-outline);
+    outline-color: var(--ids-comp-avatar-focused-outline-color-dark-focused);
 
     &.ids-avatar-light {
-      outline: var(--ids-comp-avatar-focused-outline-size-outline) solid var(--ids-comp-avatar-focused-outline-color-light-focused);
+      outline-color: var(--ids-comp-avatar-focused-outline-color-light-focused);
     }
   }
 
@@ -47,7 +50,7 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
       gap: var(--ids-comp-avatar-size-gap-#{$size});
       border-radius: var(--ids-comp-avatar-size-border-radius-#{$size});
       padding: var(--ids-comp-avatar-size-padding-y-#{$size}) var(--ids-comp-avatar-size-padding-x-#{$size});
-      border: var(--ids-comp-avatar-size-border-#{$size}) solid;
+      border: var(--ids-comp-avatar-size-border-#{$size});
       font-family: var(--ids-comp-avatar-initials-typography-font-family-#{$size});
       font-size: var(--ids-comp-avatar-initials-typography-font-size-#{$size});
       font-weight: var(--ids-comp-avatar-initials-typography-font-weight-#{$size});

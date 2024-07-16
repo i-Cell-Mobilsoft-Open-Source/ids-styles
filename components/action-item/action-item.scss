@@ -37,27 +37,23 @@ $sizes: 'compact', 'comfortable', 'spacious';
 
       *[icon-leading],
       *[icon-trailing] {
-        width: var(--ids-comp-action-item-size-#{$size}-icon);
-        height: var(--ids-comp-action-item-size-#{$size}-icon);
+        width: var(--ids-comp-action-item-size-icon-#{$size});
+        height: var(--ids-comp-action-item-size-icon-#{$size});
       }
 
       @each $appearance in $appearances {
         @each $variant in $variants {
           &.ids-action-item-#{$appearance}.ids-action-item-#{$variant} {
-            border: var(--ids-comp-action-item-size-border-width-#{$size})
-              solid
-              var(--ids-comp-action-item-#{$appearance}-color-border-#{$variant}-enabled);
+            border-style: solid;
+            border-width: var(--ids-comp-action-item-size-border-width-#{$size});
+            border-color: var(--ids-comp-action-item-#{$appearance}-color-border-#{$variant}-enabled);
 
             &:hover {
-              border: var(--ids-comp-action-item-size-border-width-#{$size})
-                solid
-                var(--ids-comp-action-item-#{$appearance}-color-border-#{$variant}-hovered);
+              border-color: var(--ids-comp-action-item-#{$appearance}-color-border-#{$variant}-hovered);
             }
 
             &:disabled {
-              border: var(--ids-comp-action-item-size-border-width-#{$size})
-                solid
-                var(--ids-comp-action-item-#{$appearance}-color-border-#{$variant}-disabled);
+              border-color: var(--ids-comp-action-item-#{$appearance}-color-border-#{$variant}-disabled);
             }
           }
         }

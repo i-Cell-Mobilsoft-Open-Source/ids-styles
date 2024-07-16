@@ -1,4 +1,4 @@
-$appearances: filled, outlined, text;
+$appearances: filled, outlined;
 $sizes: compact, comfortable, spacious, dense;
 $variants: primary, secondary, brand, error, success, warning, light, dark, surface;
 
@@ -8,6 +8,7 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  border-style: solid;
 
   &:focus {
     outline-offset: 2px;
@@ -36,7 +37,7 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
       height: var(--ids-comp-tag-size-height-#{$size});
       padding: var(--ids-comp-tag-size-padding-y-#{$size}) var(--ids-comp-tag-size-padding-x-#{$size});
       border-radius: var(--ids-comp-tag-size-border-radius-#{$size});
-      border: var(--ids-comp-tag-size-border-#{$size}) solid;
+      border: var(--ids-comp-tag-size-border-width-#{$size});
 
       & > .ids-tag-label {
         font-family: var(--ids-comp-tag-label-typography-font-family-#{$size});
@@ -77,12 +78,6 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
           color: var(--ids-comp-tag-#{$appearance}-color-fg-label-#{$variant}-pressed);
           background: var(--ids-comp-tag-#{$appearance}-color-bg-#{$variant}-pressed);
           border-color: var(--ids-comp-tag-#{$appearance}-color-border-#{$variant}-pressed);
-        }
-
-        &:disabled {
-          color: var(--ids-comp-tag-#{$appearance}-color-fg-label-#{$variant}-disabled);
-          background: var(--ids-comp-tag-#{$appearance}-color-bg-#{$variant}-disabled);
-          border-color: var(--ids-comp-tag-#{$appearance}-color-border-#{$variant}-disabled);
         }
       }
     }

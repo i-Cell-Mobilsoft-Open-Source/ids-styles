@@ -6,7 +6,7 @@ $sizes: compact, comfortable, spacious, dense;
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  background: var(--ids-comp-accordion-item-color-bg-enabled);
+  background: var(--ids-comp-accordion-item-color-bg-default);
 
   & > .ids-accordion-summary {
     display: flex;
@@ -42,7 +42,7 @@ $sizes: compact, comfortable, spacious, dense;
   & > .ids-accordion-content {
     display: flex;
     flex-direction: column;
-    background: var(--ids-comp-accordion-details-color-bg-enabled);
+    background: var(--ids-comp-accordion-details-color-bg-default);
   }
 
   @each $size in $sizes {

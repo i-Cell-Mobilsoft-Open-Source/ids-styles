@@ -1,3 +1,5 @@
+@use 'sass:list';
+
 $appearances: filled, outlined, text;
 $sizes: compact, comfortable, spacious, dense;
 $variants: primary, secondary, brand, error, success, warning, light, dark, surface;
@@ -8,6 +10,7 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
   align-items: center;
   display: inline-flex;
   justify-content: center;
+  border-style: solid;
 
   &:focus {
     outline-offset: 2px;
@@ -37,7 +40,7 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
       min-width: var(--ids-comp-buttons-size-min-width-#{$size});
       padding: var(--ids-comp-buttons-size-padding-y-#{$size}) var(--ids-comp-buttons-size-padding-x-#{$size});
       border-radius: var(--ids-comp-buttons-size-border-radius-#{$size});
-      border: var(--ids-comp-buttons-size-border-width-#{$size}) solid;
+      border-width: var(--ids-comp-buttons-size-border-width-#{$size});
 
       & > .ids-button-label {
         font-family: var(--ids-comp-buttons-label-typography-font-family-#{$size});
@@ -81,10 +84,13 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
           border-color: var(--ids-comp-buttons-#{$appearance}-color-border-#{$variant}-pressed);
         }
 
-        &:disabled {
-          background: var(--ids-comp-buttons-#{$appearance}-color-bg-#{$variant}-disabled);
-          color: var(--ids-comp-buttons-#{$appearance}-color-fg-label-#{$variant}-disabled);
-          border-color: var(--ids-comp-buttons-#{$appearance}-color-border-#{$variant}-disabled);
+        // The following variants do not have a disabled state
+        @if list.index(error success warning, $variant) == null {
+          &:disabled {
+            background: var(--ids-comp-buttons-#{$appearance}-color-bg-#{$variant}-disabled);
+            color: var(--ids-comp-buttons-#{$appearance}-color-fg-label-#{$variant}-disabled);
+            border-color: var(--ids-comp-buttons-#{$appearance}-color-border-#{$variant}-disabled);
+          }
         }
       }
     }
