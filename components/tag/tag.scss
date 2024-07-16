@@ -32,24 +32,24 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
 
   @each $size in $sizes {
     &.ids-tag-#{$size} {
-      gap: var(--ids-comp-size-tag-size-gap-#{$size});
-      height: var(--ids-comp-size-tag-size-height-#{$size});
-      padding: var(--ids-comp-size-tag-size-padding-y-#{$size}) var(--ids-comp-size-tag-size-padding-x-#{$size});
-      border-radius: var(--ids-comp-size-tag-size-border-radius-#{$size});
-      border: var(--ids-comp-size-tag-size-border-#{$size}) solid;
+      gap: var(--ids-comp-tag-size-gap-#{$size});
+      height: var(--ids-comp-tag-size-height-#{$size});
+      padding: var(--ids-comp-tag-size-padding-y-#{$size}) var(--ids-comp-tag-size-padding-x-#{$size});
+      border-radius: var(--ids-comp-tag-size-border-radius-#{$size});
+      border: var(--ids-comp-tag-size-border-#{$size}) solid;
 
       & > .ids-tag-label {
-        font-family: var(--ids-comp-size-tag-label-typography-font-family-#{$size});
-        font-size: var(--ids-comp-size-tag-label-typography-font-size-#{$size});
-        font-weight: var(--ids-comp-size-tag-label-typography-font-weight-#{$size});
-        letter-spacing: var(--ids-comp-size-tag-label-typography-letter-spacing-#{$size});
-        line-height: var(--ids-comp-size-tag-label-typography-line-height-#{$size});
+        font-family: var(--ids-comp-tag-label-typography-font-family-#{$size});
+        font-size: var(--ids-comp-tag-label-typography-font-size-#{$size});
+        font-weight: var(--ids-comp-tag-label-typography-font-weight-#{$size});
+        letter-spacing: var(--ids-comp-tag-label-typography-letter-spacing-#{$size});
+        line-height: var(--ids-comp-tag-label-typography-line-height-#{$size});
       }
 
       *[icon-leading],
       *[icon-trailing] {
-        width: var(--ids-comp-size-tag-size-icon-#{$size});
-        height: var(--ids-comp-size-tag-size-icon-#{$size});
+        width: var(--ids-comp-tag-size-icon-#{$size});
+        height: var(--ids-comp-tag-size-icon-#{$size});
       }
     }
   }

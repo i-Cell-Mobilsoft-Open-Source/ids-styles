@@ -24,15 +24,15 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
 
   @each $size in $sizes {
     &.ids-icon-button-#{$size} {
-      padding: var(--ids-comp-size-icon-button-size-padding-y-#{$size}) var(--ids-comp-size-icon-button-size-padding-x-#{$size});
-      width: var(--ids-comp-size-icon-button-size-width-#{$size});
-      height: var(--ids-comp-size-icon-button-size-height-#{$size});
-      border-radius: var(--ids-comp-size-icon-button-size-border-radius-#{$size});
-      border: var(--ids-comp-size-icon-button-size-border-#{$size}) solid;
+      padding: var(--ids-comp-icon-button-size-padding-y-#{$size}) var(--ids-comp-icon-button-size-padding-x-#{$size});
+      width: var(--ids-comp-icon-button-size-width-#{$size});
+      height: var(--ids-comp-icon-button-size-height-#{$size});
+      border-radius: var(--ids-comp-icon-button-size-border-radius-#{$size});
+      border: var(--ids-comp-icon-button-size-border-#{$size}) solid;
 
       *[icon] {
-        width: var(--ids-comp-size-icon-button-size-icon-#{$size});
-        height: var(--ids-comp-size-icon-button-size-icon-#{$size});
+        width: var(--ids-comp-icon-button-size-icon-#{$size});
+        height: var(--ids-comp-icon-button-size-icon-#{$size});
       }
     }
   }

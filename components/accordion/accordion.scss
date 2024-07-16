@@ -47,31 +47,29 @@ $sizes: compact, comfortable, spacious, dense;
 
   @each $size in $sizes {
     &.ids-accordion-#{$size} {
-      padding: var(--ids-comp-size-accordion-item-size-padding-y-#{$size}) var(--ids-comp-size-accordion-item-size-padding-x-#{$size});
-      gap: var(--ids-comp-size-accordion-item-size-gap-#{$size});
-      border-radius: var(--ids-comp-size-accordion-item-size-border-radius-#{$size});
+      padding: var(--ids-comp-accordion-item-size-padding-y-#{$size}) var(--ids-comp-accordion-item-size-padding-x-#{$size});
+      gap: var(--ids-comp-accordion-item-size-gap-#{$size});
+      border-radius: var(--ids-comp-accordion-item-size-border-radius-#{$size});
 
       & > .ids-accordion-summary {
-        height: var(--ids-comp-size-accordion-summary-size-height-#{$size});
-        padding: var(--ids-comp-size-accordion-summary-size-padding-y-#{$size})
-          var(--ids-comp-size-accordion-summary-size-padding-x-#{$size});
-        gap: var(--ids-comp-size-accordion-summary-size-gap-#{$size});
-        border-radius: var(--ids-comp-size-accordion-summary-size-border-radius-#{$size});
-        border-width: var(--ids-comp-size-accordion-summary-size-border-width-#{$size});
+        height: var(--ids-comp-accordion-summary-size-height-#{$size});
+        padding: var(--ids-comp-accordion-summary-size-padding-y-#{$size}) var(--ids-comp-accordion-summary-size-padding-x-#{$size});
+        gap: var(--ids-comp-accordion-summary-size-gap-#{$size});
+        border-radius: var(--ids-comp-accordion-summary-size-border-radius-#{$size});
+        border-width: var(--ids-comp-accordion-summary-size-border-width-#{$size});
 
         & > .ids-accordion-title {
-          font-family: var(--ids-comp-size-accordion-summary-typography-font-family-#{$size});
-          font-size: var(--ids-comp-size-accordion-summary-typography-font-size-#{$size});
-          font-weight: var(--ids-comp-size-accordion-summary-typography-font-weight-#{$size});
-          letter-spacing: var(--ids-comp-size-accordion-summary-typography-letter-spacing-#{$size});
-          line-height: var(--ids-comp-size-accordion-summary-typography-line-height-#{$size});
+          font-family: var(--ids-comp-accordion-summary-typography-font-family-#{$size});
+          font-size: var(--ids-comp-accordion-summary-typography-font-size-#{$size});
+          font-weight: var(--ids-comp-accordion-summary-typography-font-weight-#{$size});
+          letter-spacing: var(--ids-comp-accordion-summary-typography-letter-spacing-#{$size});
+          line-height: var(--ids-comp-accordion-summary-typography-line-height-#{$size});
         }
       }
 
       & > .ids-accordion-content {
-        padding: var(--ids-comp-size-accordion-details-size-padding-y-#{$size})
-          var(--ids-comp-size-accordion-details-size-padding-x-#{$size});
-        gap: var(--ids-comp-size-accordion-details-size-gap-#{$size});
+        padding: var(--ids-comp-accordion-details-size-padding-y-#{$size}) var(--ids-comp-accordion-details-size-padding-x-#{$size});
+        gap: var(--ids-comp-accordion-details-size-gap-#{$size});
       }
     }
   }
