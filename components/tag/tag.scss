@@ -9,6 +9,7 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
   align-items: center;
   justify-content: center;
   border-style: solid;
+  box-sizing: border-box;
 
   &:focus {
     outline-offset: 2px;

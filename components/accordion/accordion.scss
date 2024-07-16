@@ -12,6 +12,7 @@ $sizes: compact, comfortable, spacious, dense;
     display: flex;
     align-items: center;
     width: 100%;
+    box-sizing: border-box;
     border-style: solid;
     cursor: pointer;
 

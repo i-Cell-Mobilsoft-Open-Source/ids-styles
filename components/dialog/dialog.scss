@@ -19,6 +19,7 @@ $sizes: compact, comfortable, spacious, dense;
   }
 
   .ids-dialog-container {
+    box-sizing: border-box;
     display: grid;
     grid-template-rows: auto 1fr auto;
     position: relative;
@@ -30,6 +31,10 @@ $sizes: compact, comfortable, spacious, dense;
 
       .ids-dialog-title {
         font-style: normal;
+
+        &.hidden {
+          display: none;
+        }
       }
 
       .ids-dialog-subtitle {

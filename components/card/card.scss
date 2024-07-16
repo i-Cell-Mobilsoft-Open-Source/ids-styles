@@ -10,6 +10,7 @@ $orientations: horizontal, vertical;
 .ids-card {
   display: flex;
   border-style: solid;
+  box-sizing: border-box;
 
   &.ids-card-clickable {
     pointer-events: auto;
