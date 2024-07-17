@@ -70,9 +70,9 @@ $variants: primary, secondary, light, dark, surface;
 
   @each $variant in $variants {
     &.ids-avatar-#{$variant} {
-      color: var(--ids-comp-avatar-color-fg-#{$variant}-enabled);
-      background: var(--ids-comp-avatar-color-bg-#{$variant}-enabled);
-      border-color: var(--ids-comp-avatar-color-border-#{$variant}-enabled);
+      color: var(--ids-comp-avatar-color-fg-#{$variant}-default);
+      background: var(--ids-comp-avatar-color-bg-#{$variant}-default);
+      border-color: var(--ids-comp-avatar-color-border-#{$variant}-default);
 
       &:hover {
         background: var(--ids-comp-avatar-color-bg-#{$variant}-hovered);
@@ -91,7 +91,7 @@ $variants: primary, secondary, light, dark, surface;
 
       .ids-avatar-icon {
         path {
-          fill: var(--ids-comp-avatar-color-fg-#{$variant}-enabled);
+          fill: var(--ids-comp-avatar-color-fg-#{$variant}-default);
         }
       }
     }

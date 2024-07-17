@@ -4,7 +4,7 @@ $sizes: compact, comfortable, spacious, dense;
   box-sizing: border-box;
   border-style: solid;
   border-color: var(--ids-comp-dialog-container-color-border-surface-default);
-  background-color: var(--ids-comp-dialog-container-color-bg-enabled);
+  background-color: var(--ids-comp-dialog-container-color-bg-default);
   box-shadow: var(--ids-smc-reference-container-effects-shadow-horizontal-none)
     var(--ids-smc-reference-container-effects-shadow-vertical-xxl) var(--ids-smc-reference-container-effects-shadow-blur-xxxl)
     var(--ids-smc-reference-container-effects-shadow-spread-xxs) var(--ids-smc-reference-container-effects-shadow-color-dark-default);
@@ -60,7 +60,7 @@ $sizes: compact, comfortable, spacious, dense;
       align-items: center;
       justify-content: center;
       overflow-y: auto;
-      background: var(--ids-comp-dialog-content-color-bg-enabled);
+      background: var(--ids-comp-dialog-content-color-bg-default);
 
       .ids-dialog-content-overflow {
         overflow-y: auto;
@@ -77,7 +77,7 @@ $sizes: compact, comfortable, spacious, dense;
 
     .ids-dialog-actions {
       display: flex;
-      background: var(--ids-comp-dialog-footer-color-bg-enabled);
+      background: var(--ids-comp-dialog-footer-color-bg-default);
 
       // TODO: test rules below
       justify-content: flex-end;
