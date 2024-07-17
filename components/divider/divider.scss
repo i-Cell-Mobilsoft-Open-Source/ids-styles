@@ -25,7 +25,7 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
 
   @each $variant in $variants {
     &.ids-divider-#{$variant} {
-      background: var(--ids-comp-divider-color-bg-#{$variant}-enabled);
+      background: var(--ids-comp-divider-color-bg-#{$variant}-default);
     }
   }
 }

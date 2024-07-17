@@ -61,9 +61,9 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
   @each $appearance in $appearances {
     @each $variant in $variants {
       &.ids-button-#{$appearance}.ids-button-#{$variant} {
-        color: var(--ids-comp-buttons-#{$appearance}-color-fg-label-#{$variant}-enabled);
-        background: var(--ids-comp-buttons-#{$appearance}-color-bg-#{$variant}-enabled);
-        border-color: var(--ids-comp-buttons-#{$appearance}-color-border-#{$variant}-enabled);
+        color: var(--ids-comp-buttons-#{$appearance}-color-fg-label-#{$variant}-default);
+        background: var(--ids-comp-buttons-#{$appearance}-color-bg-#{$variant}-default);
+        border-color: var(--ids-comp-buttons-#{$appearance}-color-border-#{$variant}-default);
 
         &:hover {
           background: var(--ids-comp-buttons-#{$appearance}-color-bg-#{$variant}-hovered);

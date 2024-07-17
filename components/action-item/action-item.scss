@@ -46,7 +46,7 @@ $sizes: 'compact', 'comfortable', 'spacious';
           &.ids-action-item-#{$appearance}.ids-action-item-#{$variant} {
             border-style: solid;
             border-width: var(--ids-comp-action-item-size-border-width-#{$size});
-            border-color: var(--ids-comp-action-item-#{$appearance}-color-border-#{$variant}-enabled);
+            border-color: var(--ids-comp-action-item-#{$appearance}-color-border-#{$variant}-default);
 
             &:hover {
               border-color: var(--ids-comp-action-item-#{$appearance}-color-border-#{$variant}-hovered);
@@ -65,8 +65,8 @@ $sizes: 'compact', 'comfortable', 'spacious';
     &.ids-action-item-#{$appearance} {
       @each $variant in $variants {
         &.ids-action-item-#{$variant} {
-          color: var(--ids-comp-action-item-#{$appearance}-color-fg-label-#{$variant}-enabled);
-          background: var(--ids-comp-action-item-#{$appearance}-color-bg-#{$variant}-enabled);
+          color: var(--ids-comp-action-item-#{$appearance}-color-fg-label-#{$variant}-default);
+          background: var(--ids-comp-action-item-#{$appearance}-color-bg-#{$variant}-default);
 
           &.ids-action-item-active {
             color: var(--ids-comp-action-item-#{$appearance}-color-fg-label-#{$variant}-active);

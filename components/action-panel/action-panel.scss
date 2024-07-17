@@ -19,7 +19,7 @@ $sizes: compact, comfortable, spacious, dense;
           &.ids-action-panel-outlined {
             border: var(--ids-comp-action-panel-size-border-#{$size})
               solid
-              var(--ids-comp-action-panel-#{$appearance}-color-border-light-enabled);
+              var(--ids-comp-action-panel-#{$appearance}-color-border-light-default);
           }
         }
       }
@@ -44,7 +44,7 @@ $sizes: compact, comfortable, spacious, dense;
 
   @each $appearance in $appearances {
     &.ids-action-panel-#{$appearance} {
-      background: var(--ids-comp-action-panel-#{$appearance}-color-bg-light-enabled);
+      background: var(--ids-comp-action-panel-#{$appearance}-color-bg-light-default);
     }
   }
 
