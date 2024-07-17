@@ -18,17 +18,17 @@ $variants: light, dark, surface;
 
   @each $size in $sizes {
     &.ids-message-#{$size} {
-      gap: var(--ids-comp-size-forms-message-size-gap-#{$size});
-      padding: var(--ids-comp-size-forms-message-size-padding-y-#{$size}) var(--ids-comp-size-forms-message-size-padding-x-#{$size});
-      font-family: var(--ids-comp-size-forms-message-typography-font-family-#{$size});
-      font-size: var(--ids-comp-size-forms-message-typography-font-size-#{$size});
-      font-weight: var(--ids-comp-size-forms-message-typography-font-weight-#{$size});
-      letter-spacing: var(--ids-comp-size-forms-message-typography-letter-spacing-#{$size});
-      line-height: var(--ids-comp-size-forms-message-typography-line-height-#{$size});
+      gap: var(--ids-comp-forms-message-size-gap-#{$size});
+      padding: var(--ids-comp-forms-message-size-padding-y-#{$size}) var(--ids-comp-forms-message-size-padding-x-#{$size});
+      font-family: var(--ids-comp-forms-message-typography-font-family-#{$size});
+      font-size: var(--ids-comp-forms-message-typography-font-size-#{$size});
+      font-weight: var(--ids-comp-forms-message-typography-font-weight-#{$size});
+      letter-spacing: var(--ids-comp-forms-message-typography-letter-spacing-#{$size});
+      line-height: var(--ids-comp-forms-message-typography-line-height-#{$size});
 
       .ids-message__prefix {
-        height: var(--ids-comp-size-forms-message-size-icon-height-#{$size});
-        width: var(--ids-comp-size-forms-message-size-icon-width-#{$size});
+        height: var(--ids-comp-forms-message-size-icon-height-#{$size});
+        width: var(--ids-comp-forms-message-size-icon-width-#{$size});
 
         & > ids-icon {
           height: inherit;
@@ -41,11 +41,11 @@ $variants: light, dark, surface;
   @each $variant in $variants {
     &.ids-message-#{$variant} {
       .ids-message__prefix {
-        color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-enabled);
+        color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-default);
       }
       .ids-message__text,
       .ids-message__suffix {
-        color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-enabled);
+        color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-default);
       }
 
       &.ids-message-disabled {
@@ -60,22 +60,22 @@ $variants: light, dark, surface;
 
       &.ids-error-message {
         .ids-message__prefix {
-          color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-error-enabled);
+          color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-error-default);
         }
         .ids-message__text,
         .ids-message__suffix {
-          color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-error-enabled);
+          color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-error-default);
         }
       }
     }
 
     &.ids-success-message {
       .ids-message__prefix {
-        color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-success-enabled);
+        color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-success-default);
       }
       .ids-message__text,
       .ids-message__suffix {
-        color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-success-enabled);
+        color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-success-default);
       }
     }
   }

@@ -14,8 +14,8 @@ $variants: light, dark, surface;
   }
 
   &:not(:disabled) {
-    border-color: var(--ids-comp-checkbox-input-#{$selectedText}-color-border-#{$variant}#{$errorText}-enabled);
-    background-color: var(--ids-comp-checkbox-input-#{$selectedText}-color-bg-#{$variant}-enabled);
+    border-color: var(--ids-comp-checkbox-input-#{$selectedText}-color-border-#{$variant}#{$errorText}-default);
+    background-color: var(--ids-comp-checkbox-input-#{$selectedText}-color-bg-#{$variant}-default);
 
     &:hover {
       border-color: var(--ids-comp-checkbox-input-#{$selectedText}-color-border-#{$variant}#{$errorText}-hovered);
@@ -50,7 +50,7 @@ $variants: light, dark, surface;
 
   &:not(:disabled) {
     & + .ids-checkbox__icon {
-      color: var(--ids-comp-checkbox-input-selected-color-fg-icon-#{$variant}#{$errorText}-enabled);
+      color: var(--ids-comp-checkbox-input-selected-color-fg-icon-#{$variant}#{$errorText}-default);
     }
 
     &:hover + .ids-checkbox__icon {
@@ -125,17 +125,16 @@ $variants: light, dark, surface;
 
   @each $size in $sizes {
     &.ids-checkbox-#{$size} {
-      padding: var(--ids-comp-size-checkbox-container-size-padding-y-#{$size})
-        var(--ids-comp-size-checkbox-container-size-padding-x-#{$size});
-      gap: var(--ids-comp-size-checkbox-container-size-gap-#{$size});
+      padding: var(--ids-comp-checkbox-container-size-padding-y-#{$size}) var(--ids-comp-checkbox-container-size-padding-x-#{$size});
+      gap: var(--ids-comp-checkbox-container-size-gap-#{$size});
 
       .ids-checkbox__input-wrapper {
-        $input-height: var(--ids-comp-size-checkbox-input-size-height-#{$size});
-        $input-width: var(--ids-comp-size-checkbox-input-size-width-#{$size});
+        $input-height: var(--ids-comp-checkbox-input-size-height-#{$size});
+        $input-width: var(--ids-comp-checkbox-input-size-width-#{$size});
 
         .ids-checkbox__touch-target {
-          $touch-target-height: var(--ids-comp-size-checkbox-input-size-touchtarget-height-#{$size});
-          $touch-target-width: var(--ids-comp-size-checkbox-input-size-touchtarget-width-#{$size});
+          $touch-target-height: var(--ids-comp-checkbox-input-size-touchtarget-height-#{$size});
+          $touch-target-width: var(--ids-comp-checkbox-input-size-touchtarget-width-#{$size});
           top: calc(($input-height - $touch-target-height) / 2);
           left: calc(($input-width - $touch-target-width) / 2);
           height: $touch-target-height;
@@ -145,31 +144,30 @@ $variants: light, dark, surface;
         input[type='checkbox'] {
           width: $input-width;
           height: $input-height;
-          border-radius: var(--ids-comp-size-checkbox-input-size-border-radius-#{$size});
-          border-width: var(--ids-comp-size-checkbox-input-size-border-width-#{$size});
+          border-radius: var(--ids-comp-checkbox-input-size-border-radius-#{$size});
+          border-width: var(--ids-comp-checkbox-input-size-border-width-#{$size});
 
           &:focus {
-            outline-width: var(--ids-comp-size-checkbox-focused-outline-outline-#{$size});
+            outline-width: var(--ids-comp-checkbox-focused-outline-outline-#{$size});
           }
         }
 
         .ids-checkbox__icon {
-          height: var(--ids-comp-size-checkbox-input-size-icon-#{$size});
-          width: var(--ids-comp-size-checkbox-input-size-icon-#{$size});
+          height: var(--ids-comp-checkbox-input-size-icon-#{$size});
+          width: var(--ids-comp-checkbox-input-size-icon-#{$size});
         }
       }
 
       .ids-checkbox__label-wrapper {
-        padding: var(--ids-comp-size-checkbox-label-group-size-padding-y-#{$size})
-          var(--ids-comp-size-checkbox-label-group-size-padding-x-#{$size});
-        gap: var(--ids-comp-size-checkbox-label-group-size-gap-#{$size});
+        padding: var(--ids-comp-checkbox-label-group-size-padding-y-#{$size}) var(--ids-comp-checkbox-label-group-size-padding-x-#{$size});
+        gap: var(--ids-comp-checkbox-label-group-size-gap-#{$size});
 
         .ids-checkbox__label-container {
-          font-family: var(--ids-comp-size-checkbox-label-typography-font-family-#{$size});
-          font-weight: var(--ids-comp-size-checkbox-label-typography-font-weight-#{$size});
-          letter-spacing: var(--ids-comp-size-checkbox-label-typography-letter-spacing-#{$size});
-          font-size: var(--ids-comp-size-checkbox-label-typography-font-size-#{$size});
-          line-height: var(--ids-comp-size-checkbox-label-typography-line-height-#{$size});
+          font-family: var(--ids-comp-checkbox-label-typography-font-family-#{$size});
+          font-weight: var(--ids-comp-checkbox-label-typography-font-weight-#{$size});
+          letter-spacing: var(--ids-comp-checkbox-label-typography-letter-spacing-#{$size});
+          font-size: var(--ids-comp-checkbox-label-typography-font-size-#{$size});
+          line-height: var(--ids-comp-checkbox-label-typography-line-height-#{$size});
         }
       }
     }
@@ -190,7 +188,7 @@ $variants: light, dark, surface;
       }
 
       .ids-checkbox__label-wrapper .ids-checkbox__label-container .ids-checkbox__label {
-        color: var(--ids-comp-checkbox-label-color-fg-#{$variant}-enabled);
+        color: var(--ids-comp-checkbox-label-color-fg-#{$variant}-default);
 
         &:hover {
           color: var(--ids-comp-checkbox-label-color-fg-#{$variant}-hovered);
