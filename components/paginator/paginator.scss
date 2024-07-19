@@ -1,0 +1,169 @@
+$pageButtonAppearances: plain;
+$sizes: compact, comfortable, spacious, dense;
+$variants: primary, secondary, light, surface;
+
+.ids-paginator {
+  display: inline-flex;
+
+  .ids-paginator__navigation-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+
+    .ids-paginator__page-button-container {
+      display: flex;
+      align-items: center;
+
+      .ids-paginator__page-button-truncation {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    .ids-paginator__page-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-style: normal;
+
+      :focus {
+        outline-width: var(--ids-comp-paginator-page-links-focused-outline-size-outline);
+        outline-style: solid;
+      }
+    }
+
+    .ids-paginator__page-button-arrow {
+      &.first,
+      &.previous {
+        order: 1;
+      }
+    }
+    .ids-paginator__page-button-container {
+      order: 2;
+    }
+    .ids-paginator__page-button-arrow {
+      &.next,
+      &.last {
+        order: 3;
+      }
+    }
+    .ids-paginator__help-text {
+      order: 4;
+    }
+  }
+
+  .ids-paginator__help-text {
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  @each $size in $sizes {
+    &.ids-paginator-#{$size} {
+      .ids-paginator__navigation-container {
+        gap: var(--ids-comp-paginator-size-gap-comfortable);
+
+        .ids-paginator__page-button {
+          height: var(--ids-comp-paginator-page-links-size-height-#{$size});
+          min-width: var(--ids-comp-paginator-page-links-size-min-width-#{$size});
+          padding: var(--ids-comp-paginator-page-links-size-padding-y-#{$size})
+            var(--ids-comp-paginator-page-links-size-padding-x-#{$size});
+          font-family: var(--ids-comp-paginator-page-links-label-typography-font-family-#{$size});
+          font-size: var(--ids-comp-paginator-page-links-label-typography-font-size-#{$size});
+          font-weight: var(--ids-comp-paginator-page-links-label-typography-font-weight-#{$size});
+          letter-spacing: var(--ids-comp-paginator-page-links-label-typography-letter-spacing-#{$size});
+          line-height: var(--ids-comp-paginator-page-links-label-typography-line-height-#{$size});
+          border-radius: var(--ids-comp-paginator-page-links-page-link-size-border-radius-#{$size});
+        }
+
+        .ids-paginator__page-button-truncation {
+          height: var(--ids-comp-paginator-page-links-size-height-#{$size});
+          width: var(--ids-comp-paginator-page-links-size-min-width-#{$size});
+        }
+      }
+
+      .ids-paginator__help-text {
+        font-family: var(--ids-comp-paginator-help-text-label-typography-font-family-#{$size});
+        font-size: var(--ids-comp-paginator-help-text-label-typography-font-size-#{$size});
+        font-weight: var(--ids-comp-paginator-help-text-label-typography-font-weight-#{$size});
+        letter-spacing: var(--ids-comp-paginator-help-text-label-typography-letter-spacing-#{$size});
+        line-height: var(--ids-comp-paginator-help-text-label-typography-line-height-#{$size});
+        border-radius: var(--ids-comp-paginator-help-text-size-border-radius-#{$size});
+        height: var(--ids-comp-paginator-help-text-size-height-#{$size});
+        padding: var(--ids-comp-paginator-help-text-size-padding-y-#{$size});
+      }
+    }
+  }
+
+  @each $variant in $variants {
+    &.ids-paginator-#{$variant} {
+      &:focus {
+        $lightOrDark: 'dark';
+        @if ($variant == 'light') {
+          $lightOrDark: 'light';
+        }
+        outline-color: var(--ids-comp-paginator-page-links-focused-outline-color-#{$lightOrDark}-focused);
+      }
+
+      .ids-paginator__navigation-container {
+        @each $pageButtonAppearance in $pageButtonAppearances {
+          .ids-paginator__page-button.ids-paginator__page-button-#{$pageButtonAppearance} {
+            background: var(--ids-comp-paginator-page-links-#{$pageButtonAppearance}-color-bg-#{$variant}-default);
+            color: var(--ids-comp-paginator-page-links-#{$pageButtonAppearance}-color-fg-label-#{$variant}-default);
+
+            &.active:not(:disabled) {
+              background: var(--ids-comp-paginator-page-links-#{$pageButtonAppearance}-color-bg-#{$variant}-active);
+              color: var(--ids-comp-paginator-page-links-#{$pageButtonAppearance}-color-fg-label-#{$variant}-active);
+            }
+            &:focus {
+              background: var(--ids-comp-paginator-page-links-#{$pageButtonAppearance}-color-bg-#{$variant}-focused);
+              color: var(--ids-comp-paginator-page-links-#{$pageButtonAppearance}-color-fg-label-#{$variant}-focused);
+            }
+            &:hover {
+              background: var(--ids-comp-paginator-page-links-#{$pageButtonAppearance}-color-bg-#{$variant}-hovered);
+              color: var(--ids-comp-paginator-page-links-#{$pageButtonAppearance}-color-fg-label-#{$variant}-hovered);
+            }
+            &:active {
+              background: var(--ids-comp-paginator-page-links-#{$pageButtonAppearance}-color-bg-#{$variant}-pressed);
+              color: var(--ids-comp-paginator-page-links-#{$pageButtonAppearance}-color-fg-label-#{$variant}-pressed);
+            }
+            &:disabled {
+              background: var(--ids-comp-paginator-page-links-#{$pageButtonAppearance}-color-bg-#{$variant}-disabled);
+              color: var(--ids-comp-paginator-page-links-#{$pageButtonAppearance}-color-fg-label-#{$variant}-disabled);
+            }
+
+            &.ids-paginator__page-button-arrow:not(:disabled) {
+              color: var(--ids-comp-paginator-page-links-#{$pageButtonAppearance}-color-fg-icon-#{$variant}-default);
+            }
+          }
+        }
+
+        .ids-paginator__page-button-truncation {
+          color: var(--ids-comp-paginator-page-links-plain-color-fg-icon-#{$variant}-disabled);
+        }
+      }
+
+      .ids-paginator__help-text {
+        color: var(--ids-comp-paginator-help-text-color-fg-#{$variant}-default);
+      }
+    }
+  }
+
+  &.compact {
+    .ids-paginator__navigation-container {
+      .ids-paginator__page-button-container {
+        display: none;
+      }
+      .ids-paginator__help-text {
+        order: 2;
+        margin-left: 0;
+      }
+    }
+  }
+}
