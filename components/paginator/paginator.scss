@@ -30,7 +30,7 @@ $variants: primary, secondary, light, surface;
       align-items: center;
       font-style: normal;
 
-      :focus {
+      &:focus {
         outline-width: var(--ids-comp-paginator-page-links-focused-outline-size-outline);
         outline-style: solid;
       }
@@ -103,7 +103,7 @@ $variants: primary, secondary, light, surface;
 
   @each $variant in $variants {
     &.ids-paginator-#{$variant} {
-      &:focus {
+      .ids-paginator__page-button:focus {
         $lightOrDark: 'dark';
         @if ($variant == 'light') {
           $lightOrDark: 'light';
