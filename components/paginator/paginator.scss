@@ -33,6 +33,7 @@ $variants: primary, secondary, light, surface;
       &:focus {
         outline-width: var(--ids-comp-paginator-page-links-focused-outline-size-outline);
         outline-style: solid;
+        outline-offset: 2px;
       }
     }
 
