@@ -96,7 +96,7 @@ $appearances: filled, outlined;
           .ids-segmented-control-item > button {
             @include segmentedControlItemAppearanceAndVariant($appearance, $variant, default);
 
-            .selected:not(:disabled) {
+            &.selected:not(:disabled) {
               @include segmentedControlItemAppearanceAndVariant($appearance, $variant, active);
             }
             &:hover {
