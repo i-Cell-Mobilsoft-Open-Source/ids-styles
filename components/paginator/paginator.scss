@@ -29,6 +29,7 @@ $variants: primary, secondary, light, surface;
       justify-content: center;
       align-items: center;
       font-style: normal;
+      border-style: none;
 
       &:focus {
         outline-width: var(--ids-comp-paginator-page-links-focused-outline-size-outline);
@@ -42,15 +43,14 @@ $variants: primary, secondary, light, surface;
       &.previous {
         order: 1;
       }
-    }
-    .ids-paginator__page-button-container {
-      order: 2;
-    }
-    .ids-paginator__page-button-arrow {
+
       &.next,
       &.last {
         order: 3;
       }
+    }
+    .ids-paginator__page-button-container {
+      order: 2;
     }
     .ids-paginator__help-text {
       order: 4;
@@ -68,7 +68,7 @@ $variants: primary, secondary, light, surface;
   @each $size in $sizes {
     &.ids-paginator-#{$size} {
       .ids-paginator__navigation-container {
-        gap: var(--ids-comp-paginator-size-gap-comfortable);
+        gap: var(--ids-comp-paginator-size-gap-#{$size});
 
         .ids-paginator__page-button {
           height: var(--ids-comp-paginator-page-links-size-height-#{$size});
@@ -81,6 +81,16 @@ $variants: primary, secondary, light, surface;
           letter-spacing: var(--ids-comp-paginator-page-links-label-typography-letter-spacing-#{$size});
           line-height: var(--ids-comp-paginator-page-links-label-typography-line-height-#{$size});
           border-radius: var(--ids-comp-paginator-page-links-page-link-size-border-radius-#{$size});
+        }
+
+        .ids-paginator__page-button-arrow {
+          gap: var(--ids-comp-paginator-page-links-size-gap-#{$size});
+          &.previous > .ids-paginator__page-button-arrow__label {
+            padding-right: var(--ids-comp-paginator-page-links-label-size-padding-right-#{$size});
+          }
+          &.next > .ids-paginator__page-button-arrow__label {
+            padding-left: var(--ids-comp-paginator-page-links-label-size-padding-left-#{$size});
+          }
         }
 
         .ids-paginator__page-button-truncation {
@@ -156,7 +166,7 @@ $variants: primary, secondary, light, surface;
     }
   }
 
-  &.ids-paginator-compact {
+  &.ids-paginator-compact-layout {
     .ids-paginator__navigation-container {
       .ids-paginator__page-button-container {
         display: none;
