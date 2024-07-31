@@ -36,6 +36,13 @@ $variants: primary, secondary, light, surface;
         outline-style: solid;
         outline-offset: 2px;
       }
+
+      &:not(:disabled) {
+        cursor: pointer;
+      }
+      &:disabled {
+        cursor: not-allowed;
+      }
     }
 
     .ids-paginator__page-button-arrow {

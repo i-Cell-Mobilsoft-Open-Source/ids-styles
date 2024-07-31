@@ -15,6 +15,13 @@ $sizes: 'compact', 'comfortable', 'spacious';
     font-style: normal;
   }
 
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+  &:disabled {
+    cursor: not-allowed;
+  }
+
   *[icon-leading],
   *[icon-trailing] {
     gap: 10px;

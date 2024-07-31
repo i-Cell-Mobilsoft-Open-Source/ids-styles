@@ -4,10 +4,11 @@ $appearances: filled, outlined;
 
 @mixin segmentedControlToggleItemAppearanceAndVariant($appearance, $variant, $state) {
   background-color: var(--ids-comp-segmented-control-toggle-button-#{$appearance}-color-bg-#{$variant}-#{$state});
-  color: var(--ids-comp-segmented-control-toggle-button-filled-color-fg-label-#{$variant}-#{$state});
+  color: var(--ids-comp-segmented-control-toggle-button-#{$appearance}-color-fg-label-#{$variant}-#{$state});
+  border-color: var(--ids-comp-segmented-control-toggle-button-#{$appearance}-color-border-#{$variant}-default);
 
   .ids-icon {
-    color: var(--ids-comp-segmented-control-toggle-button-filled-color-fg-icon-#{$variant}-#{$state});
+    color: var(--ids-comp-segmented-control-toggle-button-#{$appearance}-color-fg-icon-#{$variant}-#{$state});
   }
 }
 
@@ -20,7 +21,7 @@ $appearances: filled, outlined;
   .ids-segmented-control-toggle-item > button {
     display: flex;
     align-items: center;
-    border-style: solid;
+    border-style: none;
     position: relative;
     text-wrap: nowrap;
 
@@ -32,6 +33,13 @@ $appearances: filled, outlined;
 
     &.selected {
       pointer-events: none;
+    }
+
+    &:not(:disabled) {
+      cursor: pointer;
+    }
+    &:disabled {
+      cursor: not-allowed;
     }
   }
 
@@ -84,7 +92,6 @@ $appearances: filled, outlined;
       @each $appearance in $appearances {
         &.ids-segmented-control-toggle-#{$appearance} {
           background-color: var(--ids-comp-segmented-control-toggle-container-#{$appearance}-color-bg-#{$variant}-default);
-          border-color: var(--ids-comp-segmented-control-toggle-container-#{$appearance}-color-border-#{$variant}-default);
 
           .ids-segmented-control-toggle-item > button {
             @include segmentedControlToggleItemAppearanceAndVariant($appearance, $variant, default);
