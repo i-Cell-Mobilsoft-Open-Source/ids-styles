@@ -84,3 +84,12 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
     }
   }
 }
+
+button.ids-tag {
+  :not(:disabled) {
+    cursor: pointer;
+  }
+  :disabled {
+    cursor: not-allowed;
+  }
+}

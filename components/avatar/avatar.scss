@@ -12,6 +12,13 @@ $variants: primary, secondary, light, dark, surface;
   justify-content: center;
   border-style: solid;
 
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+  &:disabled {
+    cursor: not-allowed;
+  }
+
   & &-icon {
     gap: 10px;
     display: flex;

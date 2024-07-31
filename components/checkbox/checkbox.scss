@@ -92,6 +92,7 @@ $variants: light, dark, surface;
       -webkit-appearance: none;
       flex-shrink: 0;
       border-style: solid;
+      margin: 0;
 
       &:focus {
         outline-offset: 2px;
@@ -155,6 +156,7 @@ $variants: light, dark, surface;
         .ids-checkbox__icon {
           height: var(--ids-comp-checkbox-input-size-icon-#{$size});
           width: var(--ids-comp-checkbox-input-size-icon-#{$size});
+          line-height: var(--ids-comp-checkbox-input-size-icon-#{$size});
         }
       }
 
