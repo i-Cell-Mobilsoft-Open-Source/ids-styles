@@ -15,7 +15,7 @@ $variants: surface, light, dark;
 
   &:not(:disabled) {
     border-color: var(--ids-comp-radio-input-#{$selectedText}-color-border-#{$variant}#{$errorText}-default);
-    background-color: var(--ids-comp-radio-input-#{$selectedText}-color-bg-#{$variant}#{$errorText}-default);
+    background-color: var(--ids-comp-radio-input-#{$selectedText}-color-bg-#{$variant}-default);
 
     @if ($selected) {
       & + .ids-radio-item__inner-circle {
@@ -26,7 +26,7 @@ $variants: surface, light, dark;
 
     &:hover {
       border-color: var(--ids-comp-radio-input-#{$selectedText}-color-border-#{$variant}#{$errorText}-hovered);
-      background-color: var(--ids-comp-radio-input-#{$selectedText}-color-bg-#{$variant}#{$errorText}-hovered);
+      background-color: var(--ids-comp-radio-input-#{$selectedText}-color-bg-#{$variant}-hovered);
 
       @if ($selected) {
         & + .ids-radio-item__inner-circle {
@@ -37,7 +37,7 @@ $variants: surface, light, dark;
     }
     &:active {
       border-color: var(--ids-comp-radio-input-#{$selectedText}-color-border-#{$variant}#{$errorText}-pressed);
-      background-color: var(--ids-comp-radio-input-#{$selectedText}-color-bg-#{$variant}#{$errorText}-pressed);
+      background-color: var(--ids-comp-radio-input-#{$selectedText}-color-bg-#{$variant}-pressed);
 
       @if ($selected) {
         & + .ids-radio-item__inner-circle {
@@ -49,7 +49,7 @@ $variants: surface, light, dark;
     &:focus,
     &:focus-visible {
       border-color: var(--ids-comp-radio-input-#{$selectedText}-color-border-#{$variant}#{$errorText}-focused);
-      background-color: var(--ids-comp-radio-input-#{$selectedText}-color-bg-#{$variant}#{$errorText}-focused);
+      background-color: var(--ids-comp-radio-input-#{$selectedText}-color-bg-#{$variant}-focused);
 
       @if ($selected) {
         & + .ids-radio-item__inner-circle {
@@ -94,7 +94,7 @@ $variants: surface, light, dark;
   & + input[type='radio'] {
     &:not(:disabled) {
       border-color: var(--ids-comp-radio-input-#{$selectedText}-color-border-#{$variant}#{$errorText}-hovered);
-      background-color: var(--ids-comp-radio-input-#{$selectedText}-color-bg-#{$variant}#{$errorText}-hovered);
+      background-color: var(--ids-comp-radio-input-#{$selectedText}-color-bg-#{$variant}-hovered);
 
       @if ($selected) {
         & + .ids-radio-item__inner-circle {
