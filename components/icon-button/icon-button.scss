@@ -25,6 +25,13 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
     outline: none;
   }
 
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+  &:disabled {
+    cursor: not-allowed;
+  }
+
   @each $size in $sizes {
     &.ids-icon-button-#{$size} {
       padding: var(--ids-comp-icon-button-size-padding-y-#{$size}) var(--ids-comp-icon-button-size-padding-x-#{$size});

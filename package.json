@@ -1,6 +1,6 @@
 {
   "name": "@i-cell/ids-styles",
-  "version": "0.0.2",
+  "version": "0.0.9",
   "private": false,
   "description": "Stylesheets for i-Cell Design System UI Kit components (currently Vue and Angular)",
   "scripts": {
@@ -35,7 +35,7 @@
   },
   "homepage": "https://github.com/i-Cell-Mobilsoft-Open-Source/ids-styles#readme",
   "devDependencies": {
-    "@i-cell/ids-tokens": "0.0.13",
+    "@i-cell/ids-tokens": "0.0.15",
     "commander": "^12.1.0",
     "gulp": "^5.0.0",
     "gulp-prettier": "^6.0.0",
