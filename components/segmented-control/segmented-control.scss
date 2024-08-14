@@ -4,10 +4,11 @@ $appearances: filled, outlined;
 
 @mixin segmentedControlItemAppearanceAndVariant($appearance, $variant, $state) {
   background-color: var(--ids-comp-segmented-control-button-#{$appearance}-color-bg-#{$variant}-#{$state});
-  color: var(--ids-comp-segmented-control-button-filled-color-fg-label-#{$variant}-#{$state});
+  color: var(--ids-comp-segmented-control-button-#{$appearance}-color-fg-label-#{$variant}-#{$state});
+  border-color: var(--ids-comp-segmented-control-button-#{$appearance}-color-border-#{$variant}-#{$state});
 
   .ids-icon {
-    color: var(--ids-comp-segmented-control-button-filled-color-fg-icon-#{$variant}-#{$state});
+    color: var(--ids-comp-segmented-control-button-#{$appearance}-color-fg-icon-#{$variant}-#{$state});
   }
 }
 
@@ -28,6 +29,13 @@ $appearances: filled, outlined;
       z-index: 1;
       outline-style: solid;
       outline-offset: 2px;
+    }
+
+    &:not(:disabled) {
+      cursor: pointer;
+    }
+    &:disabled {
+      cursor: not-allowed;
     }
   }
 

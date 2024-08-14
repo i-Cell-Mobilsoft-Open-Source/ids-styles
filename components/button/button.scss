@@ -25,6 +25,13 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
     outline: none;
   }
 
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+  &:disabled {
+    cursor: not-allowed;
+  }
+
   *[icon-leading],
   *[icon-trailing] {
     gap: 10px;

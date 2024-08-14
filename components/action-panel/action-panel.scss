@@ -27,14 +27,12 @@ $sizes: compact, comfortable, spacious, dense;
   }
 
   &.ids-action-panel-filled {
-    box-shadow:
-      0px 0px 0px 0px rgba(0, 0, 0, 0),
-      0px 0px 0px 0px rgba(0, 0, 0, 0);
+    box-shadow: none;
   }
   &.ids-action-panel-outlined {
-    box-shadow:
-      0px 0px 0px 0px rgba(0, 0, 0, 0),
-      0px 0px 0px 0px rgba(0, 0, 0, 0);
+    box-shadow: var(--ids-smc-reference-container-effects-shadow-horizontal-none)
+        var(--ids-smc-reference-container-effects-shadow-vertical-xxs) var(--ids-smc-reference-container-effects-shadow-blur-xxs)
+        var(--ids-smc-reference-container-effects-shadow-spread-none) var(--ids-smc-reference-container-effects-shadow-color-dark-lighter);
   }
   &.ids-action-panel-elevated {
     box-shadow: var(--ids-smc-reference-container-effects-shadow-horizontal-none)
