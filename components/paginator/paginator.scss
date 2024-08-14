@@ -16,6 +16,9 @@ $variants: primary, secondary, light, surface;
     .ids-paginator__page-button-container {
       display: flex;
       align-items: center;
+      list-style: none;
+      padding: 0;
+      margin: 0;
 
       .ids-paginator__page-button-truncation {
         display: flex;
