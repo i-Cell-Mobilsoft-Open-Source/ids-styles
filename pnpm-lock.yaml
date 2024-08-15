@@ -7,10 +7,11 @@ settings:
 importers:
 
   .:
-    devDependencies:
+    dependencies:
       '@i-cell/ids-tokens':
         specifier: 0.0.16
         version: 0.0.16
+    devDependencies:
       commander:
         specifier: ^12.1.0
         version: 12.1.0
