@@ -7,8 +7,10 @@ $variants: light, dark, surface;
   align-items: center;
   font-style: normal;
 
-  .ids-message__prefix {
+  .ids-message__prefix,
+  .ids-message__suffix {
     display: flex;
+    align-items: center;
   }
 
   .ids-message__text {
