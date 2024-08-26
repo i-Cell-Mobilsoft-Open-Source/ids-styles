@@ -228,28 +228,22 @@ $variants: surface, light;
 
   @each $variant in $variants {
     &.ids-form-field-#{$variant} {
-      & > .ids-form-field__field-wrapper {
-        @include fieldWrapperVariant($variant, default);
-        &:hover {
-          @include fieldWrapperVariant($variant, hovered);
-        }
-      }
-      @include fieldLabelVariant($variant, default);
-
       &:not(.ids-form-field-disabled) {
-        &:has(input:focus),
-        &:has(textarea:focus) {
-          & > .ids-form-field__field-wrapper {
+        & > .ids-form-field__field-wrapper {
+          @include fieldWrapperVariant($variant, default);
+          &:hover {
+            @include fieldWrapperVariant($variant, hovered);
+          }
+          &:has(input:focus),
+          &:has(textarea:focus) {
             @include fieldWrapperVariant($variant, focused);
           }
-        }
-
-        &:has(input:active),
-        &:has(textarea:active) {
-          & > .ids-form-field__field-wrapper {
+          &:has(input:active),
+          &:has(textarea:active) {
             @include fieldWrapperVariant($variant, pressed);
           }
         }
+        @include fieldLabelVariant($variant, default);
 
         &.ids-form-field-invalid {
           & > .ids-form-field__field-wrapper {
@@ -257,22 +251,16 @@ $variants: surface, light;
             &:hover {
               @include fieldWrapperVariant($variant, hovered, error);
             }
-          }
-          @include fieldLabelVariant($variant, default, error);
-
-          &:has(input:focus),
-          &:has(textarea:focus) {
-            & > .ids-form-field__field-wrapper {
+            &:has(input:focus),
+            &:has(textarea:focus) {
               @include fieldWrapperVariant($variant, focused, error);
             }
-          }
-
-          &:has(input:active),
-          &:has(textarea:active) {
-            & > .ids-form-field__field-wrapper {
+            &:has(input:active),
+            &:has(textarea:active) {
               @include fieldWrapperVariant($variant, pressed, error);
             }
           }
+          @include fieldLabelVariant($variant, default, error);
         }
 
         &.ids-form-field-valid {
@@ -281,22 +269,16 @@ $variants: surface, light;
             &:hover {
               @include fieldWrapperVariant($variant, hovered, success);
             }
-          }
-          @include fieldLabelVariant($variant, default, success);
-
-          &:has(input:focus),
-          &:has(textarea:focus) {
-            & > .ids-form-field__field-wrapper {
+            &:has(input:focus),
+            &:has(textarea:focus) {
               @include fieldWrapperVariant($variant, focused, success);
             }
-          }
-
-          &:has(input:active),
-          &:has(textarea:active) {
-            & > .ids-form-field__field-wrapper {
+            &:has(input:active),
+            &:has(textarea:active) {
               @include fieldWrapperVariant($variant, pressed, success);
             }
           }
+          @include fieldLabelVariant($variant, default, success);
         }
       }
 
