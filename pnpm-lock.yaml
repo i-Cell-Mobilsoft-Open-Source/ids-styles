@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@i-cell/ids-tokens':
-        specifier: 0.0.16
-        version: 0.0.16
+        specifier: 0.0.20
+        version: 0.0.20
     devDependencies:
       commander:
         specifier: ^12.1.0
@@ -53,8 +53,8 @@ packages:
     resolution: {integrity: sha512-kjotm7XJrJ6v+7knhPaRgaT6q8F8K2jiafwYdNHLzmV0uGLuZY43FK6smNSHUPrhq5kX2slCUy+RGG/xGqmIKA==}
     engines: {node: '>=10.13.0'}
 
-  '@i-cell/ids-tokens@0.0.16':
-    resolution: {integrity: sha512-5DovxSFiPDn3b+kars5OFKC/YY0iTuOHNB4mQ30hIk+dozMS+nRbYRUidw3b90QlnbrvScoGNotlwy8kO7dFHw==}
+  '@i-cell/ids-tokens@0.0.20':
+    resolution: {integrity: sha512-TToMDs0BZNn7bCP6TiC4O1RymlYu7Gg7/uI25f2WMpbMR80sCxkf8HStooIFqrB0yN6W9D7aLQD3e8DZT8RTMg==}
 
   ansi-colors@1.1.0:
     resolution: {integrity: sha512-SFKX67auSNoVR38N3L+nvsPjOE0bybKTYbkf5tRvushrAPQ9V75huw0ZxBkKVeRU9kqH3d6HA4xTckbwZ4ixmA==}
@@ -711,7 +711,7 @@ snapshots:
     dependencies:
       is-negated-glob: 1.0.0
 
-  '@i-cell/ids-tokens@0.0.16': {}
+  '@i-cell/ids-tokens@0.0.20': {}
 
   ansi-colors@1.1.0:
     dependencies:
