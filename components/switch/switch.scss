@@ -85,14 +85,10 @@ $variants: surface, light, primary;
         justify-content: center;
         top: auto;
         bottom: auto;
-
-        & > .ids-icon {
-          position: absolute;
-        }
       }
 
       & > .ids-switch__handle {
-        position: absolute;
+        position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -170,7 +166,7 @@ $variants: surface, light, primary;
         & > .ids-switch__button {
           & > .ids-switch__track {
             & > .ids-switch__handle {
-              left: var(--ids-comp-switch-track-size-padding-x-#{$size});
+              left: 0;
             }
           }
         }
@@ -180,7 +176,7 @@ $variants: surface, light, primary;
         & > .ids-switch__button {
           & > .ids-switch__track {
             & > .ids-switch__handle {
-              left: calc(100% - var(--ids-comp-switch-track-size-padding-x-#{$size}) - var(--ids-comp-switch-handle-size-width-#{$size}));
+              left: calc(var(--ids-comp-switch-track-size-width-#{$size}) - var(--ids-comp-switch-handle-size-width-#{$size}));
             }
           }
         }
