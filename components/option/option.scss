@@ -37,9 +37,13 @@ $variants: surface, light;
     justify-content: space-between;
   }
 
+  &.ids-option-active {
+    outline-style: solid;
+  }
+
   @each $size in $sizes {
     .ids-option-#{$size} {
-      height: var(--ids-comp-forms-option-item-size-height-#{$size});
+      height: var(--ids-comp-forms-option-item-size-min-height-#{$size});
       padding: var(--ids-comp-forms-option-item-size-padding-y-#{$size}) var(--ids-comp-forms-option-item-size-padding-x-#{$size});
       gap: var(--ids-comp-forms-option-container-size-gap-#{$size});
       border-radius: var(--ids-comp-forms-option-item-size-border-radius-#{$size});
@@ -58,7 +62,7 @@ $variants: surface, light;
       }
 
       &.ids-option-active {
-        outline-style: solid;
+        outline-width: var(--ids-comp-forms-form-field-standard-field-wrapper-focused-outline-outline-#{$size});
       }
     }
   }
@@ -75,8 +79,7 @@ $variants: surface, light;
         }
         &.ids-option-active {
           @include selectOptionVariant($variant, active);
-          outline-width: var(--forms-form-field-standard-field-wrapper-focused-outline-outline);
-          outline-color: var(--forms-form-field-standard-field-wrapper-container-color-focused-outline-color-dark-focused);
+          outline-color: var(--ids-comp-forms-form-field-standard-field-wrapper-container-color-focused-outline-color-dark-focused);
         }
       }
 
