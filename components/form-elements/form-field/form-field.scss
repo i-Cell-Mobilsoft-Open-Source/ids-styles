@@ -20,13 +20,10 @@ $variants: surface, light;
     }
 
     & > .ids-form-field__infix {
-      input,
-      textarea {
-        color: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-filled-color-fg-text-#{$variant}-#{$state});
+      color: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-filled-color-fg-text-#{$variant}-#{$state});
 
-        &::placeholder {
-          color: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-empty-color-fg-text-#{$variant}-#{$state});
-        }
+      ::placeholder {
+        color: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-empty-color-fg-text-#{$variant}-#{$state});
       }
     }
 
@@ -88,6 +85,7 @@ $variants: surface, light;
       display: flex;
       align-items: center;
       flex: 1 0 0;
+      overflow-x: hidden;
 
       & > .ids-form-field__leading-icon,
       & > .ids-form-field__prefix,
@@ -101,6 +99,7 @@ $variants: surface, light;
         display: flex;
         align-items: center;
         flex: 1 0 0;
+        overflow-x: hidden;
 
         input,
         textarea {
@@ -178,21 +177,18 @@ $variants: surface, light;
           & > .ids-form-field__infix {
             padding: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-size-padding-y-#{$size}) 0;
 
-            input,
-            textarea {
-              font-family: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-filled-font-family-#{$size});
-              font-size: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-filled-font-size-#{$size});
-              font-weight: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-filled-font-weight-#{$size});
-              letter-spacing: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-filled-letter-spacing-#{$size});
-              line-height: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-filled-line-height-#{$size});
+            font-family: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-filled-font-family-#{$size});
+            font-size: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-filled-font-size-#{$size});
+            font-weight: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-filled-font-weight-#{$size});
+            letter-spacing: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-filled-letter-spacing-#{$size});
+            line-height: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-filled-line-height-#{$size});
 
-              &::placeholder {
-                font-family: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-empty-font-family-#{$size});
-                font-size: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-empty-font-size-#{$size});
-                font-weight: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-empty-font-weight-#{$size});
-                letter-spacing: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-empty-letter-spacing-#{$size});
-                line-height: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-empty-line-height-#{$size});
-              }
+            ::placeholder {
+              font-family: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-empty-font-family-#{$size});
+              font-size: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-empty-font-size-#{$size});
+              font-weight: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-empty-font-weight-#{$size});
+              letter-spacing: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-empty-letter-spacing-#{$size});
+              line-height: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-empty-line-height-#{$size});
             }
           }
 
