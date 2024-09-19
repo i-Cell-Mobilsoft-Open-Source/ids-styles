@@ -127,9 +127,7 @@ $variants: surface, light;
       border-left-style: solid;
     }
 
-    &:has(input:focus),
-    &:has(textarea:focus),
-    &:has(.ids-select:focus) {
+    &:has(.ids-form-field-control:focus) {
       outline-offset: 2px;
       outline-style: solid;
     }
@@ -214,9 +212,7 @@ $variants: surface, light;
           border-left-width: var(--ids-comp-forms-form-field-standard-field-wrapper-action-size-border-left-#{$size});
         }
 
-        &:has(input:focus),
-        &:has(textarea:focus),
-        &:has(.ids-select:focus) {
+        &:has(.ids-form-field-control:focus) {
           outline-width: var(--ids-comp-forms-form-field-standard-field-wrapper-focused-outline-outline-#{$size});
         }
       }
@@ -231,13 +227,10 @@ $variants: surface, light;
           &:hover {
             @include fieldWrapperVariant($variant, hovered);
           }
-          &:has(input:focus),
-          &:has(textarea:focus),
-          &:has(.ids-select:focus) {
+          &:has(.iids-form-field-control:focus) {
             @include fieldWrapperVariant($variant, focused);
           }
-          &:has(input:active),
-          &:has(textarea:active) {
+          &:has(.ids-form-field-control:active) {
             @include fieldWrapperVariant($variant, pressed);
           }
         }
@@ -249,13 +242,10 @@ $variants: surface, light;
             &:hover {
               @include fieldWrapperVariant($variant, hovered, error);
             }
-            &:has(input:focus),
-            &:has(textarea:focus),
-            &:has(.ids-select:focus) {
+            &:has(.ids-form-field-control:focus) {
               @include fieldWrapperVariant($variant, focused, error);
             }
-            &:has(input:active),
-            &:has(textarea:active) {
+            &:has(.ids-form-field-control:active) {
               @include fieldWrapperVariant($variant, pressed, error);
             }
           }
@@ -268,13 +258,10 @@ $variants: surface, light;
             &:hover {
               @include fieldWrapperVariant($variant, hovered, success);
             }
-            &:has(input:focus),
-            &:has(textarea:focus),
-            &:has(.ids-select:focus) {
+            &:has(.ids-form-field-control:focus) {
               @include fieldWrapperVariant($variant, focused, success);
             }
-            &:has(input:active),
-            &:has(textarea:active) {
+            &:has(.ids-form-field-control:active) {
               @include fieldWrapperVariant($variant, pressed, success);
             }
           }
