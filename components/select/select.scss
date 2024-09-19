@@ -10,6 +10,11 @@ $variants: surface, light;
 .ids-select {
   width: 100%;
 
+  &:focus,
+  &:focus-visible {
+    outline: none;
+  }
+
   & > .ids-select__trigger {
     display: flex;
     justify-content: space-between;

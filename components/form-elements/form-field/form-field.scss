@@ -41,8 +41,7 @@ $variants: surface, light;
     background: var(--ids-comp-forms-form-field-standard-field-wrapper-action-color-bg-#{$variant}-default);
   }
 
-  &:has(input:focus),
-  &:has(textarea:focus) {
+  @if ($state == focused) {
     $lightOrDark: 'dark';
     @if ($variant == 'light') {
       $lightOrDark: 'light';
@@ -129,7 +128,8 @@ $variants: surface, light;
     }
 
     &:has(input:focus),
-    &:has(textarea:focus) {
+    &:has(textarea:focus),
+    &:has(.ids-select:focus) {
       outline-offset: 2px;
       outline-style: solid;
     }
@@ -215,7 +215,8 @@ $variants: surface, light;
         }
 
         &:has(input:focus),
-        &:has(textarea:focus) {
+        &:has(textarea:focus),
+        &:has(.ids-select:focus) {
           outline-width: var(--ids-comp-forms-form-field-standard-field-wrapper-focused-outline-outline-#{$size});
         }
       }
@@ -231,7 +232,8 @@ $variants: surface, light;
             @include fieldWrapperVariant($variant, hovered);
           }
           &:has(input:focus),
-          &:has(textarea:focus) {
+          &:has(textarea:focus),
+          &:has(.ids-select:focus) {
             @include fieldWrapperVariant($variant, focused);
           }
           &:has(input:active),
@@ -248,7 +250,8 @@ $variants: surface, light;
               @include fieldWrapperVariant($variant, hovered, error);
             }
             &:has(input:focus),
-            &:has(textarea:focus) {
+            &:has(textarea:focus),
+            &:has(.ids-select:focus) {
               @include fieldWrapperVariant($variant, focused, error);
             }
             &:has(input:active),
@@ -266,7 +269,8 @@ $variants: surface, light;
               @include fieldWrapperVariant($variant, hovered, success);
             }
             &:has(input:focus),
-            &:has(textarea:focus) {
+            &:has(textarea:focus),
+            &:has(.ids-select:focus) {
               @include fieldWrapperVariant($variant, focused, success);
             }
             &:has(input:active),
