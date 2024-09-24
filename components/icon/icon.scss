@@ -1,6 +1,7 @@
 $sizes: compact, comfortable, spacious, dense;
 $sizeCollections: smallcollection, bigcollection;
-$variants: primary, secondary, light, dark, error, success, warning, brand, surface;
+$variants: primary, secondary, light, dark, error, success, warning, brand,
+  surface;
 
 .ids-icon {
   font-family: "IDS Icons";
@@ -17,11 +18,16 @@ $variants: primary, secondary, light, dark, error, success, warning, brand, surf
 
   @each $sizeCollection in $sizeCollections {
     @each $size in $sizes {
-      &.ids-icon-#{$sizeCollection}.ids-icon-#{$size} {
+      // Need to be one class for the specificity because ids-icon can be nested ( wrong: &.ids-icon-#{$sizeCollection}.ids-icon-#{$size} )
+      &.ids-icon-#{$sizeCollection}-#{$size} {
         height: var(--ids-comp-icon-size-#{$sizeCollection}-height-#{$size});
         width: var(--ids-comp-icon-size-#{$sizeCollection}-width-#{$size});
-        font-size: var(--ids-comp-icon-typography-#{$sizeCollection}-font-size-#{$size});
-        line-height: var(--ids-comp-icon-typography-#{$sizeCollection}-line-height-#{$size});
+        font-size: var(
+          --ids-comp-icon-typography-#{$sizeCollection}-font-size-#{$size}
+        );
+        line-height: var(
+          --ids-comp-icon-typography-#{$sizeCollection}-line-height-#{$size}
+        );
       }
     }
   }
