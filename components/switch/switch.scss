@@ -119,10 +119,10 @@ $variants: surface, light, primary;
 
         & > .ids-switch__track {
           width: var(--ids-comp-switch-track-size-width-#{$size});
-          height: var(--ids-comp-switch-handle-size-height-#{$size});
+          height: calc(var(--ids-comp-switch-handle-size-height-#{$size}) + var(--ids-comp-switch-track-size-padding-y-#{$size}) * 2);
           padding: var(--ids-comp-switch-track-size-padding-y-#{$size}) var(--ids-comp-switch-track-size-padding-x-#{$size});
           border-radius: var(--ids-comp-switch-track-size-border-radius-#{$size});
-          box-sizing: content-box;
+          box-sizing: border-box;
 
           & > .ids-switch__track-icon {
             width: var(--ids-comp-switch-handle-size-width-#{$size});
@@ -176,7 +176,11 @@ $variants: surface, light, primary;
         & > .ids-switch__button {
           & > .ids-switch__track {
             & > .ids-switch__handle {
-              left: calc(var(--ids-comp-switch-track-size-width-#{$size}) - var(--ids-comp-switch-handle-size-width-#{$size}));
+              left: calc(
+                var(--ids-comp-switch-track-size-width-#{$size}) - var(--ids-comp-switch-handle-size-width-#{$size}) -
+                  2 *
+                  var(--ids-comp-switch-track-size-padding-x-#{$size})
+              );
             }
           }
         }
