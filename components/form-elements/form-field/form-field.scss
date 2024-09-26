@@ -20,13 +20,12 @@ $variants: surface, light;
     }
 
     & > .ids-form-field__infix {
-      input,
-      textarea {
+      .ids-form-field-control {
         color: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-filled-color-fg-text-#{$variant}-#{$state});
+      }
 
-        &::placeholder {
-          color: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-empty-color-fg-text-#{$variant}-#{$state});
-        }
+      ::placeholder {
+        color: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-empty-color-fg-text-#{$variant}-#{$state});
       }
     }
 
@@ -44,8 +43,7 @@ $variants: surface, light;
     background: var(--ids-comp-forms-form-field-standard-field-wrapper-action-color-bg-#{$variant}-default);
   }
 
-  &:has(input:focus),
-  &:has(textarea:focus) {
+  @if ($state == focused) {
     $lightOrDark: 'dark';
     @if ($variant == 'light') {
       $lightOrDark: 'light';
@@ -88,6 +86,7 @@ $variants: surface, light;
       display: flex;
       align-items: center;
       flex: 1 0 0;
+      overflow-x: hidden;
 
       & > .ids-form-field__leading-icon,
       & > .ids-form-field__prefix,
@@ -101,6 +100,7 @@ $variants: surface, light;
         display: flex;
         align-items: center;
         flex: 1 0 0;
+        overflow-x: hidden;
 
         input,
         textarea {
@@ -109,6 +109,12 @@ $variants: surface, light;
           background-color: transparent;
           flex: 1 0 0;
           padding: 0;
+          font-family: inherit;
+          font-size: inherit;
+          font-style: normal;
+          font-weight: inherit;
+          letter-spacing: inherit;
+          line-height: inherit;
 
           &:focus-visible {
             outline: none;
@@ -129,8 +135,7 @@ $variants: surface, light;
       border-left-style: solid;
     }
 
-    &:has(input:focus),
-    &:has(textarea:focus) {
+    &:has(.ids-form-field-control:focus) {
       outline-offset: 2px;
       outline-style: solid;
     }
@@ -178,21 +183,18 @@ $variants: surface, light;
           & > .ids-form-field__infix {
             padding: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-size-padding-y-#{$size}) 0;
 
-            input,
-            textarea {
-              font-family: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-filled-font-family-#{$size});
-              font-size: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-filled-font-size-#{$size});
-              font-weight: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-filled-font-weight-#{$size});
-              letter-spacing: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-filled-letter-spacing-#{$size});
-              line-height: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-filled-line-height-#{$size});
+            font-family: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-filled-font-family-#{$size});
+            font-size: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-filled-font-size-#{$size});
+            font-weight: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-filled-font-weight-#{$size});
+            letter-spacing: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-filled-letter-spacing-#{$size});
+            line-height: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-filled-line-height-#{$size});
 
-              &::placeholder {
-                font-family: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-empty-font-family-#{$size});
-                font-size: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-empty-font-size-#{$size});
-                font-weight: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-empty-font-weight-#{$size});
-                letter-spacing: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-empty-letter-spacing-#{$size});
-                line-height: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-empty-line-height-#{$size});
-              }
+            ::placeholder {
+              font-family: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-empty-font-family-#{$size});
+              font-size: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-empty-font-size-#{$size});
+              font-weight: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-empty-font-weight-#{$size});
+              letter-spacing: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-empty-letter-spacing-#{$size});
+              line-height: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-empty-line-height-#{$size});
             }
           }
 
@@ -218,8 +220,7 @@ $variants: surface, light;
           border-left-width: var(--ids-comp-forms-form-field-standard-field-wrapper-action-size-border-left-#{$size});
         }
 
-        &:has(input:focus),
-        &:has(textarea:focus) {
+        &:has(.ids-form-field-control:focus) {
           outline-width: var(--ids-comp-forms-form-field-standard-field-wrapper-focused-outline-outline-#{$size});
         }
       }
@@ -234,12 +235,10 @@ $variants: surface, light;
           &:hover {
             @include fieldWrapperVariant($variant, hovered);
           }
-          &:has(input:focus),
-          &:has(textarea:focus) {
+          &:has(.iids-form-field-control:focus) {
             @include fieldWrapperVariant($variant, focused);
           }
-          &:has(input:active),
-          &:has(textarea:active) {
+          &:has(.ids-form-field-control:active) {
             @include fieldWrapperVariant($variant, pressed);
           }
         }
@@ -251,12 +250,10 @@ $variants: surface, light;
             &:hover {
               @include fieldWrapperVariant($variant, hovered, error);
             }
-            &:has(input:focus),
-            &:has(textarea:focus) {
+            &:has(.ids-form-field-control:focus) {
               @include fieldWrapperVariant($variant, focused, error);
             }
-            &:has(input:active),
-            &:has(textarea:active) {
+            &:has(.ids-form-field-control:active) {
               @include fieldWrapperVariant($variant, pressed, error);
             }
           }
@@ -269,12 +266,10 @@ $variants: surface, light;
             &:hover {
               @include fieldWrapperVariant($variant, hovered, success);
             }
-            &:has(input:focus),
-            &:has(textarea:focus) {
+            &:has(.ids-form-field-control:focus) {
               @include fieldWrapperVariant($variant, focused, success);
             }
-            &:has(input:active),
-            &:has(textarea:active) {
+            &:has(.ids-form-field-control:active) {
               @include fieldWrapperVariant($variant, pressed, success);
             }
           }

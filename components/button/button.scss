@@ -1,4 +1,4 @@
-@use 'sass:list';
+@use "sass:list";
 
 $appearances: filled, outlined, text;
 $sizes: compact, comfortable, spacious, dense;
@@ -32,12 +32,8 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
     cursor: not-allowed;
   }
 
-  *[icon-leading],
-  *[icon-trailing] {
-    gap: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .ids-icon {
+    flex-shrink: 0;
   }
 
   @each $size in $sizes {
@@ -57,8 +53,10 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
         line-height: var(--ids-comp-buttons-label-typography-line-height-#{$size});
       }
 
-      *[icon-leading],
-      *[icon-trailing] {
+      & > .ids-icon {
+        font-size: var(--ids-comp-buttons-icon-typography-font-size-#{$size});
+        font-weight: var(--ids-comp-buttons-icon-typography-font-weight-#{$size});
+        line-height: var(--ids-comp-buttons-icon-typography-line-height-#{$size});
         width: var(--ids-comp-buttons-size-icon-#{$size});
         height: var(--ids-comp-buttons-size-icon-#{$size});
       }
@@ -72,10 +70,18 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
         background: var(--ids-comp-buttons-#{$appearance}-color-bg-#{$variant}-default);
         border-color: var(--ids-comp-buttons-#{$appearance}-color-border-#{$variant}-default);
 
+        & > .ids-icon {
+          color: var(--ids-comp-buttons-#{$appearance}-color-fg-icon-#{$variant}-default);
+        }
+
         &:hover {
           background: var(--ids-comp-buttons-#{$appearance}-color-bg-#{$variant}-hovered);
           color: var(--ids-comp-buttons-#{$appearance}-color-fg-label-#{$variant}-hovered);
           border-color: var(--ids-comp-buttons-#{$appearance}-color-border-#{$variant}-hovered);
+
+          & > .ids-icon {
+            color: var(--ids-comp-buttons-#{$appearance}-color-fg-icon-#{$variant}-hovered);
+          }
         }
 
         &:focus {
@@ -83,12 +89,20 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
           background: var(--ids-comp-buttons-#{$appearance}-color-bg-#{$variant}-focused);
           color: var(--ids-comp-buttons-#{$appearance}-color-fg-label-#{$variant}-focused);
           border-color: var(--ids-comp-buttons-#{$appearance}-color-border-#{$variant}-focused);
+
+          & > .ids-icon {
+            color: var(--ids-comp-buttons-#{$appearance}-color-fg-icon-#{$variant}-focused);
+          }
         }
 
         &:active {
           background: var(--ids-comp-buttons-#{$appearance}-color-bg-#{$variant}-pressed);
           color: var(--ids-comp-buttons-#{$appearance}-color-fg-label-#{$variant}-pressed);
           border-color: var(--ids-comp-buttons-#{$appearance}-color-border-#{$variant}-pressed);
+
+          & > .ids-icon {
+            color: var(--ids-comp-buttons-#{$appearance}-color-fg-icon-#{$variant}-pressed);
+          }
         }
 
         // The following variants do not have a disabled state
@@ -97,6 +111,10 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
             background: var(--ids-comp-buttons-#{$appearance}-color-bg-#{$variant}-disabled);
             color: var(--ids-comp-buttons-#{$appearance}-color-fg-label-#{$variant}-disabled);
             border-color: var(--ids-comp-buttons-#{$appearance}-color-border-#{$variant}-disabled);
+
+            & > .ids-icon {
+              color: var(--ids-comp-buttons-#{$appearance}-color-fg-icon-#{$variant}-disabled);
+            }
           }
         }
       }
