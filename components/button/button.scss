@@ -33,6 +33,9 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
   }
 
   .ids-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
   }
 
