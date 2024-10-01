@@ -3,12 +3,9 @@ $sizes: compact, comfortable, spacious, dense;
 $variants: primary, secondary, brand, error, success, warning, light, dark, surface;
 
 .ids-divider {
-  flex-shrink: 0;
   display: flex;
-  flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  align-self: stretch;
 
   @each $size in $sizes {
     &.ids-divider-#{$size} {
