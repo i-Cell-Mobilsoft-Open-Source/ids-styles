@@ -8,9 +8,9 @@
     "watch": "gulp watch",
     "prepack": "npm run build",
     "prepublish": "npm run build",
-    "check-missing-tokens": "npm run build && node scripts/check-missing-tokens.mjs ./dist ./node_modules/@i-cell/ids-tokens/css/tokens.css",
+    "check-missing-tokens": "npm run build && node scripts/check-missing-tokens.mjs ./dist ./node_modules/@i-cell/ids-tokens/css/component/component.css",
     "check-missing-tokens:prepare": "pnpm i",
-    "check-missing-tokens:ci": "node scripts/check-missing-tokens.mjs ./dist ./node_modules/@i-cell/ids-tokens/css/tokens.css --limit=10"
+    "check-missing-tokens:ci": "node scripts/check-missing-tokens.mjs ./dist ./node_modules/@i-cell/ids-tokens/css/component/component.css --limit=10"
   },
   "files": [
     "dist"
@@ -35,7 +35,7 @@
   },
   "homepage": "https://github.com/i-Cell-Mobilsoft-Open-Source/ids-styles#readme",
   "devDependencies": {
-    "@i-cell/ids-tokens": "0.0.24-beta.5",
+    "@i-cell/ids-tokens": "0.0.25-beta.2",
     "commander": "^12.1.0",
     "gulp": "^5.0.0",
     "gulp-prettier": "^6.0.0",
