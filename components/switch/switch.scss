@@ -229,7 +229,8 @@ $variants: surface, light, primary;
             &:active {
               @include switchButtonVariant($variant, pressed, true);
             }
-            &:focus {
+            &:focus,
+            &:focus-visible {
               @include switchButtonVariant($variant, focused, true);
             }
           }

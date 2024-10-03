@@ -3,7 +3,6 @@ $sizes: compact, comfortable, spacious, dense;
 
 .ids-action-panel {
   display: flex;
-  width: 22.25rem;
   flex-direction: column;
   align-items: flex-start;
   box-sizing: border-box;
@@ -50,14 +49,9 @@ $sizes: compact, comfortable, spacious, dense;
     &:hover {
       border-color: transparent;
     }
-    &:focus {
-      outline: none !important;
+    &:focus,
+    &:focus-visible {
+      outline-style: none !important;
     }
-  }
-}
-
-.cdk-overlay-connected-position-bounding-box:first-of-type {
-  .cdk-overlay-pane:has(.ids-action-panel) {
-    @apply py-3;
   }
 }

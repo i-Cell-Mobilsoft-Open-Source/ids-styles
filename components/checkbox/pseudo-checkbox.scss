@@ -25,7 +25,8 @@ $variants: light, dark, surface;
       border-color: var(--ids-comp-checkbox-input-#{$selectedText}-color-border-#{$variant}#{$errorText}-pressed);
       background-color: var(--ids-comp-checkbox-input-#{$selectedText}-color-bg-#{$variant}-pressed);
     }
-    &:focus {
+    &:focus,
+    &:focus-visible {
       border-color: var(--ids-comp-checkbox-input-#{$selectedText}-color-border-#{$variant}#{$errorText}-focused);
       background-color: var(--ids-comp-checkbox-input-#{$selectedText}-color-bg-#{$variant}-focused);
       @if ($error != true) {
@@ -59,8 +60,11 @@ $variants: light, dark, surface;
     &:active + .ids-pseudo-checkbox__icon {
       color: var(--ids-comp-checkbox-input-selected-color-fg-icon-#{$variant}#{$errorText}-pressed);
     }
-    &:focus + .ids-pseudo-checkbox__icon {
-      color: var(--ids-comp-checkbox-input-selected-color-fg-icon-#{$variant}#{$errorText}-focused);
+    &:focus,
+    &:focus-visible {
+      & + .ids-pseudo-checkbox__icon {
+        color: var(--ids-comp-checkbox-input-selected-color-fg-icon-#{$variant}#{$errorText}-focused);
+      }
     }
   }
 
@@ -109,7 +113,8 @@ $variants: light, dark, surface;
           border-radius: var(--ids-comp-checkbox-input-size-border-radius-#{$size});
           border-width: var(--ids-comp-checkbox-input-size-border-width-#{$size});
 
-          &:focus {
+          &:focus,
+          &:focus-visible {
             outline-width: var(--ids-comp-checkbox-focused-outline-outline-#{$size});
           }
         }
@@ -140,8 +145,6 @@ $variants: light, dark, surface;
   }
 
   &.ids-pseudo-checkbox-disabled {
-    opacity: var(--ids-comp-checkbox-disabled);
-
     .ids-pseudo-checkbox__input-wrapper {
       .ids-pseudo-checkbox__touch-target {
         cursor: not-allowed;

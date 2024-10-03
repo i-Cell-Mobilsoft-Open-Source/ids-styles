@@ -2,6 +2,20 @@ $appearances: filled, outlined;
 $sizes: compact, comfortable, spacious, dense;
 $variants: primary, secondary, brand, error, success, warning, light, dark, surface;
 
+@mixin tagAppearanceAndVariant($appearance, $variant, $state) {
+  color: var(--ids-comp-tag-#{$appearance}-color-fg-label-#{$variant}-default);
+  background: var(--ids-comp-tag-#{$appearance}-color-bg-#{$variant}-default);
+  border-color: var(--ids-comp-tag-#{$appearance}-color-border-#{$variant}-default);
+
+  @if ($state == focused) {
+    $lightOrDark: 'dark';
+    @if ($variant == 'light') {
+      $lightOrDark: 'light';
+    }
+    outline-color: var(--ids-comp-tag-focused-outline-color-#{$lightOrDark}-focused);
+  }
+}
+
 .ids-tag {
   flex-shrink: 0;
   width: fit-content;
@@ -11,13 +25,10 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
   border-style: solid;
   box-sizing: border-box;
 
-  &:focus {
+  &:focus,
+  &:focus-visible {
     outline-offset: 2px;
-    outline: var(--ids-comp-tag-focused-outline-size-outline) solid var(--ids-comp-tag-focused-outline-color-dark-focused);
-
-    &.ids-tag-light {
-      outline-color: var(--ids-comp-tag-focused-outline-color-light-focused);
-    }
+    outline-style: solid;
   }
 
   &:active {
@@ -40,6 +51,11 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
       border-radius: var(--ids-comp-tag-size-border-radius-#{$size});
       border: var(--ids-comp-tag-size-border-width-#{$size});
 
+      &:focus,
+      &:focus-visible {
+        outline-width: var(--ids-comp-tag-focused-outline-size-outline-#{$size});
+      }
+
       & > .ids-tag-label {
         font-family: var(--ids-comp-tag-label-typography-font-family-#{$size});
         font-size: var(--ids-comp-tag-label-typography-font-size-#{$size});
@@ -59,26 +75,17 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
   @each $appearance in $appearances {
     @each $variant in $variants {
       &.ids-tag-#{$appearance}.ids-tag-#{$variant} {
-        color: var(--ids-comp-tag-#{$appearance}-color-fg-label-#{$variant}-default);
-        background: var(--ids-comp-tag-#{$appearance}-color-bg-#{$variant}-default);
-        border-color: var(--ids-comp-tag-#{$appearance}-color-border-#{$variant}-default);
+        @include tagAppearanceAndVariant($appearance, $variant, default);
 
         &:hover {
-          color: var(--ids-comp-tag-#{$appearance}-color-fg-label-#{$variant}-hovered);
-          background: var(--ids-comp-tag-#{$appearance}-color-bg-#{$variant}-hovered);
-          border-color: var(--ids-comp-tag-#{$appearance}-color-border-#{$variant}-hovered);
+          @include tagAppearanceAndVariant($appearance, $variant, hovered);
         }
-
-        &:focus {
-          color: var(--ids-comp-tag-#{$appearance}-color-fg-label-#{$variant}-focused);
-          background: var(--ids-comp-tag-#{$appearance}-color-bg-#{$variant}-focused);
-          border-color: var(--ids-comp-tag-#{$appearance}-color-border-#{$variant}-focused);
+        &:focus,
+        &:focus-visible {
+          @include tagAppearanceAndVariant($appearance, $variant, focused);
         }
-
         &:active {
-          color: var(--ids-comp-tag-#{$appearance}-color-fg-label-#{$variant}-pressed);
-          background: var(--ids-comp-tag-#{$appearance}-color-bg-#{$variant}-pressed);
-          border-color: var(--ids-comp-tag-#{$appearance}-color-border-#{$variant}-pressed);
+          @include tagAppearanceAndVariant($appearance, $variant, pressed);
         }
       }
     }

@@ -1,6 +1,20 @@
 $appearances: text, filled;
 $sizes: compact, comfortable, spacious, dense;
 
+@mixin accordionAppearance($appearance, $state) {
+  background: var(--ids-comp-accordion-summary-#{$appearance}-color-bg-default);
+  border-color: var(--ids-comp-accordion-summary-#{$appearance}-color-border-default);
+  color: var(--ids-comp-accordion-summary-#{$appearance}-color-fg-label-default);
+
+  @if ($state == focused) {
+    $lightOrDark: 'dark';
+    // @if ($variant == 'light') {
+    //   $lightOrDark: 'light';
+    // }
+    outline-color: var(--ids-comp-accordion-summary-focused-outline-color-#{$lightOrDark}-focused);
+  }
+}
+
 .ids-accordion {
   display: flex;
   flex-direction: column;
@@ -16,14 +30,10 @@ $sizes: compact, comfortable, spacious, dense;
     border-style: solid;
     cursor: pointer;
 
-    &:focus {
+    &:focus,
+    &:focus-visible {
       outline-offset: 2px;
       outline-style: solid;
-      outline-color: var(--ids-comp-accordion-summary-focused-outline-color-dark-focused);
-
-      .ids-theme-dark & {
-        outline-color: var(--ids-comp-accordion-summary-focused-outline-color-light-focused);
-      }
     }
 
     & > .ids-accordion-title {
@@ -81,33 +91,25 @@ $sizes: compact, comfortable, spacious, dense;
   @each $appearance in $appearances {
     &.ids-accordion-#{$appearance} {
       & > .ids-accordion-summary {
-        background: var(--ids-comp-accordion-summary-#{$appearance}-color-bg-default);
-        border-color: var(--ids-comp-accordion-summary-#{$appearance}-color-border-default);
-        color: var(--ids-comp-accordion-summary-#{$appearance}-color-fg-label-default);
+        @include accordionAppearance($appearance, default);
 
         &:hover {
           background: var(--ids-comp-accordion-summary-#{$appearance}-color-bg-hovered);
           border-color: var(--ids-comp-accordion-summary-#{$appearance}-color-border-hovered);
           color: var(--ids-comp-accordion-summary-#{$appearance}-color-fg-label-hovered);
         }
-
-        &:focus {
-          background: var(--ids-comp-accordion-summary-#{$appearance}-color-bg-focused);
-          border-color: var(--ids-comp-accordion-summary-#{$appearance}-color-border-focused);
-          color: var(--ids-comp-accordion-summary-#{$appearance}-color-fg-label-focused);
+        &:focus,
+        &:focus-visible {
+          @include accordionAppearance($appearance, focused);
         }
 
         &:active {
-          background: var(--ids-comp-accordion-summary-#{$appearance}-color-bg-pressed);
-          border-color: var(--ids-comp-accordion-summary-#{$appearance}-color-border-pressed);
-          color: var(--ids-comp-accordion-summary-#{$appearance}-color-fg-label-pressed);
+          @include accordionAppearance($appearance, pressed);
         }
       }
 
       &.ids-accordion-disabled > .ids-accordion-summary {
-        background: var(--ids-comp-accordion-summary-#{$appearance}-color-bg-disabled);
-        border-color: var(--ids-comp-accordion-summary-#{$appearance}-color-border-disabled);
-        color: var(--ids-comp-accordion-summary-#{$appearance}-color-fg-label-disabled);
+        @include accordionAppearance($appearance, disabled);
       }
     }
   }

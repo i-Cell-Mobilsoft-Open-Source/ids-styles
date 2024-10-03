@@ -34,10 +34,10 @@ $variants: primary, secondary, light, surface;
       font-style: normal;
       border-style: none;
 
-      &:focus {
-        outline-width: var(--ids-comp-paginator-page-links-focused-outline-size-outline);
-        outline-style: solid;
+      &:focus,
+      &:focus-visible {
         outline-offset: 2px;
+        outline-style: solid;
       }
 
       &:not(:disabled) {
@@ -91,6 +91,11 @@ $variants: primary, secondary, light, surface;
           letter-spacing: var(--ids-comp-paginator-page-links-label-typography-letter-spacing-#{$size});
           line-height: var(--ids-comp-paginator-page-links-label-typography-line-height-#{$size});
           border-radius: var(--ids-comp-paginator-page-links-page-link-size-border-radius-#{$size});
+
+          &:focus,
+          &:focus-visible {
+            outline-width: var(--ids-comp-paginator-page-links-focused-outline-size-outline-#{$size});
+          }
         }
 
         .ids-paginator__page-button-arrow {
@@ -124,12 +129,15 @@ $variants: primary, secondary, light, surface;
 
   @each $variant in $variants {
     &.ids-paginator-#{$variant} {
-      .ids-paginator__page-button:focus {
-        $lightOrDark: 'dark';
-        @if ($variant == 'light') {
-          $lightOrDark: 'light';
+      .ids-paginator__page-button {
+        &:focus,
+        &:focus-visible {
+          $lightOrDark: 'dark';
+          @if ($variant == 'light') {
+            $lightOrDark: 'light';
+          }
+          outline-color: var(--ids-comp-paginator-page-links-focused-outline-color-#{$lightOrDark}-focused);
         }
-        outline-color: var(--ids-comp-paginator-page-links-focused-outline-color-#{$lightOrDark}-focused);
       }
 
       .ids-paginator__navigation-container {
@@ -142,7 +150,8 @@ $variants: primary, secondary, light, surface;
               background: var(--ids-comp-paginator-page-links-#{$pageButtonAppearance}-color-bg-#{$variant}-active);
               color: var(--ids-comp-paginator-page-links-#{$pageButtonAppearance}-color-fg-label-#{$variant}-active);
             }
-            &:focus {
+            &:focus,
+            &:focus-visible {
               background: var(--ids-comp-paginator-page-links-#{$pageButtonAppearance}-color-bg-#{$variant}-focused);
               color: var(--ids-comp-paginator-page-links-#{$pageButtonAppearance}-color-fg-label-#{$variant}-focused);
             }

@@ -4,6 +4,23 @@ $appearances: filled, outlined, standard;
 $sizes: compact, comfortable, spacious, dense;
 $variants: primary, secondary, brand, error, success, warning, light, dark, surface;
 
+@mixin iconButtonAppearanceAndVariant($appearance, $variant, $state) {
+  background: var(--ids-comp-icon-button-#{$appearance}-color-bg-#{$variant}-#{$state});
+  color: var(--ids-comp-icon-button-#{$appearance}-color-fg-#{$variant}-#{$state});
+
+  @if $appearance != standard {
+    border-color: var(--ids-comp-icon-button-#{$appearance}-color-border-#{$variant}-#{$state});
+  }
+
+  @if ($state == focused) {
+    $lightOrDark: 'dark';
+    @if ($variant == 'light') {
+      $lightOrDark: 'light';
+    }
+    outline-color: var(--ids-comp-icon-button-focused-outline-color-#{$lightOrDark}-focused);
+  }
+}
+
 .ids-icon-button {
   padding: 0px;
   display: flex;
@@ -12,17 +29,14 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
   justify-content: center;
   border-style: solid;
 
-  &:focus {
+  &:focus,
+  &:focus-visible {
     outline-offset: 2px;
-    outline: var(--ids-comp-icon-button-focused-outline-size-outline) solid var(--ids-comp-icon-button-focused-outline-color-dark-focused);
-
-    &.ids-icon-button-light {
-      outline-color: var(--ids-comp-icon-button-focused-outline-color-light-focused);
-    }
+    outline-style: solid;
   }
 
   &:active {
-    outline: none;
+    outline-style: none;
   }
 
   &:not(:disabled) {
@@ -40,7 +54,12 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
       border-radius: var(--ids-comp-icon-button-size-border-radius-#{$size});
       border-width: var(--ids-comp-icon-button-size-border-#{$size});
 
-      *[icon] {
+      &:focus,
+      &:focus-visible {
+        outline-width: var(--ids-comp-icon-button-focused-outline-size-outline-#{$size});
+      }
+
+      .ids-icon {
         width: var(--ids-comp-icon-button-size-icon-#{$size});
         height: var(--ids-comp-icon-button-size-icon-#{$size});
       }
@@ -55,50 +74,23 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
 
       @each $variant in $variants {
         &.ids-icon-button-#{$variant} {
-          color: var(--ids-comp-icon-button-#{$appearance}-color-fg-#{$variant}-default);
-          background: var(--ids-comp-icon-button-#{$appearance}-color-bg-#{$variant}-default);
-
-          @if $appearance != standard {
-            border-color: var(--ids-comp-icon-button-#{$appearance}-color-border-#{$variant}-default);
-          }
+          @include iconButtonAppearanceAndVariant($appearance, $variant, default);
 
           &:hover {
-            background: var(--ids-comp-icon-button-#{$appearance}-color-bg-#{$variant}-hovered);
-
-            @if $appearance == standard {
-              color: var(--ids-comp-icon-button-#{$appearance}-color-fg-#{$variant}-hovered);
-            } @else {
-              border-color: var(--ids-comp-icon-button-#{$appearance}-color-border-#{$variant}-hovered);
-            }
+            @include iconButtonAppearanceAndVariant($appearance, $variant, hovered);
           }
-
-          &:focus {
-            background: var(--ids-comp-icon-button-#{$appearance}-color-bg-#{$variant}-focused);
-            color: var(--ids-comp-icon-button-#{$appearance}-color-fg-#{$variant}-focused);
-
-            @if $appearance != standard {
-              border-color: var(--ids-comp-icon-button-#{$appearance}-color-border-#{$variant}-focused);
-            }
+          &:focus,
+          &:focus-visible {
+            @include iconButtonAppearanceAndVariant($appearance, $variant, focused);
           }
-
           &:active {
-            background: var(--ids-comp-icon-button-#{$appearance}-color-bg-#{$variant}-pressed);
-            color: var(--ids-comp-icon-button-#{$appearance}-color-fg-#{$variant}-pressed);
-
-            @if $appearance != standard {
-              border-color: var(--ids-comp-icon-button-#{$appearance}-color-border-#{$variant}-pressed);
-            }
+            @include iconButtonAppearanceAndVariant($appearance, $variant, pressed);
           }
 
           &:disabled {
             // The following variants do not have a disabled state
             @if list.index(error success warning, $variant) == null {
-              background: var(--ids-comp-icon-button-#{$appearance}-color-bg-#{$variant}-disabled);
-              color: var(--ids-comp-icon-button-#{$appearance}-color-fg-#{$variant}-disabled);
-            }
-
-            @if $appearance != standard {
-              border-color: var(--ids-comp-icon-button-#{$appearance}-color-border-#{$variant}-disabled);
+              @include iconButtonAppearanceAndVariant($appearance, $variant, disabled);
             }
           }
         }

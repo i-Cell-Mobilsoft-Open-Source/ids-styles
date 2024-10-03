@@ -7,6 +7,19 @@ $orientations: horizontal, vertical;
 
 // TODO: dragged state
 
+@mixin cardAppearanceAndVariant($appearance, $variant, $state) {
+  background-color: var(--ids-comp-card-#{$appearance}-color-bg-#{$variant}-#{$state});
+  border-color: var(--ids-comp-card-#{$appearance}-color-border-#{$variant}-#{$state});
+
+  @if ($state == focused) {
+    $lightOrDark: 'dark';
+    @if ($variant == 'light') {
+      $lightOrDark: 'light';
+    }
+    outline-color: var(--ids-comp-card-focused-outline-color-#{$lightOrDark}-focused);
+  }
+}
+
 .ids-card {
   display: flex;
   border-style: solid;
@@ -16,14 +29,10 @@ $orientations: horizontal, vertical;
     pointer-events: auto;
     cursor: pointer;
 
-    &:focus {
+    &:focus,
+    &:focus-visible {
       outline-offset: 2px;
       outline-style: solid;
-      outline-color: var(--ids-comp-card-focused-outline-color-dark-focused);
-
-      &.ids-button-light {
-        outline-color: var(--ids-comp-card-focused-outline-color-light-focused);
-      }
     }
 
     &.ids-card-disabled {
@@ -176,30 +185,25 @@ $orientations: horizontal, vertical;
     &.ids-card-#{$appearance} {
       @each $variant in $variants {
         &.ids-card-#{$variant} {
-          background-color: var(--ids-comp-card-#{$appearance}-color-bg-#{$variant}-default);
-          border-color: var(--ids-comp-card-#{$appearance}-color-border-#{$variant}-default);
+          @include cardAppearanceAndVariant($appearance, $variant, default);
 
           &.ids-card-clickable {
             &:hover {
-              background-color: var(--ids-comp-card-#{$appearance}-color-bg-#{$variant}-hovered);
-              border-color: var(--ids-comp-card-#{$appearance}-color-border-#{$variant}-hovered);
+              @include cardAppearanceAndVariant($appearance, $variant, hovered);
             }
-
-            &:focus {
-              background-color: var(--ids-comp-card-#{$appearance}-color-bg-#{$variant}-focused);
-              border-color: var(--ids-comp-card-#{$appearance}-color-border-#{$variant}-focused);
+            &:focus,
+            &:focus-visible {
+              @include cardAppearanceAndVariant($appearance, $variant, focused);
             }
 
             &:active {
-              background-color: var(--ids-comp-card-#{$appearance}-color-bg-#{$variant}-pressed);
-              border-color: var(--ids-comp-card-#{$appearance}-color-border-#{$variant}-pressed);
+              @include cardAppearanceAndVariant($appearance, $variant, pressed);
             }
 
             // The following variants do not have a disabled state
             @if list.index(error success warning info, $variant) == null {
               &.ids-card-disabled {
-                background-color: var(--ids-comp-card-#{$appearance}-color-bg-#{$variant}-disabled);
-                border-color: var(--ids-comp-card-#{$appearance}-color-border-#{$variant}-disabled);
+                @include cardAppearanceAndVariant($appearance, $variant, disabled);
               }
             }
           }
