@@ -1,6 +1,18 @@
 $sizes: compact, comfortable, spacious, dense;
 $variants: surface, light, dark;
 
+@mixin radioItemVariantInputState($variant, $selected, $selectedText, $errorText, $state) {
+  border-color: var(--ids-comp-radio-input-#{$selectedText}-color-border-#{$variant}#{$errorText}-#{$state});
+  background-color: var(--ids-comp-radio-input-#{$selectedText}-color-bg-#{$variant}-#{$state});
+
+  @if ($selected) {
+    & + .ids-radio-item__inner-circle {
+      border-color: var(--ids-comp-radio-input-selected-inner-circle-color-border-#{$variant}#{$errorText}-#{$state});
+      background: var(--ids-comp-radio-input-selected-inner-circle-color-bg-#{$variant}#{$errorText}-#{$state});
+    }
+  }
+}
+
 @mixin radioItemVariantInput($variant, $selected, $error) {
   $selectedText: '';
   @if ($selected) {
@@ -14,50 +26,17 @@ $variants: surface, light, dark;
   }
 
   &:not(:disabled) {
-    border-color: var(--ids-comp-radio-input-#{$selectedText}-color-border-#{$variant}#{$errorText}-default);
-    background-color: var(--ids-comp-radio-input-#{$selectedText}-color-bg-#{$variant}-default);
-
-    @if ($selected) {
-      & + .ids-radio-item__inner-circle {
-        border-color: var(--ids-comp-radio-input-selected-inner-circle-color-border-#{$variant}#{$errorText}-default);
-        background: var(--ids-comp-radio-input-selected-inner-circle-color-bg-#{$variant}#{$errorText}-default);
-      }
-    }
+    @include radioItemVariantInputState($variant, $selected, $selectedText, $errorText, default);
 
     &:hover {
-      border-color: var(--ids-comp-radio-input-#{$selectedText}-color-border-#{$variant}#{$errorText}-hovered);
-      background-color: var(--ids-comp-radio-input-#{$selectedText}-color-bg-#{$variant}-hovered);
-
-      @if ($selected) {
-        & + .ids-radio-item__inner-circle {
-          border-color: var(--ids-comp-radio-input-selected-inner-circle-color-border-#{$variant}#{$errorText}-hovered);
-          background: var(--ids-comp-radio-input-selected-inner-circle-color-bg-#{$variant}#{$errorText}-hovered);
-        }
-      }
+      @include radioItemVariantInputState($variant, $selected, $selectedText, $errorText, hovered);
     }
     &:active {
-      border-color: var(--ids-comp-radio-input-#{$selectedText}-color-border-#{$variant}#{$errorText}-pressed);
-      background-color: var(--ids-comp-radio-input-#{$selectedText}-color-bg-#{$variant}-pressed);
-
-      @if ($selected) {
-        & + .ids-radio-item__inner-circle {
-          border-color: var(--ids-comp-radio-input-selected-inner-circle-color-border-#{$variant}#{$errorText}-pressed);
-          background: var(--ids-comp-radio-input-selected-inner-circle-color-bg-#{$variant}#{$errorText}-pressed);
-        }
-      }
+      @include radioItemVariantInputState($variant, $selected, $selectedText, $errorText, pressed);
     }
     &:focus,
     &:focus-visible {
-      border-color: var(--ids-comp-radio-input-#{$selectedText}-color-border-#{$variant}#{$errorText}-focused);
-      background-color: var(--ids-comp-radio-input-#{$selectedText}-color-bg-#{$variant}-focused);
-
-      @if ($selected) {
-        & + .ids-radio-item__inner-circle {
-          border-color: var(--ids-comp-radio-input-selected-inner-circle-color-border-#{$variant}#{$errorText}-focused);
-          background: var(--ids-comp-radio-input-selected-inner-circle-color-bg-#{$variant}#{$errorText}-focused);
-        }
-      }
-
+      @include radioItemVariantInputState($variant, $selected, $selectedText, $errorText, default);
       @if ($error != true) {
         outline-color: var(--ids-comp-radio-input-#{$selectedText}-color-focused-outline-#{$variant}-focused);
       }
@@ -66,15 +45,7 @@ $variants: surface, light, dark;
 
   @if ($error != true) {
     &:disabled {
-      border-color: var(--ids-comp-forms-form-field-standard-container-color-border-#{$variant}-disabled);
-      background-color: var(--ids-comp-radio-input-#{$selectedText}-color-bg-#{$variant}-disabled);
-
-      @if ($selected) {
-        & + .ids-radio-item__inner-circle {
-          border-color: var(--ids-comp-radio-input-selected-inner-circle-color-border-#{$variant}#{$errorText}-disabled);
-          background: var(--ids-comp-radio-input-selected-inner-circle-color-bg-#{$variant}#{$errorText}-disabled);
-        }
-      }
+      @include radioItemVariantInputState($variant, $selected, $selectedText, $errorText, disabled);
     }
   }
 }
@@ -272,7 +243,8 @@ $variants: surface, light, dark;
               }
             }
 
-            &:focus {
+            &:focus,
+            &:focus-visible {
               outline-width: var(--ids-comp-radio-focused-outline-outline-#{$size});
             }
           }
@@ -322,7 +294,8 @@ $variants: surface, light, dark;
         &:active {
           color: var(--ids-comp-radio-label-color-fg-#{$variant}-pressed);
         }
-        &:focus {
+        &:focus,
+        &:focus-visible {
           color: var(--ids-comp-radio-label-color-fg-#{$variant}-focused);
         }
       }

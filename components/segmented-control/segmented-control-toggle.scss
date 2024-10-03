@@ -25,7 +25,8 @@ $appearances: filled, outlined;
     position: relative;
     text-wrap: nowrap;
 
-    &:focus {
+    &:focus,
+    &:focus-visible {
       z-index: 1;
       outline-style: solid;
       outline-offset: 2px;
@@ -66,7 +67,8 @@ $appearances: filled, outlined;
           letter-spacing: var(--ids-comp-segmented-control-toggle-button-typography-letter-spacing-#{$size});
           line-height: var(--ids-comp-segmented-control-toggle-button-typography-line-height-#{$size});
 
-          &:focus {
+          &:focus,
+          &:focus-visible {
             outline-width: var(--ids-comp-segmented-control-toggle-focused-outline-size-outline-width-#{$size});
           }
         }
@@ -81,12 +83,15 @@ $appearances: filled, outlined;
 
   @each $variant in $variants {
     &.ids-segmented-control-toggle-#{$variant} {
-      .ids-segmented-control-toggle-item > button:focus {
-        $lightOrDark: 'dark';
-        @if ($variant == 'light') {
-          $lightOrDark: 'light';
+      .ids-segmented-control-toggle-item > button {
+        &:focus,
+        &:focus-visible {
+          $lightOrDark: 'dark';
+          @if ($variant == 'light') {
+            $lightOrDark: 'light';
+          }
+          outline-color: var(--ids-comp-segmented-control-toggle-focused-outline-color-#{$lightOrDark}-focused);
         }
-        outline-color: var(--ids-comp-segmented-control-toggle-focused-outline-color-#{$lightOrDark}-focused);
       }
 
       @each $appearance in $appearances {
@@ -105,7 +110,8 @@ $appearances: filled, outlined;
             &:active {
               @include segmentedControlToggleItemAppearanceAndVariant($appearance, $variant, pressed);
             }
-            &:focus {
+            &:focus,
+            &:focus-visible {
               @include segmentedControlToggleItemAppearanceAndVariant($appearance, $variant, focused);
             }
             &:disabled {

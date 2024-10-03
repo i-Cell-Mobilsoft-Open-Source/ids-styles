@@ -14,7 +14,6 @@ $sizes: compact, comfortable, spacious, dense;
   }
 
   &.ids-dialog-with-backdrop::backdrop {
-    opacity: var(--ids-comp-dialog-backdrop-opacity);
     background-color: var(--ids-comp-dialog-backdrop-background);
   }
 
@@ -92,6 +91,10 @@ $sizes: compact, comfortable, spacious, dense;
     &.ids-dialog-#{$size} {
       border-radius: var(--ids-comp-dialog-container-size-border-radius-#{$size});
       border-width: var(--ids-comp-dialog-container-size-border-width-#{$size});
+
+      &.ids-dialog-with-backdrop::backdrop {
+        opacity: var(--ids-comp-dialog-backdrop-size-opacity-#{$size});
+      }
 
       .ids-dialog-container {
         width: var(--ids-comp-dialog-container-size-width-#{$size});

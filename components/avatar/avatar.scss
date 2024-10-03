@@ -35,15 +35,10 @@ $variants: primary, secondary, light, dark, surface;
     max-width: none;
   }
 
-  &:focus {
+  &:focus,
+  &:focus-visible {
     outline-offset: 2px;
     outline-style: solid;
-    outline-width: var(--ids-comp-avatar-focused-outline-size-outline);
-    outline-color: var(--ids-comp-avatar-focused-outline-color-dark-focused);
-
-    &.ids-avatar-light {
-      outline-color: var(--ids-comp-avatar-focused-outline-color-light-focused);
-    }
   }
 
   &:active {
@@ -63,6 +58,11 @@ $variants: primary, secondary, light, dark, surface;
       font-weight: var(--ids-comp-avatar-initials-typography-font-weight-#{$size});
       letter-spacing: var(--ids-comp-avatar-initials-typography-letter-spacing-#{$size});
       line-height: var(--ids-comp-avatar-initials-typography-line-height-#{$size});
+
+      &:focus,
+      &:focus-visible {
+        outline-width: var(--ids-comp-avatar-focused-outline-size-outline);
+      }
 
       &:has(.ids-avatar-image) {
         padding: 0;
@@ -86,9 +86,16 @@ $variants: primary, secondary, light, dark, surface;
         border-color: var(--ids-comp-avatar-color-border-#{$variant}-hovered);
       }
 
-      &:focus {
+      &:focus,
+      &:focus-visible {
         background: var(--ids-comp-avatar-color-bg-#{$variant}-focused);
         border-color: var(--ids-comp-avatar-color-border-#{$variant}-focused);
+
+        $lightOrDark: 'dark';
+        @if ($variant == 'light') {
+          $lightOrDark: 'light';
+        }
+        outline-color: var(--ids-comp-avatar-focused-outline-color-#{$lightOrDark}-focused);
       }
 
       &:active {

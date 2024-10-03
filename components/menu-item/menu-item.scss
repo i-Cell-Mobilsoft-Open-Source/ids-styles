@@ -85,7 +85,8 @@ $sizes: 'compact', 'comfortable', 'spacious';
             background: var(--ids-comp-menu-item-#{$appearance}-color-bg-#{$variant}-hovered);
           }
 
-          &:focus {
+          &:focus,
+          &:focus-visible {
             color: var(--ids-comp-menu-item-#{$appearance}-color-fg-label-#{$variant}-focused);
             background: var(--ids-comp-menu-item-#{$appearance}-color-bg-#{$variant}-focused);
           }

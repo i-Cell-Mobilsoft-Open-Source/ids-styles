@@ -3,23 +3,22 @@ $sizes: compact, comfortable, spacious, dense;
 
 .ids-action-panel {
   display: flex;
-  width: 22.25rem;
   flex-direction: column;
   align-items: flex-start;
   box-sizing: border-box;
 
   @each $size in $sizes {
     &.ids-action-panel-#{$size} {
-      gap: var(--ids-comp-action-panel-size-gap-#{$size});
-      padding: var(--ids-comp-action-panel-size-padding-y-#{$size}) var(--ids-comp-action-panel-size-padding-x-#{$size});
-      border-radius: var(--ids-comp-action-panel-size-border-radius-#{$size});
+      gap: var(--ids-comp-overlay-panel-size-gap-#{$size});
+      padding: var(--ids-comp-overlay-panel-size-padding-y-#{$size}) var(--ids-comp-overlay-panel-size-padding-x-#{$size});
+      border-radius: var(--ids-comp-overlay-panel-size-border-radius-#{$size});
 
       @each $appearance in $appearances {
         &.ids-action-panel-#{$appearance} {
           &.ids-action-panel-outlined {
-            border: var(--ids-comp-action-panel-size-border-#{$size})
+            border: var(--ids-comp-overlay-panel-size-border-#{$size})
               solid
-              var(--ids-comp-action-panel-#{$appearance}-color-border-light-default);
+              var(--ids-comp-overlay-panel-#{$appearance}-color-border-light-default);
           }
         }
       }
@@ -31,8 +30,8 @@ $sizes: compact, comfortable, spacious, dense;
   }
   &.ids-action-panel-outlined {
     box-shadow: var(--ids-smc-reference-container-effects-shadow-horizontal-none)
-        var(--ids-smc-reference-container-effects-shadow-vertical-xxs) var(--ids-smc-reference-container-effects-shadow-blur-xxs)
-        var(--ids-smc-reference-container-effects-shadow-spread-none) var(--ids-smc-reference-container-effects-shadow-color-dark-lighter);
+      var(--ids-smc-reference-container-effects-shadow-vertical-xxs) var(--ids-smc-reference-container-effects-shadow-blur-xxs)
+      var(--ids-smc-reference-container-effects-shadow-spread-none) var(--ids-smc-reference-container-effects-shadow-color-dark-lighter);
   }
   &.ids-action-panel-elevated {
     box-shadow: var(--ids-smc-reference-container-effects-shadow-horizontal-none)
@@ -42,7 +41,7 @@ $sizes: compact, comfortable, spacious, dense;
 
   @each $appearance in $appearances {
     &.ids-action-panel-#{$appearance} {
-      background: var(--ids-comp-action-panel-#{$appearance}-color-bg-light-default);
+      background: var(--ids-comp-overlay-panel-#{$appearance}-color-bg-light-default);
     }
   }
 
@@ -50,14 +49,9 @@ $sizes: compact, comfortable, spacious, dense;
     &:hover {
       border-color: transparent;
     }
-    &:focus {
-      outline: none !important;
+    &:focus,
+    &:focus-visible {
+      outline-style: none !important;
     }
-  }
-}
-
-.cdk-overlay-connected-position-bounding-box:first-of-type {
-  .cdk-overlay-pane:has(.ids-action-panel) {
-    @apply py-3;
   }
 }

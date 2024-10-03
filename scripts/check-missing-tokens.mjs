@@ -1,6 +1,9 @@
 import { readFileSync, readdirSync } from 'fs';
 import { program } from 'commander';
 
+const COMPONENT_TOKEN_FILE = './node_modules/@i-cell/ids-tokens/css/component/component.css';
+const SMC_REFERENCE_TOKEN_FILE = './node_modules/@i-cell/ids-tokens/css/smc/smc-reference.css';
+
 function getStyleDirents(cssRootFolder) {
   try {
     const stylesDirents = readdirSync(cssRootFolder, { withFileTypes: true, recursive: true, encoding: 'utf-8' });
@@ -86,16 +89,17 @@ program
   .version('1.0.0')
   .description('Script to check missing tokens in CSS files.')
   .arguments('<css-root-folder>', 'Root folder of style files')
-  .arguments('<token-css-file>', 'Token CSS file name with path')
   .arguments('[file-filter-pattern]', 'Pattern for filter style files')
   .option('-l, --limit <number>', 'Maximum number of missing tokens to log', parseInt)
-  .action((cssRootFolder, tokenCssFile, fileFilterPattern = '') => {
+  .action((cssRootFolder, fileFilterPattern = '') => {
     const options = program.opts();
     const limit = options.limit !== undefined ? options.limit : Infinity;
 
     const stylesDirents = getStyleDirents(cssRootFolder);
     const styleFiles = fileFilterPattern ? getFilteredStyleDirents(stylesDirents, fileFilterPattern) : stylesDirents;
-    const tokenSet = getTokenSet(tokenCssFile);
+    const componentTokens = getTokenSet(COMPONENT_TOKEN_FILE);
+    const smcReferenceTokens = getTokenSet(SMC_REFERENCE_TOKEN_FILE);
+    const tokenSet = new Set([...componentTokens, ...smcReferenceTokens]);
     const missingTokenSet = getMissingTokenSet(styleFiles, tokenSet);
 
     logStyleFiles(styleFiles);
