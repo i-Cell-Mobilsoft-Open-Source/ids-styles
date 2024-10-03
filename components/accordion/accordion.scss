@@ -19,7 +19,6 @@ $sizes: compact, comfortable, spacious, dense;
     &:focus {
       outline-offset: 2px;
       outline-style: solid;
-      outline-width: var(--ids-comp-accordion-summary-focused-outline-size-outline);
       outline-color: var(--ids-comp-accordion-summary-focused-outline-color-dark-focused);
 
       .ids-theme-dark & {
@@ -58,6 +57,10 @@ $sizes: compact, comfortable, spacious, dense;
         gap: var(--ids-comp-accordion-summary-size-gap-#{$size});
         border-radius: var(--ids-comp-accordion-summary-size-border-radius-#{$size});
         border-width: var(--ids-comp-accordion-summary-size-border-width-#{$size});
+
+        &:focus {
+          outline-width: var(--ids-comp-accordion-summary-focused-outline-size-outline-#{$size});
+        }
 
         & > .ids-accordion-title {
           font-family: var(--ids-comp-accordion-summary-typography-font-family-#{$size});
