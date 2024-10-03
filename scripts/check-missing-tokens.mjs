@@ -89,7 +89,6 @@ program
   .version('1.0.0')
   .description('Script to check missing tokens in CSS files.')
   .arguments('<css-root-folder>', 'Root folder of style files')
-  .arguments('<token-css-file>', 'Token CSS file name with path')
   .arguments('[file-filter-pattern]', 'Pattern for filter style files')
   .option('-l, --limit <number>', 'Maximum number of missing tokens to log', parseInt)
   .action((cssRootFolder, fileFilterPattern = '') => {
