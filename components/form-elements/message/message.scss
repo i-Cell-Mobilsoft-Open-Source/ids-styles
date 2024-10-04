@@ -32,9 +32,12 @@ $variants: light, dark, surface;
         height: var(--ids-comp-forms-message-size-icon-height-#{$size});
         width: var(--ids-comp-forms-message-size-icon-width-#{$size});
 
-        & > ids-icon {
+        & > .ids-icon {
           height: inherit;
           width: inherit;
+          font-size: var(--ids-comp-forms-message-iconset-typography-font-size-#{$size});
+          font-weight: var(--ids-comp-forms-message-iconset-typography-font-weight-#{$size});
+          line-height: var(--ids-comp-forms-message-iconset-typography-line-height-#{$size});
         }
       }
     }

@@ -35,12 +35,8 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
     outline: none;
   }
 
-  *[icon-leading],
-  *[icon-trailing] {
-    gap: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .ids-icon {
+    color: inherit;
   }
 
   @each $size in $sizes {
@@ -64,10 +60,12 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
         line-height: var(--ids-comp-tag-label-typography-line-height-#{$size});
       }
 
-      *[icon-leading],
-      *[icon-trailing] {
+      .ids-icon {
         width: var(--ids-comp-tag-size-icon-#{$size});
         height: var(--ids-comp-tag-size-icon-#{$size});
+        font-size: var(--ids-comp-tag-icon-typography-font-size-#{$size});
+        font-weight: var(--ids-comp-tag-icon-typography-font-weight-#{$size});
+        line-height: var(--ids-comp-tag-icon-typography-line-height-#{$size});
       }
     }
   }

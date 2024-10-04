@@ -106,6 +106,10 @@ $variants: light, dark, surface;
 
       & + .ids-checkbox__icon {
         position: absolute;
+
+        & > .ids-icon {
+          color: inherit;
+        }
       }
     }
   }
@@ -163,6 +167,14 @@ $variants: light, dark, surface;
           height: var(--ids-comp-checkbox-input-size-icon-#{$size});
           width: var(--ids-comp-checkbox-input-size-icon-#{$size});
           line-height: var(--ids-comp-checkbox-input-size-icon-#{$size});
+
+          & > .ids-icon {
+            height: var(--ids-comp-checkbox-input-size-icon-#{$size});
+            width: var(--ids-comp-checkbox-input-size-icon-#{$size});
+            font-size: var(--ids-comp-checkbox-input-icon-typography-font-size-#{$size});
+            font-weight: var(--ids-comp-checkbox-input-icon-typography-font-weight-#{$size});
+            line-height: var(--ids-comp-checkbox-input-icon-typography-line-height-#{$size});
+          }
         }
       }
 

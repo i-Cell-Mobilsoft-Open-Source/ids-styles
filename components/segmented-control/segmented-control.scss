@@ -83,6 +83,9 @@ $appearances: filled, outlined;
         .ids-icon {
           height: var(--ids-comp-segmented-control-button-size-icon-#{$size});
           width: var(--ids-comp-segmented-control-button-size-icon-#{$size});
+          font-size: var(--ids-comp-segmented-control-button-icon-typography-font-size-#{$size});
+          font-weight: var(--ids-comp-segmented-control-button-icon-typography-font-weight-#{$size});
+          line-height: var(--ids-comp-segmented-control-button-icon-typography-line-height-#{$size});
         }
       }
     }

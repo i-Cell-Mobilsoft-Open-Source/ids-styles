@@ -47,10 +47,7 @@ $variants: primary, secondary, brand, error, success, warning, light, light-fixe
     cursor: not-allowed;
   }
 
-  .ids-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  & > .ids-icon {
     flex-shrink: 0;
   }
 
@@ -76,11 +73,11 @@ $variants: primary, secondary, brand, error, success, warning, light, light-fixe
       }
 
       & > .ids-icon {
+        width: var(--ids-comp-button-size-icon-#{$size});
+        height: var(--ids-comp-button-size-icon-#{$size});
         font-size: var(--ids-comp-button-icon-typography-font-size-#{$size});
         font-weight: var(--ids-comp-button-icon-typography-font-weight-#{$size});
         line-height: var(--ids-comp-button-icon-typography-line-height-#{$size});
-        width: var(--ids-comp-button-size-icon-#{$size});
-        height: var(--ids-comp-button-size-icon-#{$size});
       }
     }
   }

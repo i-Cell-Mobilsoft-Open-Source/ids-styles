@@ -11,7 +11,7 @@ $variants: surface, light;
   background: var(--ids-comp-forms-form-field-standard-field-wrapper-container-color-bg-#{$variant}#{$validationText}-#{$state});
 
   & > .ids-form-field__field-wrapper__container {
-    & > .ids-form-field__leading-icon .ids-icon {
+    & > .ids-form-field__leading-icon > .ids-icon {
       color: var(--ids-comp-forms-form-field-standard-field-wrapper-leading-icon-color-fg-#{$variant}-#{$state});
     }
 
@@ -33,7 +33,7 @@ $variants: surface, light;
       color: var(--ids-comp-forms-form-field-standard-field-wrapper-suffix-color-fg-#{$variant}-#{$state});
     }
 
-    & > .ids-form-field__trailing-icon .ids-icon {
+    & > .ids-form-field__trailing-icon > .ids-icon {
       color: var(--ids-comp-forms-form-field-standard-field-wrapper-trailing-icon-color-fg-#{$variant}-#{$state});
     }
   }
@@ -167,9 +167,12 @@ $variants: surface, light;
             var(--ids-comp-forms-form-field-standard-field-wrapper-container-size-padding-x-#{$size});
           gap: var(--ids-comp-forms-form-field-standard-field-wrapper-container-size-gap-#{$size});
 
-          & > .ids-form-field__leading-icon .ids-icon {
+          & > .ids-form-field__leading-icon > .ids-icon {
             height: var(--ids-comp-forms-form-field-standard-field-wrapper-leading-icon-size-height-#{$size});
             width: var(--ids-comp-forms-form-field-standard-field-wrapper-leading-icon-size-width-#{$size});
+            font-size: var(--ids-comp-forms-form-field-standard-field-wrapper-leading-icon-typography-font-size-#{$size});
+            font-weight: var(--ids-comp-forms-form-field-standard-field-wrapper-leading-icon-typography-font-weight-#{$size});
+            line-height: var(--ids-comp-forms-form-field-standard-field-wrapper-leading-icon-typography-line-height-#{$size});
           }
 
           & > .ids-form-field__prefix {
@@ -206,9 +209,12 @@ $variants: surface, light;
             line-height: var(--ids-comp-forms-form-field-standard-field-wrapper-suffix-typography-line-height-#{$size});
           }
 
-          & > .ids-form-field__trailing-icon .ids-icon {
+          & > .ids-form-field__trailing-icon > .ids-icon {
             height: var(--ids-comp-forms-form-field-standard-field-wrapper-trailing-icon-size-height-#{$size});
             width: var(--ids-comp-forms-form-field-standard-field-wrapper-trailing-icon-size-width-#{$size});
+            font-size: var(--ids-comp-forms-form-field-standard-field-wrapper-trailing-icon-typography-font-size-#{$size});
+            font-weight: var(--ids-comp-forms-form-field-standard-field-wrapper-trailing-icon-typography-font-weight-#{$size});
+            line-height: var(--ids-comp-forms-form-field-standard-field-wrapper-trailing-icon-typography-line-height-#{$size});
           }
         }
 

@@ -22,14 +22,6 @@ $sizes: 'compact', 'comfortable', 'spacious';
     cursor: not-allowed;
   }
 
-  *[icon-leading],
-  *[icon-trailing] {
-    gap: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
   @each $size in $sizes {
     &.ids-menu-item-#{$size} {
       gap: var(--ids-comp-menu-item-size-gap-#{$size});
@@ -42,10 +34,12 @@ $sizes: 'compact', 'comfortable', 'spacious';
       letter-spacing: var(--ids-comp-menu-item-label-typography-letter-spacing-#{$size});
       line-height: var(--ids-comp-menu-item-label-typography-line-height-#{$size});
 
-      *[icon-leading],
-      *[icon-trailing] {
+      .ids-icon {
         width: var(--ids-comp-menu-item-size-icon-#{$size});
         height: var(--ids-comp-menu-item-size-icon-#{$size});
+        font-size: var(--ids-comp-menu-item-icon-typography-font-size-#{$size});
+        font-weight: var(--ids-comp-menu-item-icon-typography-font-weight-#{$size});
+        line-height: var(--ids-comp-menu-item-icon-typography-line-height-#{$size});
       }
 
       @each $appearance in $appearances {
