@@ -18,6 +18,12 @@ $variants: light, dark, surface;
     text-align: start;
   }
 
+  .ids-icon {
+    color: inherit;
+    height: inherit;
+    width: inherit;
+  }
+
   @each $size in $sizes {
     &.ids-message-#{$size} {
       gap: var(--ids-comp-forms-message-size-gap-#{$size});
@@ -33,8 +39,6 @@ $variants: light, dark, surface;
         width: var(--ids-comp-forms-message-size-icon-width-#{$size});
 
         & > .ids-icon {
-          height: inherit;
-          width: inherit;
           font-size: var(--ids-comp-forms-message-iconset-typography-font-size-#{$size});
           font-weight: var(--ids-comp-forms-message-iconset-typography-font-weight-#{$size});
           line-height: var(--ids-comp-forms-message-iconset-typography-line-height-#{$size});
