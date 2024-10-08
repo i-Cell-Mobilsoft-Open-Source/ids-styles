@@ -46,6 +46,10 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
     cursor: not-allowed;
   }
 
+  & > .ids-icon {
+    color: inherit;
+  }
+
   @each $size in $sizes {
     &.ids-icon-button-#{$size} {
       padding: var(--ids-comp-icon-button-size-padding-y-#{$size}) var(--ids-comp-icon-button-size-padding-x-#{$size});
@@ -59,7 +63,10 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
         outline-width: var(--ids-comp-icon-button-focused-outline-size-outline-#{$size});
       }
 
-      .ids-icon {
+      & > .ids-icon {
+        font-size: var(--ids-comp-icon-button-icon-typography-font-size-#{$size});
+        font-weight: var(--ids-comp-icon-button-icon-typography-font-weight-#{$size});
+        line-height: var(--ids-comp-icon-button-icon-typography-line-height-#{$size});
         width: var(--ids-comp-icon-button-size-icon-#{$size});
         height: var(--ids-comp-icon-button-size-icon-#{$size});
       }

@@ -125,13 +125,6 @@ $variants: surface, light, primary;
           box-sizing: border-box;
 
           & > .ids-switch__track-icon {
-            width: var(--ids-comp-switch-handle-size-width-#{$size});
-            height: var(--ids-comp-switch-handle-size-height-#{$size});
-            & > .ids-icon {
-              width: var(--ids-comp-switch-icon-size-width-#{$size});
-              height: var(--ids-comp-switch-icon-size-height-#{$size});
-            }
-
             &:nth-child(1) {
               left: var(--ids-comp-switch-track-size-padding-x-#{$size});
             }
@@ -141,14 +134,21 @@ $variants: surface, light, primary;
           }
 
           & > .ids-switch__handle {
-            width: var(--ids-comp-switch-handle-size-width-#{$size});
-            height: var(--ids-comp-switch-handle-size-height-#{$size});
             border-radius: var(--ids-comp-switch-handle-size-border-radius-#{$size});
             transition: left 100ms ease-in-out;
+          }
+
+          & > .ids-switch__track-icon,
+          & > .ids-switch__handle {
+            width: var(--ids-comp-switch-handle-size-width-#{$size});
+            height: var(--ids-comp-switch-handle-size-height-#{$size});
 
             & > .ids-icon {
               width: var(--ids-comp-switch-icon-size-width-#{$size});
               height: var(--ids-comp-switch-icon-size-height-#{$size});
+              font-size: var(--ids-comp-switch-icon-typography-font-size-#{$size});
+              font-weight: var(--ids-comp-switch-icon-typography-font-weight-#{$size});
+              line-height: var(--ids-comp-switch-icon-typography-line-height-#{$size});
             }
           }
         }

@@ -135,6 +135,9 @@ $variants: dark, info, success, error, warning;
             & > .ids-icon {
               width: var(--ids-comp-snackbar-icon-size-icon-#{$size});
               height: var(--ids-comp-snackbar-icon-size-icon-#{$size});
+              font-size: var(--ids-comp-snackbar-icon-typography-font-size-#{$size});
+              font-weight: var(--ids-comp-snackbar-icon-typography-font-weight-#{$size});
+              line-height: var(--ids-comp-snackbar-icon-typography-line-height-#{$size});
             }
           }
 
