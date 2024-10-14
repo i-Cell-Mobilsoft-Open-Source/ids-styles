@@ -45,4 +45,12 @@ $variants: light, dark, surface;
       }
     }
   }
+
+  @each $variant in $variants {
+    &.ids-checkbox-group-#{$variant} {
+      & > .ids-checkbox-group__label {
+        color: var(--ids-comp-checkbox-label-color-fg-#{$variant}-default);
+      }
+    }
+  }
 }
