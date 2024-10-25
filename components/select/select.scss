@@ -37,6 +37,7 @@ $variants: surface, light;
     }
 
     & > .ids-select__arrow {
+      display: flex;
       flex-shrink: 0;
     }
   }
