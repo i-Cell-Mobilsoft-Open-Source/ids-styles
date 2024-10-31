@@ -1,7 +1,7 @@
 $appearances: text, filled;
 $sizes: compact, comfortable, spacious, dense;
 
-@mixin accordionAppearance($appearance, $state) {
+@mixin accordionItemSummaryState($appearance, $state) {
   background: var(--ids-comp-accordion-summary-#{$appearance}-color-bg-#{$state});
   border-color: var(--ids-comp-accordion-summary-#{$appearance}-color-border-#{$state});
   color: var(--ids-comp-accordion-summary-#{$appearance}-color-fg-label-#{$state});
@@ -16,13 +16,14 @@ $sizes: compact, comfortable, spacious, dense;
   width: 100%;
   flex-direction: column;
   align-items: flex-start;
-  
+  border-style: solid;
+
   & > .ids-accordion-controls {
     display: flex;
     align-items: flex-start;
     align-self: stretch;
   }
-  
+
   & > .ids-accordion-item {
     display: flex;
     width: 100%;
@@ -35,6 +36,14 @@ $sizes: compact, comfortable, spacious, dense;
       align-items: center;
       width: 100%;
       flex: 1 0 0;
+      border-style: solid;
+
+      &:focus,
+      &:focus-visible {
+        outline-offset: 2px;
+        outline-style: solid;
+        z-index: 1;
+      }
 
       & > .ids-accordion-item-title {
         flex: 1 0 0;
@@ -63,7 +72,6 @@ $sizes: compact, comfortable, spacious, dense;
       gap: var(--ids-comp-accordion-container-size-gap-#{$size});
       border-radius: var(--ids-comp-accordion-container-size-border-radius-#{$size});
       border-width: var(--ids-comp-accordion-container-size-border-width-#{$size});
-      border-style: solid;
 
       & > .ids-accordion-controls {
         padding: var(--ids-comp-accordion-controls-size-padding-y-#{$size}) var(--ids-comp-accordion-controls-size-padding-x-#{$size});
@@ -80,15 +88,11 @@ $sizes: compact, comfortable, spacious, dense;
           gap: var(--ids-comp-accordion-summary-size-gap-#{$size});
           border-radius: var(--ids-comp-accordion-summary-size-border-radius-#{$size});
           border-width: var(--ids-comp-accordion-summary-size-border-width-#{$size});
-          border-style: solid;
 
           &:focus,
           &:focus-visible {
-            outline-offset: 2px;
             outline-width: var(--ids-comp-accordion-summary-focused-outline-size-outline-#{$size});
-            outline-style: solid;
             outline-color: var(--ids-comp-accordion-summary-focused-outline-color-dark-focused);
-            z-index: 1;
           }
 
           & > .ids-accordion-item-title {
@@ -123,26 +127,26 @@ $sizes: compact, comfortable, spacious, dense;
 
       .ids-accordion-item {
         & > .ids-accordion-item-summary {
-          @include accordionAppearance($appearance, default);
-           
+          @include accordionItemSummaryState($appearance, default);
+
           &:hover {
-            @include accordionAppearance($appearance, hovered);
+            @include accordionItemSummaryState($appearance, hovered);
           }
 
           &:focus,
           &:focus-visible {
-            @include accordionAppearance($appearance, focused);
+            @include accordionItemSummaryState($appearance, focused);
           }
-            
+
           &:active {
-            @include accordionAppearance($appearance, pressed);
+            @include accordionItemSummaryState($appearance, pressed);
           }
         }
-            
+
         &.ids-accordion-item-disabled > .ids-accordion-item-summary {
-          @include accordionAppearance($appearance, disabled);
+          @include accordionItemSummaryState($appearance, disabled);
         }
       }
     }
-  } 
+  }
 }
