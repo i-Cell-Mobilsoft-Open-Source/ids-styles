@@ -1,0 +1,140 @@
+$appearances: filled, outlined;
+$sizes: compact, comfortable, spacious, dense;
+$variants: primary, secondary, surface, light, dark;
+
+@mixin chipState($appearance, $variant, $state) {
+  background: var(--ids-comp-chip-#{$appearance}-color-bg-#{$variant}-#{$state});
+  border-color: var(--ids-comp-chip-#{$appearance}-color-border-#{$variant}-#{$state});
+
+  & > .ids-icon {
+    color: var(--ids-comp-chip-#{$appearance}-color-fg-icon-#{$variant}-#{$state});
+  }
+
+  & > .ids-chip__label {
+    color: var(--ids-comp-chip-#{$appearance}-color-fg-label-#{$variant}-#{$state});
+  }
+
+  @if ($state == focused) {
+    $lightOrDark: 'dark';
+    @if ($variant == 'light') {
+      $lightOrDark: 'light';
+    }
+    outline-color: var(--ids-comp-button-focused-outline-color-#{$lightOrDark}-focused);
+  }
+}
+
+.ids-chip {
+  display: inline-flex;
+  align-items: center;
+  border-style: solid;
+  box-sizing: border-box;
+
+  &[role='button'] {
+    &:focus,
+    &:focus-visible {
+      outline-offset: 2px;
+      outline-style: solid;
+    }
+  }
+  &:not([role='button']) {
+    &:focus,
+    &:focus-visible {
+      outline-style: none;
+    }
+  }
+
+  &.ids-chip-disabled {
+    cursor: not-allowed;
+  }
+
+  & > .ids-chip__label {
+    display: flex;
+    align-items: center;
+  }
+
+  @each $size in $sizes {
+    &.ids-chip-#{$size} {
+      height: var(--ids-comp-chip-container-size-height-#{$size});
+      padding: var(--ids-comp-chip-container-size-padding-y-#{$size}) var(--ids-comp-chip-container-size-padding-x-#{$size});
+      border-radius: var(--ids-comp-chip-container-size-border-radius-#{$size});
+      border-width: var(--ids-comp-chip-container-size-border-width-#{$size});
+
+      &:focus,
+      &:focus-visible {
+        outline-width: var(--ids-comp-chip-focused-outline-size-outline-#{$size});
+      }
+
+      & > .ids-avatar {
+        width: var(--ids-comp-chip-avatar-size-avatar-#{$size});
+        height: var(--ids-comp-chip-avatar-size-avatar-#{$size});
+      }
+
+      & > [idsLeadingIcon] {
+        padding-left: var(--ids-comp-chip-icon-size-padding-left-#{$size});
+        padding-right: var(--ids-comp-chip-icon-size-padding-right-#{$size});
+      }
+
+      & > .ids-chip__label {
+        padding: 0 var(--ids-comp-chip-label-size-padding-x-#{$size});
+        font-family: var(--ids-comp-chip-label-typography-font-family-#{$size});
+        font-size: var(--ids-comp-chip-label-typography-font-size-#{$size});
+        font-weight: var(--ids-comp-chip-label-typography-font-weight-#{$size});
+        line-height: var(--ids-comp-chip-label-typography-line-height-#{$size});
+      }
+
+      & > .ids-icon-button {
+        width: var(--ids-comp-chip-icon-button-size-icon-button-#{$size});
+        height: var(--ids-comp-chip-icon-button-size-icon-button-#{$size});
+      }
+
+      .ids-icon {
+        width: var(--ids-comp-chip-icon-size-icon-#{$size});
+        height: var(--ids-comp-chip-icon-size-icon-#{$size});
+        font-size: var(--ids-comp-chip-icon-typography-font-size-#{$size});
+        font-weight: var(--ids-comp-chip-icon-typography-font-weight-#{$size});
+        line-height: var(--ids-comp-chip-icon-typography-line-height-#{$size});
+      }
+    }
+  }
+
+  @each $appearance in $appearances {
+    @each $variant in $variants {
+      &.ids-chip-#{$appearance}.ids-chip-#{$variant} {
+        &:not(.ids-chip-disabled) {
+          @include chipState($appearance, $variant, default);
+
+          &[role='button'] {
+            &:hover {
+              @include chipState($appearance, $variant, hovered);
+            }
+            &:focus,
+            &:focus-visible {
+              @include chipState($appearance, $variant, focused);
+            }
+            &:active {
+              @include chipState($appearance, $variant, pressed);
+            }
+          }
+        }
+
+        &.ids-chip-disabled {
+          @include chipState($appearance, $variant, disabled);
+        }
+      }
+    }
+  }
+}
+
+.ids-chip-group {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  @each $size in $sizes {
+    &.ids-chip-group-#{$size} {
+      padding: var(--ids-comp-chip-group-size-padding-y-#{$size}) var(--ids-comp-chip-group-size-padding-x-#{$size});
+      column-gap: var(--ids-comp-chip-group-size-column-gap-#{$size});
+      row-gap: var(--ids-comp-chip-group-size-row-gap-#{$size});
+    }
+  }
+}

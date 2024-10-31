@@ -19,9 +19,6 @@ $variants: primary, secondary, surface, light, dark;
 
   &.ids-avatar-type-icon {
     flex-shrink: 0;
-    & > .ids-icon {
-      color: inherit;
-    }
   }
 
   &.ids-avatar-type-image {
