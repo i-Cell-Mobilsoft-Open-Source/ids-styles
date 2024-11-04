@@ -103,6 +103,14 @@ $variants: surface, light, primary;
 
   & > .ids-switch__label {
     font-style: normal;
+    flex-grow: 1;
+  }
+
+  &.ids-switch-label-right {
+    flex-direction: row;
+  }
+  &.ids-switch-label-left {
+    flex-direction: row-reverse;
   }
 
   @each $size in $sizes {
