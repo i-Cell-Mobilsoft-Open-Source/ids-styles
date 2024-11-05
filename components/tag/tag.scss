@@ -3,9 +3,9 @@ $sizes: compact, comfortable, spacious, dense;
 $variants: primary, secondary, brand, error, success, warning, light, dark, surface;
 
 @mixin tagAppearanceAndVariant($appearance, $variant, $state) {
-  color: var(--ids-comp-tag-#{$appearance}-color-fg-label-#{$variant}-default);
-  background: var(--ids-comp-tag-#{$appearance}-color-bg-#{$variant}-default);
-  border-color: var(--ids-comp-tag-#{$appearance}-color-border-#{$variant}-default);
+  color: var(--ids-comp-tag-#{$appearance}-color-fg-label-#{$variant}-#{$state});
+  background: var(--ids-comp-tag-#{$appearance}-color-bg-#{$variant}-#{$state});
+  border-color: var(--ids-comp-tag-#{$appearance}-color-border-#{$variant}-#{$state});
 
   @if ($state == focused) {
     $lightOrDark: 'dark';
@@ -17,8 +17,6 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
 }
 
 .ids-tag {
-  flex-shrink: 0;
-  width: fit-content;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -45,7 +43,7 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
       height: var(--ids-comp-tag-size-height-#{$size});
       padding: var(--ids-comp-tag-size-padding-y-#{$size}) var(--ids-comp-tag-size-padding-x-#{$size});
       border-radius: var(--ids-comp-tag-size-border-radius-#{$size});
-      border: var(--ids-comp-tag-size-border-width-#{$size});
+      border-width: var(--ids-comp-tag-size-border-width-#{$size});
 
       &:focus,
       &:focus-visible {
@@ -74,6 +72,23 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
     @each $variant in $variants {
       &.ids-tag-#{$appearance}.ids-tag-#{$variant} {
         @include tagAppearanceAndVariant($appearance, $variant, default);
+      }
+    }
+  }
+}
+
+ids-tag {
+  cursor: default;
+}
+
+a.ids-tag {
+  cursor: pointer;
+  text-decoration: none;
+
+  @each $appearance in $appearances {
+    @each $variant in $variants {
+      &.ids-tag-#{$appearance}.ids-tag-#{$variant} {
+        @include tagAppearanceAndVariant($appearance, $variant, default);
 
         &:hover {
           @include tagAppearanceAndVariant($appearance, $variant, hovered);
@@ -90,11 +105,16 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
   }
 }
 
-button.ids-tag {
-  :not(:disabled) {
-    cursor: pointer;
-  }
-  :disabled {
-    cursor: not-allowed;
+.ids-tag-group {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+
+  @each $size in $sizes {
+    &.ids-tag-group-#{$size} {
+      gap: var(--ids-comp-tag-group-size-row-gap-#{$size}) var(--ids-comp-tag-group-size-column-gap-#{$size});
+      padding: var(--ids-comp-tag-group-size-padding-y-#{$size}) var(--ids-comp-tag-group-size-padding-x-#{$size});
+    }
   }
 }
