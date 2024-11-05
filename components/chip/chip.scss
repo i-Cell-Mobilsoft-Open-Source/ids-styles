@@ -29,24 +29,6 @@ $variants: primary, secondary, surface, light, dark;
   border-style: solid;
   box-sizing: border-box;
 
-  &[role='button'] {
-    &:focus,
-    &:focus-visible {
-      outline-offset: 2px;
-      outline-style: solid;
-    }
-  }
-  &:not([role='button']) {
-    &:focus,
-    &:focus-visible {
-      outline-style: none;
-    }
-  }
-
-  &.ids-chip-disabled {
-    cursor: not-allowed;
-  }
-
   & > .ids-chip__label {
     display: flex;
     align-items: center;
@@ -58,11 +40,6 @@ $variants: primary, secondary, surface, light, dark;
       padding: var(--ids-comp-chip-container-size-padding-y-#{$size}) var(--ids-comp-chip-container-size-padding-x-#{$size});
       border-radius: var(--ids-comp-chip-container-size-border-radius-#{$size});
       border-width: var(--ids-comp-chip-container-size-border-width-#{$size});
-
-      &:focus,
-      &:focus-visible {
-        outline-width: var(--ids-comp-chip-focused-outline-size-outline-#{$size});
-      }
 
       & > .ids-avatar {
         width: var(--ids-comp-chip-avatar-size-avatar-#{$size});
@@ -100,25 +77,63 @@ $variants: primary, secondary, surface, light, dark;
   @each $appearance in $appearances {
     @each $variant in $variants {
       &.ids-chip-#{$appearance}.ids-chip-#{$variant} {
-        &:not(.ids-chip-disabled) {
+        &:not(:disabled) {
           @include chipState($appearance, $variant, default);
-
-          &[role='button'] {
-            &:hover {
-              @include chipState($appearance, $variant, hovered);
-            }
-            &:focus,
-            &:focus-visible {
-              @include chipState($appearance, $variant, focused);
-            }
-            &:active {
-              @include chipState($appearance, $variant, pressed);
-            }
-          }
         }
 
-        &.ids-chip-disabled {
+        &:disabled {
           @include chipState($appearance, $variant, disabled);
+        }
+      }
+    }
+  }
+}
+
+ids-chip {
+  cursor: default;
+
+  &:focus,
+  &:focus-visible {
+    outline-style: none;
+  }
+}
+
+button.ids-chip {
+  cursor: pointer;
+
+  &:focus,
+  &:focus-visible {
+    outline-offset: 2px;
+    outline-style: solid;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  @each $size in $sizes {
+    &.ids-chip-#{$size} {
+      &:focus,
+      &:focus-visible {
+        outline-width: var(--ids-comp-chip-focused-outline-size-outline-#{$size});
+      }
+    }
+  }
+
+  @each $appearance in $appearances {
+    @each $variant in $variants {
+      &.ids-chip-#{$appearance}.ids-chip-#{$variant} {
+        &:not(:disabled) {
+          &:hover {
+            @include chipState($appearance, $variant, hovered);
+          }
+          &:focus,
+          &:focus-visible {
+            @include chipState($appearance, $variant, focused);
+          }
+          &:active {
+            @include chipState($appearance, $variant, pressed);
+          }
         }
       }
     }
@@ -127,8 +142,9 @@ $variants: primary, secondary, surface, light, dark;
 
 .ids-chip-group {
   display: inline-flex;
-  align-items: center;
   flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
 
   @each $size in $sizes {
     &.ids-chip-group-#{$size} {
