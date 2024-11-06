@@ -3,18 +3,13 @@ $variants: error, success, warning, light, dark, surface, info;
 $appearances: filled, outlined;
 
 .ids-notification {
-  min-width: max-content;
-
   & > .ids-notification__content-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     align-content: flex-start;
     flex-wrap: wrap;
-    border-top-style: solid;
-    border-right-style: solid;
-    border-bottom-style: solid;
-    border-left-style: solid;
+    border-style: solid;
 
     & > .ids-notification__leading-element {
       display: flex;
@@ -61,10 +56,7 @@ $appearances: filled, outlined;
       @each $variant in $variants {
         &.ids-notification-#{$variant} {
           & > .ids-notification__content-wrapper {
-            border-top-color: var(--ids-comp-notification-#{$appearance}-color-border-#{$variant}-default);
-            border-right-color: var(--ids-comp-notification-#{$appearance}-color-border-#{$variant}-default);
-            border-bottom-color: var(--ids-comp-notification-#{$appearance}-color-border-#{$variant}-default);
-            border-left-color: var(--ids-comp-notification-#{$appearance}-color-border-#{$variant}-default);
+            border-color: var(--ids-comp-notification-#{$appearance}-color-border-#{$variant}-default);
             background: var(--ids-comp-notification-#{$appearance}-color-bg-#{$variant}-default);
 
             & > .ids-notification__leading-element {
