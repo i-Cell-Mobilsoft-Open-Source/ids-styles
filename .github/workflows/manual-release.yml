@@ -34,7 +34,7 @@ jobs:
       - name: Commit version update
         run: |
           git add package.json
-          git commit -m "chore: bump version to ${{ github.event.inputs.version }}" --author="icellmobilsoft-robot <68945943+icellmobilsoft-robot@users.noreply.github.com>"
+          git commit -m "chore: bump version to ${{ github.event.inputs.version }}" --author="icellmobilsoft-robot <68945943+icellmobilsoft-robot@users.noreply.github.com>" --force
           git log -1
           git push origin main          
 
