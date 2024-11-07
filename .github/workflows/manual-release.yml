@@ -23,7 +23,7 @@ jobs:
       - name: Set up Git for tag creation
         run: |
           git config --global user.name "icellmobilsoft-robot"
-          git config --global user.email "icellmobilsoft-robot@users.noreply.github.com"
+          git config --global user.email "68945943+icellmobilsoft-robot@users.noreply.github.com"
 
       - name: Update package.json version
         run: |
@@ -34,7 +34,7 @@ jobs:
       - name: Commit version update
         run: |
           git add package.json
-          git commit -m "chore: bump version to ${{ github.event.inputs.version }}"
+          git commit -m "chore: bump version to ${{ github.event.inputs.version }}" --author="icellmobilsoft-robot <68945943+icellmobilsoft-robot@users.noreply.github.com>"
           git push origin main          
 
       - name: Create Tag
