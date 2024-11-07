@@ -23,7 +23,7 @@ jobs:
       - name: Set up Git for tag creation
         run: |
           git config --global user.name "icellmobilsoft-robot"
-          git config --global user.email "68945943+icellmobilsoft-robot@users.noreply.github.com"
+          git config --global user.email "icellmobilsoft-robot@users.noreply.github.com"
 
       - name: Update package.json version
         run: |
