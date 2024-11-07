@@ -9,8 +9,12 @@ on:
       notes:
         description: "Release notes"
         required: false
-env:
-    GITHUB_TOKEN: ${{ secrets.NPM_TOKEN  }}
+# env:
+#     GITHUB_TOKEN: ${{ secrets.NPM_TOKEN  }}
+
+permissions:
+  contents: write
+  deployments: write
 
 jobs:
   create-release:
@@ -34,9 +38,14 @@ jobs:
       - name: Commit version update
         run: |
           git add package.json
-          git commit -m "chore: bump version to ${{ github.event.inputs.version }}" --author="icellmobilsoft-robot <68945943+icellmobilsoft-robot@users.noreply.github.com>" --force
-          git log -1
-          git push origin main          
+          git commit -m "chore: bump version to ${{ github.event.inputs.version }}"
+          # git push origin main          
+          
+
+      - name: Commit & Push changes
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}  
 
       - name: Create Tag
         run: |
@@ -51,7 +60,7 @@ jobs:
       - name: Create GitHub Release
         uses: ncipollo/release-action@v1.14.0
         with:
-          token: ${{ secrets.NPM_TOKEN  }}
+          token: ${{ secrets.GITHUB_TOKEN }}  
           tag: ${{ github.event.inputs.version }}
           name: "v${{ github.event.inputs.version }}"
           body: ${{ github.event.inputs.notes || 'Release' }}
