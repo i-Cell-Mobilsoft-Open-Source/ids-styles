@@ -52,27 +52,25 @@ $appearances: filled, outlined;
   }
 
   @each $appearance in $appearances {
-    &.ids-notification-#{$appearance} {
-      @each $variant in $variants {
-        &.ids-notification-#{$variant} {
-          & > .ids-notification__content-wrapper {
-            border-color: var(--ids-comp-notification-#{$appearance}-color-border-#{$variant}-default);
-            background: var(--ids-comp-notification-#{$appearance}-color-bg-#{$variant}-default);
+    @each $variant in $variants {
+      &.ids-notification-#{$appearance}.ids-notification-#{$variant} {
+        & > .ids-notification__content-wrapper {
+          border-color: var(--ids-comp-notification-#{$appearance}-color-border-#{$variant}-default);
+          background: var(--ids-comp-notification-#{$appearance}-color-bg-#{$variant}-default);
 
-            & > .ids-notification__leading-element {
-              & > .ids-icon {
-                color: var(--ids-comp-notification-#{$appearance}-color-fg-icon-#{$variant}-default);
-              }
+          & > .ids-notification__leading-element {
+            & > .ids-icon {
+              color: var(--ids-comp-notification-#{$appearance}-color-fg-icon-#{$variant}-default);
             }
+          }
 
-            & > .ids-notification__container {
-              & > .ids-notification__title-msg-container {
-                & > .ids-notification__title {
-                  color: var(--ids-comp-notification-#{$appearance}-color-fg-title-#{$variant}-default);
-                }
-                & > .ids-notification__message {
-                  color: var(--ids-comp-notification-#{$appearance}-color-fg-message-#{$variant}-default);
-                }
+          & > .ids-notification__container {
+            & > .ids-notification__title-msg-container {
+              & > .ids-notification__title {
+                color: var(--ids-comp-notification-#{$appearance}-color-fg-title-#{$variant}-default);
+              }
+              & > .ids-notification__message {
+                color: var(--ids-comp-notification-#{$appearance}-color-fg-message-#{$variant}-default);
               }
             }
           }
@@ -81,7 +79,7 @@ $appearances: filled, outlined;
     }
 
     @each $size in $sizes {
-      &.ids-notification-#{$size} {
+      &.ids-notification-#{$appearance}.ids-notification-#{$size} {
         & > .ids-notification__content-wrapper {
           gap: var(--ids-comp-notification-#{$appearance}-container-size-gap-#{$size});
           padding: var(--ids-comp-notification-#{$appearance}-container-size-padding-y-#{$size})
@@ -92,51 +90,60 @@ $appearances: filled, outlined;
           border-bottom-width: var(--ids-comp-notification-#{$appearance}-container-size-border-bottom-width-#{$size});
           border-left-width: var(--ids-comp-notification-#{$appearance}-container-size-border-left-width-#{$size});
 
-          & > .ids-notification__leading-element {
-            padding-left: var(--ids-comp-notification-icon-size-padding-left-#{$size});
-            padding-right: var(--ids-comp-notification-icon-size-padding-right-#{$size});
-
-            & > .ids-icon {
-              width: var(--ids-comp-notification-icon-size-icon-#{$size});
-              height: var(--ids-comp-notification-icon-size-icon-#{$size});
-              font-size: var(--ids-comp-notification-icon-typography-font-size-#{$size});
-              font-weight: var(--ids-comp-notification-icon-typography-font-weight-#{$size});
-              line-height: var(--ids-comp-notification-icon-typography-line-height-#{$size});
-            }
-          }
-
           & > .ids-notification__container {
             min-width: var(--ids-comp-notification-#{$appearance}-container-size-min-width-#{$size});
-            padding-right: var(--ids-comp-notification-message-size-padding-right-#{$size});
-            gap: var(--ids-comp-notification-message-size-gap-#{$size});
+          }
+        }
+      }
+    }
+  }
 
-            & > .ids-notification__title-msg-container {
-              row-gap: var(--ids-comp-notification-message-size-gap-#{$size});
+  @each $size in $sizes {
+    &.ids-notification-#{$size} {
+      & > .ids-notification__content-wrapper {
+        & > .ids-notification__leading-element {
+          padding-left: var(--ids-comp-notification-icon-size-padding-left-#{$size});
+          padding-right: var(--ids-comp-notification-icon-size-padding-right-#{$size});
 
-              & > .ids-notification__title {
-                font-size: var(--ids-comp-notification-title-typography-font-size-#{$size});
-                font-weight: var(--ids-comp-notification-title-typography-font-weight-#{$size});
-                line-height: var(--ids-comp-notification-title-typography-line-height-#{$size});
-                letter-spacing: var(--ids-comp-notification-title-typography-letter-spacing-#{$size});
-              }
+          & > .ids-icon {
+            width: var(--ids-comp-notification-icon-size-icon-#{$size});
+            height: var(--ids-comp-notification-icon-size-icon-#{$size});
+            font-size: var(--ids-comp-notification-icon-typography-font-size-#{$size});
+            font-weight: var(--ids-comp-notification-icon-typography-font-weight-#{$size});
+            line-height: var(--ids-comp-notification-icon-typography-line-height-#{$size});
+          }
+        }
 
-              & > .ids-notification__message {
-                font-size: var(--ids-comp-notification-message-typography-font-size-#{$size});
-                font-weight: var(--ids-comp-notification-message-typography-font-weight-#{$size});
-                line-height: var(--ids-comp-notification-message-typography-line-height-#{$size});
-                letter-spacing: var(--ids-comp-notification-message-typography-letter-spacing-#{$size});
-              }
+        & > .ids-notification__container {
+          padding-right: var(--ids-comp-notification-message-size-padding-right-#{$size});
+          gap: var(--ids-comp-notification-message-size-gap-#{$size});
+
+          & > .ids-notification__title-msg-container {
+            row-gap: var(--ids-comp-notification-message-size-gap-#{$size});
+
+            & > .ids-notification__title {
+              font-size: var(--ids-comp-notification-title-typography-font-size-#{$size});
+              font-weight: var(--ids-comp-notification-title-typography-font-weight-#{$size});
+              line-height: var(--ids-comp-notification-title-typography-line-height-#{$size});
+              letter-spacing: var(--ids-comp-notification-title-typography-letter-spacing-#{$size});
             }
 
-            & > .ids-notification__action {
-              gap: var(--ids-comp-notification-actions-size-gap-#{$size});
+            & > .ids-notification__message {
+              font-size: var(--ids-comp-notification-message-typography-font-size-#{$size});
+              font-weight: var(--ids-comp-notification-message-typography-font-weight-#{$size});
+              line-height: var(--ids-comp-notification-message-typography-line-height-#{$size});
+              letter-spacing: var(--ids-comp-notification-message-typography-letter-spacing-#{$size});
             }
           }
 
-          & > .ids-notification__close-btn-container > .ids-icon-button > .ids-icon {
-            width: var(--ids-comp-notification-icon-button-size-icon-button-#{$size});
-            height: var(--ids-comp-notification-icon-button-size-icon-button-#{$size});
+          & > .ids-notification__action {
+            gap: var(--ids-comp-notification-actions-size-gap-#{$size});
           }
+        }
+
+        & > .ids-notification__close-button-container > .ids-icon-button > .ids-icon {
+          width: var(--ids-comp-notification-icon-button-size-icon-button-#{$size});
+          height: var(--ids-comp-notification-icon-button-size-icon-button-#{$size});
         }
       }
     }
