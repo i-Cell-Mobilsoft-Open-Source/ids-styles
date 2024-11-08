@@ -20,12 +20,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Git for tag creation
+      - name: Set up Git
         run: |
-          git config --global user.name "icellmobilsoft-robot"
-          git config --global user.email "68945943+icellmobilsoft-robot@users.noreply.github.com"
+          git remote set-url origin https://mercury83:$GITHUB_TOKEN@github.com/${GITHUB_REPOSITORY}.git
 
-      - name: pnpm-setup
+      - name: Set up pnpm
         uses: pnpm/action-setup@v2
         with:
           version: latest
@@ -39,12 +38,11 @@ jobs:
           version="${version#v}"  # Remove "v" prefix if provided
           npm version "$version" --no-git-tag-version
 
-      - name: Commit & push version update
+      - name: Commit & push version bump
         run: |
           git add package.json
           git commit -m "chore: bump version to ${{ github.event.inputs.version }}"
-          repository_url="https://mercury83:$GITHUB_TOKEN@github.com/${GITHUB_REPOSITORY}.git"
-          git push "$repository_url" HEAD:main
+          git push origin main
 
       - name: Create Tag
         run: |
