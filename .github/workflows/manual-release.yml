@@ -22,6 +22,8 @@ jobs:
 
       - name: Set up Git
         run: |
+          git config --global user.name "Gábor Nagy"
+          git config --global user.email "gabor.nagy@icellmobilsoft.hu"
           git remote set-url origin https://mercury83:$GITHUB_TOKEN@github.com/${GITHUB_REPOSITORY}.git
 
       - name: Set up pnpm
