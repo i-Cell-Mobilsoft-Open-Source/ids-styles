@@ -41,7 +41,6 @@ jobs:
           git commit -m "chore: bump version to ${{ github.event.inputs.version }}"
           # git push origin main          
           
-
       - name: Commit & Push changes
         uses: actions-js/push@master
         with:
@@ -51,7 +50,13 @@ jobs:
         run: |
           git tag -a ${{ github.event.inputs.version }} -m "${{ github.event.inputs.notes || 'Release' }}"
           git push origin ${{ github.event.inputs.version }}
-         
+      
+      - name: pnpm-setup
+        uses: pnpm/action-setup@v2
+  
+      - name: Install dependencies and build
+        run: pnpm install
+
       - name: Publish to npm with npm
         run: npm publish --access public
         env:
