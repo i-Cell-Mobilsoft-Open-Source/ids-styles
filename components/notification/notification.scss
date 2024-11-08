@@ -20,10 +20,8 @@ $appearances: filled, outlined;
     & > .ids-notification__container {
       display: flex;
       justify-content: space-between;
-      align-items: center;
       align-content: center;
       flex: 1 0 0;
-      flex-wrap: wrap;
 
       & > .ids-notification__title-msg-container {
         display: flex;
@@ -42,13 +40,23 @@ $appearances: filled, outlined;
       & > .ids-notification__action {
         display: flex;
         align-items: center;
+        flex-shrink: 0;
       }
     }
 
-    & > .ids-notification__close-btn-container.ids-notification__label-btn {
+    & > .ids-notification__close-button-container.ids-notification__label-button {
       display: flex;
       align-self: center;
     }
+  }
+
+  &.ids-notification-actions-bottom-mode > .ids-notification__content-wrapper > .ids-notification__container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &:not(.ids-notification-actions-bottom-mode) > .ids-notification__content-wrapper > .ids-notification__container {
+    align-items: center;
   }
 
   @each $appearance in $appearances {
