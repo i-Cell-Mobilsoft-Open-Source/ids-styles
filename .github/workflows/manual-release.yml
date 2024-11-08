@@ -29,6 +29,14 @@ jobs:
           git config --global user.name "icellmobilsoft-robot"
           git config --global user.email "68945943+icellmobilsoft-robot@users.noreply.github.com"
 
+      - name: pnpm-setup
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+    
+      - name: Install dependencies
+        run: pnpm i
+
       - name: Update package.json version
         run: |
           version=${{ github.event.inputs.version }}
@@ -50,14 +58,6 @@ jobs:
         run: |
           git tag -a ${{ github.event.inputs.version }} -m "${{ github.event.inputs.notes || 'Release' }}"
           git push origin ${{ github.event.inputs.version }}
-      
-      - name: pnpm-setup
-        uses: pnpm/action-setup@v2
-        with:
-          version: latest
-  
-      # - name: Install dependencies and build
-      #   run: npm i -g pnpm
 
       - name: Publish to npm with npm
         run: npm publish --access public
