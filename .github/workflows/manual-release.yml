@@ -43,8 +43,7 @@ jobs:
         run: |
           git add package.json
           git commit -m "chore: bump version to ${{ github.event.inputs.version }}"
-          repository_url="https://${GITHUB_ACTOR}:$GITHUB_TOKEN@github.com/${GITHUB_REPOSITORY}.git"
-          echo ${repository_url}
+          repository_url="https://mercury83:$GITHUB_TOKEN@github.com/${GITHUB_REPOSITORY}.git"
           git push "$repository_url" HEAD:main
 
       - name: Create Tag
