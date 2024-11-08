@@ -9,6 +9,8 @@ on:
       notes:
         description: "Release notes"
         required: false
+env:
+    GITHUB_TOKEN: ${{ secrets.ICELL_GIT_PAT  }}
 
 jobs:
   create-release:
@@ -36,12 +38,12 @@ jobs:
           version=${{ github.event.inputs.version }}
           version="${version#v}"  # Remove "v" prefix if provided
           npm version "$version" --no-git-tag-version
-          
-      - name: Commit & Push changes
-        uses: actions-js/push@master
-        with:
-          github_token: ${{ secrets.ICELL_GIT_PAT }}
-          message: "chore: bump version to ${{ github.event.inputs.version }}"  
+
+      - name: Commit & push version update
+        run: |
+          git add package.json
+          git commit -m "chore: bump version to ${{ github.event.inputs.version }}"
+          git push "https://${GITHUB_ACTOR}:$GITHUB_TOKEN@github.com/${REPOSITORY}.git" HEAD:main
 
       - name: Create Tag
         run: |
