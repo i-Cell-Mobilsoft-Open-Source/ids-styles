@@ -1,0 +1,359 @@
+$sizes: compact, comfortable, spacious, dense;
+$variants: surface, light, primary;
+
+@mixin tabVariant($variant, $selected, $state) {
+  background-color: var(--ids-comp-tab-item-standard-#{$selected}-bg-#{$variant}-#{$state});
+  border-color: var(--ids-comp-tab-item-standard-#{$selected}-border-#{$variant}-#{$state});
+  color: var(--ids-comp-tab-item-standard-#{$selected}-fg-label-#{$variant}-#{$state});
+
+  & > .ids-icon {
+    color: var(--ids-comp-tab-item-standard-#{$selected}-fg-icon-#{$variant}-#{$state});
+  }
+
+  & > .ids-tab-item__indicator {
+    color: var(--ids-comp-tab-item-standard-active-indicator-bg-#{$variant}-#{$state});
+  }
+}
+
+.ids-tab-group {
+  display: flex;
+  
+  .ids-tab-group__container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .ids-tab-item__indicator {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+
+    .ids-tab-item__line {
+      position: relative;
+      box-sizing: border-box;
+      opacity: 0;
+    }
+  }
+
+  &.ids-tab-group-horizontal {
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+
+    & > .ids-tab-group__container {
+      width: 100%;
+
+      .ids-tab-group__header {
+        .ids-tab-item {
+          justify-content: center;
+
+          &:focus,
+          &:focus-visible {
+            outline-offset: 4px;
+          }
+        }
+      }
+    }
+
+    &.ids-tab-group-indicator-bottom > .ids-tab-group__container {
+      border-bottom-style: solid;
+      border-bottom-color: var(--ids-comp-tab-tabgroup-color-border-default);
+
+      .ids-tab-item__line {
+        align-self: flex-end;
+        border-bottom-style: solid;
+      }
+    }
+
+    &.ids-tab-group-indicator-top > .ids-tab-group__container {
+      border-top-style: solid;
+      border-top-color: var(--ids-comp-tab-tabgroup-color-border-default);
+
+      .ids-tab-item__line {
+        align-self: flex-start;
+        border-top-style: solid;
+      }
+    }
+
+    &.ids-tab-group-stretch-tabs > .ids-tab-group__container .ids-tab-group__header {
+      align-self: stretch;
+
+      .ids-tab-item {
+        flex-grow: 1;
+      }
+    }
+
+    &.ids-tab-group-start > .ids-tab-group__container .ids-tab-group__header {
+      align-self: flex-start;
+    }
+
+    &.ids-tab-group-center > .ids-tab-group__container .ids-tab-group__header {
+      align-self: center;
+    }
+
+    &.ids-tab-group-end > .ids-tab-group__container .ids-tab-group__header {
+      align-self: flex-end;
+    }
+
+    & > .ids-tab-body-content {
+      display: flex;
+      align-items: flex-start;
+      align-self: stretch;
+    }
+
+    .ids-tab-item__indicator {
+      left: 0;
+      width: 100%;
+
+      .ids-tab-item__line {
+        width: 100%;
+      }
+    }
+  }
+
+  &.ids-tab-group-vertical {
+    display: inline-flex;
+    align-items: flex-start;
+    width: 100%;
+
+    & > .ids-tab-group__container .ids-tab-group__header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+
+      .ids-tab-item {
+        align-self: stretch;
+
+        &:focus,
+        &:focus-visible {
+          outline-offset: 2px;
+        }
+      }
+    }
+
+    & > .ids-tab-body-content {
+      display: flex;
+      justify-content: center;
+      align-self: stretch;
+    }
+
+    &.ids-tab-group-indicator-left .ids-tab-item__indicator {
+      left: 0;
+
+      .ids-tab-item__line {
+        border-left-style: solid;
+      }
+    }
+
+    &.ids-tab-group-indicator-right .ids-tab-item__indicator {
+      right: 0;
+
+      .ids-tab-item__line {
+        border-right-style: solid;
+      }
+    }
+
+    .ids-tab-item__indicator {
+      top: 0;
+
+      .ids-tab-item__line {
+        align-self: flex-start;
+        height: 100%;
+      }
+    }
+  }
+
+  .ids-tab-group__container {
+    .ids-tab-group__header {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      list-style-type: none;
+      margin: 0;
+
+      .ids-tab-item {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        position: relative;
+        border-style: solid;
+
+        &:focus,
+        &:focus-visible {
+          outline-style: solid;
+        }
+
+        &.ids-tab-item__label {
+          display: inline-block;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+
+        &.ids-tab-item-disabled {
+          pointer-events: none;
+          user-select: none;
+        }
+
+        &.ids-tab-item--active > .ids-tab-item__indicator .ids-tab-item__line {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  @each $size in $sizes {
+    &.ids-tab-group-#{$size} {
+      padding: var(--ids-comp-tab-container-size-padding-y-#{$size}) var(--ids-comp-tab-container-size-padding-x-#{$size});
+      gap: var(--ids-comp-tab-container-size-gap-#{$size});
+
+      &.ids-tab-group-horizontal {
+        &.ids-tab-group-indicator-bottom {
+          border-bottom-width: var(--ids-comp-tab-item-active-indicator-size-width-#{$size});
+
+          .ids-tab-item__indicator {
+            bottom: calc(
+              0px - calc(
+                  var(--ids-comp-tab-item-active-indicator-size-width-#{$size}) + var(--ids-comp-tab-item-size-border-width-#{$size})
+                )
+            );
+
+            .ids-tab-item__line {
+              border-bottom-width: var(--ids-comp-tab-item-active-indicator-size-width-#{$size});
+            }
+          }
+        }
+
+        &.ids-tab-group-indicator-top {
+          border-top-width: var(--ids-comp-tab-item-active-indicator-size-width-#{$size});
+
+          .ids-tab-item__indicator {
+            top: calc(
+              0px - calc(
+                  var(--ids-comp-tab-item-active-indicator-size-width-#{$size}) + var(--ids-comp-tab-item-size-border-width-#{$size})
+                )
+            );
+
+            .ids-tab-item__line {
+              border-top-width: var(--ids-comp-tab-item-active-indicator-size-width-#{$size});
+            }
+          }
+        }
+      }
+
+      &.ids-tab-group-vertical {
+        &.ids-tab-group-indicator-left .ids-tab-item__indicator {
+          border-left-width: var(--ids-comp-tab-item-active-indicator-size-width-#{$size});
+
+          .ids-tab-item__line {
+            border-left-width: var(--ids-comp-tab-item-active-indicator-size-width-#{$size});
+          }
+        }
+
+        &.ids-tab-group-indicator-right .ids-tab-item__indicator {
+          border-right-width: var(--ids-comp-tab-item-active-indicator-size-width-#{$size});
+
+          .ids-tab-item__line {
+            border-right-width: var(--ids-comp-tab-item-active-indicator-size-width-#{$size});
+          }
+        }
+      }
+
+      & > .ids-tab-body-content {
+        padding: var(--ids-comp-tab-tabpanel-size-padding-y-#{$size}) var(--ids-comp-tab-tabpanel-size-padding-x-#{$size});
+      }
+
+      & > .ids-tab-group__container .ids-tab-group__header {
+        padding: var(--ids-comp-tab-tabgroup-size-padding-y-#{$size}) var(--ids-comp-tab-tabgroup-size-padding-x-#{$size});
+        gap: var(--ids-comp-tab-tabgroup-size-gap-#{$size});
+
+        .ids-tab-item {
+          padding: var(--ids-comp-tab-item-size-padding-y-#{$size}) var(--ids-comp-tab-item-size-padding-x-#{$size});
+          gap: var(--ids-comp-tab-item-size-gap-#{$size});
+          border-radius: var(--ids-comp-tab-item-size-border-radius-#{$size});
+          border-width: var(--ids-comp-tab-item-size-border-width-#{$size});
+
+          &:focus,
+          &:focus-visible {
+            outline-width: var(--ids-comp-tab-item-focused-outline-size-outline-#{$size});
+          }
+
+          & > .ids-tab-item__label {
+            font-family: var(--ids-comp-tab-item-label-typography-font-family-#{$size});
+            font-size: var(--ids-comp-tab-item-label-typography-font-size-#{$size});
+            font-weight: var(--ids-comp-tab-item-label-typography-font-weight-#{$size});
+            letter-spacing: var(--ids-comp-tab-item-label-typography-letter-spacing-#{$size});
+            line-height: var(--ids-comp-tab-item-label-typography-line-height-#{$size});
+          }
+
+          & > .ids-icon {
+            font-size: var(--ids-comp-tab-item-icon-typography-font-size-#{$size});
+            font-weight: var(--ids-comp-tab-item-icon-typography-font-weight-#{$size});
+            line-height: var(--ids-comp-tab-item-icon-typography-line-height-#{$size});
+            width: var(--ids-comp-tab-item-icon-size-width-#{$size});
+            height: var(--ids-comp-tab-item-icon-size-height-#{$size});
+          }
+        }
+      }
+    }
+  }
+
+  @each $variant in $variants {
+    &.ids-tab-group-#{$variant} {
+      background-color: var(--ids-comp-tab-container-color-bg-default);
+
+      & > .ids-tab-group__container .ids-tab-group__header {
+        background-color: var(--ids-comp-tab-tabgroup-color-bg-default);
+
+        .ids-tab-item {
+          @include tabVariant($variant, unselected, default);
+
+          &:hover {
+            @include tabVariant($variant, unselected, hovered);
+          }
+
+          &:focus,
+          &:focus-visible {
+            @include tabVariant($variant, unselected, focused);
+            outline-color: var(--ids-comp-tab-item-standard-focused-outline-color-dark-default);
+          }
+
+          &:active {
+            @include tabVariant($variant, unselected, pressed);
+          }
+
+          &.ids-tab-item-disabled {
+            @include tabVariant($variant, unselected, disabled);
+          }
+        }
+
+        .ids-tab-item.ids-tab-item--active {
+          @include tabVariant($variant, selected, default);
+
+          &:hover {
+            @include tabVariant($variant, selected, hovered);
+          }
+
+          &:focus,
+          &:focus-visible {
+            @include tabVariant($variant, selected, focused);
+          }
+
+          &:active {
+            @include tabVariant($variant, selected, pressed);
+          }
+
+          &.ids-tab-item-disabled {
+            @include tabVariant($variant, unselected, disabled);
+          }
+        }
+      }
+    }
+  }
+}
