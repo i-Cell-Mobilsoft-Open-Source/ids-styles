@@ -9,8 +9,6 @@ on:
       notes:
         description: "Release notes"
         required: false
-env:
-    GITHUB_TOKEN: ${{ secrets.ICELL_GIT_PAT  }}
 
 jobs:
   create-release:
@@ -22,8 +20,8 @@ jobs:
 
       - name: Set up Git
         run: |
-          git config --global user.name "Gábor Nagy"
-          git config --global user.email "gabor.nagy@icellmobilsoft.hu"
+          git config --global user.name "icellmobilsoft-robot"
+          git config --global user.email "68945943+icellmobilsoft-robot@users.noreply.github.com"
 
       - name: Set up pnpm
         uses: pnpm/action-setup@v2
@@ -43,7 +41,13 @@ jobs:
         run: |
           git add package.json
           git commit -m "chore: bump version to ${{ github.event.inputs.version }}"
-          git push https://x-access-token:$GITHUB_TOKEN@github.com/${GITHUB_REPOSITORY}.git main
+
+      - name: Push to main(protected) branch
+        uses: CasperWA/push-protected@v2
+        with:
+          token: ${{ secrets.ICELL_GIT_PAT }}
+          branch: main
+          unprotect_reviews: true
 
       - name: Create Tag
         run: |
