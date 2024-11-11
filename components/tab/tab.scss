@@ -10,7 +10,7 @@ $variants: surface, light, primary;
     color: var(--ids-comp-tab-item-standard-#{$selected}-fg-icon-#{$variant}-#{$state});
   }
 
-  & > .ids-tab-item__indicator {
+  & > .ids-tab__indicator {
     color: var(--ids-comp-tab-item-standard-active-indicator-bg-#{$variant}-#{$state});
   }
 }
@@ -25,7 +25,7 @@ $variants: surface, light, primary;
     flex-shrink: 0;
   }
 
-  .ids-tab-item__indicator {
+  .ids-tab__indicator {
     display: flex;
     justify-content: center;
     position: absolute;
@@ -33,7 +33,7 @@ $variants: surface, light, primary;
     pointer-events: none;
     z-index: 1;
 
-    .ids-tab-item__line {
+    .ids-tab__line {
       position: relative;
       box-sizing: border-box;
       opacity: 0;
@@ -49,7 +49,7 @@ $variants: surface, light, primary;
       width: 100%;
 
       .ids-tab-group__header {
-        .ids-tab-item {
+        .ids-tab {
           justify-content: center;
 
           &:focus,
@@ -64,7 +64,7 @@ $variants: surface, light, primary;
       border-bottom-style: solid;
       border-bottom-color: var(--ids-comp-tab-tabgroup-color-border-default);
 
-      .ids-tab-item__line {
+      .ids-tab__line {
         align-self: flex-end;
         border-bottom-style: solid;
       }
@@ -74,7 +74,7 @@ $variants: surface, light, primary;
       border-top-style: solid;
       border-top-color: var(--ids-comp-tab-tabgroup-color-border-default);
 
-      .ids-tab-item__line {
+      .ids-tab__line {
         align-self: flex-start;
         border-top-style: solid;
       }
@@ -83,7 +83,7 @@ $variants: surface, light, primary;
     &.ids-tab-group-stretch-tabs > .ids-tab-group__container .ids-tab-group__header {
       align-self: stretch;
 
-      .ids-tab-item {
+      .ids-tab {
         flex-grow: 1;
       }
     }
@@ -106,11 +106,11 @@ $variants: surface, light, primary;
       align-self: stretch;
     }
 
-    .ids-tab-item__indicator {
+    .ids-tab__indicator {
       left: 0;
       width: 100%;
 
-      .ids-tab-item__line {
+      .ids-tab__line {
         width: 100%;
       }
     }
@@ -127,7 +127,7 @@ $variants: surface, light, primary;
       align-items: center;
       flex-shrink: 0;
 
-      .ids-tab-item {
+      .ids-tab {
         align-self: stretch;
 
         &:focus,
@@ -143,26 +143,26 @@ $variants: surface, light, primary;
       align-self: stretch;
     }
 
-    &.ids-tab-group-indicator-left .ids-tab-item__indicator {
+    &.ids-tab-group-indicator-left .ids-tab__indicator {
       left: 0;
 
-      .ids-tab-item__line {
+      .ids-tab__line {
         border-left-style: solid;
       }
     }
 
-    &.ids-tab-group-indicator-right .ids-tab-item__indicator {
+    &.ids-tab-group-indicator-right .ids-tab__indicator {
       right: 0;
 
-      .ids-tab-item__line {
+      .ids-tab__line {
         border-right-style: solid;
       }
     }
 
-    .ids-tab-item__indicator {
+    .ids-tab__indicator {
       top: 0;
 
-      .ids-tab-item__line {
+      .ids-tab__line {
         align-self: flex-start;
         height: 100%;
       }
@@ -177,7 +177,7 @@ $variants: surface, light, primary;
       list-style-type: none;
       margin: 0;
 
-      .ids-tab-item {
+      .ids-tab {
         display: flex;
         align-items: center;
         cursor: pointer;
@@ -189,19 +189,19 @@ $variants: surface, light, primary;
           outline-style: solid;
         }
 
-        &.ids-tab-item__label {
+        &.ids-tab__label {
           display: inline-block;
           text-overflow: ellipsis;
           overflow: hidden;
           white-space: nowrap;
         }
 
-        &.ids-tab-item-disabled {
+        &.ids-tab-disabled {
           pointer-events: none;
           user-select: none;
         }
 
-        &.ids-tab-item--active > .ids-tab-item__indicator .ids-tab-item__line {
+        &.ids-tab--active > .ids-tab__indicator .ids-tab__line {
           opacity: 1;
         }
       }
@@ -217,14 +217,14 @@ $variants: surface, light, primary;
         &.ids-tab-group-indicator-bottom {
           border-bottom-width: var(--ids-comp-tab-item-active-indicator-size-width-#{$size});
 
-          .ids-tab-item__indicator {
+          .ids-tab__indicator {
             bottom: calc(
               0px - calc(
                   var(--ids-comp-tab-item-active-indicator-size-width-#{$size}) + var(--ids-comp-tab-item-size-border-width-#{$size})
                 )
             );
 
-            .ids-tab-item__line {
+            .ids-tab__line {
               border-bottom-width: var(--ids-comp-tab-item-active-indicator-size-width-#{$size});
             }
           }
@@ -233,14 +233,14 @@ $variants: surface, light, primary;
         &.ids-tab-group-indicator-top {
           border-top-width: var(--ids-comp-tab-item-active-indicator-size-width-#{$size});
 
-          .ids-tab-item__indicator {
+          .ids-tab__indicator {
             top: calc(
               0px - calc(
                   var(--ids-comp-tab-item-active-indicator-size-width-#{$size}) + var(--ids-comp-tab-item-size-border-width-#{$size})
                 )
             );
 
-            .ids-tab-item__line {
+            .ids-tab__line {
               border-top-width: var(--ids-comp-tab-item-active-indicator-size-width-#{$size});
             }
           }
@@ -248,18 +248,18 @@ $variants: surface, light, primary;
       }
 
       &.ids-tab-group-vertical {
-        &.ids-tab-group-indicator-left .ids-tab-item__indicator {
+        &.ids-tab-group-indicator-left .ids-tab__indicator {
           border-left-width: var(--ids-comp-tab-item-active-indicator-size-width-#{$size});
 
-          .ids-tab-item__line {
+          .ids-tab__line {
             border-left-width: var(--ids-comp-tab-item-active-indicator-size-width-#{$size});
           }
         }
 
-        &.ids-tab-group-indicator-right .ids-tab-item__indicator {
+        &.ids-tab-group-indicator-right .ids-tab__indicator {
           border-right-width: var(--ids-comp-tab-item-active-indicator-size-width-#{$size});
 
-          .ids-tab-item__line {
+          .ids-tab__line {
             border-right-width: var(--ids-comp-tab-item-active-indicator-size-width-#{$size});
           }
         }
@@ -273,7 +273,7 @@ $variants: surface, light, primary;
         padding: var(--ids-comp-tab-tabgroup-size-padding-y-#{$size}) var(--ids-comp-tab-tabgroup-size-padding-x-#{$size});
         gap: var(--ids-comp-tab-tabgroup-size-gap-#{$size});
 
-        .ids-tab-item {
+        .ids-tab {
           padding: var(--ids-comp-tab-item-size-padding-y-#{$size}) var(--ids-comp-tab-item-size-padding-x-#{$size});
           gap: var(--ids-comp-tab-item-size-gap-#{$size});
           border-radius: var(--ids-comp-tab-item-size-border-radius-#{$size});
@@ -284,7 +284,7 @@ $variants: surface, light, primary;
             outline-width: var(--ids-comp-tab-item-focused-outline-size-outline-#{$size});
           }
 
-          & > .ids-tab-item__label {
+          & > .ids-tab__label {
             font-family: var(--ids-comp-tab-item-label-typography-font-family-#{$size});
             font-size: var(--ids-comp-tab-item-label-typography-font-size-#{$size});
             font-weight: var(--ids-comp-tab-item-label-typography-font-weight-#{$size});
@@ -311,7 +311,7 @@ $variants: surface, light, primary;
       & > .ids-tab-group__container .ids-tab-group__header {
         background-color: var(--ids-comp-tab-tabgroup-color-bg-default);
 
-        .ids-tab-item {
+        .ids-tab {
           @include tabVariant($variant, unselected, default);
 
           &:hover {
@@ -328,12 +328,12 @@ $variants: surface, light, primary;
             @include tabVariant($variant, unselected, pressed);
           }
 
-          &.ids-tab-item-disabled {
+          &.ids-tab-disabled {
             @include tabVariant($variant, unselected, disabled);
           }
         }
 
-        .ids-tab-item.ids-tab-item--active {
+        .ids-tab.ids-tab--active {
           @include tabVariant($variant, selected, default);
 
           &:hover {
@@ -349,7 +349,7 @@ $variants: surface, light, primary;
             @include tabVariant($variant, selected, pressed);
           }
 
-          &.ids-tab-item-disabled {
+          &.ids-tab-disabled {
             @include tabVariant($variant, unselected, disabled);
           }
         }
