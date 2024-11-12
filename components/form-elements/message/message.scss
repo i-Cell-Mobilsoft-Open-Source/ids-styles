@@ -39,9 +39,9 @@ $variants: light, dark, surface;
         width: var(--ids-comp-forms-message-size-icon-width-#{$size});
 
         & > .ids-icon {
-          font-size: var(--ids-comp-forms-message-iconset-typography-font-size-#{$size});
-          font-weight: var(--ids-comp-forms-message-iconset-typography-font-weight-#{$size});
-          line-height: var(--ids-comp-forms-message-iconset-typography-line-height-#{$size});
+          font-size: var(--ids-comp-forms-message-icon-typography-font-size-#{$size});
+          font-weight: var(--ids-comp-forms-message-icon-typography-font-weight-#{$size});
+          line-height: var(--ids-comp-forms-message-icon-typography-line-height-#{$size});
         }
       }
     }

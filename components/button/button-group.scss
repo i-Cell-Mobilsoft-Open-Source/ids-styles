@@ -1,0 +1,15 @@
+$sizes: compact, comfortable, spacious, dense;
+
+.ids-button-group {
+  display: inline-flex;
+  align-items: flex-start;
+  align-content: flex-start;
+  flex-wrap: wrap;
+
+  @each $size in $sizes {
+    &.ids-button-group-#{$size} {
+      padding: var(--ids-comp-button-group-size-padding-y-#{$size}) var(--ids-comp-button-group-size-padding-x-#{$size});
+      gap: var(--ids-comp-button-group-size-column-gap-#{$size}) var(--ids-comp-button-group-size-row-gap-#{$size});
+    }
+  }
+}
