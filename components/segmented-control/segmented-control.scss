@@ -1,6 +1,6 @@
 $sizes: compact, comfortable, spacious, dense;
-$variants: primary, surface, light, dark;
-$appearances: filled, outlined;
+$variants: primary, surface, light;
+$appearances: outlined;
 
 @mixin segmentedControlItemAppearanceAndVariant($appearance, $variant, $state) {
   background-color: var(--ids-comp-segmented-control-button-#{$appearance}-color-bg-#{$variant}-#{$state});
@@ -106,8 +106,8 @@ $appearances: filled, outlined;
 
       @each $appearance in $appearances {
         &.ids-segmented-control-#{$appearance} {
-          background-color: var(--ids-comp-segmented-control-container-#{$appearance}-color-bg-#{$variant}-default);
-          border-color: var(--ids-comp-segmented-control-container-#{$appearance}-color-border-#{$variant}-default);
+          background-color: var(--ids-comp-segmented-control-container-#{$appearance}-color-bg-surface-default);
+          border-color: var(--ids-comp-segmented-control-container-#{$appearance}-color-border-surface-default);
 
           .ids-segmented-control-item > button {
             @include segmentedControlItemAppearanceAndVariant($appearance, $variant, default);
