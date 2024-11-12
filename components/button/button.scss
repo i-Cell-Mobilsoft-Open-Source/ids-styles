@@ -7,7 +7,11 @@ $variants: primary, secondary, brand, error, success, warning, light, light-fixe
 @mixin buttonAppearanceAndVariant($appearance, $variant, $state) {
   color: var(--ids-comp-button-#{$appearance}-color-fg-label-#{$variant}-#{$state});
   background: var(--ids-comp-button-#{$appearance}-color-bg-#{$variant}-#{$state});
-  border-color: var(--ids-comp-button-#{$appearance}-color-border-#{$variant}-default);
+  $safeState: $state;
+  @if ($appearance == 'text') {
+    $safeState: 'default';
+  }
+  border-color: var(--ids-comp-button-#{$appearance}-color-border-#{$variant}-#{$safeState});
 
   @if ($state == focused) {
     $lightOrDark: 'dark';
