@@ -37,6 +37,7 @@ $sizes: compact, comfortable, spacious, dense;
       width: 100%;
       flex: 1 0 0;
       border-style: solid;
+      cursor: pointer;
 
       &:focus,
       &:focus-visible {
