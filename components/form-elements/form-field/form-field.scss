@@ -22,6 +22,10 @@ $variants: surface, light;
     & > .ids-form-field__infix {
       .ids-form-field-control {
         color: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-filled-color-fg-text-#{$variant}-#{$state});
+
+        .ids-icon {
+          color: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-filled-color-fg-icon-#{$variant}-#{$state});
+        }
       }
 
       ::placeholder {
