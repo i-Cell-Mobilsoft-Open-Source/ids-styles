@@ -11,7 +11,6 @@ $variants: primary, secondary, surface;
     border-color: var(--ids-comp-table-tbody-td-color-border-#{$variant}-default);
     color: var(--ids-comp-table-tbody-td-color-fg-typography-#{$variant}-default);
 
-    // TODO: label-description cell renderer
     &.ids-table__cell--label-description {
       color: var(--ids-comp-table-tbody-td-color-fg-typography-description-#{$variant}-default);
     }
@@ -67,11 +66,11 @@ $variants: primary, secondary, surface;
                 & > th.ids-table__header-cell {
                   &.cdk-table-sticky-border-elem-left {
                     border-right-style: solid;
-                    border-right-width: var(--ids-comp-table-thead-th-size-border-width-#{$size});;
+                    border-right-width: var(--ids-comp-table-thead-th-size-border-width-#{$size});
                   }
                   &.cdk-table-sticky-border-elem-right {
                     border-left-style: solid;
-                    border-left-width: var(--ids-comp-table-thead-th-size-border-width-#{$size});;
+                    border-left-width: var(--ids-comp-table-thead-th-size-border-width-#{$size});
                   }
                 }
               }
@@ -130,11 +129,9 @@ $variants: primary, secondary, surface;
                 letter-spacing: var(--ids-comp-table-tbody-td-typography-td-letter-spacing-#{$size});
                 line-height: var(--ids-comp-table-tbody-td-typography-td-line-height-#{$size});
 
-                // TODO: label-description cell renderer
                 &.ids-table__cell--label-prominent {
                   font-weight: var(--ids-comp-table-tbody-td-typography-td-font-weight-prominent-#{$size});
                 }
-                // TODO: label-description cell renderer
                 &.ids-table__cell--label-description {
                   font-family: var(--ids-comp-table-tbody-td-typography-description-font-family-#{$size});
                   font-size: var(--ids-comp-table-tbody-td-typography-description-font-size-#{$size});
@@ -254,6 +251,11 @@ $variants: primary, secondary, surface;
 
             &.ids-table__cell--row-select, &.ids-table__cell--master-detail-toggle {
               text-align: center;
+
+              & > .ids-table__button--master-detail, .ids-table__checkbox--row-selector {
+                margin-left: auto;
+                margin-right: auto;
+              }
             }
             &.ids-table__cell--row-select {
               min-width: 2.5rem;
@@ -304,14 +306,6 @@ $variants: primary, secondary, surface;
         &.ids-table__cell--master-detail-toggle {
           min-width: 2.5rem;
           width: 2.5em;
-          &-expand {
-            padding-left: 8px !important;
-            padding-right: 8px;
-            text-align: center;
-            min-width: unset;
-            max-width: unset;
-            width: unset;
-          }
         }
       }
     }
