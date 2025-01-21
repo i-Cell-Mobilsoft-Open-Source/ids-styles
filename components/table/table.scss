@@ -1,0 +1,330 @@
+// $appearances: plain, line-division, zebra;
+$sizes: compact, comfortable, spacious, dense;
+$variants: primary, secondary, surface;
+
+@mixin tableRowVariantByState($variant, $state) {
+  background-color: var(--ids-comp-table-tbody-tr-color-bg-#{$variant}-#{$state});
+  border-color: var(--ids-comp-table-tbody-tr-color-border-#{$variant}-#{$state});
+
+  & > :is(td.ids-table__cell, th.ids-table__cell) {
+    background-color: var(--ids-comp-table-tbody-td-color-bg-#{$variant}-default);
+    border-color: var(--ids-comp-table-tbody-td-color-border-#{$variant}-default);
+    color: var(--ids-comp-table-tbody-td-color-fg-typography-#{$variant}-default);
+
+    // TODO: label-description cell renderer
+    &.ids-table__cell--label-description {
+      color: var(--ids-comp-table-tbody-td-color-fg-typography-description-#{$variant}-default);
+    }
+  }
+
+  .ids-table__detail-cell--content-wrapper {
+    background-color: var(--ids-comp-table-tbody-tr-detail-color-bg-#{$variant}-#{$state});
+    border-color: var(--ids-comp-table-tbody-tr-detail-color-border-#{$variant}-#{$state});
+  }
+}
+
+.ids-table {
+  position: relative;
+  box-sizing: border-box;
+  display: block;
+  max-width: 100%;
+
+  & > .ids-table__horizontal-scroll {
+    position: relative;
+    overflow: auto;
+    width: 100%;
+  }
+
+  @each $size in $sizes {
+    &.ids-table-#{$size} {
+      &.ids-table-with-border {
+        & > .ids-table__horizontal-scroll {
+          & > table {
+            border-radius: var(--ids-comp-table-size-border-radius-#{$size});
+            border-width: var(--ids-comp-table-size-border-width-#{$size});
+          }
+        }
+      }
+
+      &.ids-table-line-division {
+        & > .ids-table__horizontal-scroll {
+          & > table {
+            & > tbody {
+              & > tr.ids-table__row {
+                border-top-style: solid;
+                border-top-width: var(--ids-comp-table-tbody-tr-size-border-width-#{$size});
+              }
+            }
+          }
+        }
+      }
+
+      &:not(.ids-table-plain) {
+        & > .ids-table__horizontal-scroll {
+          & > table {
+            & > thead {
+              & > tr.ids-table__header-row {
+                & > th.ids-table__header-cell {
+                  &.cdk-table-sticky-border-elem-left {
+                    border-right-style: solid;
+                    border-right-width: var(--ids-comp-table-thead-th-size-border-width-#{$size});;
+                  }
+                  &.cdk-table-sticky-border-elem-right {
+                    border-left-style: solid;
+                    border-left-width: var(--ids-comp-table-thead-th-size-border-width-#{$size});;
+                  }
+                }
+              }
+            }
+            & > tbody {
+              & > tr:is(.ids-table__row, .ids-table__detail-row) {
+                & > :is(td.ids-table__cell, th.ids-table__cell) {
+                  &.cdk-table-sticky-border-elem-left {
+                    border-right-style: solid;
+                    border-right-width: var(--ids-comp-table-tbody-td-size-border-width-#{$size});
+                  }
+                  &.cdk-table-sticky-border-elem-right {
+                    border-left-style: solid;
+                    border-left-width: var(--ids-comp-table-tbody-td-size-border-width-#{$size});
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      & > .ids-table__horizontal-scroll {
+        & > table {
+          & > thead {
+            & > tr.ids-table__header-row {
+              & > th.ids-table__header-cell {
+                gap: var(--ids-comp-table-thead-th-size-gap-#{$size});
+                min-height: var(--ids-comp-table-thead-th-size-min-height-#{$size});
+                padding-left: var(--ids-comp-table-thead-th-size-padding-x-#{$size});
+                padding-right: var(--ids-comp-table-thead-th-size-padding-x-#{$size});
+                padding-top: var(--ids-comp-table-thead-th-size-padding-y-#{$size});
+                padding-bottom: var(--ids-comp-table-thead-th-size-padding-y-#{$size});
+
+                font-family: var(--ids-comp-table-thead-th-typography-font-family-#{$size});
+                font-size: var(--ids-comp-table-thead-th-typography-font-size-#{$size});
+                font-weight: var(--ids-comp-table-thead-th-typography-font-weight-#{$size});
+                letter-spacing: var(--ids-comp-table-thead-th-typography-letter-spacing-#{$size});
+                line-height: var(--ids-comp-table-thead-th-typography-line-height-#{$size});
+              }
+            }
+          }
+
+          & > tbody {
+            & > tr.ids-table__row {
+              & > :is(td.ids-table__cell, th.ids-table__cell) {
+                gap: var(--ids-comp-table-tbody-td-size-gap-#{$size});
+                min-height: var(--ids-comp-table-tbody-td-size-min-height-#{$size});
+                padding-left: var(--ids-comp-table-tbody-td-size-padding-x-#{$size});
+                padding-right: var(--ids-comp-table-tbody-td-size-padding-x-#{$size});
+                padding-top: var(--ids-comp-table-tbody-td-size-padding-y-#{$size});
+                padding-bottom: var(--ids-comp-table-tbody-td-size-padding-y-#{$size});
+                font-family: var(--ids-comp-table-tbody-td-typography-td-font-family-#{$size});
+                font-size: var(--ids-comp-table-tbody-td-typography-td-font-size-#{$size});
+                font-weight: var(--ids-comp-table-tbody-td-typography-td-font-weight-default-#{$size});
+                letter-spacing: var(--ids-comp-table-tbody-td-typography-td-letter-spacing-#{$size});
+                line-height: var(--ids-comp-table-tbody-td-typography-td-line-height-#{$size});
+
+                // TODO: label-description cell renderer
+                &.ids-table__cell--label-prominent {
+                  font-weight: var(--ids-comp-table-tbody-td-typography-td-font-weight-prominent-#{$size});
+                }
+                // TODO: label-description cell renderer
+                &.ids-table__cell--label-description {
+                  font-family: var(--ids-comp-table-tbody-td-typography-description-font-family-#{$size});
+                  font-size: var(--ids-comp-table-tbody-td-typography-description-font-size-#{$size});
+                  font-weight: var(--ids-comp-table-tbody-td-typography-description-font-weight-#{$size});
+                  letter-spacing: var(--ids-comp-table-tbody-td-typography-description-letter-spacing-#{$size});
+                  line-height: var(--ids-comp-table-tbody-td-typography-description-line-height-#{$size});
+                }
+
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @each $variant in $variants {
+    &.ids-table-#{$variant} {
+      & > .ids-table__horizontal-scroll {
+        & > table {
+          & > thead {
+            & > tr.ids-table__header-row {
+              background-color: var(--ids-comp-table-thead-tr-color-bg-#{$variant}-default);
+              border-color: var(--ids-comp-table-thead-tr-color-border-#{$variant}-default);
+
+              & > th.ids-table__header-cell {
+                background-color: var(--ids-comp-table-thead-th-color-bg-#{$variant}-default);
+                border-color: var(--ids-comp-table-thead-th-color-border-#{$variant}-default);
+                color: var(--ids-comp-table-thead-th-color-fg-typography-#{$variant}-default);
+              }
+            }
+          }
+
+          & > tbody {
+            & > tr:is(.ids-table__row, .ids-table__detail-row) {
+              &.ids-table__row--surface {
+                @include tableRowVariantByState(surface, default);
+
+                &:hover {
+                  @include tableRowVariantByState(surface, hovered);
+                }
+
+                &:active {
+                  @include tableRowVariantByState(surface, active);
+                }
+              }
+
+              &.ids-table__row--secondary {
+                @include tableRowVariantByState(secondary, default);
+
+                &:hover {
+                  @include tableRowVariantByState(secondary, hovered);
+                }
+
+                &:active {
+                  @include tableRowVariantByState(secondary, active);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  & > .ids-table__horizontal-scroll {
+    & > table {
+      width: 100%;
+      box-sizing: border-box;
+      border-collapse: collapse;
+      border-style: solid;
+      border-width: 0px;
+      background-color: var(--ids-comp-table-color-bg-surface-default);
+      border-color: var(--ids-comp-table-color-border-surface-default);
+      text-indent: 0;
+
+      & > thead {
+        box-sizing: border-box;
+
+        & > tr.ids-table__header-row {
+          box-sizing: border-box;
+
+          & > th.ids-table__header-cell {
+            box-sizing: border-box;
+            text-align: left;
+
+            &.ids-table__header-cell--sortable {
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              justify-content: space-between;
+            }
+            &.ids-table__header-cell--select-all-rows {
+              text-align: center;
+              min-width: 2.5rem;
+              width: 2.5em;
+
+              & > .ids-checkbox {
+                gap: 0;
+              }
+            }
+          }
+        }
+      }
+
+      & > tbody {
+        box-sizing: border-box;
+
+        & > tr.ids-table__row {
+          box-sizing: border-box;
+          background-color: var(--ids-comp-table-tbody-tr-color-bg-surface-default);
+
+          & > :is(td.ids-table__cell, th.ids-table__cell) {
+            box-sizing: border-box;
+            text-align: start;
+            color: var(--ids-comp-table-tbody-td-color-fg-typography-surface-default);
+
+            &.ids-table__cell--row-select, &.ids-table__cell--master-detail-toggle {
+              text-align: center;
+            }
+            &.ids-table__cell--row-select {
+              min-width: 2.5rem;
+              width: 2.5em;
+
+              & > .ids-checkbox {
+                gap: 0;
+              }
+            }
+
+            & > .ids-cell-content__numeric {
+              text-align: end;
+            }
+          }
+        }
+
+        & > tr.ids-table__detail-row {
+          box-sizing: border-box;
+          height: 0px;
+
+          & > :is(td.ids-table__cell, th.ids-table__cell) {
+            box-sizing: border-box;
+            border-bottom-width: 0;
+          }
+
+          &.ids-table__detail-row--expanded {
+            & > :is(td.ids-table__cell, th.ids-table__cell) {
+              border-bottom-width: 1px;
+            }
+          }
+          &:not(.ids-table__detail-row--expanded) {
+            & > :is(td.ids-table__cell, th.ids-table__cell) {
+              padding-bottom: 0px;
+              padding-top: 0px;
+            }
+          }
+        }
+
+        .ids-table__detail-cell--content-wrapper {
+          display: flex;
+          box-sizing: border-box;
+          overflow: hidden;
+        }
+      }
+
+      & > thead > tr.ids-table__header-row > th.ids-table__header-cell,
+      & > tbody > tr.ids-table__row > :is(td.ids-table__cell, th.ids-table__cell) {
+        &.ids-table__cell--master-detail-toggle {
+          min-width: 2.5rem;
+          width: 2.5em;
+          &-expand {
+            padding-left: 8px !important;
+            padding-right: 8px;
+            text-align: center;
+            min-width: unset;
+            max-width: unset;
+            width: unset;
+          }
+        }
+      }
+    }
+  }
+
+  .ids-table__no-rows-to-show {
+    margin: 1.5rem;
+    display: flex;
+    flex: none;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+}
