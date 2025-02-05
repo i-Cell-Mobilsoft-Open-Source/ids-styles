@@ -2,6 +2,34 @@
 $sizes: compact, comfortable, spacious, dense;
 $variants: primary, secondary, surface;
 
+@mixin opaqueStickyCell($variant, $state: default) {
+  // Sticky cells must be fully opaque to non-sticky cells for horizontal scrolling
+  &.cdk-table-sticky {
+    position: relative;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: var(--ids-comp-table-color-bg-surface-default);
+      z-index: -2;
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: var(--ids-comp-table-tbody-tr-color-bg-#{$variant}-#{$state});
+      z-index: -1;
+    }
+  }
+}
+
 @mixin tableRowVariantByState($variant, $state) {
   background-color: var(--ids-comp-table-tbody-tr-color-bg-#{$variant}-#{$state});
   border-color: var(--ids-comp-table-tbody-tr-color-border-#{$variant}-#{$state});
@@ -10,6 +38,8 @@ $variants: primary, secondary, surface;
     background-color: var(--ids-comp-table-tbody-td-color-bg-#{$variant}-default);
     border-color: var(--ids-comp-table-tbody-td-color-border-#{$variant}-default);
     color: var(--ids-comp-table-tbody-td-color-fg-typography-#{$variant}-default);
+
+    @include opaqueStickyCell($variant, $state);
 
     &.ids-table__cell--label-description {
       color: var(--ids-comp-table-tbody-td-color-fg-typography-description-#{$variant}-default);
@@ -50,8 +80,10 @@ $variants: primary, secondary, surface;
           & > table {
             & > tbody {
               & > tr.ids-table__row {
-                border-top-style: solid;
-                border-top-width: var(--ids-comp-table-tbody-tr-size-border-width-#{$size});
+                & > :is(td.ids-table__cell, th.ids-table__cell) {
+                  border-top-style: solid;
+                  border-top-width: var(--ids-comp-table-tbody-tr-size-border-width-#{$size});
+                }
               }
             }
           }
@@ -161,6 +193,8 @@ $variants: primary, secondary, surface;
                 background-color: var(--ids-comp-table-thead-th-color-bg-#{$variant}-default);
                 border-color: var(--ids-comp-table-thead-th-color-border-#{$variant}-default);
                 color: var(--ids-comp-table-thead-th-color-fg-typography-#{$variant}-default);
+
+                @include opaqueStickyCell($variant);
               }
             }
           }
@@ -201,7 +235,8 @@ $variants: primary, secondary, surface;
     & > table {
       width: 100%;
       box-sizing: border-box;
-      border-collapse: collapse;
+      border-collapse: separate;
+      border-spacing: 0px;
       border-style: solid;
       border-width: 0px;
       background-color: var(--ids-comp-table-color-bg-surface-default);
@@ -210,19 +245,30 @@ $variants: primary, secondary, surface;
 
       & > thead {
         box-sizing: border-box;
+        border-width: 0px;
 
         & > tr.ids-table__header-row {
           box-sizing: border-box;
+          border-width: 0px;
 
           & > th.ids-table__header-cell {
             box-sizing: border-box;
+            border-width: 0px;
             text-align: left;
+
+            &.ids-table__header-cell--numeric {
+              text-align: right;
+            }
 
             &.ids-table__header-cell--sortable {
               display: flex;
               flex-direction: row;
               align-items: center;
               justify-content: space-between;
+
+              &.ids-table__header-cell--numeric {
+                justify-content: flex-end;
+              }
             }
             &.ids-table__header-cell--select-all-rows {
               text-align: center;
@@ -239,13 +285,16 @@ $variants: primary, secondary, surface;
 
       & > tbody {
         box-sizing: border-box;
+        border-width: 0px;
 
         & > tr.ids-table__row {
           box-sizing: border-box;
+          border-width: 0px;
           background-color: var(--ids-comp-table-tbody-tr-color-bg-surface-default);
 
           & > :is(td.ids-table__cell, th.ids-table__cell) {
             box-sizing: border-box;
+            border-width: 0px;
             text-align: start;
             color: var(--ids-comp-table-tbody-td-color-fg-typography-surface-default);
 
@@ -274,10 +323,12 @@ $variants: primary, secondary, surface;
 
         & > tr.ids-table__detail-row {
           box-sizing: border-box;
+          border-width: 0px;
           height: 0px;
 
           & > :is(td.ids-table__cell, th.ids-table__cell) {
             box-sizing: border-box;
+            border-width: 0px;
             border-bottom-width: 0;
           }
 
@@ -297,6 +348,7 @@ $variants: primary, secondary, surface;
         .ids-table__detail-cell--content-wrapper {
           display: flex;
           box-sizing: border-box;
+          border-width: 0px;
           overflow: hidden;
         }
       }
