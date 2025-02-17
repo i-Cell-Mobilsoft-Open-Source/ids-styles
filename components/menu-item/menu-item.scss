@@ -1,24 +1,42 @@
 $appearances: 'text', 'filled';
-$variants: 'surface';
+$variants: 'surface', 'light';
 $sizes: 'compact', 'comfortable', 'spacious';
+
+a.ids-menu-item {
+  &:link, &:visited {
+    text-decoration: none;
+  }
+}
 
 .ids-menu-item {
   width: 100%;
+  box-sizing: border-box;
   display: inline-flex;
   flex-shrink: 0;
   align-items: center;
-  justify-content: center;
+
+
+  &.ids-menu-item-no-label {
+    justify-content: space-between;
+  }
 
   .ids-menu-item-label {
+    &--wrapper {
+      display: flex;
+      flex: 1 1 0;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
     overflow: hidden;
     text-overflow: ellipsis;
     font-style: normal;
   }
 
-  &:not(:disabled) {
+  &:not(:is(:disabled, .ids-menu-item-disabled)) {
     cursor: pointer;
   }
-  &:disabled {
+  &:is(:disabled, .ids-menu-item-disabled) {
     cursor: not-allowed;
   }
 
@@ -53,7 +71,7 @@ $sizes: 'compact', 'comfortable', 'spacious';
               border-color: var(--ids-comp-menu-item-#{$appearance}-color-border-#{$variant}-hovered);
             }
 
-            &:disabled {
+            &:is(:disabled, .ids-menu-item-disabled) {
               border-color: var(--ids-comp-menu-item-#{$appearance}-color-border-#{$variant}-disabled);
             }
           }
@@ -63,38 +81,63 @@ $sizes: 'compact', 'comfortable', 'spacious';
   }
 
   @each $appearance in $appearances {
-    &.ids-menu-item-#{$appearance} {
-      @each $variant in $variants {
-        &.ids-menu-item-#{$variant} {
-          color: var(--ids-comp-menu-item-#{$appearance}-color-fg-label-#{$variant}-default);
-          background: var(--ids-comp-menu-item-#{$appearance}-color-bg-#{$variant}-default);
+    @each $variant in $variants {
+      &.ids-menu-item-#{$appearance}.ids-menu-item-#{$variant} {
+        color: var(--ids-comp-menu-item-#{$appearance}-color-fg-label-#{$variant}-default);
+        background: var(--ids-comp-menu-item-#{$appearance}-color-bg-#{$variant}-default);
 
-          &.ids-menu-item-active {
-            color: var(--ids-comp-menu-item-#{$appearance}-color-fg-label-#{$variant}-active);
-            background: var(--ids-comp-menu-item-#{$appearance}-color-bg-#{$variant}-active);
-          }
+        &.ids-menu-item-active {
+          color: var(--ids-comp-menu-item-#{$appearance}-color-fg-label-#{$variant}-active);
+          background: var(--ids-comp-menu-item-#{$appearance}-color-bg-#{$variant}-active);
+        }
 
-          &:hover {
-            color: var(--ids-comp-menu-item-#{$appearance}-color-fg-label-#{$variant}-hovered);
-            background: var(--ids-comp-menu-item-#{$appearance}-color-bg-#{$variant}-hovered);
-          }
+        &:hover {
+          color: var(--ids-comp-menu-item-#{$appearance}-color-fg-label-#{$variant}-hovered);
+          background: var(--ids-comp-menu-item-#{$appearance}-color-bg-#{$variant}-hovered);
+        }
 
-          &:focus,
-          &:focus-visible {
-            color: var(--ids-comp-menu-item-#{$appearance}-color-fg-label-#{$variant}-focused);
-            background: var(--ids-comp-menu-item-#{$appearance}-color-bg-#{$variant}-focused);
-          }
+        &:focus,
+        &:focus-visible {
+          color: var(--ids-comp-menu-item-#{$appearance}-color-fg-label-#{$variant}-focused);
+          background: var(--ids-comp-menu-item-#{$appearance}-color-bg-#{$variant}-focused);
+        }
 
-          &:active {
-            background: var(--ids-comp-menu-item-#{$appearance}-color-bg-#{$variant}-pressed);
-          }
+        &:active {
+          background: var(--ids-comp-menu-item-#{$appearance}-color-bg-#{$variant}-pressed);
+        }
 
-          &:disabled {
-            color: var(--ids-comp-menu-item-#{$appearance}-color-fg-label-#{$variant}-disabled);
-            background: var(--ids-comp-menu-item-#{$appearance}-color-bg-#{$variant}-disabled);
-          }
+        &:is(:disabled, .ids-menu-item-disabled) {
+          color: var(--ids-comp-menu-item-#{$appearance}-color-fg-label-#{$variant}-disabled);
+          background: var(--ids-comp-menu-item-#{$appearance}-color-bg-#{$variant}-disabled);
         }
       }
+    }
+  }
+}
+
+.ids-active-indicator {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  
+  &.ids-active-indicator--active:has(.ids-menu-item):after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+  }
+
+  @each $size in $sizes {
+    &.ids-active-indicator--active:has(.ids-menu-item.ids-menu-item-#{$size}):after {
+      height: var(--ids-comp-menu-item-active-indicator-size-height-#{$size});
+      border-radius: var(--ids-comp-menu-item-active-indicator-size-border-radius-#{$size});
+    }
+  }
+
+  @each $variant in $variants {
+    &.ids-active-indicator--active:has(.ids-menu-item.ids-menu-item-#{$variant}):after {
+      background-color: var(--ids-comp-menu-item-active-indicator-color-bg-#{$variant}-default);
     }
   }
 }
