@@ -5,7 +5,7 @@
   "description": "Stylesheets for i-Cell Design System UI Kit components (currently Vue and Angular)",
   "scripts": {
     "build": "gulp",
-    "watch": "gulp watch",
+    "watch": "npm run build && gulp watch",
     "prepack": "npm run build",
     "prepublish": "npm run build",
     "check-missing-tokens": "npm run build && node scripts/check-missing-tokens.mjs ./dist",
@@ -35,7 +35,7 @@
   },
   "homepage": "https://github.com/i-Cell-Mobilsoft-Open-Source/ids-styles#readme",
   "devDependencies": {
-    "@i-cell/ids-tokens": "0.0.27",
+    "@i-cell/ids-tokens": "0.0.29",
     "commander": "^12.1.0",
     "gulp": "^5.0.0",
     "gulp-prettier": "^6.0.0",
