@@ -121,7 +121,7 @@ a.ids-menu-item {
   justify-content: center;
   position: relative;
   
-  &.ids-active-indicator--active:has(.ids-menu-item):after {
+  &.ids-active-indicator--active:has(.ids-menu-item)::after {
     content: '';
     position: absolute;
     width: 100%;
@@ -129,14 +129,14 @@ a.ids-menu-item {
   }
 
   @each $size in $sizes {
-    &.ids-active-indicator--active:has(.ids-menu-item.ids-menu-item-#{$size}):after {
+    &.ids-active-indicator--active:has(.ids-menu-item.ids-menu-item-#{$size})::after {
       height: var(--ids-comp-menu-item-active-indicator-size-height-#{$size});
       border-radius: var(--ids-comp-menu-item-active-indicator-size-border-radius-#{$size});
     }
   }
 
   @each $variant in $variants {
-    &.ids-active-indicator--active:has(.ids-menu-item.ids-menu-item-#{$variant}):after {
+    &.ids-active-indicator--active:has(.ids-menu-item.ids-menu-item-#{$variant})::after {
       background-color: var(--ids-comp-menu-item-active-indicator-color-bg-#{$variant}-default);
     }
   }
