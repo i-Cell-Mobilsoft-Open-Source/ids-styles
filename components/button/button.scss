@@ -1,4 +1,5 @@
 @use 'sass:list';
+@use '../reset';
 
 $appearances: filled, outlined, text;
 $sizes: compact, comfortable, spacious, dense;
@@ -27,6 +28,7 @@ $variants: primary, secondary, brand, error, success, warning, light, light-fixe
 }
 
 .ids-button {
+  @include reset.component;
   flex-shrink: 0;
   width: fit-content;
   align-items: center;

@@ -1,3 +1,5 @@
+@use '../reset';
+
 $sizes: compact, comfortable, spacious, dense;
 $containerVariants: surface, light;
 $buttonVariants: primary, surface, light;
@@ -14,6 +16,7 @@ $appearances: filled, outlined;
 }
 
 .ids-segmented-control-toggle {
+  @include reset.component;
   display: inline-flex;
   flex-direction: row;
   flex-wrap: nowrap;

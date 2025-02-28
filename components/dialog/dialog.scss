@@ -1,7 +1,10 @@
+@use '../reset';
+
 $sizes: compact, comfortable, spacious, dense;
 
 .ids-dialog {
-  box-sizing: border-box;
+  @include reset.component;
+  padding: 0;
   border-style: solid;
   border-color: var(--ids-comp-dialog-container-color-border-surface-default);
   background-color: var(--ids-comp-dialog-container-color-bg-default);
@@ -18,7 +21,6 @@ $sizes: compact, comfortable, spacious, dense;
   }
 
   .ids-dialog-container {
-    box-sizing: border-box;
     display: grid;
     grid-template-rows: auto 1fr auto;
     position: relative;
@@ -139,6 +141,7 @@ $sizes: compact, comfortable, spacious, dense;
 
         .ids-dialog-actions {
           padding: var(--ids-comp-dialog-footer-padding-y-#{$size}) var(--ids-comp-dialog-footer-padding-x-#{$size});
+          gap: var(--ids-comp-dialog-footer-gap-#{$size});
         }
       }
     }

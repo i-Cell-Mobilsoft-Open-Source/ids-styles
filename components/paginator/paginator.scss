@@ -1,3 +1,5 @@
+@use '../reset';
+
 $pageButtonAppearances: plain;
 $sizes: compact, comfortable, spacious, dense;
 $variants: primary, secondary, light, surface;
@@ -12,6 +14,7 @@ $variants: primary, secondary, light, surface;
 }
 
 .ids-paginator {
+  @include reset.component;
   display: inline-flex;
 
   .ids-paginator__navigation-container {

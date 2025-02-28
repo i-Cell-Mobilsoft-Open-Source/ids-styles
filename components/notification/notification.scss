@@ -1,8 +1,12 @@
+@use '../reset';
+
 $sizes: compact, comfortable, spacious, dense;
 $variants: error, success, warning, light, dark, surface, info;
 $appearances: filled, outlined;
 
 .ids-notification {
+  @include reset.component;
+
   & > .ids-notification__content-wrapper {
     display: flex;
     justify-content: space-between;

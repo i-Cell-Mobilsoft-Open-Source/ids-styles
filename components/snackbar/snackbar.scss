@@ -1,7 +1,10 @@
+@use '../reset';
+
 $sizes: compact, comfortable, spacious, dense;
 $variants: dark, info, success, error, warning;
 
 .ids-snackbar-group {
+  @include reset.component;
   display: flex;
 
   &.ids-snackbar-group-position {

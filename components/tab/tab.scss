@@ -1,3 +1,5 @@
+@use '../reset';
+
 $sizes: compact, comfortable, spacious, dense;
 $variants: surface, light, primary;
 
@@ -10,12 +12,13 @@ $variants: surface, light, primary;
     color: var(--ids-comp-tab-item-standard-#{$selected}-fg-icon-#{$variant}-#{$state});
   }
 
-  & > .ids-tab__indicator {
-    color: var(--ids-comp-tab-item-standard-active-indicator-bg-#{$variant}-#{$state});
+  & > .ids-tab__indicator > .ids-tab__line {
+    border-color: var(--ids-comp-tab-item-standard-active-indicator-bg-#{$variant}-#{$state});
   }
 }
 
 .ids-tab-group {
+  @include reset.component;
   display: flex;
   
   .ids-tab-group__container {
@@ -35,7 +38,6 @@ $variants: surface, light, primary;
 
     .ids-tab__line {
       position: relative;
-      box-sizing: border-box;
       opacity: 0;
     }
   }
@@ -169,15 +171,15 @@ $variants: surface, light, primary;
     }
   }
 
-  .ids-tab-group__container {
-    .ids-tab-group__header {
+  & > .ids-tab-group__container {
+    & > .ids-tab-group__header {
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      list-style-type: none;
+      list-style: none;
       margin: 0;
 
-      .ids-tab {
+      & > .ids-tab {
         display: flex;
         align-items: center;
         cursor: pointer;
@@ -215,36 +217,40 @@ $variants: surface, light, primary;
 
       &.ids-tab-group-horizontal {
         &.ids-tab-group-indicator-bottom {
-          border-bottom-width: var(--ids-comp-tab-item-active-indicator-size-width-#{$size});
-
-          .ids-tab__indicator {
-            bottom: calc(
-              0px - calc(
-                  var(--ids-comp-tab-item-active-indicator-size-width-#{$size}) + var(--ids-comp-tab-item-size-border-width-#{$size})
-                )
-            );
-
-            .ids-tab__line {
-              border-bottom-width: var(--ids-comp-tab-item-active-indicator-size-width-#{$size});
+          & > .ids-tab-group__container {
+            border-bottom-width: var(--ids-comp-tab-item-active-indicator-size-width-#{$size});
+  
+            .ids-tab__indicator {
+              bottom: calc(
+                0px - calc(
+                    var(--ids-comp-tab-item-active-indicator-size-width-#{$size}) + var(--ids-comp-tab-item-size-border-width-#{$size})
+                  )
+              );
+  
+              .ids-tab__line {
+                border-bottom-width: var(--ids-comp-tab-item-active-indicator-size-width-#{$size});
+              }
             }
           }
         }
 
         &.ids-tab-group-indicator-top {
-          border-top-width: var(--ids-comp-tab-item-active-indicator-size-width-#{$size});
-
-          .ids-tab__indicator {
-            top: calc(
-              0px - calc(
-                  var(--ids-comp-tab-item-active-indicator-size-width-#{$size}) + var(--ids-comp-tab-item-size-border-width-#{$size})
-                )
-            );
-
-            .ids-tab__line {
-              border-top-width: var(--ids-comp-tab-item-active-indicator-size-width-#{$size});
+          & > .ids-tab-group__container {
+            border-top-width: var(--ids-comp-tab-item-active-indicator-size-width-#{$size});
+  
+            .ids-tab__indicator {
+              top: calc(
+                0px - calc(
+                    var(--ids-comp-tab-item-active-indicator-size-width-#{$size}) + var(--ids-comp-tab-item-size-border-width-#{$size})
+                  )
+              );
+  
+              .ids-tab__line {
+                border-top-width: var(--ids-comp-tab-item-active-indicator-size-width-#{$size});
+              }
             }
           }
-        }
+          }
       }
 
       &.ids-tab-group-vertical {

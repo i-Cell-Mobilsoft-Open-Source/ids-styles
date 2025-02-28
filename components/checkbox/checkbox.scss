@@ -1,3 +1,5 @@
+@use '../reset';
+
 $sizes: compact, comfortable, spacious, dense;
 $variants: light, dark, surface;
 
@@ -76,6 +78,7 @@ $variants: light, dark, surface;
 }
 
 .ids-checkbox {
+  @include reset.component;
   display: inline-flex;
   align-self: stretch;
   align-items: flex-start;

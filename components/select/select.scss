@@ -1,3 +1,5 @@
+@use '../reset';
+
 $sizes: compact, comfortable, spacious, dense;
 $variants: surface, light;
 
@@ -8,6 +10,7 @@ $variants: surface, light;
 }
 
 .ids-select {
+  @include reset.component;
   width: 100%;
 
   &:focus,

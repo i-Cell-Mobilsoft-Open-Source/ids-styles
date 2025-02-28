@@ -1,8 +1,11 @@
+@use '../reset';
+
 $orientations: horizontal, vertical;
 $sizes: compact, comfortable, spacious, dense;
 $variants: primary, secondary, brand, error, success, warning, light, dark, surface;
 
 .ids-divider {
+  @include reset.component;
   display: flex;
   align-items: center;
   justify-content: center;

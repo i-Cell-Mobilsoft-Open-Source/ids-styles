@@ -1,6 +1,8 @@
+@use '../reset';
+
 $appearances: 'text', 'filled';
 $variants: 'surface', 'light';
-$sizes: 'compact', 'comfortable', 'spacious';
+$sizes: 'compact', 'comfortable', 'spacious', 'dense';
 
 a.ids-menu-item {
   &:link, &:visited {
@@ -9,6 +11,7 @@ a.ids-menu-item {
 }
 
 .ids-menu-item {
+  @include reset.component;
   width: 100%;
   box-sizing: border-box;
   display: inline-flex;
@@ -46,11 +49,16 @@ a.ids-menu-item {
       border-radius: var(--ids-comp-menu-item-size-border-radius-#{$size});
       padding: var(--ids-comp-menu-item-size-padding-y-#{$size}) var(--ids-comp-menu-item-size-padding-x-#{$size});
       height: var(--ids-comp-menu-item-size-height-#{$size});
-      font-family: var(--ids-comp-menu-item-label-typography-font-family-#{$size});
-      font-size: var(--ids-comp-menu-item-label-typography-font-size-#{$size});
-      font-weight: var(--ids-comp-menu-item-label-typography-font-weight-#{$size});
-      letter-spacing: var(--ids-comp-menu-item-label-typography-letter-spacing-#{$size});
-      line-height: var(--ids-comp-menu-item-label-typography-line-height-#{$size});
+
+      & > .ids-menu-item-label--wrapper {
+        & > .ids-menu-item-label {
+          font-family: var(--ids-comp-menu-item-label-typography-font-family-#{$size});
+          font-size: var(--ids-comp-menu-item-label-typography-font-size-#{$size});
+          font-weight: var(--ids-comp-menu-item-label-typography-font-weight-#{$size});
+          letter-spacing: var(--ids-comp-menu-item-label-typography-letter-spacing-#{$size});
+          line-height: var(--ids-comp-menu-item-label-typography-line-height-#{$size});
+        }
+      }
 
       .ids-icon {
         width: var(--ids-comp-menu-item-size-icon-#{$size});

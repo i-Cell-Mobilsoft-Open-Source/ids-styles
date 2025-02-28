@@ -1,0 +1,15 @@
+@mixin base {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: none;
+  border-color: transparent;
+}
+
+@mixin component {
+  @include base;
+  line-height: 1.5;
+
+  &::before, &::after, & *, & ::before, & ::after {
+    @include base;
+  }
+}

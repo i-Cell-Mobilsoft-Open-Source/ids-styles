@@ -1,3 +1,5 @@
+@use '../reset';
+
 $sizes: compact, comfortable, spacious, dense;
 $variants: surface, light, dark;
 
@@ -78,6 +80,7 @@ $variants: surface, light, dark;
 }
 
 .ids-radio-group {
+  @include reset.component;
   display: inline-flex;
   align-items: flex-start;
   justify-content: start;

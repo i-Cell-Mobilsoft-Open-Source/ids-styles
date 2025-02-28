@@ -1,3 +1,5 @@
+@use '../reset';
+
 $sizes: compact, comfortable, spacious, dense;
 $variants: primary, surface, light;
 $appearances: outlined;
@@ -13,6 +15,7 @@ $appearances: outlined;
 }
 
 .ids-segmented-control {
+  @include reset.component;
   display: inline-flex;
   flex-direction: row;
   flex-wrap: nowrap;
