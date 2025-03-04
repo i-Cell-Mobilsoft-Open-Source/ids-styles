@@ -1,3 +1,5 @@
+@use '../reset';
+
 $appearances: filled, outlined;
 $sizes: compact, comfortable, spacious, dense;
 $variants: primary, secondary, brand, error, success, warning, light, dark, surface;
@@ -17,6 +19,7 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
 }
 
 .ids-tag {
+  @include reset.component;
   display: inline-flex;
   align-items: center;
   justify-content: center;

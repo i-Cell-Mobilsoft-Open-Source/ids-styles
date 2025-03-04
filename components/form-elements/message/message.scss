@@ -1,7 +1,10 @@
+@use '../../reset';
+
 $sizes: compact, comfortable, spacious, dense;
 $variants: light, dark, surface;
 
 .ids-message {
+  @include reset.component;
   display: flex;
   justify-content: flex-start;
   align-items: center;

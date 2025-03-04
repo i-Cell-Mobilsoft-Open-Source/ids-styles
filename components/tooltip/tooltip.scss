@@ -1,7 +1,10 @@
+@use '../reset';
+
 $sizes: compact, comfortable, spacious, dense;
 $variants: light, dark;
 
 .ids-tooltip {
+  @include reset.component;
   display: block;
 
   & > .ids-tooltip__content {

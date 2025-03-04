@@ -1,6 +1,9 @@
+@use '../reset';
+
 $sizes: compact, comfortable, spacious, dense;
 
 .ids-button-group {
+  @include reset.component;
   display: inline-flex;
   align-items: flex-start;
   align-content: flex-start;

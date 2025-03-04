@@ -1,3 +1,5 @@
+@use '../reset';
+
 // $appearances: plain, line-division, zebra;
 $sizes: compact, comfortable, spacious, dense;
 $variants: primary, secondary, surface;
@@ -53,8 +55,8 @@ $variants: primary, secondary, surface;
 }
 
 .ids-table {
+  @include reset.component;
   position: relative;
-  box-sizing: border-box;
   display: block;
   max-width: 100%;
 

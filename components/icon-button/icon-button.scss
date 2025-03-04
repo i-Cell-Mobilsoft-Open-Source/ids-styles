@@ -1,4 +1,5 @@
 @use 'sass:list';
+@use '../reset';
 
 $appearances: filled, outlined, standard;
 $sizes: compact, comfortable, spacious, dense;
@@ -22,6 +23,7 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
 }
 
 .ids-icon-button {
+  @include reset.component;
   padding: 0px;
   display: flex;
   flex-shrink: 0;

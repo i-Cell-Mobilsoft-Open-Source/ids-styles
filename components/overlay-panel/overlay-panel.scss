@@ -1,8 +1,11 @@
+@use '../reset';
+
 $appearances: filled, outlined, elevated;
 $sizes: compact, comfortable, spacious, dense;
 $variants: light, surface;
 
 .ids-overlay-panel {
+  @include reset.component;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

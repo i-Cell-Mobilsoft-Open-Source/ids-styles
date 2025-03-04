@@ -1,8 +1,11 @@
+@use '../reset';
+
 $sizes: compact, comfortable, spacious, dense;
 $sizeCollections: smallcollection, bigcollection;
 $variants: primary, secondary, light, dark, error, success, warning, brand, surface;
 
 .ids-icon {
+  @include reset.component;
   font-family: 'IDS Icons';
   display: inline-flex;
   text-transform: none;
