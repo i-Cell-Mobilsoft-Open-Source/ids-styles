@@ -9,6 +9,7 @@ $appearances: outlined;
   color: var(--ids-comp-segmented-control-button-#{$appearance}-color-fg-label-#{$variant}-#{$state});
   border-color: var(--ids-comp-segmented-control-button-#{$appearance}-color-border-#{$variant}-#{$state});
 
+
   .ids-icon {
     color: var(--ids-comp-segmented-control-button-#{$appearance}-color-fg-icon-#{$variant}-#{$state});
   }
@@ -64,6 +65,7 @@ $appearances: outlined;
           font-weight: var(--ids-comp-segmented-control-button-typography-font-weight-#{$size});
           letter-spacing: var(--ids-comp-segmented-control-button-typography-letter-spacing-#{$size});
           line-height: var(--ids-comp-segmented-control-button-typography-line-height-#{$size});
+          min-height: var(--ids-comp-segmented-control-button-size-min-height-#{$size});
 
           &:focus,
           &:focus-visible {

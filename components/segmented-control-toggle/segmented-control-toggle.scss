@@ -70,6 +70,7 @@ $appearances: filled, outlined;
           font-weight: var(--ids-comp-segmented-control-toggle-button-typography-font-weight-#{$size});
           letter-spacing: var(--ids-comp-segmented-control-toggle-button-typography-letter-spacing-#{$size});
           line-height: var(--ids-comp-segmented-control-toggle-button-typography-line-height-#{$size});
+          min-height: var(--ids-comp-segmented-control-toggle-button-size-min-height-#{$size});
 
           &:focus,
           &:focus-visible {
