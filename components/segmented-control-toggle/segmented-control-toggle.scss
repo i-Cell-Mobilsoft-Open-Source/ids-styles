@@ -9,7 +9,6 @@ $appearances: filled, outlined;
   background-color: var(--ids-comp-segmented-control-toggle-button-#{$appearance}-color-bg-#{$buttonVariant}-#{$state});
   color: var(--ids-comp-segmented-control-toggle-button-#{$appearance}-color-fg-label-#{$buttonVariant}-#{$state});
   border-color: var(--ids-comp-segmented-control-toggle-button-#{$appearance}-color-border-#{$buttonVariant}-#{$state});
-  min-height: var(--ids-comp-segmented-control-toggle-button-size-min-height-#{$sizes});
 
   .ids-icon {
     color: var(--ids-comp-segmented-control-toggle-button-#{$appearance}-color-fg-icon-#{$buttonVariant}-#{$state});
@@ -71,6 +70,7 @@ $appearances: filled, outlined;
           font-weight: var(--ids-comp-segmented-control-toggle-button-typography-font-weight-#{$size});
           letter-spacing: var(--ids-comp-segmented-control-toggle-button-typography-letter-spacing-#{$size});
           line-height: var(--ids-comp-segmented-control-toggle-button-typography-line-height-#{$size});
+          min-height: var(--ids-comp-segmented-control-toggle-button-size-min-height-#{$size});
 
           &:focus,
           &:focus-visible {
