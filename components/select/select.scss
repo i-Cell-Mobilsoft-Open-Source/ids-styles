@@ -92,8 +92,12 @@ $variants: surface, light;
   }
 }
 
-.ids-form-field > .ids-form-field__field-wrapper:has(.ids-select) {
+.ids-form-field:not(.ids-form-field-disabled) > .ids-form-field__field-wrapper:has(.ids-select) {
   cursor: pointer;
+}
+.ids-form-field.ids-form-field-disabled > .ids-form-field__field-wrapper:has(.ids-select) {
+  cursor: default;
+  pointer-events: none;
 }
 
 @each $variant in $variants {
