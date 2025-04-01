@@ -1,0 +1,49 @@
+$sizes: compact, comfortable, spacious, dense;
+$sizeCollections: smallcollection, bigcollection;
+$variants: primary, secondary, surface, light, brand, error, success, warning;
+
+.ids-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @each $sizeCollection in $sizeCollections {
+    @each $size in $sizes {
+      &.ids-spinner-#{$sizeCollection}-#{$size} {
+        width: var(--ids-comp-spinner-#{$sizeCollection}-size-width-#{$size});
+        height: var(--ids-comp-spinner-#{$sizeCollection}-size-height-#{$size});
+      }
+    }
+  }
+
+  @each $variant in $variants {
+    &.ids-spinner-#{$variant} {
+      & > .ids-spinner__body {
+
+        & > .ids-spinner__active-indicator {
+          fill: var(--ids-comp-spinner-active-indicator-bg-#{$variant}-default);
+        }
+
+        & > .ids-spinner__track {
+          fill: var(--ids-comp-spinner-track-bg-#{$variant}-default);
+        }
+      }
+    }
+  }
+
+  .rotate-center {
+    animation: rotate-center 0.9s ease-in-out infinite both;
+    transform-origin: center;
+  }
+
+}
+
+@keyframes rotate-center {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
