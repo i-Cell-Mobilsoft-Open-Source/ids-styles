@@ -99,7 +99,7 @@ $sizes: compact, comfortable, spacious, dense;
       }
 
       .ids-dialog-container {
-        width: var(--ids-comp-dialog-container-size-width-#{$size});
+        max-width: var(--ids-comp-dialog-container-size-width-#{$size});
         min-height: var(--ids-comp-dialog-container-size-min-height-#{$size});
         padding: var(--ids-comp-dialog-container-size-padding-y-#{$size}) var(--ids-comp-dialog-container-size-padding-x-#{$size});
         gap: var(--ids-comp-dialog-container-size-gap-#{$size});
