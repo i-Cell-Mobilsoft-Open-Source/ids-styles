@@ -1,0 +1,186 @@
+@use '../reset';
+
+$sizes: compact, comfortable, spacious, dense;
+$variants: surface;
+
+@mixin calendarButtonState($tokenPrefix, $variant, $state) {
+  color: var(#{$tokenPrefix}-color-fg-#{$variant}-#{$state});
+  background-color: var(#{$tokenPrefix}-color-bg-#{$variant}-#{$state});
+  border-color: var(#{$tokenPrefix}-color-border-#{$variant}-#{$state});
+}
+
+@mixin calendarButtonVariant($variant, $selected, $subcomponent: null) {
+  $tokenPrefix: '--ids-comp-date-picker-calendar-button-' + $selected;
+
+  @if $subcomponent != null {
+    $tokenPrefix: $tokenPrefix + '-' + $subcomponent;
+  }
+
+  @include calendarButtonState($tokenPrefix, $variant, default);
+
+  &:hover {
+    @include calendarButtonState($tokenPrefix, $variant, hovered);
+  }
+  &:active {
+    @include calendarButtonState($tokenPrefix, $variant, pressed);
+  }
+  &:disabled {
+    @include calendarButtonState($tokenPrefix, $variant, disabled);
+  }
+}
+
+.ids-calendar {
+  @include reset.component;
+}
+
+.ids-calendar {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-width: 1px;
+  border-style: solid;
+  border-color: lightgrey;
+
+  & > .ids-calendar__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .ids-calendar-cell {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    & > .ids-calendar-button {
+      cursor: pointer;
+      outline-style: none;
+
+      &.ids-calendar-button-selected {
+        cursor: default;
+        pointer-events: none;
+      }
+      &.ids-calendar-button-today {
+        border-style: solid;
+      }
+
+      &:is(:focus, :focus-visible) {
+        outline-style: solid;
+        outline-offset: 2px;
+      }
+
+      &:disabled {
+        cursor: default;
+      }
+    }
+  }
+
+  @each $size in $sizes {
+    &.ids-calendar-#{$size} {
+      gap: var(--ids-comp-date-picker-size-gap-#{$size});
+      padding: var(--ids-comp-date-picker-size-padding-y-#{$size}) var(--ids-comp-date-picker-size-padding-x-#{$size});
+
+      .ids-calendar-grid {
+        column-gap: var(--ids-comp-date-picker-calendar-size-column-gap-#{$size});
+        row-gap: var(--ids-comp-date-picker-calendar-size-row-gap-#{$size});
+        padding: var(--ids-comp-date-picker-calendar-size-padding-y-#{$size}) var(--ids-comp-date-picker-calendar-size-padding-x-#{$size});
+      }
+
+      .ids-calendar-cell {
+        border-radius: var(--ids-comp-date-picker-calendar-cell-size-border-radius-#{$size});
+        border-width: var(--ids-comp-date-picker-calendar-cell-size-border-width-#{$size});
+        min-height: var(--ids-comp-date-picker-calendar-cell-size-min-height-#{$size});
+        min-width: var(--ids-comp-date-picker-calendar-cell-size-min-width-#{$size});
+        padding: var(--ids-comp-date-picker-calendar-cell-size-padding-y-#{$size}) var(--ids-comp-date-picker-calendar-cell-size-padding-x-#{$size});
+
+        & > .ids-calendar-weekday-label {
+          font-family: var(--ids-comp-date-picker-calendar-days-typography-font-family-#{$size});
+          font-size: var(--ids-comp-date-picker-calendar-days-typography-font-size-#{$size});
+          font-weight: var(--ids-comp-date-picker-calendar-days-typography-font-weight-#{$size});
+          letter-spacing: var(--ids-comp-date-picker-calendar-days-typography-letter-spacing-#{$size});
+          line-height: var(--ids-comp-date-picker-calendar-days-typography-line-height-#{$size});
+        }
+
+        & > .ids-calendar-button {
+          border-width: var(--ids-comp-date-picker-calendar-button-size-border-width-#{$size});
+          border-radius: var(--ids-comp-date-picker-calendar-button-size-border-radius-#{$size});
+          min-width: var(--ids-comp-date-picker-calendar-button-size-min-width-#{$size});
+          height: var(--ids-comp-date-picker-calendar-button-size-height-#{$size});
+          padding-left: var(--ids-comp-date-picker-calendar-button-size-padding-x-#{$size});
+          padding-right: var(--ids-comp-date-picker-calendar-button-size-padding-x-#{$size});
+
+          font-family: var(--ids-comp-date-picker-calendar-button-typography-font-family-#{$size});
+          font-size: var(--ids-comp-date-picker-calendar-button-typography-font-size-#{$size});
+          font-weight: var(--ids-comp-date-picker-calendar-button-typography-font-weight-#{$size});
+          letter-spacing: var(--ids-comp-date-picker-calendar-button-typography-letter-spacing-#{$size});
+          line-height: var(--ids-comp-date-picker-calendar-button-typography-line-height-#{$size});
+
+          &:is(:focus, :focus-visible) {
+            outline-width: var(--ids-comp-date-picker-focused-outline-size-outline-#{$size});
+          }
+        }
+      }
+    }
+  }
+
+  @each $variant in $variants {
+    &.ids-calendar-#{$variant} {
+      .ids-calendar-cell {
+        background-color: var(--ids-comp-date-picker-cell-unselected-color-bg-#{$variant}-default);
+        border-color: var(--ids-comp-date-picker-cell-unselected-color-border-#{$variant}-default);
+
+        &.ids-calendar-cell-selected {
+          background-color: var(--ids-comp-date-picker-cell-selected-color-bg-#{$variant}-default);
+          border-color: var(--ids-comp-date-picker-cell-selected-color-border-#{$variant}-default);
+        }
+
+        & > .ids-calendar-weekday-label {
+          color: var(--ids-comp-date-picker-calendar-days-color-fg-#{$variant}-default);
+          background-color: var(--ids-comp-date-picker-calendar-days-color-bg-#{$variant}-default);
+          border-color: var(--ids-comp-date-picker-calendar-days-color-border-#{$variant}-default);
+        }
+
+        & > .ids-calendar-button {
+          @include calendarButtonVariant($variant, unselected);
+
+          &.ids-calendar-button-today {
+            @include calendarButtonVariant($variant, unselected, current-date);
+          }
+          &.ids-calendar-button-selected {
+            @include calendarButtonVariant($variant, selected);
+          }
+          &:is(:focus, :focus-visible) {
+            outline-color: var(--ids-comp-date-picker-focused-outline-color-dark);
+          }
+        }
+      }
+    }
+  }
+}
+
+.ids-year-selector {
+  & > .ids-year-selector__years-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    justify-items: center;
+  }
+}
+
+.ids-month-selector {
+  & > .ids-month-selector__months-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    justify-items: center;
+  }
+}
+
+.ids-day-selector {
+  & > .ids-day-selector__days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+  }
+}
