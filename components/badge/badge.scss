@@ -23,7 +23,6 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
   .ids-badge-#{$variant} {
 
     & > .ids-badge__container, .ids-badge__container-no-element  {
-      border-radius: 12px;
       white-space: nowrap;
       background-color: var(--ids-comp-badge-filled-color-bg-#{$variant}-default);
       border-color: var(--ids-comp-badge-filled-color-border-#{$variant}-default);
@@ -40,6 +39,7 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
     .ids-badge-#{$size} {
 
       & > .ids-badge__container {
+        border-radius: var(--ids-comp-badge-size-border-radius-#{$size});
         padding: var(--ids-comp-badge-size-padding-y-#{$size}) var(--ids-comp-badge-size-padding-x-#{$size});
         font-size: var(--ids-comp-badge-icon-typography-font-size-#{$size});
         font-weight: var(--ids-comp-badge-icon-typography-font-weight-#{$size});
@@ -49,6 +49,7 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
       }
 
       & > .ids-badge__container-no-element {
+          border-radius: var(--ids-comp-badge-noelement-size-border-radius-#{$size});
           min-width: var(--ids-comp-badge-noelement-size-width-#{$size});
           height: var(--ids-comp-badge-noelement-size-height-#{$size});
       }
