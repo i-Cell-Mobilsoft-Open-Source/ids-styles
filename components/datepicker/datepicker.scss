@@ -58,10 +58,6 @@ $variants: surface;
       cursor: pointer;
       outline-style: none;
 
-      &.ids-calendar-button-selected {
-        cursor: default;
-        pointer-events: none;
-      }
       &.ids-calendar-button-today {
         border-style: solid;
       }
