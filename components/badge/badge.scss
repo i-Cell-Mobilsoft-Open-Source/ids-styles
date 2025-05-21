@@ -1,5 +1,11 @@
+@use '../reset';
+
 $sizes: compact, comfortable, spacious, dense;
 $variants: primary, secondary, brand, error, success, warning, light, dark, surface;
+
+.ids-badge {
+  @include reset.component;
+}
 
 .ids-badge {
   display: inline-flex;
