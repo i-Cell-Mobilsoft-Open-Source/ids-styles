@@ -248,7 +248,7 @@ $variants: surface, light;
           &:hover {
             @include fieldWrapperVariant($variant, hovered);
           }
-          &:has(.iids-form-field-control:focus) {
+          &:has(.ids-form-field-control:focus) {
             @include fieldWrapperVariant($variant, focused);
           }
           &:has(.ids-form-field-control:active) {
