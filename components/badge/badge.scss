@@ -1,0 +1,80 @@
+@use '../reset';
+
+$sizes: compact, comfortable, spacious, dense;
+$variants: primary, secondary, brand, error, success, warning, light, dark, surface;
+
+.ids-badge {
+  @include reset.component;
+}
+
+.ids-badge {
+  display: inline-flex;
+  position: relative;
+
+  .ids-badge__container, .ids-badge__container-no-element {
+    white-space: nowrap;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    transform: translate(0, -50%);
+    transform-origin: top left;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+  }
+}
+
+
+@each $variant in $variants {
+  .ids-badge-#{$variant} {
+
+    & > .ids-badge__container, .ids-badge__container-no-element  {
+      background-color: var(--ids-comp-badge-filled-color-bg-#{$variant}-default);
+      border-color: var(--ids-comp-badge-filled-color-border-#{$variant}-default);
+      color: var(--ids-comp-badge-filled-color-fg-label-#{$variant}-default);
+
+      & > .ids-icon {
+        color: var(--ids-comp-badge-filled-color-fg-icon-#{$variant}-default);
+      }
+    }
+  }
+}
+
+@each $size in $sizes {
+    .ids-badge-#{$size} {
+
+      & > .ids-badge__container {
+        border-radius: var(--ids-comp-badge-size-border-radius-#{$size});
+        border-width: var(--ids-comp-badge-size-border-width-#{$size});
+        padding: var(--ids-comp-badge-size-padding-y-#{$size}) var(--ids-comp-badge-size-padding-x-#{$size});
+        height: var(--ids-comp-badge-size-height-#{$size});
+        min-width: var(--ids-comp-badge-size-min-width-#{$size});
+        gap: var(--ids-comp-badge-size-gap-#{$size});
+
+        & > .ids-badge__label {
+          font-family: var(--ids-comp-badge-label-typography-font-family-#{$size});
+          font-size: var(--ids-comp-badge-label-typography-font-size-#{$size});
+          font-weight: var(--ids-comp-badge-label-typography-font-weight-#{$size});
+          letter-spacing: var(--ids-comp-badge-label-typography-letter-spacing-#{$size});
+          line-height: var(--ids-comp-badge-label-typography-line-height-#{$size});
+        }
+
+        & > .ids-icon {
+          font-size: var(--ids-comp-badge-icon-typography-font-size-#{$size});
+          font-weight: var(--ids-comp-badge-icon-typography-font-weight-#{$size});
+          line-height: var(--ids-comp-badge-icon-typography-line-height-#{$size});
+          width: var(--ids-comp-badge-size-icon-#{$size});
+          height: var(--ids-comp-badge-size-icon-#{$size});
+        }
+      }
+
+      & > .ids-badge__container-no-element {
+          border-radius: var(--ids-comp-badge-noelement-size-border-radius-#{$size});
+          border-width: var(--ids-comp-badge-noelement-size-border-width-#{$size});
+          min-width: var(--ids-comp-badge-noelement-size-width-#{$size});
+          height: var(--ids-comp-badge-noelement-size-height-#{$size});
+      }
+    }
+}
+
