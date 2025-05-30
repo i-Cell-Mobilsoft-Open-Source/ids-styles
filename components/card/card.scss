@@ -23,8 +23,10 @@ $orientations: horizontal, vertical;
 
 .ids-card {
   @include reset.component;
+}
+
+.ids-card {
   display: flex;
-  border-style: solid;
   box-sizing: border-box;
 
   &.ids-card-clickable {
@@ -133,6 +135,7 @@ $orientations: horizontal, vertical;
           border-radius: var(--ids-comp-card-container-#{$orientation}-size-border-radius-#{$size});
 
           &.ids-card-outlined {
+            border-style: solid;
             border-width: var(--ids-comp-card-container-#{$orientation}-size-border-width-#{$size});
           }
         }
