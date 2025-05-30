@@ -81,6 +81,9 @@ $variants: surface, light, dark;
 
 .ids-radio-group {
   @include reset.component;
+}
+
+.ids-radio-group {
   display: inline-flex;
   align-items: flex-start;
   justify-content: start;
@@ -213,7 +216,7 @@ $variants: surface, light, dark;
         gap: var(--ids-comp-radio-group-vertical-container-size-gap-#{$size});
       }
 
-      & > .ids-radio {
+      .ids-radio {
         padding: var(--ids-comp-radio-button-container-size-padding-y-#{$size})
           var(--ids-comp-radio-button-container-size-padding-x-#{$size});
         gap: var(--ids-comp-radio-button-container-size-gap-#{$size});
