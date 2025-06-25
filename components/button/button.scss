@@ -103,11 +103,8 @@ $variants: primary, secondary, brand, error, success, warning, light, light-fixe
         &:active {
           @include buttonAppearanceAndVariant($appearance, $variant, pressed);
         }
-        // The following variants do not have a disabled state
-        @if list.index(error success warning, $variant) == null {
-          &:disabled {
-            @include buttonAppearanceAndVariant($appearance, $variant, disabled);
-          }
+        &:disabled {
+          @include buttonAppearanceAndVariant($appearance, $variant, disabled);
         }
       }
     }
