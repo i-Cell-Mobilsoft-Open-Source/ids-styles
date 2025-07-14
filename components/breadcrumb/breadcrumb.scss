@@ -10,9 +10,11 @@ $states: default, hover, active, focus, disabled;
 
 .ids-breadcrumb {
   @include reset.component;
+}
+
+.ids-breadcrumb {
   display: block;
 
-  
   &-divider {
     display: flex;
     align-items: center;
@@ -73,9 +75,7 @@ $states: default, hover, active, focus, disabled;
                  var(--ids-comp-breadcrumb-navigation-link-size-padding-x-#{$size});
         max-width: var(--ids-comp-breadcrumb-navigation-link-size-max-width-#{$size});
         border-radius: var(--ids-comp-breadcrumb-navigation-link-size-border-radius-#{$size});
-      }
 
-      .ids-breadcrumb-link {
         &:focus,
         &:focus-visible {
           outline-width: var(--ids-comp-breadcrumb-focused-outline-size-outline-#{$size});
