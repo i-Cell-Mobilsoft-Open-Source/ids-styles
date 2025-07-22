@@ -41,10 +41,10 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
     outline-style: none;
   }
 
-  &:not(:disabled) {
+  &:not(:is(:disabled, .ids-icon-button-disabled)) {
     cursor: pointer;
   }
-  &:disabled {
+  &:is(:disabled, .ids-icon-button-disabled) {
     cursor: not-allowed;
   }
 
@@ -96,7 +96,7 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
             @include iconButtonAppearanceAndVariant($appearance, $variant, pressed);
           }
 
-          &:disabled {
+          &:is(:disabled, .ids-icon-button-disabled) {
             // The following variants do not have a disabled state
             @if list.index(error success warning, $variant) == null {
               @include iconButtonAppearanceAndVariant($appearance, $variant, disabled);

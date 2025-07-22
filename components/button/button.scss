@@ -46,10 +46,10 @@ $variants: primary, secondary, brand, error, success, warning, light, light-fixe
     outline-style: none;
   }
 
-  &:not(:disabled) {
+  &:not(:is(:disabled, .ids-button-disabled)) {
     cursor: pointer;
   }
-  &:disabled {
+  &:is(:disabled, .ids-button-disabled) {
     cursor: not-allowed;
   }
 
@@ -103,7 +103,7 @@ $variants: primary, secondary, brand, error, success, warning, light, light-fixe
         &:active {
           @include buttonAppearanceAndVariant($appearance, $variant, pressed);
         }
-        &:disabled {
+        &:is(:disabled, .ids-button-disabled) {
           @include buttonAppearanceAndVariant($appearance, $variant, disabled);
         }
       }
