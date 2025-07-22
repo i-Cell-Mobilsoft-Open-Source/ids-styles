@@ -27,21 +27,6 @@ $variants: primary, secondary, brand, error, success, warning, light, light-fixe
   }
 }
 
-a.ids-button-disabled {
-  cursor: not-allowed;
-  @each $appearance in $appearances {
-    @each $variant in $variants {
-      color: var(--ids-comp-button-#{$appearance}-color-fg-label-#{$variant}-disabled);
-      background: var(--ids-comp-button-#{$appearance}-color-bg-#{$variant}-disabled);
-      $safeState: 'disabled';
-      @if ($appearance == 'text') {
-        $safeState: 'default';
-      }
-      border-color: var(--ids-comp-button-#{$appearance}-color-border-#{$variant}-#{$safeState});
-    }
-  }
-}
-
 .ids-button {
   @include reset.component;
   flex-shrink: 0;
@@ -61,10 +46,10 @@ a.ids-button-disabled {
     outline-style: none;
   }
 
-  &:not(:disabled) {
+  &:not(:is(:disabled, .ids-button-disabled)) {
     cursor: pointer;
   }
-  &:disabled {
+  &:is(:disabled, .ids-button-disabled) {
     cursor: not-allowed;
   }
 
@@ -118,7 +103,7 @@ a.ids-button-disabled {
         &:active {
           @include buttonAppearanceAndVariant($appearance, $variant, pressed);
         }
-        &:disabled {
+        &:is(:disabled, .ids-button-disabled) {
           @include buttonAppearanceAndVariant($appearance, $variant, disabled);
         }
       }
