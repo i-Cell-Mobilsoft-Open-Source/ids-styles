@@ -32,7 +32,7 @@ $backdropTypes: default, transparent;
       overflow: hidden;
     }
 
-    .ids-default-side-sheet-header .left-content h2 {
+    .ids-default-side-sheet-header .ids-side-sheet-header-left-content .ids-side-sheet-title {
       color: var(--ids-comp-sidesheet-header-title-color-fg-default);
     }
 
@@ -117,7 +117,7 @@ $backdropTypes: default, transparent;
           gap: var(--ids-comp-sidesheet-header-size-gap-#{$size});
         }
 
-        .ids-default-side-sheet-header .left-content h2 {
+        .ids-default-side-sheet-header .ids-side-sheet-header-left-content .ids-side-sheet-title {
           font-family: var(--ids-comp-sidesheet-header-title-typography-font-family-#{$size});
           font-size: var(--ids-comp-sidesheet-header-title-typography-font-size-#{$size});
           font-weight: var(--ids-comp-sidesheet-header-title-typography-font-weight-#{$size});
@@ -259,7 +259,7 @@ $backdropTypes: default, transparent;
     }
   }
 
-  .close-btn {
+  .ids-side-sheet-close-btn {
     align-self: flex-start;
     cursor: pointer;
   }
