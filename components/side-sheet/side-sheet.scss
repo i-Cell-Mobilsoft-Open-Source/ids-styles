@@ -17,6 +17,12 @@ $backdropTypes: default, transparent;
   }
 
   .ids-side-sheet-container, .ids-side-sheet-container-inline {
+    box-shadow:
+            var(--ids-smc-reference-container-effects-shadow-horizontal-none)
+            var(--ids-smc-reference-container-effects-shadow-vertical-xxl)
+            var(--ids-smc-reference-container-effects-shadow-blur-xxxl)
+            var(--ids-smc-reference-container-effects-shadow-spread-xxs)
+            var(--ids-smc-reference-container-effects-shadow-color-dark-default);
 
     .side-sheet-content {
       background: var(--ids-comp-sidesheet-content-color-bg-default);
@@ -34,6 +40,10 @@ $backdropTypes: default, transparent;
 
     .ids-default-side-sheet-header .ids-side-sheet-header-left-content .ids-side-sheet-title {
       color: var(--ids-comp-sidesheet-header-title-color-fg-default);
+    }
+
+    .ids-side-sheet-footer {
+      width: 100%;
     }
 
   }
@@ -73,12 +83,6 @@ $backdropTypes: default, transparent;
         padding:
                 var(--ids-comp-sidesheet-container-orientation-size-padding-x-#{$size})
                 var(--ids-comp-sidesheet-container-orientation-size-padding-y-#{$size});
-        box-shadow:
-                var(--ids-smc-reference-container-effects-shadow-horizontal-none)
-                var(--ids-smc-reference-container-effects-shadow-vertical-xxl)
-                var(--ids-smc-reference-container-effects-shadow-blur-xxxl)
-                var(--ids-smc-reference-container-effects-shadow-spread-xxs)
-                var(--ids-smc-reference-container-effects-shadow-color-dark-default);
 
 
 
@@ -95,7 +99,7 @@ $backdropTypes: default, transparent;
                   var(--ids-comp-sidesheet-content-fixed-size-padding-x-#{$size});
         }
 
-        .side-sheet-footer {
+        .ids-side-sheet-footer {
           background: var(--ids-comp-sidesheet-footer-color-bg-default);
           padding:
                   var(--ids-comp-sidesheet-footer-padding-y-top-#{$size})
@@ -106,7 +110,6 @@ $backdropTypes: default, transparent;
                   solid
                   var(--ids-comp-sidesheet-footer-color-border-surface-default);
           gap: var(--ids-comp-sidesheet-footer-gap-#{$size});
-          width: 100%;
         }
 
         .ids-custom-side-sheet-header, .ids-default-side-sheet-header {
