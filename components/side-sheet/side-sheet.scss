@@ -43,6 +43,7 @@ $backdropTypes: default, transparent;
     }
 
     .ids-side-sheet-footer {
+      background: var(--ids-comp-sidesheet-footer-color-bg-default);
       width: 100%;
     }
 
@@ -100,7 +101,6 @@ $backdropTypes: default, transparent;
         }
 
         .ids-side-sheet-footer {
-          background: var(--ids-comp-sidesheet-footer-color-bg-default);
           padding:
                   var(--ids-comp-sidesheet-footer-padding-y-top-#{$size})
                   var(--ids-comp-sidesheet-footer-padding-x-#{$size})
