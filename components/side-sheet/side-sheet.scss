@@ -38,7 +38,7 @@ $backdropTypes: default, transparent;
       overflow: hidden;
     }
 
-    .ids-side-sheet__header--default .ids-side-sheet__header--left-content .ids-side-sheet__title {
+    .ids-side-sheet__header--default .ids-side-sheet__header-left-content .ids-side-sheet__title {
       color: var(--ids-comp-sidesheet-header-title-color-fg-default);
     }
 
@@ -120,7 +120,7 @@ $backdropTypes: default, transparent;
           gap: var(--ids-comp-sidesheet-header-size-gap-#{$size});
         }
 
-        .ids-side-sheet__header--default .ids-side-sheet__header--left-content .ids-side-sheet__title {
+        .ids-side-sheet__header--default .ids-side-sheet__header-left-content .ids-side-sheet__title {
           font-family: var(--ids-comp-sidesheet-header-title-typography-font-family-#{$size});
           font-size: var(--ids-comp-sidesheet-header-title-typography-font-size-#{$size});
           font-weight: var(--ids-comp-sidesheet-header-title-typography-font-weight-#{$size});
@@ -178,7 +178,7 @@ $backdropTypes: default, transparent;
     flex-direction: column;
     align-items: flex-start;
 
-    .ids-side-sheet__header--custom-top-row {
+    .ids-side-sheet__header-custom-top-row {
       width: 100%;
       display: flex;
       justify-content: flex-end;
@@ -202,12 +202,12 @@ $backdropTypes: default, transparent;
       align-items: center;
       justify-content: space-between;
 
-      .ids-side-sheet__header--left-content {
+      .ids-side-sheet__header-left-content {
         display: flex;
         align-items: center;
       }
 
-      .ids-side-sheet__header--close-btn {
+      .ids-side-sheet__header-close-btn {
         margin-left: auto;
       }
     }
@@ -238,12 +238,12 @@ $backdropTypes: default, transparent;
       align-items: center;
       justify-content: space-between;
 
-      .ids-side-sheet__header--left-content {
+      .ids-side-sheet__header-left-content {
         display: flex;
         align-items: center;
       }
 
-      .ids-side-sheet__header--close-btn {
+      .ids-side-sheet__header-close-btn {
         margin-left: auto;
       }
     }
@@ -255,7 +255,7 @@ $backdropTypes: default, transparent;
     }
   }
 
-  .ids-side-sheet__header--close-btn {
+  .ids-side-sheet__header-close-btn {
     align-self: flex-start;
     cursor: pointer;
   }
