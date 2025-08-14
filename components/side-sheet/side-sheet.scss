@@ -117,7 +117,6 @@ $backdropTypes: default, transparent;
           padding:
                   var(--ids-comp-sidesheet-header-size-padding-y-#{$size})
                   var(--ids-comp-sidesheet-header-size-padding-x-#{$size});
-          gap: var(--ids-comp-sidesheet-header-size-gap-#{$size});
         }
 
         .ids-side-sheet__header--default .ids-side-sheet__header-left-content .ids-side-sheet__title {
@@ -129,6 +128,9 @@ $backdropTypes: default, transparent;
         }
       }
 
+      .ids-side-sheet__header--default .ids-side-sheet__header-left-content {
+        gap: var(--ids-comp-sidesheet-header-size-gap-#{$size});
+      }
     }
 
     @each $orientation in $orientations {
