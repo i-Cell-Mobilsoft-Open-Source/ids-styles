@@ -82,6 +82,7 @@ $variants: surface, light;
       padding: var(--ids-comp-forms-select-panel-size-padding-y-#{$size}) var(--ids-comp-forms-select-panel-size-padding-x-#{$size});
       gap: var(--ids-comp-forms-select-panel-size-gap-#{$size});
       border-radius: var(--ids-comp-forms-select-panel-size-border-radius-#{$size});
+      max-height: var(--ids-comp-forms-form-field-standard-field-wrapper-select-panel-size-max-height-#{$size});
     }
   }
 
