@@ -13,6 +13,7 @@ $variants: light, dark;
     justify-content: center;
     align-items: center;
     width: max-content;
+    word-break: break-word;
   }
 
   @each $size in $sizes {
