@@ -1,0 +1,282 @@
+@use '../reset';
+
+$appearances: standard;
+$variants: surface, light;
+$sizes: compact, comfortable, spacious, dense;
+
+@mixin appearanceAndVariant($type, $appearance, $variant, $state) {
+  color: var(--ids-comp-sidenav-navitem-#{$type}-#{$appearance}-color-fg-label-#{$variant}-#{$state});
+  background: var(--ids-comp-sidenav-navitem-#{$type}-#{$appearance}-color-bg-#{$variant}-#{$state});
+  border-color: var(--ids-comp-sidenav-navitem-#{$type}-#{$appearance}-color-border-#{$variant}-#{$state});
+
+  @if ($state == focused) {
+    $lightOrDark: 'dark';
+    @if ($variant == 'light') {
+      $lightOrDark: 'light';
+    }
+    outline-color: var(--ids-comp-sidenav-navitem-#{$type}-focused-outline-color-#{$lightOrDark}-focused);
+  }
+
+  & > .ids-icon {
+    color: var(--ids-comp-sidenav-navitem-#{$type}-#{$appearance}-color-fg-icon-#{$variant}-#{$state});
+  }
+}
+
+@mixin navItem($type, $size) {
+  border-radius: var(--ids-comp-sidenav-navitem-#{$type}-size-border-radius-#{$size});
+  border-width: var(--ids-comp-sidenav-navitem-#{$type}-size-border-width-#{$size});
+  gap: var(--ids-comp-sidenav-navitem-#{$type}-size-gap-#{$size});
+  height: var(--ids-comp-sidenav-navitem-#{$type}-size-height-#{$size});
+  padding: var(--ids-comp-sidenav-navitem-#{$type}-size-padding-y-#{$size}) 
+            var(--ids-comp-sidenav-navitem-#{$type}-size-padding-x-#{$size});
+
+  &:focus,
+  &:focus-visible {
+    outline-width: var(--ids-comp-sidenav-navitem-#{$type}-focused-outline-size-outline-#{$size});
+  }
+
+  > .ids-icon {
+    height: var(--ids-comp-sidenav-navitem-#{$type}-size-icon-#{$size});
+    width: var(--ids-comp-sidenav-navitem-#{$type}-size-icon-#{$size});
+    font-size: var(--ids-comp-sidenav-navitem-#{$type}-icon-typography-font-size-#{$size});
+    font-weight: var(--ids-comp-sidenav-navitem-#{$type}-icon-typography-font-weight-#{$size});
+    line-height: var(--ids-comp-sidenav-navitem-#{$type}-icon-typography-line-height-#{$size});
+  }
+
+  .ids-side-nav-item-label {
+    font-family: var(--ids-comp-sidenav-navitem-#{$type}-label-typography-font-family-#{$size});
+    font-size: var(--ids-comp-sidenav-navitem-#{$type}-label-typography-font-size-#{$size});
+    font-weight: var(--ids-comp-sidenav-navitem-#{$type}-label-typography-font-weight-#{$size});
+    letter-spacing: var(--ids-comp-sidenav-navitem-#{$type}-label-typography-letter-spacing-#{$size});
+    line-height: var(--ids-comp-sidenav-navitem-#{$type}-label-typography-line-height-#{$size});
+  }
+}
+
+@mixin navItemBefore($type, $size) {
+  height: var(--ids-comp-sidenav-navitem-#{$type}-active-indicator-size-height-#{$size});
+  width: var(--ids-comp-sidenav-navitem-#{$type}-active-indicator-size-width-#{$size});
+  border-radius: var(--ids-comp-sidenav-navitem-#{$type}-active-indicator-size-border-radius-#{$size});
+  left: calc(var(--ids-comp-sidenav-navitem-#{$type}-size-padding-x-#{$size}) * -1);
+  margin-right: calc(var(--ids-comp-sidenav-navitem-#{$type}-size-gap-#{$size}) * -1);
+}
+
+.ids-side-nav {
+  @include reset.component;
+  background-color: var(--ids-comp-sidenav-color-bg-surface-default);
+  display: flex;
+  flex-direction: column;
+
+  .ids-side-nav-section {
+    display: flex;
+    flex-direction: column;
+    border-style: solid;
+    background-color: var(--ids-comp-sidenav-section-color-bg-surface-default);
+    border-color: var(--ids-comp-sidenav-section-color-border-surface-default);
+  }
+
+  .ids-side-nav-item {
+    &.ids-side-nav-item-expandable {
+      display: flex;
+      flex-direction: column;
+
+      .ids-side-nav-item-expandable-submenu {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .ids-side-nav-item-expandable-summary > button[idsIconButton] {
+        margin-left: auto;
+      }
+    }
+
+    .ids-side-nav-item-single,
+    .ids-side-nav-item-expandable-summary {
+      display: inline-flex;
+      align-items: center;
+      width: 100%;
+      outline-offset: 2px;
+      border-style: solid;
+
+      a:link, a:visited {
+        text-decoration: none;
+      }
+      a:active {
+        outline-style: none;
+      }
+  
+      &:not([disabled]) {
+        cursor: pointer;
+      }
+      
+      &:is([disabled]) {
+        cursor: not-allowed;
+        outline-style: none;
+      }
+
+      &:is([is-active-indicator]):before {
+        content: "";
+        position: relative;
+        top: 0;
+      }
+    }
+  }
+
+  .ids-side-nav-title {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  @each $size in $sizes {
+    &.ids-side-nav-#{$size} {
+      gap: var(--ids-comp-sidenav-size-gap-#{$size});
+      padding: var(--ids-comp-sidenav-size-padding-y-#{$size}) 
+               var(--ids-comp-sidenav-size-padding-x-#{$size});
+
+
+      .ids-side-nav-section {
+        gap: var(--ids-comp-sidenav-section-size-gap-#{$size});
+        border-radius: var(--ids-comp-sidenav-section-size-border-radius-#{$size});
+        border-width: var(--ids-comp-sidenav-section-size-border-width-#{$size});
+        padding: var(--ids-comp-sidenav-section-size-padding-y-#{$size}) 
+                 var(--ids-comp-sidenav-section-size-padding-x-#{$size});
+
+        &:has(.ids-side-nav-item > * > .ids-side-nav-item-label) {
+          min-width: var(--ids-comp-sidenav-section-size-min-width-#{$size});
+        }
+      }
+
+      .ids-side-nav-title {
+        gap: var(--ids-comp-sidenav-section-title-size-gap-#{$size});
+        padding: var(--ids-comp-sidenav-section-title-size-padding-y-#{$size}) 
+                 var(--ids-comp-sidenav-section-title-size-padding-x-#{$size});
+
+        &-label {
+          font-family: var(--ids-comp-sidenav-section-title-typography-font-family-#{$size});
+          font-size: var(--ids-comp-sidenav-section-title-typography-font-size-#{$size});
+          font-weight: var(--ids-comp-sidenav-section-title-typography-font-weight-#{$size});
+          letter-spacing: var(--ids-comp-sidenav-section-title-typography-letter-spacing-#{$size});
+          line-height: var(--ids-comp-sidenav-section-title-typography-line-height-#{$size});
+        }
+      }
+
+      .ids-side-nav-item {
+        .ids-side-nav-item-single {
+          @include navItem('single', $size);
+
+          &:is([is-active-indicator]):before {
+            @include navItemBefore('single', $size);
+          }
+        }
+
+        .ids-side-nav-item-expandable-summary {
+          @include navItem('expandable-summary', $size);
+
+          &:is([is-active-indicator]):before {
+            @include navItemBefore('expandable-summary', $size);
+          }
+        }
+
+        .ids-side-nav-item-expandable-submenu {
+          gap: var(--ids-comp-sidenav-navitem-expandable-submenu-gap-#{$size});
+          padding: var(--ids-comp-sidenav-navitem-expandable-submenu-padding-top-#{$size}) 
+                  var(--ids-comp-sidenav-navitem-expandable-submenu-padding-right-#{$size})
+                  var(--ids-comp-sidenav-navitem-expandable-submenu-padding-bottom-#{$size})
+                  var(--ids-comp-sidenav-navitem-expandable-submenu-padding-left-#{$size});
+        }
+
+        &.ids-side-nav-item-expandable {
+          gap: var(--ids-comp-sidenav-navitem-expandable-size-gap-#{$size});
+          padding: var(--ids-comp-sidenav-navitem-expandable-size-padding-y-#{$size}) 
+                   var(--ids-comp-sidenav-navitem-expandable-size-padding-x-#{$size});
+
+          &:has(.ids-side-nav-item-expandable-summary > .ids-icon[icon-leading]) {
+            .ids-side-nav-item-expandable-submenu {
+              // extra indentation compensating leading icon width of parent (expandable-summary)
+              padding-left: 
+                calc(
+                  var(--ids-comp-sidenav-navitem-expandable-submenu-padding-left-#{$size}) + 
+                  var(--ids-comp-sidenav-navitem-expandable-submenu-indent-width-#{$size})
+                );
+            }
+          }
+        }
+      }
+
+      .ids-side-nav-title + .ids-side-nav-item {
+        margin-top: var(--ids-comp-sidenav-section-size-gap-#{$size});
+      }
+
+      .ids-side-nav-item + .ids-side-nav-item {
+        margin-top: var(--ids-comp-sidenav-section-list-size-gap-#{$size});
+      }
+    }
+  }
+
+  @each $appearance in $appearances {
+    &.ids-side-nav-#{$appearance} {
+      @each $variant in $variants {
+        &.ids-side-nav-#{$variant} {
+          .ids-side-nav-item {
+            .ids-side-nav-item-single {
+              @include appearanceAndVariant('single', $appearance, $variant, default);
+
+              &:hover {
+                @include appearanceAndVariant('single', $appearance, $variant, hovered);
+              }
+        
+              &:focus,
+              &:focus-visible {
+                @include appearanceAndVariant('single', $appearance, $variant, focused);
+              }
+        
+              &:active {
+                @include appearanceAndVariant('single', $appearance, $variant, pressed);
+              }
+        
+              &:is([disabled]) {
+                @include appearanceAndVariant('single', $appearance, $variant, disabled);
+              }
+
+              &:is([is-active]) {
+                @include appearanceAndVariant('single', $appearance, $variant, active);
+              }
+
+              &:is([is-active-indicator]):before {
+                background-color: var(--ids-comp-sidenav-navitem-single-active-indicator-color-bg-#{$variant}-default);
+              }
+            }
+
+            .ids-side-nav-item-expandable-summary {
+              @include appearanceAndVariant('expandable-summary', $appearance, $variant, default);
+
+              &:hover {
+                @include appearanceAndVariant('expandable-summary', $appearance, $variant, hovered);
+              }    
+
+              &:focus,
+              &:focus-visible {
+                @include appearanceAndVariant('expandable-summary', $appearance, $variant, focused);
+              }
+        
+              &:active {
+                @include appearanceAndVariant('expandable-summary', $appearance, $variant, pressed);
+              }
+        
+              &:is([disabled]) {
+                @include appearanceAndVariant('expandable-summary', $appearance, $variant, disabled);
+              }
+
+              &:is([is-active]) {
+                @include appearanceAndVariant('expandable-summary', $appearance, $variant, active);
+              }
+
+              &:is([is-active-indicator]):before {
+                background-color: var(--ids-comp-sidenav-navitem-expandable-summary-active-indicator-color-bg-#{$variant}-default);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
