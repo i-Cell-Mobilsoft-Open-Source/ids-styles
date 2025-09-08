@@ -27,8 +27,8 @@ $sizes: compact, comfortable, spacious, dense;
     max-height: 80vh;
 
     .ids-dialog-header {
-      display: flex;
-      align-items: stretch;
+      display: grid;
+      grid-template-columns: 1fr auto;
 
       .ids-dialog-title {
         font-style: normal;
@@ -43,10 +43,7 @@ $sizes: compact, comfortable, spacious, dense;
       }
 
       .ids-dialog-header-default-content {
-        display: flex;
-        flex-direction: column;
-        flex: 1 0 0;
-        align-items: flex-start;
+        display: grid;
       }
     }
 
