@@ -78,6 +78,8 @@ $variants: dark, info, success, error, warning;
         & > .ids-snackbar__message {
           flex: 1 0 0;
           font-style: normal;
+          display: flex;
+          align-items: center;
         }
 
         & > .ids-snackbar__action {
