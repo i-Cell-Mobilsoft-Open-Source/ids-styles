@@ -52,8 +52,6 @@ $sizes: compact, comfortable, spacious, dense;
 
     .ids-dialog-content {
       display: flex;
-      align-items: center;
-      justify-content: center;
       overflow-y: auto;
       background: var(--ids-comp-dialog-content-color-bg-default);
 
