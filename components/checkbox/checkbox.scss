@@ -86,36 +86,6 @@ $variants: light, dark, surface;
   align-self: stretch;
   align-items: flex-start;
 
-  @each $variant in $variants {
-    &.ids-checkbox-#{$variant} {
-      .ids-checkbox__input-wrapper {
-        &:hover input[type='checkbox']:not(:disabled):not(:checked):not(:indeterminate) {
-          border-color: var(--ids-comp-checkbox-input-unselected-color-border-#{$variant}-hovered);
-          background-color: var(--ids-comp-checkbox-input-unselected-color-bg-#{$variant}-hovered);
-        }
-        &:hover input[type='checkbox']:not(:disabled):is(:checked, :indeterminate) {
-          border-color: var(--ids-comp-checkbox-input-selected-color-border-#{$variant}-hovered);
-          background-color: var(--ids-comp-checkbox-input-selected-color-bg-#{$variant}-hovered);
-        }
-        &:hover input[type='checkbox']:not(:disabled) + .ids-checkbox__icon {
-          color: var(--ids-comp-checkbox-input-selected-color-fg-icon-#{$variant}-hovered);
-        }
-
-        &:has(.ids-checkbox__touch-target:active) input[type='checkbox']:not(:disabled):not(:checked):not(:indeterminate) {
-          border-color: var(--ids-comp-checkbox-input-unselected-color-border-#{$variant}-pressed);
-          background-color: var(--ids-comp-checkbox-input-unselected-color-bg-#{$variant}-pressed);
-        }
-        &:has(.ids-checkbox__touch-target:active) input[type='checkbox']:not(:disabled):is(:checked, :indeterminate) {
-          border-color: var(--ids-comp-checkbox-input-selected-color-border-#{$variant}-pressed);
-          background-color: var(--ids-comp-checkbox-input-selected-color-bg-#{$variant}-pressed);
-        }
-        &:has(.ids-checkbox__touch-target:active) input[type='checkbox']:not(:disabled) + .ids-checkbox__icon {
-          color: var(--ids-comp-checkbox-input-selected-color-fg-icon-#{$variant}-pressed);
-        }
-      }
-    }
-  }
-
   .ids-checkbox__input-wrapper {
     position: relative;
     display: flex;
@@ -232,6 +202,30 @@ $variants: light, dark, surface;
   @each $variant in $variants {
     &.ids-checkbox-#{$variant} {
       .ids-checkbox__input-wrapper {
+        &:hover input[type='checkbox']:not(:disabled):not(:checked):not(:indeterminate) {
+          border-color: var(--ids-comp-checkbox-input-unselected-color-border-#{$variant}-hovered);
+          background-color: var(--ids-comp-checkbox-input-unselected-color-bg-#{$variant}-hovered);
+        }
+        &:hover input[type='checkbox']:not(:disabled):is(:checked, :indeterminate) {
+          border-color: var(--ids-comp-checkbox-input-selected-color-border-#{$variant}-hovered);
+          background-color: var(--ids-comp-checkbox-input-selected-color-bg-#{$variant}-hovered);
+        }
+        &:hover input[type='checkbox']:not(:disabled) + .ids-checkbox__icon {
+          color: var(--ids-comp-checkbox-input-selected-color-fg-icon-#{$variant}-hovered);
+        }
+
+        &:has(.ids-checkbox__touch-target:active) input[type='checkbox']:not(:disabled):not(:checked):not(:indeterminate) {
+          border-color: var(--ids-comp-checkbox-input-unselected-color-border-#{$variant}-pressed);
+          background-color: var(--ids-comp-checkbox-input-unselected-color-bg-#{$variant}-pressed);
+        }
+        &:has(.ids-checkbox__touch-target:active) input[type='checkbox']:not(:disabled):is(:checked, :indeterminate) {
+          border-color: var(--ids-comp-checkbox-input-selected-color-border-#{$variant}-pressed);
+          background-color: var(--ids-comp-checkbox-input-selected-color-bg-#{$variant}-pressed);
+        }
+        &:has(.ids-checkbox__touch-target:active) input[type='checkbox']:not(:disabled) + .ids-checkbox__icon {
+          color: var(--ids-comp-checkbox-input-selected-color-fg-icon-#{$variant}-pressed);
+        }
+
         input[type='checkbox'] {
           @include checkboxInputVariant($variant, false, false);
 
