@@ -60,6 +60,36 @@ $sizes: compact, comfortable, spacious, dense;
   margin-right: calc(var(--ids-comp-sidenav-navitem-#{$type}-size-gap-#{$size}) * -1);
 }
 
+@keyframes expand-submenu {
+  0% {
+    overflow: hidden;
+    visibility: hidden;
+  }
+  99% {
+    overflow: hidden;
+    visibility: visible;
+  }
+  100% {
+    overflow: visible;
+    visibility: visible;
+  }
+}
+
+@keyframes collapse-submenu {
+  0% {
+    overflow: visible;
+    visibility: visible;
+  }
+  99% {
+    overflow: hidden;
+    visibility: visible;
+  }
+  100% {
+    overflow: hidden;
+    visibility: hidden;
+  }
+}
+
 .ids-side-nav {
   @include reset.component;
   background-color: var(--ids-comp-sidenav-color-bg-surface-default);
@@ -86,11 +116,12 @@ $sizes: compact, comfortable, spacious, dense;
         max-height: 0;
         opacity: 0;
         transition: all 300ms ease-out;
+        animation: collapse-submenu 0.3s forwards;
 
         &.expanded {
-          max-height: 10000px; // large enough to allow for expansion
           opacity: 1;
           transition: all 300ms ease-in;
+          animation: expand-submenu 0.3s forwards;
         }
       }
 
@@ -175,11 +206,6 @@ $sizes: compact, comfortable, spacious, dense;
       }
 
       .ids-side-nav-item {
-        // compensation in order to avoid clipping (outline size + outline offset)
-        --submenu-outline-compensation: calc(
-            var(--ids-comp-sidenav-navitem-expandable-summary-focused-outline-size-outline-#{$size}) + 2px
-        );
-
         .ids-side-nav-item-single {
           @include navItem('single', $size);
 
@@ -196,17 +222,29 @@ $sizes: compact, comfortable, spacious, dense;
           }
         }
 
-        .ids-side-nav-item-expandable-submenu {
-          margin: calc(var(--submenu-outline-compensation) * -1);
+        .ids-side-nav-item-expandable-submenu.expanded {
+          // use height of largest possible item (single or expandable-summary) + padding (top and bottom) + gap times the number of items
+          --submenu-item-height: calc(
+            max(
+              var(--ids-comp-sidenav-navitem-single-size-height-#{$size}), 
+              var(--ids-comp-sidenav-navitem-expandable-summary-size-height-#{$size})
+            ) + 
+            var(--ids-comp-sidenav-navitem-expandable-submenu-padding-top-#{$size}) +
+            var(--ids-comp-sidenav-navitem-expandable-submenu-padding-bottom-#{$size}) +
+            calc(var(--ids-comp-sidenav-navitem-expandable-submenu-gap-#{$size}) * var(--submenu-items-count))
+          );
+          max-height: calc(var(--submenu-items-count) * var(--submenu-item-height));
           gap: var(--ids-comp-sidenav-navitem-expandable-submenu-gap-#{$size});
-          padding: calc(var(--ids-comp-sidenav-navitem-expandable-submenu-padding-top-#{$size}) + var(--submenu-outline-compensation))
-                   calc(var(--ids-comp-sidenav-navitem-expandable-submenu-padding-right-#{$size}) + var(--submenu-outline-compensation))
-                   calc(var(--ids-comp-sidenav-navitem-expandable-submenu-padding-bottom-#{$size}) + var(--submenu-outline-compensation))
-                   calc(var(--ids-comp-sidenav-navitem-expandable-submenu-padding-left-#{$size}) + var(--submenu-outline-compensation));
+          padding: var(--ids-comp-sidenav-navitem-expandable-submenu-padding-top-#{$size})
+                   var(--ids-comp-sidenav-navitem-expandable-submenu-padding-right-#{$size})
+                   var(--ids-comp-sidenav-navitem-expandable-submenu-padding-bottom-#{$size})
+                   var(--ids-comp-sidenav-navitem-expandable-submenu-padding-left-#{$size});
         }
 
         &.ids-side-nav-item-expandable {
-          gap: var(--ids-comp-sidenav-navitem-expandable-size-gap-#{$size});
+          &:has(.ids-side-nav-item-expandable-submenu.expanded) {
+            gap: var(--ids-comp-sidenav-navitem-expandable-size-gap-#{$size});
+          }
           padding: var(--ids-comp-sidenav-navitem-expandable-size-padding-y-#{$size}) 
                    var(--ids-comp-sidenav-navitem-expandable-size-padding-x-#{$size});
 
@@ -216,8 +254,7 @@ $sizes: compact, comfortable, spacious, dense;
               padding-left: 
                 calc(
                   var(--ids-comp-sidenav-navitem-expandable-submenu-padding-left-#{$size}) + 
-                  var(--ids-comp-sidenav-navitem-expandable-submenu-indent-width-#{$size}) +
-                  var(--submenu-outline-compensation)
+                  var(--ids-comp-sidenav-navitem-expandable-submenu-indent-width-#{$size})
                 );
             }
           }
