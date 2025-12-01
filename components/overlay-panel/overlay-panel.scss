@@ -56,13 +56,17 @@ $variants: light, surface;
     }
   }
 
-  button {
-    &:hover {
-      border-color: transparent;
-    }
-    &:focus,
-    &:focus-visible {
-      outline-style: none !important;
+  &.ids-overlay-panel-has-menu {
+    button {
+      &:hover {
+        border-color: transparent;
+      }
+      &:focus,
+      &:focus-visible {
+        outline-style: none !important;
+      }
     }
   }
+
+
 }
