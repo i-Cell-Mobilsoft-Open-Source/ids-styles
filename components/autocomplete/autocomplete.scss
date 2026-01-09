@@ -1,0 +1,45 @@
+@use "../reset";
+
+$sizes: compact, comfortable, spacious, dense;
+
+.ids-autocomplete {
+  @include reset.component;
+  display: inline-flex;
+  align-items: center;
+
+  & > input {
+    text-overflow: ellipsis;
+  }
+
+  // hide ids-overlay-panel inside autocomplete to exclude it from flex layout
+  & > ids-overlay-panel {
+    display: none;
+  }
+
+  @each $size in $sizes {
+    &.ids-autocomplete-#{$size} {
+      gap: var(
+        --ids-comp-forms-form-field-standard-field-wrapper-container-size-gap-#{$size}
+      );
+    }
+  }
+}
+
+.ids-form-field
+  > .ids-form-field__field-wrapper
+  > .ids-form-field__field-wrapper__container
+  > .ids-form-field__infix:has(.ids-autocomplete) {
+  overflow-x: visible;
+}
+
+.ids-overlay-panel__autocomplete-panel {
+  width: 100%;
+
+  .ids-overlay-panel__autocomplete-message > .ids-option {
+    width: 100%;
+
+    &:is([disabled]) {
+      outline-style: none;
+    }
+  }
+}
