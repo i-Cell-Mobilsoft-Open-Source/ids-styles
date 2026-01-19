@@ -62,7 +62,9 @@ $variants: light, dark, surface;
 
       &.ids-message-disabled {
         .ids-message__prefix {
-          color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-disabled);
+          .ids-icon {
+            color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-disabled);
+          }
         }
         .ids-message__text,
         .ids-message__suffix {
