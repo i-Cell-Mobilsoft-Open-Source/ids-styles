@@ -68,7 +68,7 @@ $variants: light, dark, surface;
         }
         .ids-message__text,
         .ids-message__suffix {
-          color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-disabled);
+          color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-disabled) !important;
         }
       }
 
