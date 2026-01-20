@@ -29,22 +29,22 @@ $variants: light, dark, surface;
 
   @each $size in $sizes {
     &.ids-message-#{$size} {
-      gap: var(--ids-comp-forms-message-size-gap-#{$size});
-      padding: var(--ids-comp-forms-message-size-padding-y-#{$size}) var(--ids-comp-forms-message-size-padding-x-#{$size});
-      font-family: var(--ids-comp-forms-message-typography-font-family-#{$size});
-      font-size: var(--ids-comp-forms-message-typography-font-size-#{$size});
-      font-weight: var(--ids-comp-forms-message-typography-font-weight-#{$size});
-      letter-spacing: var(--ids-comp-forms-message-typography-letter-spacing-#{$size});
-      line-height: var(--ids-comp-forms-message-typography-line-height-#{$size});
+      gap: var(--ids-comp-message-size-gap-#{$size});
+      padding: var(--ids-comp-message-size-padding-y-#{$size}) var(--ids-comp-message-size-padding-x-#{$size});
+      font-family: var(--ids-comp-message-typography-font-family-#{$size});
+      font-size: var(--ids-comp-message-typography-font-size-#{$size});
+      font-weight: var(--ids-comp-message-typography-font-weight-#{$size});
+      letter-spacing: var(--ids-comp-message-typography-letter-spacing-#{$size});
+      line-height: var(--ids-comp-message-typography-line-height-#{$size});
 
       .ids-message__prefix {
-        height: var(--ids-comp-forms-message-size-icon-height-#{$size});
-        width: var(--ids-comp-forms-message-size-icon-width-#{$size});
+        height: var(--ids-comp-message-size-icon-height-#{$size});
+        width: var(--ids-comp-message-size-icon-width-#{$size});
 
         & > .ids-icon {
-          font-size: var(--ids-comp-forms-message-icon-typography-font-size-#{$size});
-          font-weight: var(--ids-comp-forms-message-icon-typography-font-weight-#{$size});
-          line-height: var(--ids-comp-forms-message-icon-typography-line-height-#{$size});
+          font-size: var(--ids-comp-message-icon-typography-font-size-#{$size});
+          font-weight: var(--ids-comp-message-icon-typography-font-weight-#{$size});
+          line-height: var(--ids-comp-message-icon-typography-line-height-#{$size});
         }
       }
     }
@@ -53,43 +53,43 @@ $variants: light, dark, surface;
   @each $variant in $variants {
     &.ids-message-#{$variant} {
       .ids-message__prefix {
-        color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-default);
+        color: var(--ids-comp-message-color-fg-icon-#{$variant}-default);
       }
       .ids-message__text,
       .ids-message__suffix {
-        color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-default);
+        color: var(--ids-comp-message-color-fg-text-#{$variant}-default);
       }
 
       &.ids-message-disabled {
         .ids-message__prefix {
           .ids-icon {
-            color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-disabled);
+            color: var(--ids-comp-message-color-fg-icon-#{$variant}-disabled);
           }
         }
         .ids-message__text,
         .ids-message__suffix {
-          color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-disabled) !important;
+          color: var(--ids-comp-message-color-fg-text-#{$variant}-disabled) !important;
         }
       }
 
       &.ids-error-message {
         .ids-message__prefix {
-          color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-error-default);
+          color: var(--ids-comp-message-color-fg-icon-#{$variant}-error-default);
         }
         .ids-message__text,
         .ids-message__suffix {
-          color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-error-default);
+          color: var(--ids-comp-message-color-fg-text-#{$variant}-error-default);
         }
       }
     }
 
     &.ids-success-message {
       .ids-message__prefix {
-        color: var(--ids-comp-forms-message-color-fg-icon-#{$variant}-success-default);
+        color: var(--ids-comp-message-color-fg-icon-#{$variant}-success-default);
       }
       .ids-message__text,
       .ids-message__suffix {
-        color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-success-default);
+        color: var(--ids-comp-message-color-fg-text-#{$variant}-success-default);
       }
     }
   }
