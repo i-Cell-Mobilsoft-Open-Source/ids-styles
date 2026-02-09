@@ -3,6 +3,7 @@
 $sizes: compact, comfortable, spacious, dense;
 $sizeCollections: smallcollection, bigcollection;
 $variants: primary, secondary, light, dark, error, success, warning, brand, surface;
+$font-icons: default, idsbase, unique;
 .ids-icon {
   @include reset.component;
   display: inline-flex;
@@ -18,14 +19,17 @@ $variants: primary, secondary, light, dark, error, success, warning, brand, surf
   justify-content: center;
 
   @each $size in $sizes {
-    font-family: var(--ids-comp-icon-typography-font-family-font-family-default-#{$size});
+    @each $font-icon in $font-icons {
+        &.ids-icon-#{$font-icon}-#{$size} {
+          font-family: var(--ids-comp-icon-typography-font-family-font-family-#{$font-icon}-#{$size});
+        }
+    }
   }
 
   @each $sizeCollection in $sizeCollections {
     @each $size in $sizes {
       // Need to be one class for the specificity because ids-icon can be nested ( wrong: &.ids-icon-#{$sizeCollection}.ids-icon-#{$size} )
       &.ids-icon-#{$sizeCollection}-#{$size} {
-        font-family: var(--ids-comp-icon-typography-font-family-font-family-default-#{$size});
         height: var(--ids-comp-icon-size-#{$sizeCollection}-height-#{$size});
         width: var(--ids-comp-icon-size-#{$sizeCollection}-width-#{$size});
         font-size: var(--ids-comp-icon-typography-#{$sizeCollection}-font-size-#{$size});
