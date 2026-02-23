@@ -100,37 +100,43 @@ $appearances: filled, outlined;
   }
 
   @each $buttonVariant in $buttonVariants {
-    .ids-segmented-control-toggle-item > button {
-      &:focus,
-      &:focus-visible {
-        $outlineColor: 'dark';
-        @if ($buttonVariant == 'light') {
-          $outlineColor: 'light';
+    &.ids-segmented-control-toggle-#{$buttonVariant} {
+      .ids-segmented-control-toggle-item > button {
+        &:focus,
+        &:focus-visible {
+          $outlineColor: 'dark';
+          @if ($buttonVariant == 'light') {
+            $outlineColor: 'light';
+          }
+          outline-color: var(--ids-comp-segmented-control-toggle-focused-outline-color-#{$outlineColor}-focused);
         }
-        outline-color: var(--ids-comp-segmented-control-toggle-focused-outline-color-#{$outlineColor}-focused);
       }
-    }
 
-    @each $appearance in $appearances {
-      &.ids-segmented-control-toggle-#{$appearance} {
-        .ids-segmented-control-toggle-item-#{$buttonVariant} > button {
-          @include segmentedControlToggleItemStatus($appearance, $buttonVariant, default);
+      @each $appearance in $appearances {
+        &.ids-segmented-control-toggle-#{$appearance} {
+          .ids-segmented-control-toggle-item-#{$buttonVariant} > button {
+            @include segmentedControlToggleItemStatus($appearance, $buttonVariant, default);
 
-          &.ids-segmented-control-toggle-item-selected:not(:disabled) {
-            @include segmentedControlToggleItemStatus($appearance, $buttonVariant, active);
-          }
-          &:hover {
-            @include segmentedControlToggleItemStatus($appearance, $buttonVariant, hovered);
-          }
-          &:active {
-            @include segmentedControlToggleItemStatus($appearance, $buttonVariant, pressed);
-          }
-          &:focus,
-          &:focus-visible {
-            @include segmentedControlToggleItemStatus($appearance, $buttonVariant, focused);
-          }
-          &:disabled {
-            @include segmentedControlToggleItemStatus($appearance, $buttonVariant, disabled);
+            &.ids-segmented-control-toggle-item-selected:not(:disabled) {
+              @include segmentedControlToggleItemStatus($appearance, $buttonVariant, active);
+            }
+
+            &:hover {
+              @include segmentedControlToggleItemStatus($appearance, $buttonVariant, hovered);
+            }
+
+            &:active {
+              @include segmentedControlToggleItemStatus($appearance, $buttonVariant, pressed);
+            }
+
+            &:focus,
+            &:focus-visible {
+              @include segmentedControlToggleItemStatus($appearance, $buttonVariant, focused);
+            }
+
+            &:disabled {
+              @include segmentedControlToggleItemStatus($appearance, $buttonVariant, disabled);
+            }
           }
         }
       }
