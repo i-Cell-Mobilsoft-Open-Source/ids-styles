@@ -10,7 +10,7 @@ $variants: primary, secondary, light, surface;
 }
 
 @mixin pageButtonArrowState($pageButtonAppearance, $variant, $state) {
-  color: var(--ids-comp-paginator-page-links-#{$pageButtonAppearance}-color-fg-icon-#{$variant}-default);
+  color: var(--ids-comp-paginator-page-links-#{$pageButtonAppearance}-color-fg-icon-#{$variant}-#{$state});
 }
 
 .ids-paginator {
