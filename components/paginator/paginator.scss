@@ -7,6 +7,7 @@ $variants: primary, secondary, light, surface;
 @mixin pageButtonState($pageButtonAppearance, $variant, $state) {
   background: var(--ids-comp-paginator-page-links-#{$pageButtonAppearance}-color-bg-#{$variant}-#{$state});
   color: var(--ids-comp-paginator-page-links-#{$pageButtonAppearance}-color-fg-label-#{$variant}-#{$state});
+  border-color: var(--ids-comp-paginator-page-links-#{$pageButtonAppearance}-color-border-#{$variant}-#{$state});
 }
 
 @mixin pageButtonArrowState($pageButtonAppearance, $variant, $state) {
@@ -44,7 +45,7 @@ $variants: primary, secondary, light, surface;
       justify-content: center;
       align-items: center;
       font-style: normal;
-      border-style: none;
+      border-style: solid;
 
       &:focus,
       &:focus-visible {
@@ -108,6 +109,7 @@ $variants: primary, secondary, light, surface;
         .ids-paginator__page-button {
           height: var(--ids-comp-paginator-page-links-size-height-#{$size});
           min-width: var(--ids-comp-paginator-page-links-size-min-width-#{$size});
+          border-width: var(--ids-comp-paginator-page-links-size-border-width-#{$size});
           padding: var(--ids-comp-paginator-page-links-size-padding-y-#{$size})
             var(--ids-comp-paginator-page-links-size-padding-x-#{$size});
           font-family: var(--ids-comp-paginator-page-links-label-typography-font-family-#{$size});
