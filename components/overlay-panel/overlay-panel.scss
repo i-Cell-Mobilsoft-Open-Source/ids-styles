@@ -61,12 +61,6 @@ $variants: light, surface;
       &:hover {
         border-color: transparent;
       }
-      &:focus,
-      &:focus-visible {
-        outline-style: none !important;
-      }
     }
   }
-
-
 }
