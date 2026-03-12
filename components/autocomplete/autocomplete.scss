@@ -4,42 +4,74 @@ $sizes: compact, comfortable, spacious, dense;
 
 .ids-autocomplete {
   @include reset.component;
-  display: inline-flex;
-  align-items: center;
+  // hide autocomplete to exclude it from the layout
+  display: none;
 
-  & > input {
-    text-overflow: ellipsis;
-  }
-
-  // hide ids-overlay-panel inside autocomplete to exclude it from flex layout
-  & > ids-overlay-panel {
-    display: none;
-  }
-
-  @each $size in $sizes {
-    &.ids-autocomplete-#{$size} {
-      gap: var(
-        --ids-comp-forms-form-field-standard-field-wrapper-container-size-gap-#{$size}
-      );
-    }
-  }
-}
-
-.ids-form-field
-  > .ids-form-field__field-wrapper
-  > .ids-form-field__field-wrapper__container
-  > .ids-form-field__infix:has(.ids-autocomplete) {
-  overflow-x: visible;
-}
-
-.ids-overlay-panel__autocomplete-panel {
-  width: 100%;
-
-  .ids-overlay-panel__autocomplete-message > .ids-option {
+  &-panel {
+    overflow: auto;
     width: 100%;
+    padding: 8px;
+    scrollbar-width: thin;
+  }
 
-    &:is([disabled]) {
-      outline-style: none;
+  &-overlay-panel {
+    width: 100%;
+  }
+
+  &-controls {
+    display: flex;
+    gap: 8px;
+    padding-right: 5px;
+    align-items: center;
+  }
+
+  &-chip-list {
+    &:not(:has(button:first-child)) {
+      display: none;
+    }
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 4px;
+
+    button[idsChip].ids-chip {
+      // override ids-form-field 'border-style: none'
+      border-style: solid !important;
+
+      & > div.ids-chip__label {
+        text-align: left;
+        word-break: break-all;
+        overflow: hidden;
+        display: -webkit-box;
+        line-clamp: 1;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+      }
     }
   }
+
+  &-hint {
+    &__wrapper {
+      padding: 8px 12px;
+    }
+  }
+}
+
+input[autocomplete] {
+  width: 100%;
+  color: var(
+    --ids-comp-forms-form-field-standard-field-wrapper-infix-filled-color-fg-text-surface-default
+  );
+  text-overflow: ellipsis;
+
+  &:is([disabled]) {
+    color: var(
+      --ids-comp-forms-form-field-standard-field-wrapper-infix-filled-color-fg-text-surface-disabled
+    );
+  }
+}
+
+*:has(> input[autocomplete]) {
+  width: 100%;
 }
