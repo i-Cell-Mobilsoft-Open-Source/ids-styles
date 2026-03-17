@@ -4,8 +4,6 @@ $sizes: compact, comfortable, spacious, dense;
 
 .ids-autocomplete {
   @include reset.component;
-  // hide autocomplete to exclude it from the layout
-  display: none;
 
   &-panel {
     overflow: auto;
@@ -18,10 +16,8 @@ $sizes: compact, comfortable, spacious, dense;
     width: 100%;
   }
 
-  &-controls {
+  &-suffix {
     display: flex;
-    gap: 8px;
-    padding-right: 5px;
     align-items: center;
   }
 
@@ -56,22 +52,48 @@ $sizes: compact, comfortable, spacious, dense;
       padding: 8px 12px;
     }
   }
+
+  @each $size in $sizes {
+    &.ids-autocomplete-#{$size} {
+      & > .ids-autocomplete-suffix {
+        gap: var(--ids-comp-forms-input-size-icons-gap-#{$size}, 8px);
+      }
+    }
+  }
 }
 
 input[autocomplete] {
   width: 100%;
-  color: var(
-    --ids-comp-forms-form-field-standard-field-wrapper-infix-filled-color-fg-text-surface-default
-  );
   text-overflow: ellipsis;
-
-  &:is([disabled]) {
-    color: var(
-      --ids-comp-forms-form-field-standard-field-wrapper-infix-filled-color-fg-text-surface-disabled
-    );
-  }
 }
 
-*:has(> input[autocomplete]) {
-  width: 100%;
+.ids-form-field
+  > .ids-form-field__field-wrapper
+  > .ids-form-field__field-wrapper__container
+  > .ids-form-field__infix {
+  &:has(> input[autocomplete]) {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+
+    &:has(.ids-autocomplete-chip-list > button:first-child) {
+      display: grid;
+      grid-template-columns: 1fr auto;
+
+      & > input[autocomplete] {
+        order: 3;
+      }
+
+      & > .ids-autocomplete {
+        order: 2;
+        grid-row: span 2 / span 1;
+      }
+    }
+  }
+
+  @each $size in $sizes {
+    &:has(> input[autocomplete] ~ .ids-autocomplete-#{$size}) {
+      column-gap: var(--ids-comp-forms-input-size-gap-#{$size}, 16px);
+    }
+  }
 }
