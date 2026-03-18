@@ -56,7 +56,7 @@ $sizes: compact, comfortable, spacious, dense;
   @each $size in $sizes {
     &.ids-autocomplete-#{$size} {
       & > .ids-autocomplete-suffix {
-        gap: var(--ids-comp-forms-input-size-icons-gap-#{$size}, 8px);
+        gap: var(--ids-comp-forms-input-size-icons-gap-#{$size});
       }
     }
   }
@@ -93,7 +93,7 @@ input[autocomplete] {
 
   @each $size in $sizes {
     &:has(> input[autocomplete] ~ .ids-autocomplete-#{$size}) {
-      column-gap: var(--ids-comp-forms-input-size-gap-#{$size}, 16px);
+      column-gap: var(--ids-comp-forms-input-size-gap-#{$size});
     }
   }
 }
