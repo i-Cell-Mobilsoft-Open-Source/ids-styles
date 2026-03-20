@@ -239,6 +239,14 @@ $variants: surface, light;
       }
     }
   }
+  
+  &:not(.ids-form-field-disabled) > .ids-form-field__field-wrapper:has(.ids-input) {
+    cursor: text;
+  }
+  &.ids-form-field-disabled > .ids-form-field__field-wrapper:has(.ids-input) {
+    cursor: default;
+    pointer-events: none;
+  }
 
   @each $variant in $variants {
     &.ids-form-field-#{$variant} {
