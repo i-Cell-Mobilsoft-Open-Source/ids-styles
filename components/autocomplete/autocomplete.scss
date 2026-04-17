@@ -4,11 +4,14 @@ $sizes: compact, comfortable, spacious, dense;
 
 .ids-autocomplete {
   @include reset.component;
+  // content should be displayed on the right part of the infix
+  position: absolute;
+  right: 0;
 
   &-panel {
+    display: grid;
     overflow: auto;
     width: 100%;
-    padding: 8px;
     scrollbar-width: thin;
   }
 
@@ -22,14 +25,8 @@ $sizes: compact, comfortable, spacious, dense;
   }
 
   &-chip-list {
-    &:not(:has(button:first-child)) {
-      display: none;
-    }
-
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-    margin-bottom: 4px;
+    // allow the chip list to be a sibling of the input, so they can wrap properly
+    display: contents;
 
     button[idsChip].ids-chip {
       // override ids-form-field 'border-style: none'
@@ -47,16 +44,47 @@ $sizes: compact, comfortable, spacious, dense;
     }
   }
 
-  &-hint {
-    &__wrapper {
-      padding: 8px 12px;
-    }
-  }
-
   @each $size in $sizes {
     &.ids-autocomplete-#{$size} {
       & > .ids-autocomplete-suffix {
         gap: var(--ids-comp-forms-input-size-icons-gap-#{$size});
+
+        > .ids-icon-button {
+          height: var(--ids-comp-forms-input-icon-button-width-#{$size});
+          width: var(--ids-comp-forms-input-icon-button-width-#{$size});
+
+          .ids-icon {
+            font-family: var(--ids-comp-forms-input-icon-button-typography-font-family-#{$size});
+            font-size: var(--ids-comp-forms-input-icon-button-typography-font-size-#{$size});
+            font-weight: var(--ids-comp-forms-input-icon-button-typography-font-weight-#{$size});
+            line-height: var(--ids-comp-forms-input-icon-button-typography-line-height-#{$size});
+          }
+        }
+
+        > .ids-icon {
+          font-family: var(--ids-comp-forms-input-icon-typography-font-family-#{$size});
+          height: var(--ids-comp-forms-input-icon-width-#{$size});
+          width: var(--ids-comp-forms-input-icon-width-#{$size});
+          font-size: var(--ids-comp-forms-input-icon-typography-font-size-#{$size});
+          font-weight: var(--ids-comp-forms-input-icon-typography-font-weight-#{$size});
+          line-height: var(--ids-comp-forms-input-icon-typography-line-height-#{$size});
+        }
+
+        .ids-spinner {
+          width: var(--ids-comp-forms-input-size-spinner-#{$size});
+          height: var(--ids-comp-forms-input-size-spinner-#{$size});
+        }
+      }
+    }
+
+    &-overlay-panel.ids-overlay-panel-#{$size} &-panel {
+      gap: var(--ids-comp-forms-list-item-size-gap-#{$size});
+      // avoid clipping the outline of the options
+      padding: var(--ids-comp-forms-form-field-standard-field-wrapper-focused-outline-outline-compact);
+      margin: calc(var(--ids-comp-forms-form-field-standard-field-wrapper-focused-outline-outline-compact) * -1);
+
+      .ids-autocomplete-hint__wrapper {
+        padding: 0 var(--ids-comp-forms-list-item-hint-text-size-padding-x-#{$size});
       }
     }
   }
@@ -67,6 +95,12 @@ input[autocomplete] {
   text-overflow: ellipsis;
 }
 
+@each $size in $sizes {
+  input[autocomplete] {
+    min-width: var(--ids-comp-forms-input-size-min-width-#{$size});
+  }
+}
+
 .ids-form-field
   > .ids-form-field__field-wrapper
   > .ids-form-field__field-wrapper__container
@@ -74,26 +108,18 @@ input[autocomplete] {
   &:has(> input[autocomplete]) {
     width: 100%;
     display: inline-flex;
+    flex-wrap: wrap;
     align-items: center;
-
-    &:has(.ids-autocomplete-chip-list > button:first-child) {
-      display: grid;
-      grid-template-columns: 1fr auto;
-
-      & > input[autocomplete] {
-        order: 3;
-      }
-
-      & > .ids-autocomplete {
-        order: 2;
-        grid-row: span 2 / span 1;
-      }
-    }
+    position: relative;
   }
 
   @each $size in $sizes {
     &:has(> input[autocomplete] ~ .ids-autocomplete-#{$size}) {
-      column-gap: var(--ids-comp-forms-input-size-gap-#{$size});
+      padding-right: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-size-padding-right-#{$size});
+    }
+
+    &:has(> .ids-autocomplete-chip-list ~ input[autocomplete] ~ .ids-autocomplete-#{$size}) {
+      gap: var(--ids-comp-forms-input-size-chip-input-gap-#{$size});
     }
   }
 }
