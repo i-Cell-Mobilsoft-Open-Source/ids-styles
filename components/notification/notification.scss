@@ -104,6 +104,7 @@ $appearances: filled, outlined;
 
           & > .ids-notification__container {
             min-width: var(--ids-comp-notification-#{$appearance}-container-size-min-width-#{$size});
+            max-width: var(--ids-comp-notification-#{$appearance}-container-size-max-width-#{$size});
           }
         }
       }
