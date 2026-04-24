@@ -28,19 +28,22 @@ $sizes: compact, comfortable, spacious, dense;
   }
 
   & > .ids-accordion-item {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-    flex-shrink: 0;
+    & > :is(h1, h2, h3, h4, h5, h6) {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      align-self: stretch;
+    }
 
-    & > .ids-accordion-item-summary {
+    & > :is(h1, h2, h3, h4, h5, h6) > .ids-accordion-item-summary {
       display: flex;
       align-items: center;
       width: 100%;
       flex: 1 0 0;
       border-style: solid;
       cursor: pointer;
+      text-align: left;
 
       &:focus,
       &:focus-visible {
@@ -57,7 +60,7 @@ $sizes: compact, comfortable, spacious, dense;
       }
     }
 
-    &.ids-accordion-item-disabled > .ids-accordion-item-summary {
+    &.ids-accordion-item-disabled > :is(h1, h2, h3, h4, h5, h6) > .ids-accordion-item-summary {
       pointer-events: none;
       user-select: none;
     }
@@ -86,7 +89,7 @@ $sizes: compact, comfortable, spacious, dense;
         padding: var(--ids-comp-accordion-item-size-padding-y-#{$size}) var(--ids-comp-accordion-item-size-padding-x-#{$size});
         gap: var(--ids-comp-accordion-item-size-gap-#{$size});
 
-        & > .ids-accordion-item-summary {
+        & > :is(h1, h2, h3, h4, h5, h6) > .ids-accordion-item-summary {
           height: var(--ids-comp-accordion-summary-size-height-#{$size});
           padding: var(--ids-comp-accordion-summary-size-padding-y-#{$size}) var(--ids-comp-accordion-summary-size-padding-x-#{$size});
           gap: var(--ids-comp-accordion-summary-size-gap-#{$size});
@@ -130,7 +133,7 @@ $sizes: compact, comfortable, spacious, dense;
       background-color: var(--ids-comp-accordion-container-color-bg-default);
 
       .ids-accordion-item {
-        & > .ids-accordion-item-summary {
+        & > :is(h1, h2, h3, h4, h5, h6) > .ids-accordion-item-summary {
           @include accordionItemSummaryState($appearance, default);
 
           &:hover {
@@ -147,7 +150,7 @@ $sizes: compact, comfortable, spacious, dense;
           }
         }
 
-        &.ids-accordion-item-disabled > .ids-accordion-item-summary {
+        &.ids-accordion-item-disabled > :is(h1, h2, h3, h4, h5, h6) > .ids-accordion-item-summary {
           @include accordionItemSummaryState($appearance, disabled);
         }
       }
