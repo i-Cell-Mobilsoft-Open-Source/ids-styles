@@ -109,6 +109,12 @@ $variants: surface, light, primary;
     flex-grow: 1;
   }
 
+  &:not(.ids-switch-disabled) {
+    & > .ids-switch__label {
+      cursor: pointer;
+    }
+  }
+
   &.ids-switch-label-right {
     flex-direction: row;
   }
@@ -207,13 +213,6 @@ $variants: surface, light, primary;
           & + .ids-switch__label {
             @include switchLabelVariant($variant, default);
           }
-
-          &:hover {
-            @include switchButtonVariant($variant, hovered, false);
-            & + .ids-switch__label {
-              @include switchLabelVariant($variant, hovered);
-            }
-          }
           &:active {
             @include switchButtonVariant($variant, pressed, false);
             & + .ids-switch__label {
@@ -230,13 +229,31 @@ $variants: surface, light, primary;
           }
         }
 
+        &:hover {
+          & > .ids-switch__button {
+            @include switchButtonVariant($variant, hovered, false);
+          }
+  
+          & > .ids-switch__label {
+            @include switchLabelVariant($variant, hovered);
+          }
+        }
+  
         &.ids-switch-on {
           & > .ids-switch__button {
             @include switchButtonVariant($variant, default, true);
+          }
 
-            &:hover {
+          &:hover {
+            & > .ids-switch__button {
               @include switchButtonVariant($variant, hovered, true);
             }
+            & > .ids-switch__label {
+              @include switchLabelVariant($variant, hovered);
+            }
+          }
+  
+          & > .ids-switch__button {
             &:active {
               @include switchButtonVariant($variant, pressed, true);
             }
@@ -272,5 +289,8 @@ $variants: surface, light, primary;
 
   &.ids-switch-disabled {
     cursor: not-allowed;
+    & > .ids-switch__label {
+      cursor: not-allowed;
+    }
   }
 }
