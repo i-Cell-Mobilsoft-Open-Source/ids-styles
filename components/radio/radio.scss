@@ -2,6 +2,7 @@
 
 $sizes: compact, comfortable, spacious, dense;
 $variants: surface, light, dark;
+$labelPositions: left, right, top, bottom;
 
 @mixin radioItemVariantInputState($variant, $selected, $selectedText, $errorText, $state) {
   border-color: var(--ids-comp-radio-input-#{$selectedText}-color-border-#{$variant}#{$errorText}-#{$state});
@@ -79,6 +80,24 @@ $variants: surface, light, dark;
   }
 }
 
+@mixin radioItemVariantLabelPosition($position) {
+  .ids-radio__label-wrapper {
+    display: flex;
+    flex-direction: column;
+    @if ($position == top or $position == bottom) {
+      align-items: center;
+      .ids-radio__label {
+        justify-content: center;
+      }
+    } @else {
+      align-items: flex-start;
+      .ids-radio__label {
+        justify-content: start;
+      }
+    }
+  }
+}
+
 .ids-radio-group {
   @include reset.component;
 }
@@ -111,21 +130,26 @@ $variants: surface, light, dark;
     &.ids-radio-left {
       flex-direction: row-reverse;
       justify-content: start;
+      @include radioItemVariantLabelPosition(left);
     }
 
-    &.ids-radio-righ {
+    &.ids-radio-right {
       flex-direction: row;
       justify-content: start;
+      @include radioItemVariantLabelPosition(right);
     }
 
     &.ids-radio-top {
       flex-direction: column-reverse;
       align-items: center;
+      justify-content: center;
+      @include radioItemVariantLabelPosition(top);
     }
 
     &.ids-radio-bottom {
       flex-direction: column;
       align-items: center;
+      @include radioItemVariantLabelPosition(bottom);
     }
 
     .ids-radio__input-wrapper {
@@ -195,7 +219,6 @@ $variants: surface, light, dark;
 
     .ids-radio__label {
       display: flex;
-      justify-content: center;
       align-items: center;
       flex: 1 0 0;
       font-style: normal;
