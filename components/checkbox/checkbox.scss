@@ -306,18 +306,20 @@ $variants: light, dark, surface;
     }
   }
 
-  &.ng-invalid,
-  &.ids-checkbox-invalid {
-    @each $variant in $variants {
-      &.ids-checkbox-#{$variant} {
-        .ids-checkbox__input-wrapper {
-          input[type='checkbox'] {
-            @include checkboxInputVariant($variant, false, true);
+  &.ng-touched {
+    &.ng-invalid,
+    &.ids-checkbox-invalid {
+      @each $variant in $variants {
+        &.ids-checkbox-#{$variant} {
+          .ids-checkbox__input-wrapper {
+            input[type='checkbox'] {
+              @include checkboxInputVariant($variant, false, true);
 
-            &:checked,
-            &:indeterminate {
-              @include checkboxInputVariant($variant, true, true);
-              @include checkboxIconVariant($variant, true);
+              &:checked,
+              &:indeterminate {
+                @include checkboxInputVariant($variant, true, true);
+                @include checkboxIconVariant($variant, true);
+              }
             }
           }
         }
