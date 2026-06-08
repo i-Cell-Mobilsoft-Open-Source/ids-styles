@@ -9,7 +9,6 @@ $appearances: filled, outlined;
 
   & > .ids-notification__content-wrapper {
     display: flex;
-    justify-content: space-between;
     align-items: flex-start;
     align-content: flex-start;
     flex-wrap: wrap;
@@ -46,6 +45,10 @@ $appearances: filled, outlined;
         align-items: center;
         flex-shrink: 0;
       }
+    }
+
+    & > .ids-notification__close-button-container {
+      margin-left: auto;
     }
 
     & > .ids-notification__close-button-container.ids-notification__label-button {
