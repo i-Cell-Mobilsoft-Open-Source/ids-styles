@@ -1,5 +1,30 @@
 $sizes: compact, comfortable, spacious, dense;
 $variants: light, dark, surface;
+$orientations: horizontal, vertical;
+
+@mixin checkbox-group-legend-label-typography($size) {
+  font-family: var(--ids-comp-checkbox-group-label-typography-font-family-#{$size});
+  font-size: var(--ids-comp-checkbox-group-label-typography-font-size-#{$size});
+  font-weight: var(--ids-comp-checkbox-group-label-typography-font-weight-#{$size});
+  line-height: var(--ids-comp-checkbox-group-label-typography-line-height-#{$size});
+  letter-spacing: var(--ids-comp-checkbox-group-label-typography-letter-spacing-#{$size});
+}
+
+@mixin checkbox-group-list-size($orientation, $size, $indeterminated) {
+  $listSuffix: if($indeterminated, '-indeterminated', '');
+
+  .ids-checkbox-group__list {
+    padding: var(--ids-comp-checkbox-group-#{$orientation}-fieldset-list#{$listSuffix}-size-padding-y-#{$size})
+      var(--ids-comp-checkbox-group-#{$orientation}-fieldset-list#{$listSuffix}-size-padding-x-#{$size});
+
+    @if $orientation == vertical {
+      gap: var(--ids-comp-checkbox-group-vertical-fieldset-list-size-gap-#{$size});
+    } @else {
+      gap: var(--ids-comp-checkbox-group-horizontal-fieldset-list-size-gap-y-#{$size})
+        var(--ids-comp-checkbox-group-horizontal-fieldset-list-size-gap-x-#{$size});
+    }
+  }
+}
 
 .ids-checkbox-group {
   display: flex;
@@ -7,7 +32,7 @@ $variants: light, dark, surface;
   justify-content: center;
   align-items: flex-start;
 
-  & > .ids-checkbox-group__label {
+  & > .ids-checkbox-group__legend > .ids-checkbox-group__legend-label {
     font-style: normal;
   }
 
@@ -19,6 +44,7 @@ $variants: light, dark, surface;
     flex-direction: row;
     align-items: center;
   }
+
   &.ids-checkbox-group-vertical > .ids-checkbox-group__list {
     flex-direction: column;
     align-items: flex-start;
@@ -26,29 +52,35 @@ $variants: light, dark, surface;
 
   @each $size in $sizes {
     &.ids-checkbox-group-#{$size} {
-      padding: var(--ids-comp-checkbox-group-vertical-container-size-padding-y-#{$size})
-        var(--ids-comp-checkbox-group-vertical-container-size-padding-x-#{$size});
-      gap: var(--ids-comp-checkbox-group-vertical-container-size-gap-#{$size});
+      padding: var(--ids-comp-checkbox-group-vertical-fieldset-legend-size-padding-y-#{$size})
+        var(--ids-comp-checkbox-group-vertical-fieldset-legend-size-padding-x-#{$size});
+      gap: var(--ids-comp-checkbox-group-vertical-fieldset-size-gap-#{$size});
 
-      .ids-checkbox-group__label {
-        font-family: var(--ids-comp-checkbox-group-label-typography-font-family-#{$size});
-        font-size: var(--ids-comp-checkbox-group-label-typography-font-size-#{$size});
-        font-weight: var(--ids-comp-checkbox-group-label-typography-font-weight-#{$size});
-        line-height: var(--ids-comp-checkbox-group-label-typography-line-height-#{$size});
-        letter-spacing: var(--ids-comp-checkbox-group-label-typography-letter-spacing-#{$size});
+      & > .ids-checkbox-group__legend {
+        gap: var(--ids-comp-checkbox-group-vertical-fieldset-legend-size-gap-#{$size});
       }
 
-      .ids-checkbox-group__list {
-        padding: var(--ids-comp-checkbox-group-vertical-list-indeterminated-size-padding-y-#{$size})
-          var(--ids-comp-checkbox-group-vertical-list-indeterminated-size-padding-x-#{$size});
-        gap: var(--ids-comp-checkbox-group-horizontal-list-size-gap-#{$size});
+      & > .ids-checkbox-group__legend > .ids-checkbox-group__legend-label {
+        @include checkbox-group-legend-label-typography($size);
+      }
+
+      @each $orientation in $orientations {
+        &.ids-checkbox-group-#{$orientation} {
+          &.ids-checkbox-group-indeterminated {
+            @include checkbox-group-list-size($orientation, $size, true);
+          }
+
+          &:not(.ids-checkbox-group-indeterminated) {
+            @include checkbox-group-list-size($orientation, $size, false);
+          }
+        }
       }
     }
   }
 
   @each $variant in $variants {
     &.ids-checkbox-group-#{$variant} {
-      & > .ids-checkbox-group__label {
+      & > .ids-checkbox-group__legend > .ids-checkbox-group__legend-label {
         color: var(--ids-comp-checkbox-label-color-fg-#{$variant}-default);
       }
     }
