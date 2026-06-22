@@ -15,7 +15,7 @@ $variants: light, dark, surface;
     $errorText: '-error';
   }
 
-  &:not(:disabled) {
+  &:not(:disabled):not([aria-readonly='true']) {
     border-color: var(--ids-comp-checkbox-input-#{$selectedText}-color-border-#{$variant}#{$errorText}-default);
     background-color: var(--ids-comp-checkbox-input-#{$selectedText}-color-bg-#{$variant}-default);
 
@@ -38,7 +38,7 @@ $variants: light, dark, surface;
   }
 
   @if ($error != true) {
-    &:disabled {
+    &:disabled, &[aria-readonly='true'] {
       border-color: var(--ids-comp-checkbox-input-#{$selectedText}-color-border-#{$variant}-disabled);
       background-color: var(--ids-comp-checkbox-input-#{$selectedText}-color-bg-#{$variant}-disabled);
     }
@@ -51,7 +51,7 @@ $variants: light, dark, surface;
     $errorText: '-error';
   }
 
-  &:not(:disabled) {
+  &:not(:disabled):not([aria-readonly='true']) {
     & + .ids-checkbox__icon {
       color: var(--ids-comp-checkbox-input-selected-color-fg-icon-#{$variant}#{$errorText}-default);
     }
@@ -71,7 +71,7 @@ $variants: light, dark, surface;
   }
 
   @if ($error != true) {
-    &:disabled {
+    &:disabled, &[aria-readonly='true'] {
       & + .ids-checkbox__icon {
         color: var(--ids-comp-checkbox-input-selected-color-fg-icon-#{$variant}-disabled);
       }
@@ -202,27 +202,27 @@ $variants: light, dark, surface;
   @each $variant in $variants {
     &.ids-checkbox-#{$variant} {
       .ids-checkbox__input-wrapper {
-        &:hover input[type='checkbox']:not(:disabled):not(:checked):not(:indeterminate) {
+        &:hover input[type='checkbox']:not(:disabled):not(:checked):not(:indeterminate):not([aria-readonly='true']) {
           border-color: var(--ids-comp-checkbox-input-unselected-color-border-#{$variant}-hovered);
           background-color: var(--ids-comp-checkbox-input-unselected-color-bg-#{$variant}-hovered);
         }
-        &:hover input[type='checkbox']:not(:disabled):is(:checked, :indeterminate) {
+        &:hover input[type='checkbox']:not(:disabled):is(:checked, :indeterminate):not([aria-readonly='true']) {
           border-color: var(--ids-comp-checkbox-input-selected-color-border-#{$variant}-hovered);
           background-color: var(--ids-comp-checkbox-input-selected-color-bg-#{$variant}-hovered);
         }
-        &:hover input[type='checkbox']:not(:disabled) + .ids-checkbox__icon {
+        &:hover input[type='checkbox']:not(:disabled):not([aria-readonly='true']) + .ids-checkbox__icon {
           color: var(--ids-comp-checkbox-input-selected-color-fg-icon-#{$variant}-hovered);
         }
 
-        &:has(.ids-checkbox__touch-target:active) input[type='checkbox']:not(:disabled):not(:checked):not(:indeterminate) {
+        &:has(.ids-checkbox__touch-target:active) input[type='checkbox']:not(:disabled):not([aria-readonly='true']):not(:checked):not(:indeterminate) {
           border-color: var(--ids-comp-checkbox-input-unselected-color-border-#{$variant}-pressed);
           background-color: var(--ids-comp-checkbox-input-unselected-color-bg-#{$variant}-pressed);
         }
-        &:has(.ids-checkbox__touch-target:active) input[type='checkbox']:not(:disabled):is(:checked, :indeterminate) {
+        &:has(.ids-checkbox__touch-target:active) input[type='checkbox']:not(:disabled):not([aria-readonly='true']):is(:checked, :indeterminate) {
           border-color: var(--ids-comp-checkbox-input-selected-color-border-#{$variant}-pressed);
           background-color: var(--ids-comp-checkbox-input-selected-color-bg-#{$variant}-pressed);
         }
-        &:has(.ids-checkbox__touch-target:active) input[type='checkbox']:not(:disabled) + .ids-checkbox__icon {
+        &:has(.ids-checkbox__touch-target:active) input[type='checkbox']:not(:disabled):not([aria-readonly='true']) + .ids-checkbox__icon {
           color: var(--ids-comp-checkbox-input-selected-color-fg-icon-#{$variant}-pressed);
         }
 
@@ -260,6 +260,7 @@ $variants: light, dark, surface;
 
   &.ids-checkbox-disabled {
     .ids-checkbox__input-wrapper {
+      cursor: not-allowed;
       .ids-checkbox__touch-target {
         cursor: not-allowed;
       }
@@ -274,6 +275,7 @@ $variants: light, dark, surface;
     }
 
     .ids-checkbox__label-wrapper {
+      cursor: not-allowed;
       .ids-checkbox__label-container {
         .ids-checkbox__label {
           cursor: not-allowed;
@@ -284,6 +286,7 @@ $variants: light, dark, surface;
 
   &:not(.ids-checkbox-disabled) {
     .ids-checkbox__input-wrapper {
+      cursor: pointer;
       .ids-checkbox__touch-target {
         cursor: pointer;
       }
@@ -298,6 +301,7 @@ $variants: light, dark, surface;
     }
 
     .ids-checkbox__label-wrapper {
+      cursor: pointer;
       .ids-checkbox__label-container {
         .ids-checkbox__label {
           cursor: pointer;
