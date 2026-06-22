@@ -32,6 +32,7 @@ $sizes: compact, comfortable, spacious, dense;
 
       .ids-dialog-title {
         font-style: normal;
+        color: var(--ids-comp-dialog-header-color-fg-title-default);
 
         &.hidden {
           display: none;
@@ -40,6 +41,7 @@ $sizes: compact, comfortable, spacious, dense;
 
       .ids-dialog-subtitle {
         font-style: normal;
+        color: var(--ids-comp-dialog-header-color-fg-subtitle-default);
       }
 
       .ids-dialog-header-default-content {
