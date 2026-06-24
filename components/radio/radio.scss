@@ -2,124 +2,110 @@
 
 $sizes: compact, comfortable, spacious, dense;
 $variants: surface, light, dark;
-$labelPositions: left, right, top, bottom;
+$orientations: horizontal, vertical;
 
-@mixin radioItemVariantInputState($variant, $selected, $selectedText, $errorText, $state) {
-  border-color: var(--ids-comp-radio-input-#{$selectedText}-color-border-#{$variant}#{$errorText}-#{$state});
-  background-color: var(--ids-comp-radio-input-#{$selectedText}-color-bg-#{$variant}-#{$state});
+@mixin typography($token, $size) {
+  font-family: var(--#{$token}-font-family-#{$size});
+  font-size: var(--#{$token}-font-size-#{$size});
+  font-weight: var(--#{$token}-font-weight-#{$size});
+  line-height: var(--#{$token}-line-height-#{$size});
+  letter-spacing: var(--#{$token}-letter-spacing-#{$size});
+}
 
-  @if ($selected) {
+@mixin radio-state($variant, $selected, $error, $state) {
+  $selected-key: if($selected, 'selected', 'unselected');
+  $error-key: if($error, '-error', '');
+
+  border-color: var(--ids-comp-radio-input-#{$selected-key}-color-border-#{$variant}#{$error-key}-#{$state});
+  background-color: var(--ids-comp-radio-input-#{$selected-key}-color-bg-#{$variant}-#{$state});
+
+  @if $selected {
     & + .ids-radio__inner-circle {
-      border-color: var(--ids-comp-radio-input-selected-inner-circle-color-border-#{$variant}#{$errorText}-#{$state});
-      background: var(--ids-comp-radio-input-selected-inner-circle-color-bg-#{$variant}#{$errorText}-#{$state});
+      border-color: var(--ids-comp-radio-input-selected-inner-circle-color-border-#{$variant}#{$error-key}-#{$state});
+      background: var(--ids-comp-radio-input-selected-inner-circle-color-bg-#{$variant}#{$error-key}-#{$state});
     }
   }
 }
 
-@mixin radioItemVariantInput($variant, $selected, $error) {
-  $selectedText: '';
-  @if ($selected) {
-    $selectedText: 'selected';
-  } @else {
-    $selectedText: 'unselected';
-  }
-  $errorText: '';
-  @if ($error == true) {
-    $errorText: '-error';
-  }
-
+@mixin radio-states($variant, $selected, $error: false) {
   &:not(:disabled) {
-    @include radioItemVariantInputState($variant, $selected, $selectedText, $errorText, default);
+    @include radio-state($variant, $selected, $error, default);
 
     &:hover {
-      @include radioItemVariantInputState($variant, $selected, $selectedText, $errorText, hovered);
+      @include radio-state($variant, $selected, $error, hovered);
     }
+
     &:active {
-      @include radioItemVariantInputState($variant, $selected, $selectedText, $errorText, pressed);
+      @include radio-state($variant, $selected, $error, pressed);
     }
+
     &:focus,
     &:focus-visible {
-      @include radioItemVariantInputState($variant, $selected, $selectedText, $errorText, default);
-      @if ($error != true) {
-        outline-color: var(--ids-comp-radio-input-#{$selectedText}-color-focused-outline-#{$variant}-focused);
+      @include radio-state($variant, $selected, $error, default);
+
+      @if $error != true {
+        $selected-key: if($selected, 'selected', 'unselected');
+        outline-color: var(--ids-comp-radio-input-#{$selected-key}-color-focused-outline-#{$variant}-focused);
       }
     }
   }
 
-  @if ($error != true) {
+  @if $error != true {
     &:disabled {
-      @include radioItemVariantInputState($variant, $selected, $selectedText, $errorText, disabled);
+      @include radio-state($variant, $selected, false, disabled);
     }
   }
 }
 
-@mixin radioItemVariantTouchTargetHover($variant, $selected, $error) {
-  $selectedText: '';
-  @if ($selected) {
-    $selectedText: 'selected';
-  } @else {
-    $selectedText: 'unselected';
-  }
-  $errorText: '';
-  @if ($error == true) {
-    $errorText: '-error';
-  }
-
-  & + input[type='radio'] {
-    &:not(:disabled) {
-      border-color: var(--ids-comp-radio-input-#{$selectedText}-color-border-#{$variant}#{$errorText}-hovered);
-      background-color: var(--ids-comp-radio-input-#{$selectedText}-color-bg-#{$variant}-hovered);
-
-      @if ($selected) {
-        & + .ids-radio__inner-circle {
-          border-color: var(--ids-comp-radio-input-selected-inner-circle-color-border-#{$variant}#{$errorText}-hovered);
-          background: var(--ids-comp-radio-input-selected-inner-circle-color-bg-#{$variant}#{$errorText}-hovered);
-        }
-      }
+@mixin radio-external-hover($variant, $selected, $error: false) {
+  &:not(.ids-radio-disabled):has(.ids-radio__label-wrapper:hover),
+  &:not(.ids-radio-disabled):has(.ids-radio__touch-target:hover) {
+    input[type='radio']:not(:disabled) {
+      @include radio-state($variant, $selected, $error, hovered);
     }
-  }
-}
 
-@mixin radioItemVariantLabelPosition($position) {
-  .ids-radio__label-wrapper {
-    display: flex;
-    flex-direction: column;
-    @if ($position == top or $position == bottom) {
-      align-items: center;
-      .ids-radio__label {
-        justify-content: center;
-      }
-    } @else {
-      align-items: flex-start;
-      .ids-radio__label {
-        justify-content: start;
-      }
+    .ids-radio__label {
+      color: var(--ids-comp-radio-label-color-fg-#{$variant}-hovered);
     }
   }
 }
 
 .ids-radio-group {
   @include reset.component;
-}
 
-.ids-radio-group {
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: flex-start;
-  justify-content: start;
-
-  &.ids-radio-group-horizontal {
-    flex-direction: row;
-  }
-
-  &.ids-radio-group-vertical {
-    flex-direction: column;
-  }
 
   &.ids-radio-group-left {
     align-items: flex-end;
   }
 
   &.ids-radio-group-right {
+    align-items: flex-start;
+  }
+
+  & > .ids-radio-group__legend {
+    display: flex;
+    flex-direction: column;
+  }
+
+  & > .ids-radio-group__legend > .ids-radio-group__legend-container > .ids-radio-group__legend-label {
+    font-style: normal;
+  }
+
+  & > .ids-radio-group__list {
+    display: flex;
+  }
+
+  &.ids-radio-group-horizontal > .ids-radio-group__list {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &.ids-radio-group-vertical > .ids-radio-group__list {
+    flex-direction: column;
     align-items: flex-start;
   }
 
@@ -130,26 +116,44 @@ $labelPositions: left, right, top, bottom;
     &.ids-radio-left {
       flex-direction: row-reverse;
       justify-content: start;
-      @include radioItemVariantLabelPosition(left);
     }
 
     &.ids-radio-right {
       flex-direction: row;
       justify-content: start;
-      @include radioItemVariantLabelPosition(right);
     }
 
     &.ids-radio-top {
       flex-direction: column-reverse;
-      align-items: center;
       justify-content: center;
-      @include radioItemVariantLabelPosition(top);
+      align-items: center;
     }
 
     &.ids-radio-bottom {
       flex-direction: column;
       align-items: center;
-      @include radioItemVariantLabelPosition(bottom);
+    }
+
+    &.ids-radio-top,
+    &.ids-radio-bottom {
+      .ids-radio__label-wrapper {
+        align-items: center;
+      }
+
+      .ids-radio__label {
+        justify-content: center;
+      }
+    }
+
+    &.ids-radio-left,
+    &.ids-radio-right {
+      .ids-radio__label-wrapper {
+        align-items: flex-start;
+      }
+
+      .ids-radio__label {
+        justify-content: start;
+      }
     }
 
     .ids-radio__input-wrapper {
@@ -157,64 +161,45 @@ $labelPositions: left, right, top, bottom;
       display: flex;
       align-items: center;
       justify-content: center;
-
-      .ids-radio__touch-target {
-        position: absolute;
-        cursor: pointer;
-      }
-
-      input[type='radio'] {
-        appearance: none;
-        -webkit-appearance: none;
-        flex-shrink: 0;
-        border-style: solid;
-        margin: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-shrink: 0;
-        cursor: pointer;
-
-        & + .ids-radio__inner-circle {
-          position: absolute;
-          flex-shrink: 0;
-          border-style: solid;
-          height: 0;
-          width: 0;
-          border-width: 0;
-          cursor: pointer;
-        }
-
-        &:focus,
-        &:focus-visible {
-          outline-offset: 2px;
-          outline-style: solid;
-        }
-      }
     }
 
-    .ids-radio__label {
+    .ids-radio__touch-target {
+      position: absolute;
       cursor: pointer;
     }
 
-    &.ids-radio-disabled {
-      .ids-radio__input-wrapper {
-        .ids-radio__touch-target {
-          cursor: not-allowed;
-        }
+    input[type='radio'] {
+      appearance: none;
+      -webkit-appearance: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin: 0;
+      border-style: solid;
+      cursor: pointer;
 
-        input[type='radio'] {
-          cursor: not-allowed;
-
-          & + .ids-radio__inner-circle {
-            cursor: not-allowed;
-          }
-        }
+      &:focus,
+      &:focus-visible {
+        outline-offset: 2px;
+        outline-style: solid;
       }
 
-      .ids-radio__label {
-        cursor: not-allowed;
+      & + .ids-radio__inner-circle {
+        position: absolute;
+        flex-shrink: 0;
+        width: 0;
+        height: 0;
+        border-width: 0;
+        border-style: solid;
+        cursor: pointer;
       }
+    }
+
+    .ids-radio__label-wrapper {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
     }
 
     .ids-radio__label {
@@ -222,21 +207,48 @@ $labelPositions: left, right, top, bottom;
       align-items: center;
       flex: 1 0 0;
       font-style: normal;
+      cursor: pointer;
+    }
+
+    &.ids-radio-disabled {
+      .ids-radio__touch-target,
+      input[type='radio'],
+      input[type='radio'] + .ids-radio__inner-circle,
+      .ids-radio__label-wrapper,
+      .ids-radio__label {
+        cursor: not-allowed;
+      }
     }
   }
 
   @each $size in $sizes {
     &.ids-radio-group-#{$size} {
-      &.ids-radio-group-horizontal {
-        padding: var(--ids-comp-radio-group-horizontal-container-size-padding-y-#{$size})
-          var(--ids-comp-radio-group-horizontal-container-size-padding-x-#{$size});
-        gap: var(--ids-comp-radio-group-horizontal-container-size-gap-#{$size});
+      padding: var(--ids-comp-radio-group-vertical-fieldset-legend-size-padding-y-#{$size})
+        var(--ids-comp-radio-group-vertical-fieldset-legend-size-padding-x-#{$size});
+      gap: var(--ids-comp-radio-group-vertical-fieldset-size-gap-#{$size});
+
+      & > .ids-radio-group__legend {
+        gap: var(--ids-comp-radio-group-vertical-fieldset-legend-size-gap-#{$size});
       }
 
-      &.ids-radio-group-vertical {
-        padding: var(--ids-comp-radio-group-vertical-container-size-padding-y-#{$size})
-          var(--ids-comp-radio-group-vertical-container-size-padding-x-#{$size});
-        gap: var(--ids-comp-radio-group-vertical-container-size-gap-#{$size});
+      @each $orientation in $orientations {
+        &.ids-radio-group-#{$orientation} {
+          & > .ids-radio-group__legend > .ids-radio-group__legend-container > .ids-radio-group__legend-label {
+            @include typography(
+              'ids-comp-radio-group-#{$orientation}-fieldset-legend-typography',
+              $size
+            );
+          }
+
+          & > .ids-radio-group__list {
+            @if $orientation == vertical {
+              gap: var(--ids-comp-radio-group-vertical-fieldset-list-size-gap-#{$size});
+            } @else {
+              gap: var(--ids-comp-radio-group-horizontal-fieldset-list-size-gap-y-#{$size})
+                var(--ids-comp-radio-group-horizontal-fieldset-list-size-gap-x-#{$size});
+            }
+          }
+        }
       }
 
       .ids-radio {
@@ -247,14 +259,14 @@ $labelPositions: left, right, top, bottom;
         .ids-radio__input-wrapper {
           $input-height: var(--ids-comp-radio-button-input-size-height-#{$size});
           $input-width: var(--ids-comp-radio-button-input-size-width-#{$size});
+          $touch-height: var(--ids-comp-radio-button-input-size-touchtarget-height-#{$size});
+          $touch-width: var(--ids-comp-radio-button-input-size-touchtarget-width-#{$size});
 
           .ids-radio__touch-target {
-            $touch-target-height: var(--ids-comp-radio-button-input-size-touchtarget-height-#{$size});
-            $touch-target-width: var(--ids-comp-radio-button-input-size-touchtarget-width-#{$size});
-            top: calc(($input-height - $touch-target-height) / 2);
-            left: calc(($input-width - $touch-target-width) / 2);
-            height: $touch-target-height;
-            width: $touch-target-width;
+            top: calc(($input-height - $touch-height) / 2);
+            left: calc(($input-width - $touch-width) / 2);
+            width: $touch-width;
+            height: $touch-height;
           }
 
           input[type='radio'] {
@@ -263,13 +275,11 @@ $labelPositions: left, right, top, bottom;
             border-radius: var(--ids-comp-radio-button-input-size-border-radius-#{$size});
             border-width: var(--ids-comp-radio-button-input-size-border-width-#{$size});
 
-            &:checked {
-              & + .ids-radio__inner-circle {
-                width: var(--ids-comp-radio-button-input-inner-circle-size-width-#{$size});
-                height: var(--ids-comp-radio-button-input-inner-circle-size-height-#{$size});
-                border-radius: var(--ids-comp-radio-button-input-inner-circle-size-border-radius-#{$size});
-                border-width: var(--ids-comp-radio-button-input-inner-circle-size-border-width-#{$size});
-              }
+            &:checked + .ids-radio__inner-circle {
+              width: var(--ids-comp-radio-button-input-inner-circle-size-width-#{$size});
+              height: var(--ids-comp-radio-button-input-inner-circle-size-height-#{$size});
+              border-radius: var(--ids-comp-radio-button-input-inner-circle-size-border-radius-#{$size});
+              border-width: var(--ids-comp-radio-button-input-inner-circle-size-border-width-#{$size});
             }
 
             &:focus,
@@ -279,50 +289,52 @@ $labelPositions: left, right, top, bottom;
           }
         }
 
+        .ids-radio__label-wrapper {
+          gap: var(--ids-comp-radio-button-label-group-size-gap-#{$size});
+        }
+
         .ids-radio__label {
-          padding: var(--ids-comp-radio-button-label-size-padding-y-#{$size}) 0px;
-          font-family: var(--ids-comp-radio-button-label-typography-font-family-#{$size});
-          font-size: var(--ids-comp-radio-button-label-typography-font-size-#{$size});
-          font-weight: var(--ids-comp-radio-button-label-typography-font-weight-#{$size});
-          line-height: var(--ids-comp-radio-button-label-typography-line-height-#{$size});
-          letter-spacing: var(--ids-comp-radio-button-label-typography-letter-spacing-#{$size});
+          padding: var(--ids-comp-radio-button-label-size-padding-y-#{$size}) 0;
+
+          @include typography('ids-comp-radio-button-label-typography', $size);
         }
       }
     }
   }
 
   @each $variant in $variants {
-    .ids-radio-#{$variant} {
-      .ids-radio__input-wrapper {
-        .ids-radio__touch-target:hover {
-          @include radioItemVariantTouchTargetHover($variant, false, false);
-        }
-        input[type='radio'] {
-          @include radioItemVariantInput($variant, false, false);
+    &.ids-radio-group-#{$variant} {
+      .ids-radio-group__legend-label {
+        color: var(--ids-comp-radio-group-legend-color-fg-#{$variant}-default);
+      }
 
-          &:checked {
-            @include radioItemVariantInput($variant, true, false);
-          }
+      &.ids-radio-group-disabled .ids-radio-group__legend-label {
+        color: var(--ids-comp-radio-group-legend-color-fg-#{$variant}-disabled);
+      }
+    }
+
+    .ids-radio-#{$variant} {
+      input[type='radio'] {
+        @include radio-states($variant, false);
+
+        &:checked {
+          @include radio-states($variant, true);
         }
       }
 
+      @include radio-external-hover($variant, false);
+
       &:has(input[type='radio']:checked) {
-        .ids-radio__input-wrapper {
-          .ids-radio__touch-target:hover {
-            @include radioItemVariantTouchTargetHover($variant, true, false);
-          }
-        }
+        @include radio-external-hover($variant, true);
       }
 
       .ids-radio__label {
         color: var(--ids-comp-radio-label-color-fg-#{$variant}-default);
 
-        &:hover {
-          color: var(--ids-comp-radio-label-color-fg-#{$variant}-hovered);
-        }
         &:active {
           color: var(--ids-comp-radio-label-color-fg-#{$variant}-pressed);
         }
+
         &:focus,
         &:focus-visible {
           color: var(--ids-comp-radio-label-color-fg-#{$variant}-focused);
@@ -335,29 +347,21 @@ $labelPositions: left, right, top, bottom;
     }
   }
 
-  &.ng-invalid,
   &.ids-radio-group-invalid {
     @each $variant in $variants {
       .ids-radio-#{$variant} {
-        .ids-radio__input-wrapper {
-          .ids-radio__touch-target:hover {
-            @include radioItemVariantTouchTargetHover($variant, false, true);
-          }
-          input[type='radio'] {
-            @include radioItemVariantInput($variant, false, true);
+        input[type='radio'] {
+          @include radio-states($variant, false, true);
 
-            &:checked {
-              @include radioItemVariantInput($variant, true, true);
-            }
+          &:checked {
+            @include radio-states($variant, true, true);
           }
         }
 
+        @include radio-external-hover($variant, false, true);
+
         &:has(input[type='radio']:checked) {
-          .ids-radio__input-wrapper {
-            .ids-radio__touch-target:hover {
-              @include radioItemVariantTouchTargetHover($variant, true, true);
-            }
-          }
+          @include radio-external-hover($variant, true, true);
         }
       }
     }
