@@ -2,6 +2,14 @@
 
 $sizes: compact, comfortable, spacious, dense;
 
+.ids-dialog-backdrop {
+  background-color: var(--ids-comp-dialog-backdrop-background);
+}
+
+.ids-dialog-transparent-backdrop {
+  background-color: transparent;
+}
+
 .ids-dialog {
   @include reset.component;
   padding: 0;
@@ -11,14 +19,6 @@ $sizes: compact, comfortable, spacious, dense;
   box-shadow: var(--ids-smc-reference-container-effects-shadow-horizontal-none)
     var(--ids-smc-reference-container-effects-shadow-vertical-xxl) var(--ids-smc-reference-container-effects-shadow-blur-xxxl)
     var(--ids-smc-reference-container-effects-shadow-spread-xxs) var(--ids-smc-reference-container-effects-shadow-color-dark-default);
-
-  &::backdrop {
-    background-color: transparent;
-  }
-
-  &.ids-dialog-with-backdrop::backdrop {
-    background-color: var(--ids-comp-dialog-backdrop-background);
-  }
 
   .ids-dialog-container {
     display: grid;
