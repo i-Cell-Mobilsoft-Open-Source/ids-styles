@@ -32,7 +32,7 @@ $orientations: horizontal, vertical;
   justify-content: center;
   align-items: flex-start;
 
-  & > .ids-checkbox-group__legend > .ids-checkbox-group__legend-label {
+  & > .ids-checkbox-group__legend-wrapper > .ids-checkbox-group__legend-label {
     font-style: normal;
   }
 
@@ -56,11 +56,19 @@ $orientations: horizontal, vertical;
         var(--ids-comp-checkbox-group-vertical-fieldset-legend-size-padding-x-#{$size});
       gap: var(--ids-comp-checkbox-group-vertical-fieldset-size-gap-#{$size});
 
-      & > .ids-checkbox-group__legend {
+      & > .ids-checkbox-group__legend-wrapper {
+        display: flex;
+        flex-direction: column;
         gap: var(--ids-comp-checkbox-group-vertical-fieldset-legend-size-gap-#{$size});
+      
+        & > .ids-checkbox-group__legend-container {
+          display: flex;
+          flex-direction: row;
+          gap: var(--ids-comp-checkbox-label-size-gap-#{$size});
+        }
       }
 
-      & > .ids-checkbox-group__legend > .ids-checkbox-group__legend-label {
+      & > .ids-checkbox-group__legend-wrapper > .ids-checkbox-group__legend-label {
         @include checkbox-group-legend-label-typography($size);
       }
 
@@ -80,7 +88,7 @@ $orientations: horizontal, vertical;
 
   @each $variant in $variants {
     &.ids-checkbox-group-#{$variant} {
-      & > .ids-checkbox-group__legend > .ids-checkbox-group__legend-label {
+      & > .ids-checkbox-group__legend-wrapper > .ids-checkbox-group__legend-label {
         color: var(--ids-comp-checkbox-label-color-fg-#{$variant}-default);
       }
     }

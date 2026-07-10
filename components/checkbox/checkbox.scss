@@ -128,7 +128,8 @@ $variants: light, dark, surface;
 
     .ids-checkbox__label-container {
       text-align: start;
-
+      display: flex;
+      flex-direction: row;
       .ids-checkbox__label {
         font-style: normal;
       }
@@ -194,6 +195,7 @@ $variants: light, dark, surface;
           letter-spacing: var(--ids-comp-checkbox-label-typography-letter-spacing-#{$size});
           font-size: var(--ids-comp-checkbox-label-typography-font-size-#{$size});
           line-height: var(--ids-comp-checkbox-label-typography-line-height-#{$size});
+          gap: var(--ids-comp-checkbox-label-size-gap-#{$size});
         }
       }
     }
