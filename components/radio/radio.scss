@@ -79,7 +79,7 @@ $orientations: horizontal, vertical;
   align-items: flex-start;
 
   &.ids-radio-group-left {
-    align-items: flex-end;
+    align-items: flex-start;
   }
 
   &.ids-radio-group-right {
@@ -104,8 +104,24 @@ $orientations: horizontal, vertical;
     align-items: center;
   }
 
+  &.ids-radio-group-horizontal.ids-radio-group-top > .ids-radio-group__list {
+    align-items: flex-end;
+  }
+
+  &.ids-radio-group-horizontal.ids-radio-group-bottom > .ids-radio-group__list {
+    align-items: flex-start;
+  }
+
   &.ids-radio-group-vertical > .ids-radio-group__list {
     flex-direction: column;
+    align-items: center;
+  }
+
+  &.ids-radio-group-vertical.ids-radio-group-left > .ids-radio-group__list {
+    align-items: flex-end;
+  }
+
+  &.ids-radio-group-vertical.ids-radio-group-right > .ids-radio-group__list {
     align-items: flex-start;
   }
 
@@ -142,6 +158,7 @@ $orientations: horizontal, vertical;
 
       .ids-radio__label {
         justify-content: center;
+        text-align: center;
       }
     }
 
@@ -223,8 +240,8 @@ $orientations: horizontal, vertical;
 
   @each $size in $sizes {
     &.ids-radio-group-#{$size} {
-      padding: var(--ids-comp-radio-group-vertical-fieldset-legend-size-padding-y-#{$size})
-        var(--ids-comp-radio-group-vertical-fieldset-legend-size-padding-x-#{$size});
+      padding: var(--ids-comp-radio-group-vertical-fieldset-size-padding-y-#{$size})
+        var(--ids-comp-radio-group-vertical-fieldset-size-padding-x-#{$size});
       gap: var(--ids-comp-radio-group-vertical-fieldset-size-gap-#{$size});
 
       & > .ids-radio-group__legend {
