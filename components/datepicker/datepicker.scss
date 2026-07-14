@@ -1,5 +1,6 @@
 @use '../reset';
 
+$appearances: filled, outlined, elevated;
 $sizes: compact, comfortable, spacious, dense;
 $variants: surface;
 
@@ -36,10 +37,8 @@ $variants: surface;
 .ids-calendar {
   display: flex;
   flex-direction: column;
-  background-color: white;
   border-width: 1px;
   border-style: solid;
-  border-color: lightgrey;
 
   & > .ids-calendar__header {
     display: flex;
@@ -77,6 +76,7 @@ $variants: surface;
     &.ids-calendar-#{$size} {
       gap: var(--ids-comp-date-picker-size-gap-#{$size});
       padding: var(--ids-comp-date-picker-size-padding-y-#{$size}) var(--ids-comp-date-picker-size-padding-x-#{$size});
+      border-radius: var(--ids-comp-overlay-panel-size-border-radius-#{$size});
 
       .ids-calendar-grid {
         column-gap: var(--ids-comp-date-picker-calendar-size-column-gap-#{$size});
@@ -121,6 +121,20 @@ $variants: surface;
     }
   }
 
+  &.ids-calendar-filled {
+    box-shadow: none;
+  }
+  &.ids-calendar-outlined {
+    box-shadow: var(--ids-smc-reference-container-effects-shadow-horizontal-none)
+      var(--ids-smc-reference-container-effects-shadow-vertical-xxs) var(--ids-smc-reference-container-effects-shadow-blur-xxs)
+      var(--ids-smc-reference-container-effects-shadow-spread-none) var(--ids-smc-reference-container-effects-shadow-color-dark-lighter);
+  }
+  &.ids-calendar-elevated {
+    box-shadow: var(--ids-smc-reference-container-effects-shadow-horizontal-none)
+      var(--ids-smc-reference-container-effects-shadow-vertical-xxl) var(--ids-smc-reference-container-effects-shadow-blur-xxxl)
+      var(--ids-smc-reference-container-effects-shadow-spread-xxs) var(--ids-smc-reference-container-effects-shadow-color-dark-default);
+  }
+
   @each $variant in $variants {
     &.ids-calendar-#{$variant} {
       .ids-calendar-cell {
@@ -149,6 +163,17 @@ $variants: surface;
           }
           &:is(:focus, :focus-visible) {
             outline-color: var(--ids-comp-date-picker-focused-outline-color-dark);
+          }
+        }
+      }
+    }
+    @each $appearance in $appearances {
+      &.ids-calendar-#{$appearance} {
+        &.ids-calendar-#{$variant} {
+          background: var(--ids-comp-overlay-panel-#{$appearance}-color-bg-#{$variant}-default);
+
+          &.ids-calendar-outlined {
+            border-color: var(--ids-comp-overlay-panel-#{$appearance}-color-border-#{$variant}-default);
           }
         }
       }
