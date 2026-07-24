@@ -23,7 +23,8 @@ $variants: surface, light, primary;
   
   .ids-tab-group__container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
     position: relative;
     flex-shrink: 0;
   }
@@ -49,22 +50,38 @@ $variants: surface, light, primary;
 
     & > .ids-tab-group__container {
       width: 100%;
+      min-width: 0;
 
-      .ids-tab-group__header {
-        .ids-tab {
-          justify-content: center;
+      .ids-tab-group__scroll-button {
+        margin-bottom: 12px;
+      }
 
-          &:focus,
-          &:focus-visible {
-            outline-offset: 4px;
+      .ids-tab-group__header-wrapper {
+        overflow-x: auto;
+        overflow-y: hidden;
+        scrollbar-width: thin;
+        max-width: 100%;
+        justify-content: flex-start;
+        width: 100%;
+
+        .ids-tab-group__header {
+          .ids-tab {
+            flex-shrink: 0;
+            justify-content: center;
+
+            &:focus,
+            &:focus-visible {
+              outline-offset: 4px;
+            }
           }
         }
       }
     }
 
     &.ids-tab-group-indicator-bottom > .ids-tab-group__container {
-      border-bottom-style: solid;
-      border-bottom-color: var(--ids-comp-tab-tabgroup-color-border-default);
+      > .ids-tab-group__header-wrapper .ids-tab-group__header > .ids-tab-group__indicator {
+       position: absolute; 
+      }
 
       .ids-tab__line {
         align-self: flex-end;
@@ -73,8 +90,9 @@ $variants: surface, light, primary;
     }
 
     &.ids-tab-group-indicator-top > .ids-tab-group__container {
-      border-top-style: solid;
-      border-top-color: var(--ids-comp-tab-tabgroup-color-border-default);
+      > .ids-tab-group__header-wrapper .ids-tab-group__header > .ids-tab-group__indicator {
+        position: absolute;
+      }
 
       .ids-tab__line {
         align-self: flex-start;
@@ -82,26 +100,32 @@ $variants: surface, light, primary;
       }
     }
 
-    &.ids-tab-group-stretch-tabs > .ids-tab-group__container .ids-tab-group__header {
+    &.ids-tab-group-stretch-tabs > .ids-tab-group__container .ids-tab-group__header-wrapper .ids-tab-group__header {
       align-self: stretch;
 
       .ids-tab {
         flex-grow: 1;
+        flex-shrink: 0;
       }
     }
 
-    &.ids-tab-group-start > .ids-tab-group__container .ids-tab-group__header {
-      align-self: flex-start;
+    &.ids-tab-group-start > .ids-tab-group__container .ids-tab-group__header-wrapper .ids-tab-group__header {
+      &.ids-tab-group__header--has-overflow {
+        justify-content: flex-start;
+      }
     }
 
-    &.ids-tab-group-center > .ids-tab-group__container .ids-tab-group__header {
-      align-self: center;
+    &.ids-tab-group-center > .ids-tab-group__container .ids-tab-group__header-wrapper .ids-tab-group__header {
+      &.ids-tab-group__header--has-overflow {
+        justify-content: center;
+      }
     }
 
-    &.ids-tab-group-end > .ids-tab-group__container .ids-tab-group__header {
-      align-self: flex-end;
+    &.ids-tab-group-end > .ids-tab-group__container .ids-tab-group__header-wrapper .ids-tab-group__header {
+      &.ids-tab-group__header--has-overflow {
+        justify-content: flex-end;
+      }
     }
-
     & > .ids-tab-body-content {
       display: flex;
       align-items: flex-start;
@@ -121,15 +145,30 @@ $variants: surface, light, primary;
   &.ids-tab-group-vertical {
     display: inline-flex;
     align-items: flex-start;
-    width: 100%;
 
-    & > .ids-tab-group__container .ids-tab-group__header {
+    &.ids-tab-group-right {
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+    }
+
+    &.ids-tab-group-left {
+      flex-direction: row;
+      justify-content: flex-start;
+    }
+
+    &.ids-tab-group-top {
+      flex-direction: column;
+    }
+
+    & > .ids-tab-group__container .ids-tab-group__header-wrapper .ids-tab-group__header {
       display: flex;
       flex-direction: column;
       align-items: center;
       flex-shrink: 0;
+      scrollbar-width: thin;
 
       .ids-tab {
+        flex-shrink: 0;
         align-self: stretch;
 
         &:focus,
@@ -141,8 +180,8 @@ $variants: surface, light, primary;
 
     & > .ids-tab-body-content {
       display: flex;
-      justify-content: center;
       align-self: stretch;
+      flex-grow: 1;
     }
 
     &.ids-tab-group-indicator-left .ids-tab__indicator {
@@ -172,9 +211,9 @@ $variants: surface, light, primary;
   }
 
   & > .ids-tab-group__container {
-    & > .ids-tab-group__header {
+    & > .ids-tab-group__header-wrapper .ids-tab-group__header {
       display: flex;
-      justify-content: center;
+    //  justify-content: center;
       align-items: flex-start;
       list-style: none;
       margin: 0;
@@ -231,6 +270,13 @@ $variants: surface, light, primary;
                 border-bottom-width: var(--ids-comp-tab-item-active-indicator-size-width-#{$size});
               }
             }
+
+            & > .ids-tab-group__header-wrapper .ids-tab-group__header > .ids-tab-group__indicator {
+              height: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-size-border-width-#{$size}); 
+              bottom: calc(26px - var(--ids-comp-tab-container-nav-tabgroup-tabgroup-size-padding-x-#{$size})); 
+              left: calc(var(--ids-comp-icon-button-size-padding-x-#{$size}) + var(--ids-comp-icon-button-size-width-#{$size}));
+              right: calc(var(--ids-comp-icon-button-size-padding-x-#{$size}) + var(--ids-comp-icon-button-size-width-#{$size}));
+            }
           }
         }
 
@@ -249,8 +295,15 @@ $variants: surface, light, primary;
                 border-top-width: var(--ids-comp-tab-item-active-indicator-size-width-#{$size});
               }
             }
+
+            & > .ids-tab-group__header-wrapper .ids-tab-group__header > .ids-tab-group__indicator {
+              height: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-size-border-width-#{$size}); 
+              top: calc(14px - var(--ids-comp-tab-container-nav-tabgroup-tabgroup-size-padding-x-#{$size}));
+              left: calc(2 * var(--ids-comp-icon-button-size-padding-x-#{$size}) + var(--ids-comp-icon-button-size-width-#{$size}));
+              right: calc(2 * var(--ids-comp-icon-button-size-padding-x-#{$size}) + var(--ids-comp-icon-button-size-width-#{$size}));
+            }
           }
-          }
+        }
       }
 
       &.ids-tab-group-vertical {
@@ -275,35 +328,40 @@ $variants: surface, light, primary;
         padding: var(--ids-comp-tab-tabpanel-size-padding-y-#{$size}) var(--ids-comp-tab-tabpanel-size-padding-x-#{$size});
       }
 
-      & > .ids-tab-group__container .ids-tab-group__header {
-        padding: var(--ids-comp-tab-tabgroup-size-padding-y-#{$size}) var(--ids-comp-tab-tabgroup-size-padding-x-#{$size});
+      & > .ids-tab-group__container .ids-tab-group__header-wrapper {
+        padding-left: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-size-padding-x-#{$size});
+        padding-right: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-size-padding-x-#{$size});
+        padding-top: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-size-padding-y-#{$size});
+        padding-bottom: calc(12px + var(--ids-comp-tab-container-nav-tabgroup-tabgroup-size-padding-y-#{$size}));
+       .ids-tab-group__header { 
         gap: var(--ids-comp-tab-tabgroup-size-gap-#{$size});
 
-        .ids-tab {
-          padding: var(--ids-comp-tab-item-size-padding-y-#{$size}) var(--ids-comp-tab-item-size-padding-x-#{$size});
-          gap: var(--ids-comp-tab-item-size-gap-#{$size});
-          border-radius: var(--ids-comp-tab-item-size-border-radius-#{$size});
-          border-width: var(--ids-comp-tab-item-size-border-width-#{$size});
+          .ids-tab {
+            padding: var(--ids-comp-tab-item-size-padding-y-#{$size}) var(--ids-comp-tab-item-size-padding-x-#{$size});
+            gap: var(--ids-comp-tab-item-size-gap-#{$size});
+            border-radius: var(--ids-comp-tab-item-size-border-radius-#{$size});
+            border-width: var(--ids-comp-tab-item-size-border-width-#{$size});
 
-          &:focus,
-          &:focus-visible {
-            outline-width: var(--ids-comp-tab-item-focused-outline-size-outline-#{$size});
-          }
+            &:focus,
+            &:focus-visible {
+              outline-width: var(--ids-comp-tab-item-focused-outline-size-outline-#{$size});
+            }
 
-          & > .ids-tab__label {
-            font-family: var(--ids-comp-tab-item-label-typography-font-family-#{$size});
-            font-size: var(--ids-comp-tab-item-label-typography-font-size-#{$size});
-            font-weight: var(--ids-comp-tab-item-label-typography-font-weight-#{$size});
-            letter-spacing: var(--ids-comp-tab-item-label-typography-letter-spacing-#{$size});
-            line-height: var(--ids-comp-tab-item-label-typography-line-height-#{$size});
-          }
+            & > .ids-tab__label {
+              font-family: var(--ids-comp-tab-item-label-typography-font-family-#{$size});
+              font-size: var(--ids-comp-tab-item-label-typography-font-size-#{$size});
+              font-weight: var(--ids-comp-tab-item-label-typography-font-weight-#{$size});
+              letter-spacing: var(--ids-comp-tab-item-label-typography-letter-spacing-#{$size});
+              line-height: var(--ids-comp-tab-item-label-typography-line-height-#{$size});
+            }
 
-          & > .ids-icon {
-            font-size: var(--ids-comp-tab-item-icon-typography-font-size-#{$size});
-            font-weight: var(--ids-comp-tab-item-icon-typography-font-weight-#{$size});
-            line-height: var(--ids-comp-tab-item-icon-typography-line-height-#{$size});
-            width: var(--ids-comp-tab-item-icon-size-width-#{$size});
-            height: var(--ids-comp-tab-item-icon-size-height-#{$size});
+            & > .ids-icon {
+              font-size: var(--ids-comp-tab-item-icon-typography-font-size-#{$size});
+              font-weight: var(--ids-comp-tab-item-icon-typography-font-weight-#{$size});
+              line-height: var(--ids-comp-tab-item-icon-typography-line-height-#{$size});
+              width: var(--ids-comp-tab-item-icon-size-width-#{$size});
+              height: var(--ids-comp-tab-item-icon-size-height-#{$size});
+            }
           }
         }
       }
@@ -316,6 +374,10 @@ $variants: surface, light, primary;
 
       & > .ids-tab-group__container .ids-tab-group__header {
         background-color: var(--ids-comp-tab-tabgroup-color-bg-default);
+
+        .ids-tab-group__indicator {
+          background-color: var(--ids-comp-tab-tabgroup-color-border-#{$variant}-default);
+        }
 
         .ids-tab {
           @include tabVariant($variant, unselected, default);
