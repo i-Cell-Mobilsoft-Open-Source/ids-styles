@@ -97,6 +97,7 @@ $orientations: horizontal, vertical;
 
   & > .ids-radio-group__list {
     display: flex;
+    width: inherit;
   }
 
   &.ids-radio-group-horizontal > .ids-radio-group__list {
