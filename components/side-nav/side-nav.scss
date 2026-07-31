@@ -223,17 +223,22 @@ $sizes: compact, comfortable, spacious, dense;
         }
 
         .ids-side-nav-item-expandable-submenu.expanded {
-          // use height of largest possible item (single or expandable-summary) + padding (top and bottom) + gap times the number of items
-          --submenu-item-height: calc(
-            max(
-              var(--ids-comp-sidenav-navitem-single-size-height-#{$size}), 
-              var(--ids-comp-sidenav-navitem-expandable-summary-size-height-#{$size})
-            ) + 
+          --submenu-items-gap-count: max(calc(var(--submenu-items-count) - 1), 0);
+          --submenu-item-height: max(
+            var(--ids-comp-sidenav-navitem-single-size-height-#{$size}),
+            var(--ids-comp-sidenav-navitem-expandable-summary-size-height-#{$size})
+          );
+          max-height: calc(
+            (var(--submenu-items-count) * var(--submenu-item-height)) +
             var(--ids-comp-sidenav-navitem-expandable-submenu-padding-top-#{$size}) +
             var(--ids-comp-sidenav-navitem-expandable-submenu-padding-bottom-#{$size}) +
-            calc(var(--ids-comp-sidenav-navitem-expandable-submenu-gap-#{$size}) * var(--submenu-items-count))
+            (var(--submenu-items-gap-count) *
+              (
+                var(--ids-comp-sidenav-navitem-expandable-submenu-gap-#{$size}) +
+                var(--ids-comp-sidenav-section-list-size-gap-#{$size})
+              )
+            )
           );
-          max-height: calc(var(--submenu-items-count) * var(--submenu-item-height));
           gap: var(--ids-comp-sidenav-navitem-expandable-submenu-gap-#{$size});
           padding: var(--ids-comp-sidenav-navitem-expandable-submenu-padding-top-#{$size})
                    var(--ids-comp-sidenav-navitem-expandable-submenu-padding-right-#{$size})
