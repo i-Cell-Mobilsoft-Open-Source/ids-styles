@@ -241,21 +241,26 @@ $orientations: horizontal, vertical;
 
   @each $size in $sizes {
     &.ids-radio-group-#{$size} {
-      padding: var(--ids-comp-radio-group-vertical-fieldset-size-padding-y-#{$size})
-        var(--ids-comp-radio-group-vertical-fieldset-size-padding-x-#{$size});
-      gap: var(--ids-comp-radio-group-vertical-fieldset-size-gap-#{$size});
-
-      & > .ids-radio-group__legend {
-        gap: var(--ids-comp-radio-group-vertical-fieldset-legend-size-gap-#{$size});
-      }
-
       @each $orientation in $orientations {
         &.ids-radio-group-#{$orientation} {
-          & > .ids-radio-group__legend > .ids-radio-group__legend-container > .ids-radio-group__legend-label {
-            @include typography(
-              'ids-comp-radio-group-#{$orientation}-fieldset-legend-typography',
-              $size
-            );
+          padding: var(--ids-comp-radio-group-#{$orientation}-fieldset-size-padding-y-#{$size}) var(--ids-comp-radio-group-#{$orientation}-fieldset-size-padding-x-#{$size});
+          gap: var(--ids-comp-radio-group-#{$orientation}-fieldset-size-gap-#{$size});
+          
+          & > .ids-radio-group__legend {
+            gap: var(--ids-comp-radio-group-#{$orientation}-fieldset-legend-size-gap-#{$size});
+
+            & > .ids-radio-group__legend-container {
+              display: flex;
+              flex-direction: row;
+              gap: var(--ids-comp-radio-group-#{$orientation}-fieldset-legend-size-gap-#{$size});
+
+              & > .ids-radio-group__legend-label {
+                @include typography(
+                  'ids-comp-radio-group-#{$orientation}-fieldset-legend-typography',
+                  $size
+                );
+              }
+            }
           }
 
           & > .ids-radio-group__list {
