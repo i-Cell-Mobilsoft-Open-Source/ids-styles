@@ -59,12 +59,10 @@ $orientations: horizontal, vertical;
       & > .ids-checkbox-group__legend-wrapper {
         display: flex;
         flex-direction: column;
-        gap: var(--ids-comp-checkbox-group-vertical-fieldset-legend-size-gap-#{$size});
       
         & > .ids-checkbox-group__legend-container {
           display: flex;
           flex-direction: row;
-          gap: var(--ids-comp-checkbox-label-size-gap-#{$size});
         }
       }
 
@@ -74,6 +72,14 @@ $orientations: horizontal, vertical;
 
       @each $orientation in $orientations {
         &.ids-checkbox-group-#{$orientation} {
+          & > .ids-checkbox-group__legend-wrapper {
+            gap: var(--ids-comp-checkbox-group-#{$orientation}-fieldset-legend-size-gap-#{$size});
+
+            & > .ids-checkbox-group__legend-container {
+              gap: var(--ids-comp-checkbox-group-#{$orientation}-fieldset-legend-size-gap-#{$size});
+            }
+          }
+
           &.ids-checkbox-group-indeterminated {
             @include checkbox-group-list-size($orientation, $size, true);
           }
