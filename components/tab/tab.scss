@@ -325,6 +325,7 @@ $variants: surface, light, primary;
 
       & > .ids-tab-body-content {
         padding: var(--ids-comp-tab-tabpanel-size-padding-y-#{$size}) var(--ids-comp-tab-tabpanel-size-padding-x-#{$size});
+        min-height: var(--ids-comp-tab-container-tabpanel-size-min-height-#{$size});
       }
 
       & > .ids-tab-group__container .ids-tab-group__header-wrapper {
@@ -340,6 +341,7 @@ $variants: surface, light, primary;
             gap: var(--ids-comp-tab-item-size-gap-#{$size});
             border-radius: var(--ids-comp-tab-item-size-border-radius-#{$size});
             border-width: var(--ids-comp-tab-item-size-border-width-#{$size});
+            min-width: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-size-min-width-#{$size});
 
             &:focus,
             &:focus-visible {
