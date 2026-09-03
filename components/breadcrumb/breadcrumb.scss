@@ -12,6 +12,14 @@ $states: default, hover, active, focus, disabled;
   @include reset.component;
 }
 
+.ids-overlay-panel.ids-breadcrumb-overlay-panel {
+  align-items: stretch;
+  gap: 0;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
 .ids-breadcrumb {
   display: block;
 

@@ -93,6 +93,15 @@ $variants: surface, light;
   }
 }
 
+.ids-overlay-panel.ids-select-overlay-panel {
+  align-items: stretch;
+  gap: 0;
+  padding: 0;
+  width: 100%;
+  background: transparent;
+  box-shadow: none;
+}
+
 .ids-form-field:not(.ids-form-field-disabled) > .ids-form-field__field-wrapper:has(.ids-select) {
   cursor: pointer;
 }
