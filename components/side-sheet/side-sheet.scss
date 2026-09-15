@@ -158,8 +158,13 @@ $backdropTypes: default, transparent;
 
       &.ids-side-sheet-#{$orientation}-#{$size} {
         .ids-side-sheet__backdrop {
-          padding-left: var(--ids-comp-sidesheet-backdrop-orientation-#{$orientation}-size-padding-left-#{$size});
-          padding-right: var(--ids-comp-sidesheet-backdrop-orientation-#{$orientation}-size-padding-right-#{$size});
+          @if ($orientation == left) {
+            padding-left: 0;
+            padding-right: var(--ids-comp-sidesheet-backdrop-orientation-#{$orientation}-size-padding-right-#{$size});
+          } @else {
+            padding-left: var(--ids-comp-sidesheet-backdrop-orientation-#{$orientation}-size-padding-left-#{$size});
+            padding-right: 0;
+          }
         }
 
         .ids-side-sheet__container {
