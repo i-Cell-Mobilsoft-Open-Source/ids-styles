@@ -111,22 +111,32 @@ $variants: surface, light;
     }
   }
 
+  & > .ids-option-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   @each $size in $sizes {
     &.ids-option-group-#{$size} {
+      & > .ids-option-list {
+        gap: var(--ids-comp-forms-option-group-options-list-size-gap-#{$size});
+      }
+
       & > .ids-option-group__label {
-        gap: var(--ids-comp-forms-option-container-size-gap-#{$size});
+        gap: var(--ids-comp-forms-option-group-gap-#{$size});
         & > .ids-option-group__text {
-          padding: var(--ids-comp-forms-option-group-title-size-padding-y-#{$size})
-            var(--ids-comp-forms-option-group-title-size-padding-x-#{$size});
-          font-family: var(--ids-comp-forms-option-group-title-typography-font-family-#{$size});
-          font-size: var(--ids-comp-forms-option-group-title-typography-font-size-#{$size});
-          font-weight: var(--ids-comp-forms-option-group-title-typography-font-weight-#{$size});
-          line-height: var(--ids-comp-forms-option-group-title-typography-line-height-#{$size});
-          letter-spacing: var(--ids-comp-forms-option-group-title-typography-letter-spacing-#{$size});
+          padding: var(--ids-comp-forms-option-group-label-size-padding-#{$size});
+          font-family: var(--ids-comp-forms-option-group-label-typography-font-family-#{$size});
+          font-size: var(--ids-comp-forms-option-group-label-typography-font-size-#{$size});
+          font-weight: var(--ids-comp-forms-option-group-label-typography-font-weight-#{$size});
+          line-height: var(--ids-comp-forms-option-group-label-typography-line-height-#{$size});
+          letter-spacing: var(--ids-comp-forms-option-group-label-typography-letter-spacing-#{$size});
         }
       }
 
-      & > .ids-option {
+      & > .ids-option,
+      & > .ids-option-list > .ids-option {
         padding: var(--ids-comp-forms-option-item-size-padding-y-#{$size})
           var(--ids-comp-forms-option-group-item-size-padding-right-#{$size})
           var(--ids-comp-forms-option-item-size-padding-y-#{$size})
