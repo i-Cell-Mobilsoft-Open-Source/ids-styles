@@ -34,7 +34,10 @@ $variants: primary, secondary, brand, error, success, warning, light, light-fixe
   align-items: center;
   display: inline-flex;
   justify-content: center;
-  border-style: solid;
+
+  &.ids-button {
+    border-style: solid;
+  }
 
   &:focus,
   &:focus-visible {
