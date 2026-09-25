@@ -107,9 +107,9 @@ $states: default, hover, active, focus, disabled;
         font-weight: var(--ids-comp-breadcrumb-divider-foreslash-typography-font-weight-#{$size});
         letter-spacing: var(--ids-comp-breadcrumb-divider-foreslash-typography-letter-spacing-#{$size});
         line-height: var(--ids-comp-breadcrumb-divider-foreslash-typography-line-height-#{$size});
-        padding: var(--ids-comp-breadcrumb-divider-foreslash-size-padding-y-#{$size}) 
-                 var(--ids-comp-breadcrumb-divider-foreslash-size-padding-x-#{$size});
-        border-radius: var(--ids-comp-breadcrumb-divider-foreslash-size-border-radius-#{$size});
+        padding: var(--ids-comp-breadcrumb-divider-size-padding-y-#{$size})
+                 var(--ids-comp-breadcrumb-divider-size-padding-x-#{$size});
+        border-radius: var(--ids-comp-breadcrumb-divider-size-border-radius-#{$size});
       }
     }
   }
@@ -124,7 +124,7 @@ $states: default, hover, active, focus, disabled;
           color: var(--ids-comp-breadcrumb-navigation-link-fg-#{$variant}-hovered);
           background: var(--ids-comp-breadcrumb-navigation-link-bg-#{$variant}-hovered);
         }
-  
+
         &:focus,
         &:focus-visible {
           color: var(--ids-comp-breadcrumb-navigation-link-fg-#{$variant}-focused);
@@ -135,11 +135,11 @@ $states: default, hover, active, focus, disabled;
             outline-color: var(--ids-comp-breadcrumb-focused-outline-color-dark-focused);
           }
         }
-  
+
         &:active {
           background: var(--ids-comp-breadcrumb-navigation-link-bg-#{$variant}-pressed);
         }
-  
+
         &:is([disabled]) {
           color: var(--ids-comp-breadcrumb-navigation-link-fg-#{$variant}-disabled);
           background: var(--ids-comp-breadcrumb-navigation-link-bg-#{$variant}-disabled);

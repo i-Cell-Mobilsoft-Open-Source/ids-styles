@@ -96,7 +96,7 @@ $backdropTypes: default, transparent;
 
         .ids-side-sheet__content:not(.ids-side-sheet__content--scrollable) {
           padding:
-                  var(--ids-comp-sidesheet-content-fixed-size-padding-y-top-#{$size})
+                  var(--ids-comp-sidesheet-content-fixed-size-padding-y-#{$size})
                   var(--ids-comp-sidesheet-content-fixed-size-padding-x-#{$size});
         }
 
@@ -140,7 +140,7 @@ $backdropTypes: default, transparent;
         @if ($orientation == left) {
           .ids-side-sheet__container {
             border-right: (
-                    var(--ids-comp-sidesheet-container-orientation-#{$orientation}-size-border-width-#{$size})
+                    var(--ids-comp-sidesheet-container-orientation-size-border-width-#{$size})
                     solid
                     var(--ids-comp-sidesheet-container-color-border-surface-default)
             )
@@ -148,7 +148,7 @@ $backdropTypes: default, transparent;
         } @else {
           .ids-side-sheet__container {
             border-left: (
-                    var(--ids-comp-sidesheet-container-orientation-#{$orientation}-size-border-width-#{$size})
+                    var(--ids-comp-sidesheet-container-orientation-size-border-width-#{$size})
                     solid
                     var(--ids-comp-sidesheet-container-color-border-surface-default)
             )
@@ -158,8 +158,13 @@ $backdropTypes: default, transparent;
 
       &.ids-side-sheet-#{$orientation}-#{$size} {
         .ids-side-sheet__backdrop {
-          padding-left: var(--ids-comp-sidesheet-backdrop-orientation-#{$orientation}-size-padding-left-#{$size});
-          padding-right: var(--ids-comp-sidesheet-backdrop-orientation-#{$orientation}-size-padding-right-#{$size});
+          @if ($orientation == left) {
+            padding-left: 0;
+            padding-right: var(--ids-comp-sidesheet-backdrop-orientation-#{$orientation}-size-padding-right-#{$size});
+          } @else {
+            padding-left: var(--ids-comp-sidesheet-backdrop-orientation-#{$orientation}-size-padding-left-#{$size});
+            padding-right: 0;
+          }
         }
 
         .ids-side-sheet__container {
