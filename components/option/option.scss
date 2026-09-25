@@ -46,7 +46,6 @@ $variants: surface, light;
     &.ids-option-#{$size} {
       min-height: var(--ids-comp-forms-option-item-size-min-height-#{$size});
       padding: var(--ids-comp-forms-option-item-size-padding-y-#{$size}) var(--ids-comp-forms-option-item-size-padding-x-#{$size});
-      gap: var(--ids-comp-forms-option-container-size-gap-#{$size});
       border-radius: var(--ids-comp-forms-option-item-size-border-radius-#{$size});
 
       & > .ids-option__text {
@@ -95,6 +94,8 @@ $variants: surface, light;
 }
 
 .ids-option-group {
+  display: flex;
+  flex-direction: column;
   width: 100%;
 
   & > .ids-option-group__label {
@@ -111,22 +112,34 @@ $variants: surface, light;
     }
   }
 
+  & > .ids-option-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   @each $size in $sizes {
     &.ids-option-group-#{$size} {
+      gap: var(--ids-comp-forms-option-group-gap-#{$size});
+
+      & > .ids-option-list {
+        gap: var(--ids-comp-forms-option-group-options-list-size-gap-#{$size});
+      }
+
       & > .ids-option-group__label {
-        gap: var(--ids-comp-forms-option-container-size-gap-#{$size});
         & > .ids-option-group__text {
-          padding: var(--ids-comp-forms-option-group-title-size-padding-y-#{$size})
-            var(--ids-comp-forms-option-group-title-size-padding-x-#{$size});
-          font-family: var(--ids-comp-forms-option-group-title-typography-font-family-#{$size});
-          font-size: var(--ids-comp-forms-option-group-title-typography-font-size-#{$size});
-          font-weight: var(--ids-comp-forms-option-group-title-typography-font-weight-#{$size});
-          line-height: var(--ids-comp-forms-option-group-title-typography-line-height-#{$size});
-          letter-spacing: var(--ids-comp-forms-option-group-title-typography-letter-spacing-#{$size});
+          padding: var(--ids-comp-forms-option-group-label-size-padding-#{$size});
+          font-family: var(--ids-comp-forms-option-group-label-typography-font-family-#{$size});
+          font-size: var(--ids-comp-forms-option-group-label-typography-font-size-#{$size});
+          font-weight: var(--ids-comp-forms-option-group-label-typography-font-weight-#{$size});
+          line-height: var(--ids-comp-forms-option-group-label-typography-line-height-#{$size});
+          letter-spacing: var(--ids-comp-forms-option-group-label-typography-letter-spacing-#{$size});
         }
       }
 
-      & > .ids-option {
+      & > .ids-option,
+      & > .ids-option-list > .ids-option {
+        gap: var(--ids-comp-forms-option-item-size-gap-#{$size});
         padding: var(--ids-comp-forms-option-item-size-padding-y-#{$size})
           var(--ids-comp-forms-option-group-item-size-padding-right-#{$size})
           var(--ids-comp-forms-option-item-size-padding-y-#{$size})
@@ -136,10 +149,16 @@ $variants: surface, light;
   }
 
   @each $variant in $variants {
-    .ids-option-group#{$variant} {
+    &.ids-option-group-#{$variant} {
       & > .ids-option-group__label {
         & > .ids-option-group__text {
-          color: var(--ids-comp-forms-option-color-group-title-color-fg-text-default);
+          color: var(--ids-comp-forms-option-group-color-fg-label-surface-default);
+        }
+      }
+
+      &.ids-option-group-disabled {
+        & > .ids-option-group__label > .ids-option-group__text {
+          color: var(--ids-comp-forms-option-group-color-fg-label-surface-disabled);
         }
       }
     }
