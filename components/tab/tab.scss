@@ -256,17 +256,17 @@ $variants: surface, light, primary;
       &.ids-tab-group-horizontal {
         &.ids-tab-group-indicator-bottom {
           & > .ids-tab-group__container {
-            border-bottom-width: var(--ids-comp-tab-item-active-indicator-size-width-#{$size});
+            border-bottom-width: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-active-indicator-size-width-#{$size});
   
             .ids-tab__indicator {
               bottom: calc(
                 0px - calc(
-                    var(--ids-comp-tab-item-active-indicator-size-width-#{$size}) + var(--ids-comp-tab-item-size-border-width-#{$size})
+                    var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-active-indicator-size-width-#{$size}) + var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-size-border-width-#{$size})
                   )
               );
   
               .ids-tab__line {
-                border-bottom-width: var(--ids-comp-tab-item-active-indicator-size-width-#{$size});
+                border-bottom-width: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-active-indicator-size-width-#{$size});
               }
             }
 
@@ -294,17 +294,17 @@ $variants: surface, light, primary;
 
         &.ids-tab-group-indicator-top {
           & > .ids-tab-group__container {
-            border-top-width: var(--ids-comp-tab-item-active-indicator-size-width-#{$size});
+            border-top-width: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-active-indicator-size-width-#{$size});
   
             .ids-tab__indicator {
               top: calc(
                 0px - calc(
-                    var(--ids-comp-tab-item-active-indicator-size-width-#{$size}) + var(--ids-comp-tab-item-size-border-width-#{$size})
+                    var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-active-indicator-size-width-#{$size}) + var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-size-border-width-#{$size})
                   )
               );
   
               .ids-tab__line {
-                border-top-width: var(--ids-comp-tab-item-active-indicator-size-width-#{$size});
+                border-top-width: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-active-indicator-size-width-#{$size});
               }
             }
 
@@ -333,24 +333,24 @@ $variants: surface, light, primary;
 
       &.ids-tab-group-vertical {
         &.ids-tab-group-indicator-left .ids-tab__indicator {
-          border-left-width: var(--ids-comp-tab-item-active-indicator-size-width-#{$size});
+          border-left-width: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-active-indicator-size-width-#{$size});
 
           .ids-tab__line {
-            border-left-width: var(--ids-comp-tab-item-active-indicator-size-width-#{$size});
+            border-left-width: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-active-indicator-size-width-#{$size});
           }
         }
 
         &.ids-tab-group-indicator-right .ids-tab__indicator {
-          border-right-width: var(--ids-comp-tab-item-active-indicator-size-width-#{$size});
+          border-right-width: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-active-indicator-size-width-#{$size});
 
           .ids-tab__line {
-            border-right-width: var(--ids-comp-tab-item-active-indicator-size-width-#{$size});
+            border-right-width: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-active-indicator-size-width-#{$size});
           }
         }
       }
 
       & > .ids-tab-body-content {
-        padding: var(--ids-comp-tab-tabpanel-size-padding-y-#{$size}) var(--ids-comp-tab-tabpanel-size-padding-x-#{$size});
+        padding: var(--ids-comp-tab-container-tabpanel-size-padding-y-#{$size}) var(--ids-comp-tab-container-tabpanel-size-padding-x-#{$size});
         min-height: var(--ids-comp-tab-container-tabpanel-size-min-height-#{$size});
       }
 
@@ -360,34 +360,34 @@ $variants: surface, light, primary;
         padding-top: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-size-padding-y-#{$size});
         padding-bottom: calc(12px + var(--ids-comp-tab-container-nav-tabgroup-tabgroup-size-padding-y-#{$size}));
        .ids-tab-group__header { 
-        gap: var(--ids-comp-tab-tabgroup-size-gap-#{$size});
+        gap: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-size-gap-#{$size});
 
           .ids-tab {
-            padding: var(--ids-comp-tab-item-size-padding-y-#{$size}) var(--ids-comp-tab-item-size-padding-x-#{$size});
-            gap: var(--ids-comp-tab-item-size-gap-#{$size});
-            border-radius: var(--ids-comp-tab-item-size-border-radius-#{$size});
-            border-width: var(--ids-comp-tab-item-size-border-width-#{$size});
+            padding: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-size-padding-y-#{$size}) var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-size-padding-x-#{$size});
+            gap: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-size-gap-#{$size});
+            border-radius: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-size-border-radius-#{$size});
+            border-width: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-size-border-width-#{$size});
             min-width: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-size-min-width-#{$size});
 
             &:focus,
             &:focus-visible {
-              outline-width: var(--ids-comp-tab-item-focused-outline-size-outline-#{$size});
+              outline-width: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-focused-outline-size-outline-#{$size});
             }
 
             & > .ids-tab__label {
-              font-family: var(--ids-comp-tab-item-label-typography-font-family-#{$size});
-              font-size: var(--ids-comp-tab-item-label-typography-font-size-#{$size});
-              font-weight: var(--ids-comp-tab-item-label-typography-font-weight-#{$size});
-              letter-spacing: var(--ids-comp-tab-item-label-typography-letter-spacing-#{$size});
-              line-height: var(--ids-comp-tab-item-label-typography-line-height-#{$size});
+              font-family: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-label-typography-font-family-#{$size});
+              font-size: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-label-typography-font-size-#{$size});
+              font-weight: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-label-typography-font-weight-#{$size});
+              letter-spacing: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-label-typography-letter-spacing-#{$size});
+              line-height: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-label-typography-line-height-#{$size});
             }
 
             & > .ids-icon {
-              font-size: var(--ids-comp-tab-item-icon-typography-font-size-#{$size});
-              font-weight: var(--ids-comp-tab-item-icon-typography-font-weight-#{$size});
-              line-height: var(--ids-comp-tab-item-icon-typography-line-height-#{$size});
-              width: var(--ids-comp-tab-item-icon-size-width-#{$size});
-              height: var(--ids-comp-tab-item-icon-size-height-#{$size});
+              font-size: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-icon-typography-font-size-#{$size});
+              font-weight: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-icon-typography-font-weight-#{$size});
+              line-height: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-icon-typography-line-height-#{$size});
+              width: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-icon-size-width-#{$size});
+              height: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-icon-size-height-#{$size});
             }
           }
         }
