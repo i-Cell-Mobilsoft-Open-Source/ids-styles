@@ -60,6 +60,17 @@ $variants: primary, secondary, surface;
   display: block;
   max-width: 100%;
 
+  .ids-table__detail-toggle-placeholder {
+    flex-shrink: 0;
+
+    @each $size in $sizes {
+      &.ids-table__detail-toggle-placeholder-#{$size} {
+        width: var(--ids-comp-icon-button-size-width-#{$size});
+        height: var(--ids-comp-icon-button-size-height-#{$size});
+      }
+    }
+  }
+
   & > .ids-table__horizontal-scroll {
     position: relative;
     overflow: auto;
@@ -172,6 +183,26 @@ $variants: primary, secondary, surface;
                   font-weight: var(--ids-comp-table-tbody-td-typography-description-font-weight-#{$size});
                   letter-spacing: var(--ids-comp-table-tbody-td-typography-description-letter-spacing-#{$size});
                   line-height: var(--ids-comp-table-tbody-td-typography-description-line-height-#{$size});
+                }
+
+                & > .ids-table__cell-content--with-detail-toggle {
+                  display: flex;
+                  align-items: center;
+                  gap: var(--ids-comp-table-tbody-td-size-gap-#{$size});
+
+                  & > .ids-table__button--master-detail {
+                    flex-shrink: 0;
+                  }
+
+                  & > .ids-table__detail-cell-content {
+                    flex: 1;
+                    min-width: 0;
+
+                    & > .ids-cell-content__numeric {
+                      text-align: end;
+                    }
+                  }
+
                 }
 
               }
