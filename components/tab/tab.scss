@@ -65,7 +65,6 @@ $variants: surface, light, primary;
         width: 100%;
 
         .ids-tab-group__header {
-          align-items: stretch;
           .ids-tab {
             flex-shrink: 0;
             justify-content: center;
@@ -80,6 +79,10 @@ $variants: surface, light, primary;
     }
 
     &.ids-tab-group-indicator-bottom > .ids-tab-group__container {
+      > .ids-tab-group__header-wrapper .ids-tab-group__header {
+        align-items: flex-end;
+      }
+
       > .ids-tab-group__header-wrapper .ids-tab-group__header > .ids-tab-group__indicator {
        position: absolute; 
       }
@@ -91,6 +94,10 @@ $variants: surface, light, primary;
     }
 
     &.ids-tab-group-indicator-top > .ids-tab-group__container {
+      > .ids-tab-group__header-wrapper .ids-tab-group__header {
+        align-items: flex-start;
+      }
+
       > .ids-tab-group__header-wrapper .ids-tab-group__header > .ids-tab-group__indicator {
         position: absolute;
       }
