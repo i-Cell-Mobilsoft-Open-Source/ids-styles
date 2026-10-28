@@ -253,34 +253,43 @@ $variants: surface, light, primary;
       padding: var(--ids-comp-tab-container-size-padding-y-#{$size}) var(--ids-comp-tab-container-size-padding-x-#{$size});
       gap: var(--ids-comp-tab-container-size-gap-#{$size});
 
+      & > .ids-tab-group__container {
+        padding: var(--ids-comp-tab-container-nav-tabgroup-size-padding-y-#{$size}) var(--ids-comp-tab-container-nav-tabgroup-size-padding-x-#{$size});
+        gap: var(--ids-comp-tab-container-nav-tabgroup-size-gap-#{$size});
+      }
+
+      .ids-tab__line {
+        border-radius: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-active-indicator-size-border-radius-#{$size});
+      }
+
       &.ids-tab-group-horizontal {
         &.ids-tab-group-indicator-bottom {
           & > .ids-tab-group__container {
-            border-bottom-width: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-active-indicator-size-width-#{$size});
+            border-bottom-width: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-active-indicator-size-height-#{$size});
   
             .ids-tab__indicator {
               bottom: calc(
                 0px - calc(
-                    var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-active-indicator-size-width-#{$size}) + var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-size-border-width-#{$size})
+                    var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-active-indicator-size-height-#{$size}) + var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-size-border-width-#{$size})
                   )
               );
   
               .ids-tab__line {
-                border-bottom-width: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-active-indicator-size-width-#{$size});
+                border-bottom-width: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-active-indicator-size-height-#{$size});
               }
             }
 
             & > .ids-tab-group__header-wrapper {
               .ids-tab-group__header > .ids-tab-group__indicator {
                 height: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-size-border-width-#{$size}); 
-                bottom: calc(26px - var(--ids-comp-tab-container-nav-tabgroup-tabgroup-size-padding-x-#{$size})); 
-                left: 0;
-                right: 0;
+                bottom: calc(26px - var(--ids-comp-tab-container-nav-tabgroup-tabgroup-size-padding-x-#{$size}) + var(--ids-comp-tab-container-nav-tabgroup-size-padding-y-#{$size}));
+                left: var(--ids-comp-tab-container-nav-tabgroup-size-padding-x-#{$size});
+                right: var(--ids-comp-tab-container-nav-tabgroup-size-padding-x-#{$size});
               }
               
               .ids-tab-group__header--has-overflow > .ids-tab-group__indicator {
-                left: calc(var(--ids-comp-icon-button-size-padding-x-#{$size}) + var(--ids-comp-icon-button-size-width-#{$size}));
-                right: calc(var(--ids-comp-icon-button-size-padding-x-#{$size}) + var(--ids-comp-icon-button-size-width-#{$size}));
+                left: calc(var(--ids-comp-icon-button-size-padding-x-#{$size}) + var(--ids-comp-icon-button-size-width-#{$size}) + var(--ids-comp-tab-container-nav-tabgroup-size-padding-x-#{$size}));
+                right: calc(var(--ids-comp-icon-button-size-padding-x-#{$size}) + var(--ids-comp-icon-button-size-width-#{$size}) + var(--ids-comp-tab-container-nav-tabgroup-size-padding-x-#{$size}));
               }
 
               .ids-tab-group__header--has-overflow::after {
@@ -294,31 +303,31 @@ $variants: surface, light, primary;
 
         &.ids-tab-group-indicator-top {
           & > .ids-tab-group__container {
-            border-top-width: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-active-indicator-size-width-#{$size});
+            border-top-width: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-active-indicator-size-height-#{$size});
   
             .ids-tab__indicator {
               top: calc(
                 0px - calc(
-                    var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-active-indicator-size-width-#{$size}) + var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-size-border-width-#{$size})
+                    var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-active-indicator-size-height-#{$size}) + var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-size-border-width-#{$size})
                   )
               );
   
               .ids-tab__line {
-                border-top-width: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-active-indicator-size-width-#{$size});
+                border-top-width: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-active-indicator-size-height-#{$size});
               }
             }
 
             & > .ids-tab-group__header-wrapper {
               .ids-tab-group__header > .ids-tab-group__indicator {
                 height: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-size-border-width-#{$size}); 
-                top: calc(14px - var(--ids-comp-tab-container-nav-tabgroup-tabgroup-size-padding-x-#{$size}));
-                left: 0;
-                right: 0;
+                top: calc(14px - var(--ids-comp-tab-container-nav-tabgroup-tabgroup-size-padding-x-#{$size}) + var(--ids-comp-tab-container-nav-tabgroup-size-padding-y-#{$size}));
+                left: var(--ids-comp-tab-container-nav-tabgroup-size-padding-x-#{$size});
+                right: var(--ids-comp-tab-container-nav-tabgroup-size-padding-x-#{$size});
               }
 
               .ids-tab-group__header--has-overflow > .ids-tab-group__indicator {
-                left: calc(2 * var(--ids-comp-icon-button-size-padding-x-#{$size}) + var(--ids-comp-icon-button-size-width-#{$size}));
-                right: calc(2 * var(--ids-comp-icon-button-size-padding-x-#{$size}) + var(--ids-comp-icon-button-size-width-#{$size}));
+                left: calc(2 * var(--ids-comp-icon-button-size-padding-x-#{$size}) + var(--ids-comp-icon-button-size-width-#{$size}) + var(--ids-comp-tab-container-nav-tabgroup-size-padding-x-#{$size}));
+                right: calc(2 * var(--ids-comp-icon-button-size-padding-x-#{$size}) + var(--ids-comp-icon-button-size-width-#{$size}) + var(--ids-comp-tab-container-nav-tabgroup-size-padding-x-#{$size}));
               }
 
               .ids-tab-group__header--has-overflow::after {
@@ -383,6 +392,7 @@ $variants: surface, light, primary;
             }
 
             & > .ids-icon {
+              font-family: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-icon-typography-font-family-#{$size});
               font-size: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-icon-typography-font-size-#{$size});
               font-weight: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-icon-typography-font-weight-#{$size});
               line-height: var(--ids-comp-tab-container-nav-tabgroup-tabgroup-item-icon-typography-line-height-#{$size});
