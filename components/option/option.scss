@@ -81,7 +81,7 @@ $variants: surface, light;
           @include selectOptionVariant($variant, pressed);
         }
         &.ids-option-active {
-          @include selectOptionVariant($variant, active);
+          @include selectOptionVariant($variant, focused);
           outline-color: var(--ids-comp-forms-form-field-standard-field-wrapper-container-color-focused-outline-color-dark-focused);
         }
       }
