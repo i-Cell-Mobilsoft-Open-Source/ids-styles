@@ -65,6 +65,7 @@ $variants: surface, light, primary;
         width: 100%;
 
         .ids-tab-group__header {
+          align-items: stretch;
           .ids-tab {
             flex-shrink: 0;
             justify-content: center;
