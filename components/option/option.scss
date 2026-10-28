@@ -46,6 +46,7 @@ $variants: surface, light;
     &.ids-option-#{$size} {
       min-height: var(--ids-comp-forms-option-item-size-min-height-#{$size});
       padding: var(--ids-comp-forms-option-item-size-padding-y-#{$size}) var(--ids-comp-forms-option-item-size-padding-x-#{$size});
+      gap: var(--ids-comp-forms-option-item-size-gap-#{$size});
       border-radius: var(--ids-comp-forms-option-item-size-border-radius-#{$size});
 
       & > .ids-option__text {
