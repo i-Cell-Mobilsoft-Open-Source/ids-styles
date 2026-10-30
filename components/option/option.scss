@@ -60,9 +60,9 @@ $variants: surface, light;
       & > .ids-icon {
         height: var(--ids-comp-forms-option-item-icon-size-height-#{$size});
         width: var(--ids-comp-forms-option-item-icon-size-width-#{$size});
-        font-size: var(--ids-comp-forms-option-icon-typography-font-size-#{$size});
-        font-weight: var(--ids-comp-forms-option-icon-typography-font-weight-#{$size});
-        line-height: var(--ids-comp-forms-option-icon-typography-line-height-#{$size});
+        font-size: var(--ids-comp-forms-option-item-icon-typography-font-size-#{$size});
+        font-weight: var(--ids-comp-forms-option-item-icon-typography-font-weight-#{$size});
+        line-height: var(--ids-comp-forms-option-item-icon-typography-line-height-#{$size});
       }
 
       &.ids-option-active {
