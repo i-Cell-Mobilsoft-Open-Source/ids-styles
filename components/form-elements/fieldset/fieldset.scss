@@ -51,13 +51,13 @@ $variants: light, surface;
       }
 
       & > .ids-fieldset-message {
-        padding: var(--ids-comp-forms-message-size-padding-y-#{$size}) var(--ids-comp-forms-message-size-padding-x-#{$size});
-        gap: var(--ids-comp-forms-message-size-gap-#{$size});
-        font-family: var(--ids-comp-forms-message-typography-font-family-#{$size});
-        font-size: var(--ids-comp-forms-message-typography-font-size-#{$size});
-        font-weight: var(--ids-comp-forms-message-typography-font-weight-#{$size});
-        line-height: var(--ids-comp-forms-message-typography-line-height-#{$size});
-        letter-spacing: var(--ids-comp-forms-message-typography-letter-spacing-#{$size});
+        padding: var(--ids-comp-message-size-padding-y-#{$size}) var(--ids-comp-message-size-padding-x-#{$size});
+        gap: var(--ids-comp-message-size-gap-#{$size});
+        font-family: var(--ids-comp-message-typography-font-family-#{$size});
+        font-size: var(--ids-comp-message-typography-font-size-#{$size});
+        font-weight: var(--ids-comp-message-typography-font-weight-#{$size});
+        line-height: var(--ids-comp-message-typography-line-height-#{$size});
+        letter-spacing: var(--ids-comp-message-typography-letter-spacing-#{$size});
       }
 
       & > .ids-fieldset-row {
@@ -74,7 +74,7 @@ $variants: light, surface;
       }
 
       & > .ids-fieldset-message {
-        color: var(--ids-comp-forms-message-color-fg-text-#{$variant}-default);
+        color: var(--ids-comp-message-color-fg-text-#{$variant}-default);
       }
     }
   }
