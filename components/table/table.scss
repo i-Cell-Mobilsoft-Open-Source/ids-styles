@@ -42,10 +42,6 @@ $variants: primary, secondary, surface;
     color: var(--ids-comp-table-tbody-td-color-fg-typography-#{$variant}-default);
 
     @include opaqueStickyCell($variant, $state);
-
-    &.ids-table__cell--label-description {
-      color: var(--ids-comp-table-tbody-td-color-fg-typography-description-#{$variant}-default);
-    }
   }
 
   .ids-table__detail-cell--content-wrapper {
