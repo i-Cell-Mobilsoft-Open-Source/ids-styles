@@ -63,7 +63,8 @@ $variants: surface, light;
   @if ($validation) {
     $validationText: '-' + $validation;
   }
-  & > .ids-form-field__label {
+  & > .ids-form-field__label,
+  & > .ids-form-field__label-wrapper > .ids-form-field__label {
     color: var(--ids-comp-forms-form-field-standard-label-color-fg-#{$variant}#{$validationText}-#{$state});
   }
 }
@@ -74,7 +75,32 @@ $variants: surface, light;
   flex-direction: column;
   align-items: flex-start;
 
-  & > .ids-form-field__label {
+  & > .ids-form-field__label-wrapper {
+    display: contents;
+
+    &:has(> [idsLabelSuffix]) ~ .ids-form-field__subscript-wrapper {
+      align-self: stretch;
+    }
+
+    &:has(> [idsLabelSuffix]) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      align-self: stretch;
+      gap: inherit;
+
+      & > .ids-form-field__label {
+        min-width: 0;
+      }
+
+      & > [idsLabelSuffix] {
+        flex-shrink: 0;
+      }
+    }
+  }
+
+  & > .ids-form-field__label,
+  & > .ids-form-field__label-wrapper > .ids-form-field__label {
     flex: 1 0;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -152,7 +178,8 @@ $variants: surface, light;
     &.ids-form-field-#{$size} {
       gap: var(--ids-comp-forms-form-field-standard-size-gap-#{$size});
 
-      & > .ids-form-field__label {
+      & > .ids-form-field__label,
+      & > .ids-form-field__label-wrapper > .ids-form-field__label {
         padding: var(--ids-comp-forms-form-field-standard-label-size-padding-y-#{$size}) 0px;
         font-family: var(--ids-comp-forms-form-field-standard-label-typography-font-family-#{$size});
         font-size: var(--ids-comp-forms-form-field-standard-label-typography-font-size-#{$size});
