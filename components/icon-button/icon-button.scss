@@ -95,6 +95,9 @@ $variants: primary, secondary, brand, error, success, warning, light, dark, surf
           &:active {
             @include iconButtonAppearanceAndVariant($appearance, $variant, pressed);
           }
+          &.ids-icon-button-active:not(:is(:disabled, .ids-icon-button-disabled)) {
+            @include iconButtonAppearanceAndVariant($appearance, $variant, pressed);
+          }
 
           &:is(:disabled, .ids-icon-button-disabled) {
             // The following variants do not have a disabled state
