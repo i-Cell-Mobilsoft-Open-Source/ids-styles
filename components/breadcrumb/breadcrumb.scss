@@ -24,20 +24,7 @@ $states: default, hover, active, focus, disabled;
   display: block;
   min-width: 0;
 
-  &-measurement {
-    position: absolute;
-    width: 0;
-    height: 0;
-    overflow: hidden;
-    visibility: hidden;
-
-    > .ids-breadcrumb-list {
-      width: max-content;
-    }
-  }
-
-  & > .ids-breadcrumb-list > li,
-  &-measurement > .ids-breadcrumb-list > li {
+  & > .ids-breadcrumb-list > li {
     flex-shrink: 0;
   }
 
