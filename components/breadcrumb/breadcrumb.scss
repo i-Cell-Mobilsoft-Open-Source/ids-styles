@@ -22,6 +22,11 @@ $states: default, hover, active, focus, disabled;
 
 .ids-breadcrumb {
   display: block;
+  min-width: 0;
+
+  & > .ids-breadcrumb-list > li {
+    flex-shrink: 0;
+  }
 
   &-divider {
     display: flex;
