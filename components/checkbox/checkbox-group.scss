@@ -2,12 +2,12 @@ $sizes: compact, comfortable, spacious, dense;
 $variants: light, dark, surface;
 $orientations: horizontal, vertical;
 
-@mixin checkbox-group-legend-label-typography($size) {
-  font-family: var(--ids-comp-checkbox-group-label-typography-font-family-#{$size});
-  font-size: var(--ids-comp-checkbox-group-label-typography-font-size-#{$size});
-  font-weight: var(--ids-comp-checkbox-group-label-typography-font-weight-#{$size});
-  line-height: var(--ids-comp-checkbox-group-label-typography-line-height-#{$size});
-  letter-spacing: var(--ids-comp-checkbox-group-label-typography-letter-spacing-#{$size});
+@mixin checkbox-group-legend-label-typography($orientation, $size) {
+  font-family: var(--ids-comp-checkbox-group-#{$orientation}-fieldset-legend-typography-font-family-#{$size});
+  font-size: var(--ids-comp-checkbox-group-#{$orientation}-fieldset-legend-typography-font-size-#{$size});
+  font-weight: var(--ids-comp-checkbox-group-#{$orientation}-fieldset-legend-typography-font-weight-#{$size});
+  line-height: var(--ids-comp-checkbox-group-#{$orientation}-fieldset-legend-typography-line-height-#{$size});
+  letter-spacing: var(--ids-comp-checkbox-group-#{$orientation}-fieldset-legend-typography-letter-spacing-#{$size});
 }
 
 @mixin checkbox-group-list-size($orientation, $size, $indeterminated) {
@@ -32,7 +32,7 @@ $orientations: horizontal, vertical;
   justify-content: center;
   align-items: flex-start;
 
-  & > .ids-checkbox-group__legend-wrapper > .ids-checkbox-group__legend-label {
+  & > .ids-checkbox-group__legend-wrapper > .ids-checkbox-group__legend-container > .ids-checkbox-group__legend-label {
     font-style: normal;
   }
 
@@ -66,12 +66,12 @@ $orientations: horizontal, vertical;
         }
       }
 
-      & > .ids-checkbox-group__legend-wrapper > .ids-checkbox-group__legend-label {
-        @include checkbox-group-legend-label-typography($size);
-      }
-
       @each $orientation in $orientations {
         &.ids-checkbox-group-#{$orientation} {
+          & > .ids-checkbox-group__legend-wrapper > .ids-checkbox-group__legend-container > .ids-checkbox-group__legend-label {
+            @include checkbox-group-legend-label-typography($orientation, $size);
+          }
+
           & > .ids-checkbox-group__legend-wrapper {
             gap: var(--ids-comp-checkbox-group-#{$orientation}-fieldset-legend-size-gap-#{$size});
 

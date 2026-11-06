@@ -42,10 +42,6 @@ $variants: primary, secondary, surface;
     color: var(--ids-comp-table-tbody-td-color-fg-typography-#{$variant}-default);
 
     @include opaqueStickyCell($variant, $state);
-
-    &.ids-table__cell--label-description {
-      color: var(--ids-comp-table-tbody-td-color-fg-typography-description-#{$variant}-default);
-    }
   }
 
   .ids-table__detail-cell--content-wrapper {
@@ -176,13 +172,6 @@ $variants: primary, secondary, surface;
 
                 &.ids-table__cell--label-prominent {
                   font-weight: var(--ids-comp-table-tbody-td-typography-td-font-weight-prominent-#{$size});
-                }
-                &.ids-table__cell--label-description {
-                  font-family: var(--ids-comp-table-tbody-td-typography-description-font-family-#{$size});
-                  font-size: var(--ids-comp-table-tbody-td-typography-description-font-size-#{$size});
-                  font-weight: var(--ids-comp-table-tbody-td-typography-description-font-weight-#{$size});
-                  letter-spacing: var(--ids-comp-table-tbody-td-typography-description-letter-spacing-#{$size});
-                  line-height: var(--ids-comp-table-tbody-td-typography-description-line-height-#{$size});
                 }
 
                 & > .ids-table__cell-content--with-detail-toggle {
