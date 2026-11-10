@@ -116,18 +116,22 @@ $sizes: compact, comfortable, spacious, dense;
             padding: var(--ids-comp-dialog-header-size-padding-y-#{$size}) var(--ids-comp-dialog-header-size-padding-x-#{$size});
           }
         }
+        
+    .ids-dialog-content {
+    > .ids-dialog-content-overflow {
+    padding: var(--ids-comp-dialog-content-fixed-size-padding-y-#{size})
+                  var(--ids-comp-dialog-content-fixed-size-padding-x-#{size});
+    }
+      &.ids-dialog-content-scrollable {
+        border-top-width: var(--ids-comp-dialog-content-scrollable-size-border-width-#{$size});
+        border-bottom-width: var(--ids-comp-dialog-content-scrollable-size-border-width-#{$size});
 
-        .ids-dialog-content {
-          padding: var(--ids-comp-dialog-content-fixed-size-padding-y-#{$size})
-            var(--ids-comp-dialog-content-fixed-size-padding-x-#{$size});
-
-          &.ids-dialog-content-scrollable {
-            padding: var(--ids-comp-dialog-content-scrollable-size-padding-y-#{$size})
-              var(--ids-comp-dialog-content-scrollable-size-padding-x-#{$size});
-            border-top-width: var(--ids-comp-dialog-content-scrollable-size-border-width-#{$size});
-            border-bottom-width: var(--ids-comp-dialog-content-scrollable-size-border-width-#{$size});
-          }
+        > .ids-dialog-content-overflow {
+          padding: var(--ids-comp-dialog-content-scrollable-size-padding-y-#{$size})
+            var(--ids-comp-dialog-content-scrollable-size-padding-x-#{$size});
         }
+      }
+    }
 
         .ids-dialog-actions {
           padding: var(--ids-comp-dialog-footer-padding-y-#{$size}) var(--ids-comp-dialog-footer-padding-x-#{$size});
