@@ -9,7 +9,15 @@
   @include base;
   line-height: 1.5;
 
-  &::before, &::after, & *, & ::before, & ::after {
+  &::before, &::after { 
     @include base;
+  }
+
+  @at-root {
+    :where(#{&}) :where([class^="ids-"], [class*=" ids-"]),
+    :where(#{&}) :where([class^="ids-"], [class*=" ids-"]) ::before,
+    :where(#{&}) :where([class^="ids-"], [class*=" ids-"]) ::after { 
+      @include base; 
+    }
   }
 }
