@@ -77,6 +77,10 @@ $orientations: horizontal, vertical;
 
             & > .ids-checkbox-group__legend-container {
               gap: var(--ids-comp-checkbox-group-#{$orientation}-fieldset-legend-size-gap-#{$size});
+
+              & > .ids-checkbox-group__legend-label {
+                @include checkbox-group-legend-label-typography($orientation, $size);
+              }
             }
           }
 
@@ -94,8 +98,16 @@ $orientations: horizontal, vertical;
 
   @each $variant in $variants {
     &.ids-checkbox-group-#{$variant} {
-      & > .ids-checkbox-group__legend-wrapper > .ids-checkbox-group__legend-label {
-        color: var(--ids-comp-checkbox-label-color-fg-#{$variant}-default);
+      &.ids-checkbox-group-disabled {
+        & > .ids-checkbox-group__legend-wrapper > .ids-checkbox-group__legend-container > .ids-checkbox-group__legend-label {
+          color: var(--ids-comp-checkbox-group-legend-color-fg-#{$variant}-disabled);
+        }
+      }
+
+      &:not(.ids-checkbox-group-disabled) {
+        & > .ids-checkbox-group__legend-wrapper > .ids-checkbox-group__legend-container > .ids-checkbox-group__legend-label {
+          color: var(--ids-comp-checkbox-group-legend-color-fg-#{$variant}-default);
+        }
       }
     }
   }
