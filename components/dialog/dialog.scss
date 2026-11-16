@@ -119,8 +119,8 @@ $sizes: compact, comfortable, spacious, dense;
         
     .ids-dialog-content {
     > .ids-dialog-content-overflow {
-    padding: var(--ids-comp-dialog-content-fixed-size-padding-y-#{size})
-                  var(--ids-comp-dialog-content-fixed-size-padding-x-#{size});
+    padding: var(--ids-comp-dialog-content-fixed-size-padding-y-#{$size})
+                  var(--ids-comp-dialog-content-fixed-size-padding-x-#{$size});
     }
       &.ids-dialog-content-scrollable {
         border-top-width: var(--ids-comp-dialog-content-scrollable-size-border-width-#{$size});
