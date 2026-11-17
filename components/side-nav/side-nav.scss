@@ -280,6 +280,16 @@ $sizes: compact, comfortable, spacious, dense;
     &.ids-side-nav-#{$appearance} {
       @each $variant in $variants {
         &.ids-side-nav-#{$variant} {
+
+          .ids-side-nav-title { 
+            .ids-side-nav-title-label {
+              color: var(--ids-comp-sidenav-section-color-fg-label-#{$variant}-default);
+            }
+            & > .ids-icon {
+              color: var(--ids-comp-sidenav-section-color-fg-icon-#{$variant}-default);
+            }
+          }
+
           .ids-side-nav-item {
             .ids-side-nav-item-single {
               @include appearanceAndVariant('single', $appearance, $variant, default);
