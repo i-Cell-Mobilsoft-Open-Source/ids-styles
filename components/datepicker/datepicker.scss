@@ -113,6 +113,11 @@ $variants: surface;
           letter-spacing: var(--ids-comp-date-picker-calendar-button-typography-letter-spacing-#{$size});
           line-height: var(--ids-comp-date-picker-calendar-button-typography-line-height-#{$size});
 
+          &.ids-calendar-button-not-current-month {
+            font-weight: var(--ids-comp-date-picker-calendar-button-not-current-month-typography-font-weight-#{$size},
+              var(--ids-comp-date-picker-calendar-button-typography-font-weight-#{$size}));
+          }
+
           &:is(:focus, :focus-visible) {
             outline-width: var(--ids-comp-date-picker-focused-outline-size-outline-#{$size});
           }
@@ -154,6 +159,15 @@ $variants: surface;
 
         & > .ids-calendar-button {
           @include calendarButtonVariant($variant, unselected);
+
+          &.ids-day-selector__day-button:where(:focus-visible:not(:active, :disabled, .ids-calendar-button-selected, .ids-calendar-button-today)) {
+            color: var(--ids-comp-date-picker-calendar-button-unselected-color-fg-#{$variant}-focused);
+          }
+
+          &.ids-calendar-button-not-current-month {
+            color: var(--ids-comp-date-picker-calendar-button-unselected-not-current-month-color-fg-#{$variant}-default,
+              var(--ids-comp-date-picker-calendar-button-unselected-color-fg-#{$variant}-default));
+          }
 
           &.ids-calendar-button-today {
             @include calendarButtonVariant($variant, unselected, current-date);
