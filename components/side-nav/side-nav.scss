@@ -41,6 +41,7 @@ $sizes: compact, comfortable, spacious, dense;
     font-size: var(--ids-comp-sidenav-navitem-#{$type}-icon-typography-font-size-#{$size});
     font-weight: var(--ids-comp-sidenav-navitem-#{$type}-icon-typography-font-weight-#{$size});
     line-height: var(--ids-comp-sidenav-navitem-#{$type}-icon-typography-line-height-#{$size});
+    flex-shrink: 0;
   }
 
   .ids-side-nav-item-label {
@@ -164,6 +165,14 @@ $sizes: compact, comfortable, spacious, dense;
       &:focus-visible {
         outline-style: solid;
       }
+    }
+
+    .ids-side-nav-item-label {
+      overflow: hidden; 
+      white-space: nowrap; 
+      text-overflow: ellipsis;
+      flex-shrink: 1 1 auto;
+      min-width: 0;
     }
   }
 
