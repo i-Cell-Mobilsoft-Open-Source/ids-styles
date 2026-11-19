@@ -39,16 +39,21 @@ $variants: surface, light;
       }
     }
 
-    & > .ids-select__arrow {
+    & > .ids-select__indicators {
       display: flex;
-      flex-shrink: 0;
+      align-items: center;
+      
+      & > .ids-clear-value {
+        display: contents;
+      }
+  
     }
   }
 
   @each $size in $sizes {
     &.ids-select-#{$size} {
       & > .ids-select__trigger {
-        gap: var(--ids-comp-forms-select-size-gap-#{$size});
+        gap: var(--ids-comp-forms-input-size-gap-#{$size}); 
 
         & > .ids-select__value {
           & > .ids-select__placeholder {
@@ -57,6 +62,31 @@ $variants: surface, light;
             font-weight: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-empty-font-weight-#{$size});
             letter-spacing: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-empty-letter-spacing-#{$size});
             line-height: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-typography-empty-line-height-#{$size});
+          }
+        }
+
+        & > .ids-select__indicators {
+          gap: var(--ids-comp-forms-input-size-icons-gap-#{$size});
+
+          & > .ids-clear-value > .ids-icon-button {
+            height: var(--ids-comp-forms-input-icon-button-width-#{$size});
+            width: var(--ids-comp-forms-input-icon-button-width-#{$size});
+
+            .ids-icon {
+              font-family: var(--ids-comp-forms-input-icon-button-typography-font-family-#{$size});
+              font-size: var(--ids-comp-forms-input-icon-button-typography-font-size-#{$size});
+              font-weight: var(--ids-comp-forms-input-icon-button-typography-font-weight-#{$size});
+              line-height: var(--ids-comp-forms-input-icon-button-typography-line-height-#{$size});
+            }
+          }
+
+          & > .ids-icon {
+            font-family: var(--ids-comp-forms-input-icon-typography-font-family-#{$size});
+            height: var(--ids-comp-forms-input-icon-width-#{$size});
+            width: var(--ids-comp-forms-input-icon-width-#{$size});
+            font-size: var(--ids-comp-forms-input-icon-typography-font-size-#{$size});
+            font-weight: var(--ids-comp-forms-input-icon-typography-font-weight-#{$size});
+            line-height: var(--ids-comp-forms-input-icon-typography-line-height-#{$size});
           }
         }
       }

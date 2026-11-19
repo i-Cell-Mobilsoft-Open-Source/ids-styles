@@ -21,11 +21,6 @@ $sizes: compact, comfortable, spacious, dense;
     width: 100%;
   }
 
-  &-suffix {
-    display: flex;
-    align-items: center;
-  }
-
   &-chip-list {
     // allow the chip list to be a sibling of the input, so they can wrap properly
     display: contents;
@@ -46,12 +41,21 @@ $sizes: compact, comfortable, spacious, dense;
     }
   }
 
+  &__indicators {
+    display: flex;
+    align-items: center;
+
+    & > .ids-clear-value {
+      display: contents;
+    }
+  }
+
   @each $size in $sizes {
     &.ids-autocomplete-#{$size} {
-      & > .ids-autocomplete-suffix {
+      & > .ids-autocomplete__indicators {
         gap: var(--ids-comp-forms-input-size-icons-gap-#{$size});
 
-        > .ids-icon-button {
+        & > .ids-clear-value > .ids-icon-button {
           height: var(--ids-comp-forms-input-icon-button-width-#{$size});
           width: var(--ids-comp-forms-input-icon-button-width-#{$size});
 
@@ -63,7 +67,7 @@ $sizes: compact, comfortable, spacious, dense;
           }
         }
 
-        > .ids-icon {
+        & > .ids-icon {
           font-family: var(--ids-comp-forms-input-icon-typography-font-family-#{$size});
           height: var(--ids-comp-forms-input-icon-width-#{$size});
           width: var(--ids-comp-forms-input-icon-width-#{$size});
@@ -117,7 +121,12 @@ input[autocomplete] {
 
   @each $size in $sizes {
     &:has(> input[autocomplete] ~ .ids-autocomplete-#{$size}) {
-      padding-right: var(--ids-comp-forms-form-field-standard-field-wrapper-infix-size-padding-right-#{$size});
+      padding-right: 
+        // gap is added to the padding as chip list and input are not belong to a common container
+        calc(
+          var(--ids-comp-forms-form-field-standard-field-wrapper-infix-size-padding-right-#{$size}) + 
+          var(--ids-comp-forms-input-size-gap-#{$size})
+        );
     }
 
     &:has(> .ids-autocomplete-chip-list ~ input[autocomplete] ~ .ids-autocomplete-#{$size}) {
