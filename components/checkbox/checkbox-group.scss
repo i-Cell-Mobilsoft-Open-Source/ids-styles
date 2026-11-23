@@ -32,30 +32,61 @@ $orientations: horizontal, vertical;
   justify-content: center;
   align-items: flex-start;
 
+  & > .ids-checkbox-group__fieldset {
+    min-inline-size: 0;
+    width: inherit;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    justify-items: start;
+    row-gap: inherit;
+    column-gap: 0;
+
+    > .ids-checkbox-group__legend-wrapper {
+      float: left;
+      padding: 0;
+      margin: 0;
+      grid-column: 1;
+    }
+
+    > .ids-checkbox-group__hint {
+      grid-column: 1;
+      justify-self: stretch;
+    }
+
+    > .ids-checkbox-group__parent,
+    > .ids-checkbox-group__list,
+    > .ids-checkbox-group__error-container {
+      grid-column: 1 / -1;
+    }
+  }
+
   .ids-checkbox-group__required-marker::after {
     content: '*';
     color: var(--ids-comp-checkbox-group-asterix-color-fg-default);
     margin-left: 1px;
   }
 
-  &.ids-checkbox-group-disabled > .ids-checkbox-group__legend-wrapper .ids-checkbox-group__required-marker::after {
+  &.ids-checkbox-group-disabled > .ids-checkbox-group__fieldset > .ids-checkbox-group__legend-wrapper .ids-checkbox-group__required-marker::after {
     color: var(--ids-comp-checkbox-group-asterix-color-fg-disabled);
   }
 
-  & > .ids-checkbox-group__legend-wrapper > .ids-checkbox-group__legend-container > .ids-checkbox-group__legend-label {
+  & > .ids-checkbox-group__fieldset > .ids-checkbox-group__legend-wrapper > .ids-checkbox-group__legend-container > .ids-checkbox-group__legend-label {
     font-style: normal;
   }
 
-  & > .ids-checkbox-group__list {
+  & > .ids-checkbox-group__fieldset > .ids-checkbox-group__list {
     display: flex;
   }
 
-  &.ids-checkbox-group-horizontal > .ids-checkbox-group__list {
+  &.ids-checkbox-group-horizontal > .ids-checkbox-group__fieldset > .ids-checkbox-group__list {
     flex-direction: row;
     align-items: center;
   }
 
-  &.ids-checkbox-group-vertical > .ids-checkbox-group__list {
+  &.ids-checkbox-group-vertical > .ids-checkbox-group__fieldset > .ids-checkbox-group__list {
     flex-direction: column;
     align-items: flex-start;
   }
@@ -66,7 +97,7 @@ $orientations: horizontal, vertical;
         var(--ids-comp-checkbox-group-vertical-fieldset-legend-size-padding-x-#{$size});
       gap: var(--ids-comp-checkbox-group-vertical-fieldset-size-gap-#{$size});
 
-      & > .ids-checkbox-group__legend-wrapper {
+      & > .ids-checkbox-group__fieldset > .ids-checkbox-group__legend-wrapper {
         display: flex;
         flex-direction: column;
       
@@ -78,7 +109,7 @@ $orientations: horizontal, vertical;
 
       @each $orientation in $orientations {
         &.ids-checkbox-group-#{$orientation} {
-          & > .ids-checkbox-group__legend-wrapper {
+          & > .ids-checkbox-group__fieldset > .ids-checkbox-group__legend-wrapper {
             gap: var(--ids-comp-checkbox-group-#{$orientation}-fieldset-legend-size-gap-#{$size});
 
             & > .ids-checkbox-group__legend-container {
@@ -88,6 +119,21 @@ $orientations: horizontal, vertical;
               & > .ids-checkbox-group__required-marker::after {
                 @include checkbox-group-legend-label-typography($orientation, $size);
               }
+            }
+          }
+
+          & > .ids-checkbox-group__fieldset.ids-checkbox-group__fieldset--has-hint > .ids-checkbox-group__legend-wrapper {
+            margin-bottom: calc(
+              var(--ids-comp-checkbox-group-#{$orientation}-fieldset-legend-size-gap-#{$size}) -
+              var(--ids-comp-checkbox-group-vertical-fieldset-size-gap-#{$size})
+            );
+          }
+
+          & > .ids-checkbox-group__fieldset--empty-legend.ids-checkbox-group__fieldset--has-hint {
+            padding-top: var(--ids-comp-checkbox-group-#{$orientation}-fieldset-legend-size-gap-#{$size});
+
+            > .ids-checkbox-group__legend-wrapper {
+              display: none;
             }
           }
 
@@ -106,13 +152,13 @@ $orientations: horizontal, vertical;
   @each $variant in $variants {
     &.ids-checkbox-group-#{$variant} {
       &.ids-checkbox-group-disabled {
-        & > .ids-checkbox-group__legend-wrapper > .ids-checkbox-group__legend-container > .ids-checkbox-group__legend-label {
+        & > .ids-checkbox-group__fieldset > .ids-checkbox-group__legend-wrapper > .ids-checkbox-group__legend-container > .ids-checkbox-group__legend-label {
           color: var(--ids-comp-checkbox-group-legend-color-fg-#{$variant}-disabled);
         }
       }
 
       &:not(.ids-checkbox-group-disabled) {
-        & > .ids-checkbox-group__legend-wrapper > .ids-checkbox-group__legend-container > .ids-checkbox-group__legend-label {
+        & > .ids-checkbox-group__fieldset > .ids-checkbox-group__legend-wrapper > .ids-checkbox-group__legend-container > .ids-checkbox-group__legend-label {
           color: var(--ids-comp-checkbox-group-legend-color-fg-#{$variant}-default);
         }
       }
