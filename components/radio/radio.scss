@@ -86,43 +86,68 @@ $orientations: horizontal, vertical;
     align-items: flex-start;
   }
 
-  & > .ids-radio-group__legend {
+  & > .ids-radio-group__fieldset {
+    min-inline-size: 0;
+    width: inherit;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    justify-items: start;
+    gap: inherit;
+  }
+
+  & > .ids-radio-group__fieldset > .ids-radio-group__legend {
+    padding: 0;
+    float: left;
+    grid-column: 1;
     display: flex;
     flex-direction: column;
   }
 
-  & > .ids-radio-group__legend > .ids-radio-group__legend-container > .ids-radio-group__legend-label {
+  & > .ids-radio-group__fieldset > .ids-radio-group__legend > .ids-radio-group__legend-container > .ids-radio-group__legend-label {
     font-style: normal;
   }
 
-  & > .ids-radio-group__list {
+  & > .ids-radio-group__fieldset > .ids-radio-group__list {
     display: flex;
     width: inherit;
+    grid-column: 1 / -1;
   }
 
-  &.ids-radio-group-horizontal > .ids-radio-group__list {
+  & > .ids-radio-group__fieldset > .ids-radio-group__hint {
+    grid-column: 1;
+    justify-self: stretch;
+  }
+
+  & > .ids-radio-group__fieldset > .ids-radio-group__error-container {
+    grid-column: 1 / -1;
+  }
+
+  &.ids-radio-group-horizontal > .ids-radio-group__fieldset > .ids-radio-group__list {
     flex-direction: row;
     align-items: center;
   }
 
-  &.ids-radio-group-horizontal.ids-radio-group-top > .ids-radio-group__list {
+  &.ids-radio-group-horizontal.ids-radio-group-top > .ids-radio-group__fieldset > .ids-radio-group__list {
     align-items: flex-end;
   }
 
-  &.ids-radio-group-horizontal.ids-radio-group-bottom > .ids-radio-group__list {
+  &.ids-radio-group-horizontal.ids-radio-group-bottom > .ids-radio-group__fieldset > .ids-radio-group__list {
     align-items: flex-start;
   }
 
-  &.ids-radio-group-vertical > .ids-radio-group__list {
+  &.ids-radio-group-vertical > .ids-radio-group__fieldset > .ids-radio-group__list {
     flex-direction: column;
     align-items: center;
   }
 
-  &.ids-radio-group-vertical.ids-radio-group-left > .ids-radio-group__list {
+  &.ids-radio-group-vertical.ids-radio-group-left > .ids-radio-group__fieldset > .ids-radio-group__list {
     align-items: flex-end;
   }
 
-  &.ids-radio-group-vertical.ids-radio-group-right > .ids-radio-group__list {
+  &.ids-radio-group-vertical.ids-radio-group-right > .ids-radio-group__fieldset > .ids-radio-group__list {
     align-items: flex-start;
   }
 
@@ -245,8 +270,17 @@ $orientations: horizontal, vertical;
         &.ids-radio-group-#{$orientation} {
           padding: var(--ids-comp-radio-group-#{$orientation}-fieldset-size-padding-y-#{$size}) var(--ids-comp-radio-group-#{$orientation}-fieldset-size-padding-x-#{$size});
           gap: var(--ids-comp-radio-group-#{$orientation}-fieldset-size-gap-#{$size});
+
+          & > .ids-radio-group__fieldset:not(:has(> .ids-radio-group__legend)) {
+            padding-top: var(--ids-comp-radio-group-#{$orientation}-fieldset-size-gap-#{$size});
+
+            &.ids-radio-group__fieldset--has-hint {
+              padding-top: var(--ids-comp-radio-group-#{$orientation}-fieldset-legend-size-gap-#{$size});
+            }
+          }
           
-          & > .ids-radio-group__legend {
+          & > .ids-radio-group__fieldset > .ids-radio-group__legend {
+            margin-bottom: 0;
             gap: var(--ids-comp-radio-group-#{$orientation}-fieldset-legend-size-gap-#{$size});
 
             & > .ids-radio-group__legend-container {
@@ -271,7 +305,11 @@ $orientations: horizontal, vertical;
             }
           }
 
-          & > .ids-radio-group__list {
+          & > .ids-radio-group__fieldset.ids-radio-group__fieldset--has-hint > .ids-radio-group__legend {
+            margin-bottom: calc(var(--ids-comp-radio-group-#{$orientation}-fieldset-legend-size-gap-#{$size}) - var(--ids-comp-radio-group-#{$orientation}-fieldset-size-gap-#{$size}));
+          }
+
+          & > .ids-radio-group__fieldset > .ids-radio-group__list {
             @if $orientation == vertical {
               gap: var(--ids-comp-radio-group-vertical-fieldset-list-size-gap-#{$size});
             } @else {
